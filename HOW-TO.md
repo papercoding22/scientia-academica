@@ -92,7 +92,18 @@ Teams tự sinh transcript cho buổi học có bật ghi hình. Cách lấy nó
 1. Mở bản ghi của buổi học (trong chat của lớp, hoặc Stream / OneDrive).
 2. Tìm mục **Transcript** trong bản ghi.
 3. Tải về — thường có `.vtt` hoặc `.docx`.
-4. Tạo file `lectures/_raw/L<nn>-<YYYY-MM-DD>-transcript.md`, dán nội dung vào.
+4. Tạo file `_raw` bằng script — nó tự tìm số buổi tiếp theo và đặt tên đúng quy ước:
+
+```bash
+# Có file .vtt: script tự chuyển sang markdown, gộp câu theo người nói
+scripts/new-lecture.sh --course IE105 --from ~/Downloads/meeting.vtt --date 2026-10-06
+
+# Chưa có gì: tạo chỗ trống để dán tay
+scripts/new-lecture.sh --course IE105
+```
+
+Không muốn dùng script thì tự tạo `lectures/_raw/L<nn>-<YYYY-MM-DD>-transcript.md`
+rồi dán nội dung vào — kết quả như nhau.
 
 > Giao diện Teams thay đổi theo bản cập nhật, nên các bước trên là mô tả chung.
 > Nếu lớp **không bật ghi hình**, dùng chính note bạn gõ trong lúc học —
@@ -386,6 +397,11 @@ Copy dùng thẳng, đổi mã môn và số buổi:
 **Sau buổi học**
 ```
 xử lý buổi 3 môn IT007
+/new-lecture IT007 3
+```
+Có file `.vtt` trong tay thì đưa thẳng đường dẫn, AI tự nạp:
+```
+/new-lecture IT007, transcript ở ~/Downloads/meeting.vtt
 ```
 
 **Chưa hiểu bài**
@@ -420,6 +436,12 @@ kết thúc học kỳ, cập nhật program
 **Thêm môn**
 ```
 /new-course
+```
+
+**Tự chạy script**
+```bash
+scripts/new-course.sh --help
+scripts/new-lecture.sh --help
 ```
 
 ---
