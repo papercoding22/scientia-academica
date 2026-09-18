@@ -268,9 +268,17 @@ và ghi rõ số trang khi trích. Giáo trình chuẩn hơn transcript Teams.
 |---|---|
 | Thêm môn học mới | skill **`new-course`** → `.claude/skills/new-course/SKILL.md` |
 | Xử lý một buổi học | skill **`new-lecture`** → `.claude/skills/new-lecture/SKILL.md` |
+| Dọn file thả tay vào repo | skill **`tidy-files`** → `.claude/skills/tidy-files/SKILL.md` |
 | Sinh / kiểm tra mục lục | `scripts/toc.py gen\|check <file>` (xem § 2b) |
+| Tìm file sai chỗ / sai tên | `scripts/check-layout.sh [--course <mã>]` |
+| Xem nhanh nội dung .docx/.vtt | `scripts/peek.py <file>` |
 
 Hàm dùng chung của các script nằm ở `scripts/lib/common.sh`.
+
+**Người dùng thả file thủ công vào repo** (transcript, slide, bài tập đã làm) →
+dùng skill **`tidy-files`**, đừng tự `mv` theo cảm tính. Luật quan trọng nhất của nó:
+**tên file mang thông tin thì không được chuẩn hoá mất đi** — file nộp giữ mẫu giảng viên
+yêu cầu, slide giữ số chương của giảng viên.
 
 **Không tự tay `mkdir` để tạo môn học.** Dùng skill — nó chạy
 `scripts/new-course.sh` tạo khung, rồi nối môn mới vào **6 file** khác đang giữ

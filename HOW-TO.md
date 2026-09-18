@@ -438,12 +438,21 @@ kết thúc học kỳ, cập nhật program
 /new-course
 ```
 
+**Vừa thả file vào repo bằng tay**
+```
+/tidy-files
+```
+AI đọc nội dung từng file để biết nó là gì rồi xếp vào đúng chỗ.
+**Tên file nộp cho giảng viên được giữ nguyên**, không bị chuẩn hoá.
+
 **Tự chạy script**
 ```bash
 scripts/new-course.sh --help
 scripts/new-lecture.sh --help
-scripts/toc.py check <file>    # kiểm tra link mục lục còn đúng không
-scripts/toc.py gen <file>      # sinh lại mục lục sau khi thêm mục mới
+scripts/check-layout.sh --course IE105   # tìm file sai chỗ hoặc sai tên
+scripts/peek.py <file>                   # xem nhanh nội dung .docx/.vtt
+scripts/toc.py check <file>              # kiểm tra link mục lục còn đúng không
+scripts/toc.py gen <file>                # sinh lại mục lục sau khi thêm mục mới
 ```
 
 ---
