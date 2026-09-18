@@ -9,6 +9,7 @@
 | Tỷ trọng | Thuộc nhóm điểm quá trình |
 | **File nộp** | `Bài tập 5_Nguyễn Quốc Trung_25730081.docx` |
 | Trạng thái | ⚠️ **quá hạn — chưa có file nộp trong repo** |
+| Hướng dẫn cách làm | [`GUIDE.md`](GUIDE.md) — phương pháp, không phải lời giải |
 
 > ✅ Đã ghi hạn nộp vào [`admin/deadlines.md`](../../../../../admin/deadlines.md)? — ❓
 >
