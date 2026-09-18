@@ -9,7 +9,17 @@
 
 | Môn | Việc | Hạn nộp | Còn lại | Trạng thái | Nguồn |
 |---|---|---|---|---|---|
-| — | *chưa có deadline nào* | — | — | — | — |
+| — | *chưa có deadline cụ thể nào* | — | — | — | — |
+
+### Quy tắc lặp lại
+
+| Môn | Việc | Hạn |
+|---|---|---|
+| **IE105** | Bài tập cuối mỗi buổi học | **21:30 cùng ngày**, dự phòng hết ngày hôm sau |
+
+> *IE105, buổi 1, 2026-07-08 — "nộp bài luôn trong ngày hôm nay cho nó xong, 21 giờ 30 phút
+> […] phải để thêm cái deadline dự phòng là đến hết ngày hôm sau"*
+> Nộp bài cuối giờ **cũng chính là điểm danh** — bỏ một buổi là mất cả điểm quá trình lẫn chuyên cần.
 
 **Trạng thái:** `⬜ chưa làm` · `🔄 đang làm` · `✅ đã nộp` · `⚠️ trễ hạn`
 
@@ -27,11 +37,11 @@
 
 | Môn | Loại | Ngày | Giờ | Hình thức | Được mang gì |
 |---|---|---|---|---|---|
-| IE105 | Giữa kỳ | ❓ | ❓ | ❓ | ❓ |
+| IE105 | ~~Giữa kỳ~~ | — | — | **KHÔNG CÓ THI GIỮA KỲ** | — |
 | IE103 | Giữa kỳ | ❓ | ❓ | ❓ | ❓ |
 | IE101 | Giữa kỳ | ❓ | ❓ | ❓ | ❓ |
 | IT007 | Giữa kỳ | ❓ | ❓ | ❓ | ❓ |
-| IE105 | Cuối kỳ | ❓ | ❓ | ❓ | ❓ |
+| IE105 | Cuối kỳ | ❓ thứ 7 / CN | ❓ | **Trắc nghiệm 40 câu, 75 phút**, tập trung tại trường | ❓ |
 | IE103 | Cuối kỳ | ❓ | ❓ | ❓ | ❓ |
 | IE101 | Cuối kỳ | ❓ | ❓ | ❓ | ❓ |
 | IT007 | Cuối kỳ | ❓ | ❓ | ❓ | ❓ |
