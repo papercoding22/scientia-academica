@@ -1,7 +1,7 @@
 # scientia-academica
 
-Không gian học tập của **Nguyễn Quốc Trung** — MSSV `25730081`
-Ngành Công nghệ Thông tin, hệ đào tạo từ xa, Trường ĐH Công nghệ Thông tin (UIT).
+Không gian học tập cá nhân cho chương trình đại học ngành Công nghệ Thông tin,
+hệ đào tạo từ xa.
 
 Repo này là nơi mọi thứ liên quan tới việc học đi qua: bài giảng Teams, note, bài tập,
 đồ án, kế hoạch tốt nghiệp. AI làm việc trong repo theo luật ghi ở [`AGENTS.md`](AGENTS.md).
@@ -97,6 +97,6 @@ Bạn chỉ làm hai việc thủ công: bỏ slide vào `materials/`, dán tran
 - **Tên đường dẫn: tiếng Anh.** `exam-prep/`, `process-scheduling.md`
 - **Nội dung file: tiếng Việt có dấu.** Thuật ngữ kỹ thuật giữ tiếng Anh.
 - **Ngoại lệ duy nhất — file nộp cho giảng viên giữ dấu tiếng Việt:**
-  `BT01-NguyễnQuốcTrung-25730081.pdf`
+  `BT01-<HọVàTên>-<MSSV>.pdf`
 
 Chi tiết đầy đủ ở [`AGENTS.md` § 13](AGENTS.md).
