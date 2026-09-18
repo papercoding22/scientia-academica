@@ -1,25 +1,37 @@
-# <MÃ MÔN> — Bài tập <n>
+# {{CODE}} — Bài tập {{NUM}}
 
 | | |
 |---|---|
-| Tên bài | ❓ |
-| Giao ngày | YYYY-MM-DD |
-| **Hạn nộp** | **YYYY-MM-DD** |
-| Tỷ trọng điểm | ❓ % |
-| Hình thức nộp | ❓ |
-| **File nộp** | `BT0<n>-NguyễnQuốcTrung-25730081.<đuôi>` |
+| Tên bài | {{TITLE}} |
+| Môn | `{{CODE}}` {{NAME_VI}} |
+| Buổi học | {{LECTURE}} |
+| **Hạn nộp** | **{{DUE}}** |
+| Tỷ trọng | Thuộc nhóm điểm quá trình |
+| **File nộp** | `{{SUBMISSION}}` |
 | Trạng thái | ⬜ chưa làm |
 
 > ✅ Đã ghi hạn nộp vào [`admin/deadlines.md`](../../../../../admin/deadlines.md)? — ❓
 >
-> 📄 Soạn báo cáo từ `templates/ASSIGNMENT_TEMPLATE.docx` — có sẵn trang bìa UIT
-> và khung `Câu 1` · `Bảng` · `Kết luận`. Nộp **file gốc .docx**, không phải PDF.
+> 📄 File nộp đã được copy sẵn từ `templates/ASSIGNMENT_TEMPLATE.docx` — có trang bìa UIT
+> và khung `Câu 1` · `Bảng` · `Kết luận`. Mở bằng Word, điền trang bìa rồi viết.
+> **Nộp file gốc `.docx`, không phải PDF.**
+
+---
+
+## Mục lục
+
+- [Yêu cầu đề bài](#yêu-cầu-đề-bài)
+- [Checklist](#checklist)
+- [Hướng tiếp cận](#hướng-tiếp-cận)
+- [Ghi chú trong quá trình làm](#ghi-chú-trong-quá-trình-làm)
+- [Sau khi có điểm](#sau-khi-có-điểm)
+- [Thư mục](#thư-mục)
 
 ---
 
 ## Yêu cầu đề bài
 
-<tóm tắt bằng lời của mình, không copy nguyên đề>
+❓ *Chưa điền.* Tóm tắt bằng lời của mình, không copy nguyên đề.
 
 Đề bài gốc: [`brief/`](brief/)
 
@@ -28,16 +40,20 @@
 ## Checklist
 
 - [ ] Đọc kỹ đề, xác định đúng yêu cầu
+- [ ] Điền trang bìa file nộp (MÃ MÔN · MÔN HỌC · GVHD · Sinh viên · MSSV · Lớp)
 - [ ] ❓
 - [ ] Kiểm tra lại trước khi nộp
-- [ ] Đặt tên file đúng quy ước
-- [ ] Nộp
+- [ ] Nộp đúng hạn
 
 ---
 
 ## Hướng tiếp cận
 
-<ghi cách nghĩ TRƯỚC khi hỏi AI — đây là phần quan trọng nhất để thực sự học được>
+> ✍️ **Viết phần này TRƯỚC khi hỏi AI.**
+> AI được cấu hình để không viết hộ lời giải khi bạn chưa có bản nháp
+> (`AGENTS.md` § 6) — và đó là chủ ý, không phải hạn chế.
+
+❓ *Chưa viết.*
 
 ---
 
@@ -58,3 +74,13 @@
 | Điểm | ❓ |
 | Nhận xét của giảng viên | |
 | Sai ở đâu, vì sao | |
+
+---
+
+## Thư mục
+
+| | |
+|---|---|
+| [`brief/`](brief/) | Đề bài gốc từ giảng viên — **chỉ đọc** |
+| [`resources/`](resources/) | Tài liệu tham khảo |
+| [`images/`](images/) | Ảnh chụp quá trình làm bài |

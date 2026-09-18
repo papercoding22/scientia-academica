@@ -21,12 +21,13 @@ Hai loại template, hai người dùng khác nhau. Đừng lẫn.
 
 Trang bìa chuẩn UIT + khung `Câu 1` · `Bảng` · `Kết luận`, các ô thông tin để trống.
 
-**Cách dùng — copy vào thư mục bài tập, đặt tên theo mẫu giảng viên yêu cầu:**
+**Cách dùng — `scripts/new-assignment.sh` tự copy và đặt tên cho bạn:**
 
 ```bash
-cp templates/ASSIGNMENT_TEMPLATE.docx \
-   "semesters/2025-2026-S3/IE105-information-assurance-security/assignments/a8/Bài tập 8_Nguyễn Quốc Trung_25730081.docx"
+scripts/new-assignment.sh --course IE105 --num 8 --due 2026-09-25
 ```
+
+Mẫu tên file nộp được **suy ra từ bài đã nộp trước đó của cùng môn**, không hardcode.
 
 > ⚠️ **Mẫu tên file do giảng viên quy định, mỗi môn mỗi khác.**
 > Tra bảng ở [`AGENTS.md` § 13.3](../AGENTS.md) hoặc mục 4 trong `IMPORTANT_NOTES.md` của môn

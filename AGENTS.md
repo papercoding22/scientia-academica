@@ -206,13 +206,10 @@ Lý do thứ tự này: người dùng học tốt nhất khi có trực giác t
 - Tạo đủ: `README.md`, `brief/`, `resources/`, `images/`
 - `README.md` phải có: tóm tắt yêu cầu · checklist việc cần làm · hạn nộp (ngày tuyệt đối) · trạng thái
 - **Ghi hạn nộp vào `admin/deadlines.md` ngay lúc tạo thư mục**, không để sau.
-- **Copy sẵn `templates/ASSIGNMENT_TEMPLATE.docx`** vào thư mục, đặt tên theo mẫu giảng viên
-  yêu cầu (§ 13.3) để người dùng mở Word là viết được ngay:
-  ```bash
-  cp templates/ASSIGNMENT_TEMPLATE.docx "<aN>/Bài tập <N>_Họ tên_MSSV.docx"
-  ```
-  Template có sẵn trang bìa UIT và khung `Câu 1` · `Bảng` · `Kết luận`.
-  **Không điền sẵn tên và MSSV vào file** — repo đang public.
+- **Dùng skill `new-assignment`**, đừng tự `mkdir`. Script của nó copy sẵn
+  `templates/ASSIGNMENT_TEMPLATE.docx` thành file nộp với **mẫu tên suy ra từ bài đã nộp
+  trước đó của chính môn đó** — không hardcode, vì mẫu tên do giảng viên quy định (§ 13.3).
+  **Không điền sẵn tên và MSSV vào trang bìa** — repo đang public.
 
 **Khi người dùng hỏi soạn báo cáo bài tập** → chỉ họ tới `templates/ASSIGNMENT_TEMPLATE.docx`,
 đừng dựng lại trang bìa từ đầu.
@@ -278,6 +275,7 @@ và ghi rõ số trang khi trích. Giáo trình chuẩn hơn transcript Teams.
 |---|---|
 | Thêm môn học mới | skill **`new-course`** → `.claude/skills/new-course/SKILL.md` |
 | Xử lý một buổi học | skill **`new-lecture`** → `.claude/skills/new-lecture/SKILL.md` |
+| Tạo bài tập mới | skill **`new-assignment`** → `.claude/skills/new-assignment/SKILL.md` |
 | Dọn file thả tay vào repo | skill **`tidy-files`** → `.claude/skills/tidy-files/SKILL.md` |
 | Sinh / kiểm tra mục lục | `scripts/toc.py gen\|check <file>` (xem § 2b) |
 | Tìm file sai chỗ / sai tên | `scripts/check-layout.sh [--course <mã>]` |

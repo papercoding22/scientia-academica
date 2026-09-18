@@ -142,19 +142,19 @@ AI sẽ:
 
 **Khi nhận đề:**
 ```
-tạo bài tập 1 cho môn IT007, hạn nộp 10/10
+/new-assignment IE105 8
 ```
-AI tạo `assignments/a1/` với `README.md`, `brief/`, `resources/`, `images/`,
-và ghi hạn nộp vào `admin/deadlines.md`.
+AI tạo `assignments/a8/` với `README.md`, `brief/`, `resources/`, `images/`,
+**copy sẵn file nộp `.docx` đúng mẫu tên giảng viên yêu cầu**, tìm đề bài trong
+transcript buổi học, và ghi hạn nộp vào `admin/deadlines.md`.
 
-Bỏ file đề bài vào `assignments/a1/brief/`.
+Bỏ file đề bài của giảng viên vào `assignments/a8/brief/`.
 
-**Khi bắt đầu viết báo cáo:** copy template có sẵn trang bìa UIT, đặt tên theo mẫu
-giảng viên yêu cầu:
+**Khi bắt đầu viết báo cáo:** file `.docx` đã nằm sẵn trong `aN/`, mở bằng Word là viết được.
+Tự tạo bài tập không qua skill thì copy tay:
 
 ```bash
-cp templates/ASSIGNMENT_TEMPLATE.docx \
-   "semesters/2025-2026-S3/IE105-information-assurance-security/assignments/a8/Bài tập 8_Nguyễn Quốc Trung_25730081.docx"
+scripts/new-assignment.sh --course IE105 --num 8 --due 2026-09-25 --dry-run
 ```
 
 Điền trang bìa: `MÃ MÔN` · `MÔN HỌC` · `GVHD` · `Sinh viên thực hiện` · `MSSV` · `Lớp`
@@ -460,6 +460,7 @@ AI đọc nội dung từng file để biết nó là gì rồi xếp vào đún
 ```bash
 scripts/new-course.sh --help
 scripts/new-lecture.sh --help
+scripts/new-assignment.sh --help
 scripts/check-layout.sh --course IE105   # tìm file sai chỗ hoặc sai tên
 scripts/peek.py <file>                   # xem nhanh nội dung .docx/.vtt
 scripts/toc.py check <file>              # kiểm tra link mục lục còn đúng không
