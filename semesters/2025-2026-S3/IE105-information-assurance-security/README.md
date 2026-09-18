@@ -76,14 +76,20 @@ Môn nhập môn về bảo đảm thông tin (information assurance) và an nin
 |---|---|---|---|---|
 | — | *Bài tập 1* | L01 | 2026-07-08 | ⬜ **chưa có file trong repo** |
 | — | *Bài tập 2* | L02–L04 | ❓ | ⬜ **chưa có file trong repo** |
+| [`a5`](assignments/a5/) | Hàm băm, chứng chỉ số và chữ ký số | L04 | 2026-08-05 | ⚠️ **quá hạn — chưa có file nộp** |
 | [`a3a`](assignments/a3a/) | Thăm dò (Footprinting) | L05 | 2026-08-12 | ✅ đã nộp |
 | [`a3b`](assignments/a3b/) | Quét mạng (Scanning) | L06 | 2026-08-19 | ✅ đã nộp |
 | [`a4`](assignments/a4/) | Tấn công hệ thống (System Hacking) | L07 | 2026-08-26 | ✅ đã nộp |
-| [`a5`](assignments/a5/) | Mã độc và kỹ thuật phân tích mã độc | ❓ | ❓ | ⬜ **chưa làm** — chưa có đề bài |
 | [`a6`](assignments/a6/) | Bảo mật mạng không dây | ❓ | ❓ | ✅ đã nộp |
 | [`a7`](assignments/a7/) | Giám sát hệ thống & mã độc | ❓ | ❓ | ✅ đã nộp |
 
 > ⚠️ **Thiếu bài 1 và 2** — chưa rõ là chưa làm hay chưa đưa vào repo.
+>
+> ⚠️ **Bài 5 quá hạn từ 2026-08-05** mà chưa có file nộp trong repo. Nếu đã nộp rồi thì
+> bỏ file vào `a5/`; nếu chưa nộp thì đây là một cột điểm quá trình đang mất.
+>
+> 📌 **Số bài tập KHÔNG trùng số chương trên slide.** Bài tập 5 được giao ở buổi 4
+> (chứng thực dữ liệu), còn slide "Bài 5" nói về mã độc. Đừng suy số bài từ tên slide.
 > Điểm quá trình chiếm **20%** và mỗi buổi một cột điểm, nên thiếu bài là mất điểm thật.
 >
 > ⚠️ **Bài 6 và 7 nói về nội dung không có trong 7 transcript hiện có**

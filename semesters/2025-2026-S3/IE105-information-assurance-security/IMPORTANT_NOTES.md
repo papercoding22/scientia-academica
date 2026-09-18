@@ -257,6 +257,14 @@ Bản đồ 7 buổi, dùng để biết phần nào thuộc bài nào khi ôn.
 > *Buổi 1, 2026-07-08 — "mình sẽ học khoảng chừng 7 đến 8 buổi lý thuyết […] thực hành
 > thì sẽ dành đến khoảng chừng 2 3 buổi"* · *Buổi 5 — "mình có khoảng chừng 6 bài thực hành"*
 
+**Số bài tập KHÔNG trùng số chương trên slide.** Bài tập 5 được giao ở **buổi 4**
+(chứng thực dữ liệu, chữ ký số), trong khi slide `Bài 5` nói về mã độc.
+→ Khi tạo thư mục bài tập, lấy số từ **hệ thống nộp bài**, đừng suy từ tên slide.
+
+**Nộp bài tập vào mục "bài tập buổi học"**, bài thực hành nộp ở mục riêng sau cùng.
+> *Buổi 4, 2026-08-05 — "nhớ nộp bài tập là nộp vô cái mục bài tập buổi học,
+> còn bài thực hành 1B là ở cái mục sau cùng"*
+
 **Bài tập làm cá nhân**, không làm nhóm.
 > *Buổi 1, 2026-07-08 — "Hôm nay làm cá nhân hết, làm cá nhân hoàn toàn"*
 
