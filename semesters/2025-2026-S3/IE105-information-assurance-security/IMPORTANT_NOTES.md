@@ -177,6 +177,9 @@ Bảng cần có: **tên · nhóm (cổ điển/hiện đại) · đặc điểm
 | **Hạn dự phòng** | **Hết ngày hôm sau** — dành cho hỏng máy, việc gia đình, đi công tác | Buổi 1 |
 | **Giờ vào lớp** | 18:15 (giờ trung tâm báo) | Buổi 1 |
 | **Đạo văn** | Trên **10%** là có vấn đề. Trường có nhóm chuyên kiểm tra đạo văn | Buổi 1 |
+| **Chép bài** | ⚠️ Lấy nguyên bài người khác nộp → **mất TOÀN BỘ điểm quá trình**, không phải chỉ bài đó | Buổi 1 |
+| **Tên file nộp** | `Bài tập <N>_Họ tên_MSSV` — vd `Bài tập 3A_Nguyễn Quốc Trung_25730081.docx` | Buổi 1, 2, 5 |
+| **Định dạng nộp** | **File gốc Word**. PDF chỉ đính kèm thêm | Buổi 1 |
 
 > *Buổi 1, 2026-07-08 — "cuối mỗi buổi học, thầy sẽ giảng lý thuyết đến khoảng một nửa
 > thời gian, còn nửa thời gian là mình sẽ làm bài tập trên lớp"*
@@ -189,7 +192,13 @@ Bảng cần có: **tên · nhóm (cổ điển/hiện đại) · đặc điểm
 
 **Cấu trúc một buổi học:** nửa đầu lý thuyết → nửa sau làm bài tập tại lớp → nộp trước 21:30.
 
-**Hình thức nộp:** nộp lên hệ thống, file Word; ai muốn có thể đính kèm thêm PDF.
+**Hình thức nộp:** nộp **file gốc Word** lên hệ thống; ai muốn có thể đính kèm thêm PDF.
+
+> *Buổi 1, 2026-07-08 — "nộp file gốc nha […] file gốc là thầy cô có thể dò được cái quá trình
+> làm bài của mình, còn nộp file PDF thì giống như nộp cái ảnh"*
+>
+> *Buổi 1 — "ai mà lấy nguyên bài của người ta mà nộp á là coi như không được [điểm] quá trình luôn,
+> chứ không phải không điểm của bài hôm nay đâu"*
 
 ---
 

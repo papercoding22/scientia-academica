@@ -352,17 +352,41 @@ Tên tiếng Việt đầy đủ của môn ghi trong `README.md` của môn, **
 Thuật ngữ kỹ thuật giữ nguyên tiếng Anh (§ 2).
 
 ### 13.3. File nộp cho giảng viên — **ngoại lệ duy nhất**
+
+> ⚠️ **Luật số một: mẫu tên do GIẢNG VIÊN quy định, không phải repo.**
+> Mỗi môn mỗi khác. Thầy dặn sao thì đặt vậy — **không "chuẩn hoá" cho khớp repo**.
+> Nộp sai mẫu tên là chuyện có thật bị trừ điểm.
+
+**Mẫu đã xác nhận theo từng môn:**
+
+| Môn | Mẫu tên file | Định dạng | Nguồn |
+|---|---|---|---|
+| **IE105** | `Bài tập <N>_Họ tên_MSSV` | **Word (.docx)**, PDF chỉ đính kèm thêm | buổi 1/2/5 |
+| IE101 · IE103 · IT007 | ❓ chưa biết | ❓ | — |
+
+Ví dụ thật của IE105: `Bài tập 3A_Nguyễn Quốc Trung_25730081.docx`
+
+> *IE105, buổi 1, 2026-07-08 — "mấy em đặt tên file á là Bài tập 1 gạch cái họ tên mã số sinh viên"*
+> *IE105, buổi 5, 2026-08-12 — "Đặt tên file là bài tập 3A, họ tên mã số sinh viên"*
+> *IE105, buổi 1 — nộp **file gốc** (Word) vì thầy xem được quá trình làm bài;
+> nộp PDF thì "giống như nộp cái ảnh"*
+
+**Mẫu mặc định** khi môn chưa có chỉ dẫn nào của giảng viên:
 ```
 [tên assignment]-NguyễnQuốcTrung-25730081.<đuôi>
 ```
-- `BT01-NguyễnQuốcTrung-25730081.pdf`
-- `PRJ1-NguyễnQuốcTrung-25730081.zip`
 
-> ⚠️ File nộp **giữ nguyên dấu tiếng Việt** vì nó đi tới giảng viên, phải đúng định dạng
-> trường yêu cầu. AI **không bao giờ** được "sửa cho sạch" hay bỏ dấu tên file này.
+> ⚠️ File nộp **giữ nguyên dấu tiếng Việt** vì nó đi tới giảng viên. AI **không bao giờ**
+> được "sửa cho sạch", bỏ dấu, hay đổi mẫu tên file này.
+> Nghe thấy giảng viên dặn cách đặt tên → ghi ngay vào bảng trên **và** vào
+> `IMPORTANT_NOTES.md` mục 4 của môn đó.
 
 ### 13.4. Đánh số
-- Buổi học: `L01`, `L02`… · Bài tập: `a1`, `a2`… · Đồ án: `prj1`, `prj2`…
+- Buổi học: `L01`, `L02`… · Đồ án: `prj1`, `prj2`…
+- **Thư mục bài tập bám theo số bài giảng viên đặt**, không đánh lại tuần tự:
+  Bài tập 3A → `a3a/` · Bài tập 4 → `a4/` · Bài tập 7 → `a7/`
+  Lý do: số bài hay nhảy cóc và có phần A/B. Đánh tuần tự thì khi bổ sung bài còn thiếu
+  sẽ phải xáo lại toàn bộ.
 - Ngày: `YYYY-MM-DD`, **luôn tuyệt đối**
 - Học kỳ: `2025-2026-S3` (S = Semester)
 - Tiền tố file nộp (`BT`, `LAB`, `PRJ`) bám theo cách **giảng viên đánh số** trong từng môn,

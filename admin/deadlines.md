@@ -29,7 +29,14 @@
 
 | Môn | Việc | Hạn nộp | Ngày nộp | Điểm |
 |---|---|---|---|---|
-| — | — | — | — | — |
+| IE105 | [Bài tập 3A](../semesters/2025-2026-S3/IE105-information-assurance-security/assignments/a3a/) — Thăm dò | 2026-08-12 21:30 | ✅ | ❓ |
+| IE105 | [Bài tập 3B](../semesters/2025-2026-S3/IE105-information-assurance-security/assignments/a3b/) — Quét mạng | 2026-08-19 21:30 | ✅ | ❓ |
+| IE105 | [Bài tập 4](../semesters/2025-2026-S3/IE105-information-assurance-security/assignments/a4/) — System Hacking | 2026-08-26 21:30 | ✅ | ❓ |
+| IE105 | [Bài tập 6](../semesters/2025-2026-S3/IE105-information-assurance-security/assignments/a6/) — Mạng không dây | ❓ | ✅ | ❓ |
+| IE105 | [Bài tập 7](../semesters/2025-2026-S3/IE105-information-assurance-security/assignments/a7/) — Giám sát & mã độc | ❓ | ✅ | ❓ |
+
+> ⚠️ **IE105 thiếu bài tập 1, 2, 5** — chưa rõ chưa làm hay chưa đưa vào repo.
+> Mỗi bài là một cột trong 20% điểm quá trình.
 
 ---
 

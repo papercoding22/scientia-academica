@@ -72,9 +72,25 @@ Môn nhập môn về bảo đảm thông tin (information assurance) và an nin
 
 ## Bài tập và đồ án
 
-| Mã | Tên | Hạn nộp | Trạng thái |
-|---|---|---|---|
-| — | *chưa có* | — | — |
+| Bài | Tên | Buổi | Hạn nộp | Trạng thái |
+|---|---|---|---|---|
+| — | *Bài tập 1* | L01 | 2026-07-08 | ⬜ **chưa có file trong repo** |
+| — | *Bài tập 2* | L02–L04 | ❓ | ⬜ **chưa có file trong repo** |
+| [`a3a`](assignments/a3a/) | Thăm dò (Footprinting) | L05 | 2026-08-12 | ✅ đã nộp |
+| [`a3b`](assignments/a3b/) | Quét mạng (Scanning) | L06 | 2026-08-19 | ✅ đã nộp |
+| [`a4`](assignments/a4/) | Tấn công hệ thống (System Hacking) | L07 | 2026-08-26 | ✅ đã nộp |
+| — | *Bài tập 5* | ❓ | ❓ | ⬜ **chưa có file trong repo** |
+| [`a6`](assignments/a6/) | Bảo mật mạng không dây | ❓ | ❓ | ✅ đã nộp |
+| [`a7`](assignments/a7/) | Giám sát hệ thống & mã độc | ❓ | ❓ | ✅ đã nộp |
+
+> ⚠️ **Thiếu bài 1, 2, 5** — chưa rõ là chưa làm hay chưa đưa vào repo.
+> Điểm quá trình chiếm **20%** và mỗi buổi một cột điểm, nên thiếu bài là mất điểm thật.
+>
+> ⚠️ **Bài 6 và 7 nói về nội dung không có trong 7 transcript hiện có**
+> (mạng không dây, giám sát hệ thống). Nghĩa là còn **buổi 8, 9, 10 chưa có transcript** —
+> thầy nói môn này khoảng 10 buổi.
+>
+> 📌 Tên file nộp giữ nguyên mẫu **giảng viên yêu cầu**: `Bài tập <N>_Họ tên_MSSV`.
 
 ---
 
