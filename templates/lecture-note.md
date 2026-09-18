@@ -1,13 +1,13 @@
-# L<nn> — <Tên chủ đề tiếng Việt>
+# L{{NUM}} — {{TOPIC_VI}}
 
 | | |
 |---|---|
-| Môn | `<MÃ MÔN>` <Tên môn> |
-| Buổi | <nn> |
-| Ngày | YYYY-MM-DD |
-| Giảng viên | <Tên> |
-| Transcript | [`_raw/L<nn>-YYYY-MM-DD-transcript.md`](_raw/L<nn>-YYYY-MM-DD-transcript.md) |
-| Slide | [`../materials/slides/L<nn>-….pdf`](../materials/slides/) |
+| Môn | `{{CODE}}` {{NAME_VI}} |
+| Buổi | {{NUM}} |
+| Ngày | {{DATE}} |
+| Giảng viên | {{LECTURER}} |
+| Transcript | [`_raw/{{RAW_FILE}}`](_raw/{{RAW_FILE}}) |
+| Slide | [`../materials/slides/`](../materials/slides/) |
 
 ---
 
@@ -55,7 +55,7 @@
 
 ## Gợi ý thi
 
-> ⚠️ **GỢI Ý THI:** <câu giảng viên nói> — buổi <nn>, YYYY-MM-DD
+> ⚠️ **GỢI Ý THI:** <câu giảng viên nói> — buổi {{NUM}}, {{DATE}}
 
 *(Đã append vào `IMPORTANT_NOTES.md` mục 2/3.)*
 
@@ -121,5 +121,5 @@
 
 ## Liên kết
 
-- Khái niệm dùng chung: [`knowledge-base/<khái-niệm>.md`](../../../../knowledge-base/)
-- Buổi trước: [`L<nn-1>-….md`](./)
+- Khái niệm dùng chung: [`knowledge-base/`](../../../../knowledge-base/)
+- Ghi chú quan trọng của môn: [`../IMPORTANT_NOTES.md`](../IMPORTANT_NOTES.md)

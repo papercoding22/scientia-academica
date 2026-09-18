@@ -10,16 +10,7 @@ set -euo pipefail
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 TPL="$REPO/templates"
-
-# ── màu ──────────────────────────────────────────────────────────────────────
-if [[ -t 1 ]]; then
-  R=$'\033[31m'; G=$'\033[32m'; Y=$'\033[33m'; B=$'\033[1m'; N=$'\033[0m'
-else
-  R=''; G=''; Y=''; B=''; N=''
-fi
-die()  { printf '%s✗ %s%s\n' "$R" "$*" "$N" >&2; exit 1; }
-ok()   { printf '%s✓%s %s\n' "$G" "$N" "$*"; }
-warn() { printf '%s!%s %s\n' "$Y" "$N" "$*"; }
+source "$(dirname "${BASH_SOURCE[0]}")/lib/common.sh"
 
 usage() {
   cat <<'USAGE'
@@ -76,30 +67,11 @@ done
 [[ "$CODE" =~ ^[A-Z]{2,4}[0-9]{3}$ ]] \
   || die "Mã môn '$CODE' sai định dạng. Cần dạng 2–4 chữ HOA + 3 số, vd IT007, IE105"
 
-[[ "$SLUG" =~ ^[a-z0-9]+(-[a-z0-9]+)*$ ]] \
-  || die "Slug '$SLUG' sai định dạng.
-  Cần: tiếng Anh, chữ thường, không dấu, nối bằng dấu gạch (kebab-case).
-  Đúng:  operating-systems, it-infrastructure
-  Sai:   he-dieu-hanh (tiếng Việt), Operating_Systems (hoa + gạch dưới)"
+require_slug "$SLUG" --slug
 
-# Bẫy dễ mắc nhất: viết tên tiếng Việt bỏ dấu. Nó vẫn đúng kebab-case nên regex
-# ở trên không bắt được — chỉ cảnh báo, không chặn, vì có thể nhầm (vd "han" trong "hanoi").
-VN_WORDS="he|dieu|hanh|mang|may|tinh|co|so|du|lieu|quan|ly|nhap|mon|lap|trinh|an|ninh|thong|tin|ha|tang|ky|thuat|phan|mem|giai|thuat|cau|truc|xac|suat|ke|dai|toan|hoc|bao|dam|tri|tue|nhan|tao|kien|chuc|nang|vien|web|ung|dung|phat|trien"
-if printf '%s' "$SLUG" | tr '-' '\n' | grep -qxE "$VN_WORDS"; then
-  warn "Slug '${B}$SLUG${N}' trông giống ${B}tiếng Việt bỏ dấu${N}."
-  warn "  Quy ước của repo: tên đường dẫn phải là ${B}tiếng Anh${N}."
-  warn "  vd: he-dieu-hanh → ${G}operating-systems${N}   co-so-du-lieu → ${G}databases${N}"
-  warn "  Nếu cố ý thì bỏ qua cảnh báo này."
-fi
-
-# Học kỳ: mặc định lấy cái mới nhất trong semesters/
-if [[ -z "$SEMESTER" ]]; then
-  SEMESTER="$(ls -1 "$REPO/semesters" 2>/dev/null | sort -r | head -1 || true)"
-  [[ -n "$SEMESTER" ]] || die "Không tìm thấy học kỳ nào trong semesters/. Dùng --semester để chỉ rõ."
-  warn "Không có --semester, dùng học kỳ mới nhất: ${B}$SEMESTER${N}"
-fi
-[[ -d "$REPO/semesters/$SEMESTER" ]] \
-  || die "Học kỳ '$SEMESTER' không tồn tại. Có: $(ls -1 "$REPO/semesters" | tr '\n' ' ')"
+WANTED_SEM="$SEMESTER"
+SEMESTER="$(resolve_semester "$REPO" "$SEMESTER")"
+[[ -n "$WANTED_SEM" ]] || warn "Không có --semester, dùng học kỳ mới nhất: ${B}$SEMESTER${N}"
 
 # Suy ra giá trị mặc định
 [[ -n "$CLASS_CODE" ]] || CLASS_CODE="${CODE}.F31.CN1.CNTT"
@@ -107,12 +79,7 @@ if [[ -z "$NAME_EN" ]]; then
   NAME_EN="$(printf '%s' "$SLUG" | tr '-' ' ' | awk '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)}1')"
 fi
 
-# 2025-2026-S3 → HK3 2025–2026
-if [[ "$SEMESTER" =~ ^([0-9]{4}-[0-9]{4})-S([0-9])$ ]]; then
-  SEMESTER_VI="HK${BASH_REMATCH[2]} ${BASH_REMATCH[1]//-/–}"
-else
-  SEMESTER_VI="$SEMESTER"
-fi
+SEMESTER_VI="$(semester_vi "$SEMESTER")"
 
 DIR="$REPO/semesters/$SEMESTER/${CODE}-${SLUG}"
 REL="semesters/$SEMESTER/${CODE}-${SLUG}"
@@ -130,7 +97,6 @@ done
 
 # ── render ───────────────────────────────────────────────────────────────────
 TODAY="$(date +%F)"
-esc() { printf '%s' "$1" | sed -e 's/[\\&|]/\\&/g'; }
 
 render() {  # render <template> <đích>
   sed -e "s|{{CODE}}|$(esc "$CODE")|g" \

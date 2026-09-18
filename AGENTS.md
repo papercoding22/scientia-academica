@@ -182,6 +182,9 @@ và ghi rõ số trang khi trích. Giáo trình chuẩn hơn transcript Teams.
 | Việc | Dùng cái này |
 |---|---|
 | Thêm môn học mới | skill **`new-course`** → `.claude/skills/new-course/SKILL.md` |
+| Xử lý một buổi học | skill **`new-lecture`** → `.claude/skills/new-lecture/SKILL.md` |
+
+Hàm dùng chung của các script nằm ở `scripts/lib/common.sh`.
 
 **Không tự tay `mkdir` để tạo môn học.** Dùng skill — nó chạy
 `scripts/new-course.sh` tạo khung, rồi nối môn mới vào **6 file** khác đang giữ
@@ -191,8 +194,9 @@ Tạo tay thì sẽ quên bước nối, và repo mất đồng bộ.
 
 Script render file từ `templates/` bằng token `{{CODE}}`, `{{NAME_VI}}`, `{{LECTURER}}`…
 **Sửa template thì môn tạo sau sẽ đổi theo** — đó là chủ ý, một nguồn sự thật duy nhất.
-Năm template dùng cho việc này: `course-readme` · `important-notes` · `materials-readme` ·
-`flashcards` · `cheatsheet`. Bảy template còn lại là để AI điền tay, không có token.
+Bảy template có token: `course-readme` · `important-notes` · `materials-readme` ·
+`flashcards` · `cheatsheet` · `lecture-note` · `lecture-raw`.
+Sáu template còn lại là để AI điền tay, không có token.
 
 ---
 
