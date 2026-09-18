@@ -44,8 +44,14 @@ scientia-academica/
 ├── admin/                     # Lịch học, deadline, hồ sơ
 ├── semesters/2025-2026-S3/    # Học kỳ hiện tại — 4 môn
 ├── knowledge-base/            # Khái niệm dùng chung, sống lâu hơn học kỳ
-└── templates/                 # Khuôn mẫu AI dùng khi tạo file mới
+├── templates/                 # Khuôn mẫu AI dùng khi tạo file mới
+├── scripts/                   # Script tự động hoá
+└── .claude/skills/            # Skill riêng của repo
 ```
+
+**Thêm môn học mới:** gõ `/new-course` rồi đưa mã môn, tên, giảng viên.
+Skill sẽ chạy `scripts/new-course.sh` tạo khung, rồi nối môn mới vào 6 file khác
+đang giữ danh sách môn. Muốn tự chạy script thì `scripts/new-course.sh --help`.
 
 Bên trong mỗi môn:
 

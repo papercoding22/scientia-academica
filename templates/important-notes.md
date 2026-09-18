@@ -1,8 +1,13 @@
-# <MÃ MÔN> — <Tên môn> · Ghi chú quan trọng
+# {{CODE}} — {{NAME_VI}} · Ghi chú quan trọng
 
-> Nơi dồn **mọi thứ giảng viên nói mà ảnh hưởng tới điểm số**.
-> **Luật: mọi mục phải có nguồn (buổi + ngày). Không nguồn = không ghi.**
-> **Chỉ thêm, không xoá** — thông tin sai thì gạch ngang giữ lịch sử.
+Giảng viên: **{{LECTURER}}**
+
+> Nơi dồn **mọi thứ giảng viên nói mà ảnh hưởng tới điểm số**. File này **lớn dần theo học kỳ**.
+>
+> **Luật:**
+> - Mọi mục phải có **nguồn**: buổi nào, ngày nào, giảng viên nói câu gì. **Không nguồn = không ghi.**
+> - **Chỉ thêm, không xoá.** Thông tin cũ sai → gạch ngang `~~…~~` kèm lý do, giữ lịch sử.
+> - [`exam-prep/cheatsheet.md`](exam-prep/cheatsheet.md) được sinh ra từ **mục 2 và 3** của file này.
 
 ---
 
@@ -12,7 +17,7 @@
 |---|---|---|
 | ❓ | | |
 
-**Nguồn:** ❓
+**Nguồn:** ❓ — *thường được công bố ở buổi đầu tiên hoặc nằm sẵn trong đề cương*
 
 **Điều kiện dự thi cuối kỳ:** ❓
 
@@ -20,14 +25,15 @@
 
 ## 2. Phần chắc chắn có trong đề thi cuối kỳ
 
-- [ ] ❓
-  > *Nguồn: buổi ❓, YYYY-MM-DD — "<câu giảng viên nói>"*
+> Chỉ ghi vào đây khi giảng viên **nói ra**. Không suy diễn.
+
+- [ ] ❓ *chưa có*
 
 ---
 
 ## 3. Lời dặn dò ôn thi của giảng viên
 
-- **(YYYY-MM-DD, buổi ❓)** "<nguyên văn câu giảng viên nói>"
+- ❓ *chưa có*
 
 ---
 
@@ -55,4 +61,4 @@
 
 ## 6. Lưu ý khác
 
-- ❓
+- ❓ *chưa có*

@@ -175,6 +175,25 @@ và ghi rõ số trang khi trích. Giáo trình chuẩn hơn transcript Teams.
 
 ---
 
+## § 8c. Script và skill của repo
+
+| Việc | Dùng cái này |
+|---|---|
+| Thêm môn học mới | skill **`new-course`** → `.claude/skills/new-course/SKILL.md` |
+
+**Không tự tay `mkdir` để tạo môn học.** Dùng skill — nó chạy
+`scripts/new-course.sh` tạo khung, rồi nối môn mới vào **6 file** khác đang giữ
+danh sách môn (`semesters/<kỳ>/README.md`, `admin/schedule.md`, `admin/deadlines.md`,
+`program/curriculum.md`, `program/transcript.md`, `program/specialization/README.md`).
+Tạo tay thì sẽ quên bước nối, và repo mất đồng bộ.
+
+Script render file từ `templates/` bằng token `{{CODE}}`, `{{NAME_VI}}`, `{{LECTURER}}`…
+**Sửa template thì môn tạo sau sẽ đổi theo** — đó là chủ ý, một nguồn sự thật duy nhất.
+Năm template dùng cho việc này: `course-readme` · `important-notes` · `materials-readme` ·
+`flashcards` · `cheatsheet`. Bảy template còn lại là để AI điền tay, không có token.
+
+---
+
 ## § 9. `program/` — bảo trì tầng chiến lược
 
 - **Cuối mỗi học kỳ**, chạy đủ chuỗi: cập nhật `transcript.md` → tick `curriculum.md` →
