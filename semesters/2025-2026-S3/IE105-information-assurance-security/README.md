@@ -79,11 +79,11 @@ Môn nhập môn về bảo đảm thông tin (information assurance) và an nin
 | [`a3a`](assignments/a3a/) | Thăm dò (Footprinting) | L05 | 2026-08-12 | ✅ đã nộp |
 | [`a3b`](assignments/a3b/) | Quét mạng (Scanning) | L06 | 2026-08-19 | ✅ đã nộp |
 | [`a4`](assignments/a4/) | Tấn công hệ thống (System Hacking) | L07 | 2026-08-26 | ✅ đã nộp |
-| — | *Bài tập 5* | ❓ | ❓ | ⬜ **chưa có file trong repo** |
+| [`a5`](assignments/a5/) | Mã độc và kỹ thuật phân tích mã độc | ❓ | ❓ | ⬜ **chưa làm** — chưa có đề bài |
 | [`a6`](assignments/a6/) | Bảo mật mạng không dây | ❓ | ❓ | ✅ đã nộp |
 | [`a7`](assignments/a7/) | Giám sát hệ thống & mã độc | ❓ | ❓ | ✅ đã nộp |
 
-> ⚠️ **Thiếu bài 1, 2, 5** — chưa rõ là chưa làm hay chưa đưa vào repo.
+> ⚠️ **Thiếu bài 1 và 2** — chưa rõ là chưa làm hay chưa đưa vào repo.
 > Điểm quá trình chiếm **20%** và mỗi buổi một cột điểm, nên thiếu bài là mất điểm thật.
 >
 > ⚠️ **Bài 6 và 7 nói về nội dung không có trong 7 transcript hiện có**

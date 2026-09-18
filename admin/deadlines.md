@@ -9,7 +9,7 @@
 
 | Môn | Việc | Hạn nộp | Còn lại | Trạng thái | Nguồn |
 |---|---|---|---|---|---|
-| — | *chưa có deadline cụ thể nào* | — | — | — | — |
+| IE105 | [Bài tập 5](../semesters/2025-2026-S3/IE105-information-assurance-security/assignments/a5/) — Mã độc | ❓ | ❓ | ⬜ chưa làm | slide Bài 5 |
 
 ### Quy tắc lặp lại
 
@@ -35,7 +35,8 @@
 | IE105 | [Bài tập 6](../semesters/2025-2026-S3/IE105-information-assurance-security/assignments/a6/) — Mạng không dây | ❓ | ✅ | ❓ |
 | IE105 | [Bài tập 7](../semesters/2025-2026-S3/IE105-information-assurance-security/assignments/a7/) — Giám sát & mã độc | ❓ | ✅ | ❓ |
 
-> ⚠️ **IE105 thiếu bài tập 1, 2, 5** — chưa rõ chưa làm hay chưa đưa vào repo.
+> ⚠️ **IE105 thiếu bài tập 1 và 2** — chưa rõ chưa làm hay chưa đưa vào repo.
+> Bài 5 đã có thư mục nhưng **chưa có đề bài** — buổi dạy Bài 5 chưa có transcript.
 > Mỗi bài là một cột trong 20% điểm quá trình.
 
 ---
