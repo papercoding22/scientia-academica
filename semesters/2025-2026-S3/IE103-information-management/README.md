@@ -27,11 +27,15 @@ Môn về cách tổ chức, lưu trữ, và quản trị thông tin trong tổ 
 
 ## Giáo trình và tài liệu
 
-| Loại | Tên | Nguồn |
+| Loại | Tên | File trong `materials/` |
 |---|---|---|
-| Giáo trình chính | ❓ | |
-| Tham khảo | ❓ | |
-| Slide | ❓ | |
+| Đề cương môn học | ❓ | `materials/syllabus/` |
+| Giáo trình chính | ❓ | `materials/books/` |
+| Tham khảo | ❓ | `materials/references/` |
+| Slide bài giảng | ❓ | `materials/slides/` |
+
+> 📌 Bỏ **đề cương** vào `materials/syllabus/` rồi bảo AI đọc — nó thường chứa sẵn
+> cách tính điểm và quy định môn học, tức là mục 1 và 4 của `IMPORTANT_NOTES.md`.
 
 ---
 
@@ -70,6 +74,7 @@ Môn về cách tổ chức, lưu trữ, và quản trị thông tin trong tổ 
 
 | | |
 |---|---|
+| [`materials/`](materials/) | **Tài liệu giảng viên cung cấp** — slide, đề cương, ebook. **Chỉ đọc** |
 | [`lectures/_raw/`](lectures/_raw/) | Transcript Teams gốc — **không bao giờ sửa** |
 | [`lectures/`](lectures/) | Note theo từng buổi |
 | [`notes/`](notes/) | Note theo khái niệm |

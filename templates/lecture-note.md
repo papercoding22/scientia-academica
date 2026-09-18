@@ -6,7 +6,8 @@
 | Buổi | <nn> |
 | Ngày | YYYY-MM-DD |
 | Giảng viên | <Tên> |
-| Nguồn | [`_raw/L<nn>-YYYY-MM-DD-transcript.md`](_raw/L<nn>-YYYY-MM-DD-transcript.md) |
+| Transcript | [`_raw/L<nn>-YYYY-MM-DD-transcript.md`](_raw/L<nn>-YYYY-MM-DD-transcript.md) |
+| Slide | [`../materials/slides/L<nn>-….pdf`](../materials/slides/) |
 
 ---
 

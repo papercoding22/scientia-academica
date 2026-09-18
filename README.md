@@ -53,6 +53,7 @@ Bên trong mỗi môn:
 IT007-operating-systems/
 ├── README.md              # Syllabus, giảng viên, giáo trình
 ├── IMPORTANT_NOTES.md     # Cách tính điểm, phần sẽ thi, lời dặn của giảng viên
+├── materials/             # Tài liệu giảng viên gửi — slide, đề cương, ebook (chỉ đọc)
 ├── lectures/_raw/         # Transcript Teams gốc — không bao giờ sửa
 ├── lectures/              # Note đã cấu trúc hoá theo buổi
 ├── notes/                 # Note theo khái niệm
@@ -66,6 +67,10 @@ IT007-operating-systems/
 ---
 
 ## Dùng hàng ngày
+
+**Khi nhận tài liệu từ giảng viên:** bỏ vào `materials/` — `syllabus/`, `slides/`,
+`books/`, hoặc `references/`. Riêng đề cương thì bảo AI đọc luôn, nó thường chứa sẵn
+cách tính điểm và quy định môn học.
 
 **Sau mỗi buổi học Teams:**
 1. Copy transcript từ Teams → lưu vào `lectures/_raw/L<nn>-<ngày>-transcript.md`

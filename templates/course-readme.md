@@ -22,11 +22,12 @@
 
 ## Giáo trình và tài liệu
 
-| Loại | Tên | Nguồn |
+| Loại | Tên | File trong `materials/` |
 |---|---|---|
-| Giáo trình chính | ❓ | |
-| Tham khảo | ❓ | |
-| Slide | ❓ | |
+| Đề cương môn học | ❓ | `materials/syllabus/` |
+| Giáo trình chính | ❓ | `materials/books/` |
+| Tham khảo | ❓ | `materials/references/` |
+| Slide bài giảng | ❓ | `materials/slides/` |
 
 ---
 

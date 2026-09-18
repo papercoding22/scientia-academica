@@ -85,10 +85,15 @@ Lý do thứ tự này: người dùng học tốt nhất khi có trực giác t
 
 ## § 5. Quy trình xử lý bài giảng (transcript Teams → note)
 
+0. **Trước tiên, xem `materials/` có gì.** Nếu buổi này có slide (`materials/slides/L<nn>-*.pdf`),
+   đọc slide **song song** với transcript — slide cho cấu trúc và thuật ngữ chính xác,
+   transcript cho phần giảng viên nói thêm ngoài slide. Hai nguồn bù cho nhau:
+   transcript Teams hay sai chính tả thuật ngữ, slide thì thiếu phần giải thích miệng.
 1. Lưu đầu vào thô vào `lectures/_raw/L<nn>-<YYYY-MM-DD>-<nguồn>.md`.
    **Không bao giờ sửa bản thô.** Đây là bằng chứng gốc.
 2. Dùng skill **`lecture-analyzer`** khi có transcript.
 3. Sinh `lectures/L<nn>-<topic-tiếng-anh>.md` theo `templates/lecture-note.md`.
+   Trong note, **link tới slide tương ứng** ở `materials/slides/` nếu có.
 4. **Quét tín hiệu thi cử** — các câu kiểu *"cái này sẽ thi"*, *"nhớ kỹ chỗ này"*,
    *"đề hay ra phần này"*, *"năm nào cũng có"*, *"về nhà xem lại"* →
    đánh dấu `> ⚠️ **GỢI Ý THI:**` trong note **VÀ** append vào mục 2/3 của `IMPORTANT_NOTES.md`.
@@ -149,6 +154,27 @@ Nơi dồn **mọi thứ giảng viên nói mà ảnh hưởng tới điểm s�
 
 ---
 
+## § 8b. `materials/` — tài liệu giảng viên cung cấp
+
+**Đây là thư mục ĐẦU VÀO, chỉ đọc.** Cùng tính chất với `lectures/_raw/` và `brief/`.
+
+- ❌ **Không sửa, đổi tên, hay xoá** file trong `materials/`. Đó là bản gốc của giảng viên.
+- Muốn ghi chú về một tài liệu → viết file mới ở `notes/`, trích dẫn tên file gốc.
+- Cấu trúc: `syllabus/` · `slides/` · `books/` · `references/`
+- Slide gắn với buổi học → tiền tố `L<nn>` cho khớp note:
+  `slides/L03-cpu-scheduling.pdf` ↔ `lectures/L03-cpu-scheduling.md`
+
+**Khi có file mới trong `syllabus/` — xử lý ngay, không đợi hỏi:**
+
+Đề cương môn học thường chứa sẵn **cách tính điểm**, **nội dung từng buổi**, **quy định môn học**
+— tức là phần lớn mục 1, 4, 5 của `IMPORTANT_NOTES.md`. Đọc và điền vào,
+**ghi nguồn là tên file đề cương** chứ không phải buổi học.
+
+**Khi có ebook trong `books/`:** dùng làm nguồn cho định nghĩa hình thức (bước 4 của § 3)
+và ghi rõ số trang khi trích. Giáo trình chuẩn hơn transcript Teams.
+
+---
+
 ## § 9. `program/` — bảo trì tầng chiến lược
 
 - **Cuối mỗi học kỳ**, chạy đủ chuỗi: cập nhật `transcript.md` → tick `curriculum.md` →
@@ -190,7 +216,7 @@ Nơi dồn **mọi thứ giảng viên nói mà ảnh hưởng tới điểm s�
 
 - ❌ **Không bịa nội dung bài giảng** không có trong transcript.
   Thiếu thông tin → ghi `> ❓ **CẦN XÁC MINH:**`.
-- ❌ Không xoá hoặc sửa file trong `lectures/_raw/` và `brief/` — đó là bản gốc.
+- ❌ Không xoá hoặc sửa file trong `lectures/_raw/`, `brief/`, và `materials/` — đó là bản gốc.
 - ❌ **Không đổi tên file nộp cho giảng viên**, không bỏ dấu tiếng Việt của nó (xem § 13.3).
 - ❌ Không đặt tên đường dẫn bằng tiếng Việt (trừ file nộp).
 - ❌ Không tự bịa số tín chỉ, môn tiên quyết, quy định tốt nghiệp.
@@ -248,6 +274,7 @@ Trong một môn học:
 
 | Thư mục | Dùng khi | Có nộp không |
 |---|---|---|
+| `materials/` | **Tài liệu giảng viên cung cấp** — slide, đề cương, ebook. Chỉ đọc | Không |
 | `lectures/` | Note theo từng buổi học | Không |
 | `notes/` | Note theo khái niệm, gom từ nhiều buổi | Không |
 | `code/` | Thử nhanh, chạy lại ví dụ bài giảng | Không |
@@ -255,3 +282,13 @@ Trong một môn học:
 | `projects/prjN/` | Đồ án môn học, nhiều buổi, nhiều file | **Có** |
 | `research/` | Tự tò mò, đào sâu ngoài syllabus | Không |
 | `exam-prep/` | Flashcard, cheatsheet, ôn thi | Không |
+
+**Tài liệu thì bỏ vào đâu** — phân biệt theo *phạm vi*, không theo loại file:
+
+| Phạm vi | Thư mục |
+|---|---|
+| Cả môn, giảng viên cung cấp | `materials/` |
+| Chỉ một bài tập — đề bài | `assignments/aN/brief/` |
+| Chỉ một bài tập — tài liệu phụ | `assignments/aN/resources/` |
+| Chỉ một đồ án — đề bài | `projects/prjN/brief/` |
+| Tôi tự tìm được khi đào sâu | `research/` (ghi link ở mục `## Nguồn`) |
