@@ -11,6 +11,9 @@
 | Trạng thái | ⬜ chưa làm |
 
 > ✅ Đã ghi hạn nộp vào [`admin/deadlines.md`](../../../../../admin/deadlines.md)? — ❓
+>
+> 📄 Soạn báo cáo từ `templates/ASSIGNMENT_TEMPLATE.docx` — có sẵn trang bìa UIT
+> và khung `Câu 1` · `Bảng` · `Kết luận`. Nộp **file gốc .docx**, không phải PDF.
 
 ---
 

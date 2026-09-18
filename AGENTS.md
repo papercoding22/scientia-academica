@@ -206,6 +206,16 @@ Lý do thứ tự này: người dùng học tốt nhất khi có trực giác t
 - Tạo đủ: `README.md`, `brief/`, `resources/`, `images/`
 - `README.md` phải có: tóm tắt yêu cầu · checklist việc cần làm · hạn nộp (ngày tuyệt đối) · trạng thái
 - **Ghi hạn nộp vào `admin/deadlines.md` ngay lúc tạo thư mục**, không để sau.
+- **Copy sẵn `templates/ASSIGNMENT_TEMPLATE.docx`** vào thư mục, đặt tên theo mẫu giảng viên
+  yêu cầu (§ 13.3) để người dùng mở Word là viết được ngay:
+  ```bash
+  cp templates/ASSIGNMENT_TEMPLATE.docx "<aN>/Bài tập <N>_Họ tên_MSSV.docx"
+  ```
+  Template có sẵn trang bìa UIT và khung `Câu 1` · `Bảng` · `Kết luận`.
+  **Không điền sẵn tên và MSSV vào file** — repo đang public.
+
+**Khi người dùng hỏi soạn báo cáo bài tập** → chỉ họ tới `templates/ASSIGNMENT_TEMPLATE.docx`,
+đừng dựng lại trang bìa từ đầu.
 
 **Khi tạo đồ án mới** `projects/prjN/`:
 - Tạo đủ: `README.md`, `brief/`, `docs/`, `src/`, `images/`
@@ -351,7 +361,7 @@ Sáu template còn lại là để AI điền tay, không có token.
 |---|---|---|
 | Thư mục | `kebab-case` | `exam-prep/`, `knowledge-base/` |
 | File markdown thường | `kebab-case.md` | `process-scheduling.md` |
-| File quy ước đặc biệt | chữ HOA | `README.md`, `IMPORTANT_NOTES.md`, `AGENTS.md`, `HOW-TO.md` |
+| File quy ước đặc biệt | chữ HOA | `README.md`, `IMPORTANT_NOTES.md`, `AGENTS.md`, `HOW-TO.md`, `ASSIGNMENT_TEMPLATE.docx` |
 | Thư mục môn | `<MÃ MÔN>-<tên tiếng Anh>` | `IT007-operating-systems` |
 
 Tên tiếng Việt đầy đủ của môn ghi trong `README.md` của môn, **không nằm ở đường dẫn**.

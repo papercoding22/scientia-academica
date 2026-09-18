@@ -149,6 +149,17 @@ và ghi hạn nộp vào `admin/deadlines.md`.
 
 Bỏ file đề bài vào `assignments/a1/brief/`.
 
+**Khi bắt đầu viết báo cáo:** copy template có sẵn trang bìa UIT, đặt tên theo mẫu
+giảng viên yêu cầu:
+
+```bash
+cp templates/ASSIGNMENT_TEMPLATE.docx \
+   "semesters/2025-2026-S3/IE105-information-assurance-security/assignments/a8/Bài tập 8_Nguyễn Quốc Trung_25730081.docx"
+```
+
+Điền trang bìa: `MÃ MÔN` · `MÔN HỌC` · `GVHD` · `Sinh viên thực hiện` · `MSSV` · `Lớp`
+— lấy từ `README.md` của môn. **Nộp file gốc `.docx`, không phải PDF.**
+
 **Khi làm:**
 - Viết hướng tiếp cận của mình vào mục *"Hướng tiếp cận"* trong `a1/README.md` **trước khi hỏi AI**.
   Đây không phải thủ tục — AI được cấu hình để **không viết hộ lời giải khi bạn chưa có bản nháp**.
