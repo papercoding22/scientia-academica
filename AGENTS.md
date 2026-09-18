@@ -1,6 +1,8 @@
 # AGENTS.md — Sổ tay vận hành cho AI
 
-> File này là **luật**. Đọc trước khi làm bất cứ việc gì trong repo này.
+> File này là **luật** cho AI. Đọc trước khi làm bất cứ việc gì trong repo này.
+> Hướng dẫn thao tác cho người dùng nằm ở [`HOW-TO.md`](HOW-TO.md) — khi người dùng
+> hỏi *"làm thế nào để…"*, trả lời rồi trỏ họ tới mục tương ứng ở đó.
 > Cập nhật lần cuối: 2026-09-18
 
 ---
@@ -251,7 +253,7 @@ Năm template dùng cho việc này: `course-readme` · `important-notes` · `ma
 |---|---|---|
 | Thư mục | `kebab-case` | `exam-prep/`, `knowledge-base/` |
 | File markdown thường | `kebab-case.md` | `process-scheduling.md` |
-| File quy ước đặc biệt | `UPPER_SNAKE.md` | `README.md`, `IMPORTANT_NOTES.md`, `AGENTS.md` |
+| File quy ước đặc biệt | chữ HOA | `README.md`, `IMPORTANT_NOTES.md`, `AGENTS.md`, `HOW-TO.md` |
 | Thư mục môn | `<MÃ MÔN>-<tên tiếng Anh>` | `IT007-operating-systems` |
 
 Tên tiếng Việt đầy đủ của môn ghi trong `README.md` của môn, **không nằm ở đường dẫn**.

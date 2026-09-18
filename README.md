@@ -6,12 +6,17 @@ Ngành Công nghệ Thông tin, hệ đào tạo từ xa, Trường ĐH Công ng
 Repo này là nơi mọi thứ liên quan tới việc học đi qua: bài giảng Teams, note, bài tập,
 đồ án, kế hoạch tốt nghiệp. AI làm việc trong repo theo luật ghi ở [`AGENTS.md`](AGENTS.md).
 
+> 📖 **Muốn biết thao tác thế nào → [`HOW-TO.md`](HOW-TO.md).**
+> Hướng dẫn từng việc kèm câu lệnh copy dùng thẳng, và ví dụ một thư mục môn học
+> sau 6 tuần trông ra sao.
+
 ---
 
 ## Bắt đầu từ đâu
 
 | Muốn gì | Mở file |
 |---|---|
+| **Thao tác thế nào** | [`HOW-TO.md`](HOW-TO.md) |
 | Tuần này phải nộp gì | [`admin/deadlines.md`](admin/deadlines.md) |
 | Học kỳ này có môn gì | [`semesters/2025-2026-S3/README.md`](semesters/2025-2026-S3/README.md) |
 | Môn này thi phần nào | `semesters/<kỳ>/<môn>/IMPORTANT_NOTES.md` |
@@ -39,6 +44,7 @@ hỏi *"cái này còn đúng sau bao lâu?"*
 
 ```
 scientia-academica/
+├── HOW-TO.md                  # Hướng dẫn thao tác — đọc cái này
 ├── AGENTS.md                  # Luật cho AI — đọc trước khi làm gì
 ├── program/                   # Chương trình đào tạo · chuyên ngành · đồ án tốt nghiệp
 ├── admin/                     # Lịch học, deadline, hồ sơ
@@ -74,21 +80,15 @@ IT007-operating-systems/
 
 ## Dùng hàng ngày
 
-**Khi nhận tài liệu từ giảng viên:** bỏ vào `materials/` — `syllabus/`, `slides/`,
-`books/`, hoặc `references/`. Riêng đề cương thì bảo AI đọc luôn, nó thường chứa sẵn
-cách tính điểm và quy định môn học.
+Vòng lặp cơ bản — chi tiết từng bước ở [`HOW-TO.md`](HOW-TO.md):
 
-**Sau mỗi buổi học Teams:**
-1. Copy transcript từ Teams → lưu vào `lectures/_raw/L<nn>-<ngày>-transcript.md`
-2. Bảo AI: *"xử lý buổi 3 môn IT007"*
-3. AI sinh note có phần **Tự kiểm tra**, cập nhật `IMPORTANT_NOTES.md` nếu có gợi ý thi,
-   đẩy deadline mới vào `admin/deadlines.md`, và commit.
+```
+Slide giảng viên gửi  →  materials/slides/
+Transcript sau buổi   →  lectures/_raw/
+"xử lý buổi 3 IT007"  →  note + flashcard + deadline + commit
+```
 
-**Khi có bài tập mới:** bảo AI tạo `assignments/aN/`, bỏ đề bài vào `brief/`.
-AI tự ghi hạn nộp vào `admin/deadlines.md`.
-
-**Trước kỳ thi:** bảo AI sinh `exam-prep/cheatsheet.md` — nó dựng từ mục 2 và 3 của
-`IMPORTANT_NOTES.md`, tức là từ chính lời giảng viên đã nói.
+Bạn chỉ làm hai việc thủ công: bỏ slide vào `materials/`, dán transcript vào `_raw/`.
 
 ---
 
