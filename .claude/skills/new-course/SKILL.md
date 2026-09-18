@@ -11,6 +11,19 @@ nó được nhắc tới ở **6 file khác** trong repo.
 
 ---
 
+## Mục lục
+
+- [Bước 1 — Thu thập thông tin](#bước-1--thu-thập-thông-tin)
+- [Bước 2 — Dịch tên môn sang slug tiếng Anh](#bước-2--dịch-tên-môn-sang-slug-tiếng-anh)
+- [Bước 3 — Chạy script](#bước-3--chạy-script)
+- [Bước 4 — Viết "Môn này nói về cái gì"](#bước-4--viết-môn-này-nói-về-cái-gì)
+- [Bước 5 — Nối vào 6 file đang giữ danh sách môn](#bước-5--nối-vào-6-file-đang-giữ-danh-sách-môn)
+- [Bước 6 — Commit](#bước-6--commit)
+- [Bước 7 — Báo lại](#bước-7--báo-lại)
+- [Không làm](#không-làm)
+
+---
+
 ## Bước 1 — Thu thập thông tin
 
 Cần đủ 4 thứ trước khi chạy script:

@@ -7,6 +7,28 @@
 
 ---
 
+## Mục lục
+
+- [§ 1. Người dùng là ai](#-1-người-dùng-là-ai)
+- [§ 2. Luật ngôn ngữ](#-2-luật-ngôn-ngữ)
+- [§ 2b. Mục lục trong file markdown](#-2b-mục-lục-trong-file-markdown)
+- [§ 3. Cách giải thích — thứ tự 5 bước bắt buộc](#-3-cách-giải-thích--thứ-tự-5-bước-bắt-buộc)
+- [§ 4. Học chủ động (active recall)](#-4-học-chủ-động-active-recall)
+- [§ 5. Quy trình xử lý bài giảng (transcript Teams → note)](#-5-quy-trình-xử-lý-bài-giảng-transcript-teams--note)
+- [§ 6. Assignment & project](#-6-assignment--project)
+- [§ 7. Thư mục `research/`](#-7-thư-mục-research)
+- [§ 8. `IMPORTANT_NOTES.md` — một file mỗi môn](#-8-important_notesmd--một-file-mỗi-môn)
+- [§ 8b. `materials/` — tài liệu giảng viên cung cấp](#-8b-materials--tài-liệu-giảng-viên-cung-cấp)
+- [§ 8c. Script và skill của repo](#-8c-script-và-skill-của-repo)
+- [§ 9. `program/` — bảo trì tầng chiến lược](#-9-program--bảo-trì-tầng-chiến-lược)
+- [§ 10. Deadline & lịch](#-10-deadline--lịch)
+- [§ 11. Git](#-11-git)
+- [§ 12. Không bao giờ làm](#-12-không-bao-giờ-làm)
+- [§ 13. Quy ước đặt tên](#-13-quy-ước-đặt-tên)
+- [§ 14. Bản đồ repo — bỏ file vào đâu](#-14-bản-đồ-repo--bỏ-file-vào-đâu)
+
+---
+
 ## § 1. Người dùng là ai
 
 | | |
@@ -45,6 +67,69 @@ Hệ quả cụ thể:
   dùng thuật ngữ tiếng Anh hàng ngày. Dịch ra làm khó hiểu hơn.
 
 ---
+
+## § 2b. Mục lục trong file markdown
+
+**File markdown từ 5 mục `##` trở lên, hoặc dài hơn 100 dòng, BẮT BUỘC có mục lục.**
+Người dùng cần nhìn lướt là thấy ngay file có những gì.
+
+### Khi nào cần
+
+| Trường hợp | Có mục lục? |
+|---|---|
+| ≥ 5 mục `##`, hoặc > 100 dòng | ✅ **Bắt buộc** |
+| 3–4 mục, file ngắn | Tuỳ, nghiêng về có nếu file sẽ dài thêm |
+| < 3 mục, hoặc file dưới 40 dòng | ❌ Không — mục lục dài hơn nội dung là phản tác dụng |
+| `flashcards.md`, `cheatsheet.md`, `.gitkeep` | ❌ Không |
+
+`IMPORTANT_NOTES.md` **luôn có** dù ban đầu ngắn — nó lớn dần suốt học kỳ.
+
+### Đặt ở đâu
+
+Ngay sau tiêu đề `#` và bảng thông tin đầu file, **trước** mục nội dung đầu tiên.
+Ngăn cách trên dưới bằng `---`.
+
+### Viết thế nào
+
+```markdown
+## Mục lục
+
+- [Tên mục](#anchor)
+  - [Mục con](#anchor-con)
+```
+
+Dùng danh sách gạch đầu dòng, thụt lề hai khoảng cho `###`. Chỉ lấy `##` và `###`,
+không lấy `####` trở xuống — sâu quá thì mục lục thành rừng.
+
+### Anchor sinh thế nào
+
+GitHub tạo anchor theo đúng luật này:
+
+1. Chuyển hết sang chữ thường
+2. Bỏ mọi ký tự **không phải** chữ, số, gạch nối, gạch dưới, khoảng trắng
+3. Khoảng trắng → gạch nối
+
+**Dấu tiếng Việt được giữ nguyên.** Trùng anchor thì thêm `-1`, `-2`.
+
+| Tiêu đề | Anchor |
+|---|---|
+| `## 1. Cách tính điểm` | `#1-cách-tính-điểm` |
+| `## Gợi ý thi` | `#gợi-ý-thi` |
+| `## § 5. Quy trình xử lý` | `#-5-quy-trình-xử-lý` ← `§` bị bỏ, còn lại gạch nối đầu |
+
+> ⚠️ **Đừng tự viết anchor bằng tay rồi đoán.** Ký tự như `§`, `→`, `⚠️`, dấu ngoặc
+> đều bị bỏ và dễ tính nhầm. Dùng công cụ:
+>
+> ```bash
+> scripts/toc.py gen <file>      # in ra mục lục để dán vào
+> scripts/toc.py check <file>    # kiểm tra link có trỏ đúng heading không
+> ```
+
+### Giữ cho khớp
+
+**Thêm, xoá, hay đổi tên một mục `##` thì phải cập nhật mục lục ngay trong cùng lần sửa.**
+Mục lục lệch với nội dung còn tệ hơn không có mục lục — nó khiến người đọc tin vào
+thứ không tồn tại. Sửa xong chạy `scripts/toc.py check <file>` để chắc.
 
 ## § 3. Cách giải thích — thứ tự 5 bước bắt buộc
 
@@ -183,6 +268,7 @@ và ghi rõ số trang khi trích. Giáo trình chuẩn hơn transcript Teams.
 |---|---|
 | Thêm môn học mới | skill **`new-course`** → `.claude/skills/new-course/SKILL.md` |
 | Xử lý một buổi học | skill **`new-lecture`** → `.claude/skills/new-lecture/SKILL.md` |
+| Sinh / kiểm tra mục lục | `scripts/toc.py gen\|check <file>` (xem § 2b) |
 
 Hàm dùng chung của các script nằm ở `scripts/lib/common.sh`.
 

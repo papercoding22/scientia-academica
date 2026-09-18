@@ -11,6 +11,20 @@
 
 ---
 
+## Mục lục
+
+- [Tóm tắt một đoạn](#tóm-tắt-một-đoạn)
+- [Nội dung chính](#nội-dung-chính)
+- [Bảng tổng hợp](#bảng-tổng-hợp)
+- [Sơ đồ](#sơ-đồ)
+- [Gợi ý thi](#gợi-ý-thi)
+- [Deadline phát sinh](#deadline-phát-sinh)
+- [Chỗ chưa rõ](#chỗ-chưa-rõ)
+- [Tự kiểm tra](#tự-kiểm-tra)
+- [Liên kết](#liên-kết)
+
+---
+
 ## Tóm tắt một đoạn
 
 <3–5 câu. Đọc đoạn này là nắm được buổi học nói gì, không cần đọc tiếp.>

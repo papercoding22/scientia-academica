@@ -11,6 +11,20 @@ Chia hai nửa: **script làm phần cơ học, bạn làm phần đọc hiểu 
 
 ---
 
+## Mục lục
+
+- [Bước 1 — Xác định đang ở tình huống nào](#bước-1--xác-định-đang-ở-tình-huống-nào)
+- [Bước 2 — Chạy script (chỉ khi cần tạo file mới)](#bước-2--chạy-script-chỉ-khi-cần-tạo-file-mới)
+- [Bước 3 — Đọc hai nguồn cùng lúc](#bước-3--đọc-hai-nguồn-cùng-lúc)
+- [Bước 4 — Đặt tên file note](#bước-4--đặt-tên-file-note)
+- [Bước 5 — Viết note](#bước-5--viết-note)
+- [Bước 6 — Rút thông tin ra 3 file khác](#bước-6--rút-thông-tin-ra-3-file-khác)
+- [Bước 7 — Cập nhật bảng tiến độ](#bước-7--cập-nhật-bảng-tiến-độ)
+- [Bước 8 — Commit và báo lại](#bước-8--commit-và-báo-lại)
+- [Không làm](#không-làm)
+
+---
+
 ## Bước 1 — Xác định đang ở tình huống nào
 
 | Tình huống | Làm gì |

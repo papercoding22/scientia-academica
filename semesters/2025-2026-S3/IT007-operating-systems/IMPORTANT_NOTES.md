@@ -11,6 +11,17 @@ Giảng viên: **Nguyễn Thanh Thiện**
 
 ---
 
+## Mục lục
+
+- [1. Cách tính điểm](#1-cách-tính-điểm)
+- [2. Phần chắc chắn có trong đề thi cuối kỳ](#2-phần-chắc-chắn-có-trong-đề-thi-cuối-kỳ)
+- [3. Lời dặn dò ôn thi của giảng viên](#3-lời-dặn-dò-ôn-thi-của-giảng-viên)
+- [4. Quy định môn học](#4-quy-định-môn-học)
+- [5. Hình thức thi](#5-hình-thức-thi)
+- [6. Lưu ý khác](#6-lưu-ý-khác)
+
+---
+
 ## 1. Cách tính điểm
 
 | Thành phần | Tỷ trọng | Ghi chú |

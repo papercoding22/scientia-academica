@@ -442,6 +442,8 @@ kết thúc học kỳ, cập nhật program
 ```bash
 scripts/new-course.sh --help
 scripts/new-lecture.sh --help
+scripts/toc.py check <file>    # kiểm tra link mục lục còn đúng không
+scripts/toc.py gen <file>      # sinh lại mục lục sau khi thêm mục mới
 ```
 
 ---

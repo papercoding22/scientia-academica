@@ -8,6 +8,18 @@
 
 ---
 
+## Mục lục
+
+- [Hướng này làm gì](#hướng-này-làm-gì)
+- [Chấm theo tiêu chí](#chấm-theo-tiêu-chí)
+- [Môn phải học](#môn-phải-học)
+- [Kỹ năng cần có](#kỹ-năng-cần-có)
+- [Đồ án tốt nghiệp khả dĩ](#đồ-án-tốt-nghiệp-khả-dĩ)
+- [Nghề nghiệp sau tốt nghiệp](#nghề-nghiệp-sau-tốt-nghiệp)
+- [Nguồn](#nguồn)
+
+---
+
 ## Hướng này làm gì
 
 <2–3 câu — người theo hướng này ra trường làm công việc gì>

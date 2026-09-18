@@ -14,6 +14,17 @@
 
 ---
 
+## Mục lục
+
+- [Môn này nói về cái gì](#môn-này-nói-về-cái-gì)
+- [Giáo trình và tài liệu](#giáo-trình-và-tài-liệu)
+- [Tiến độ buổi học](#tiến-độ-buổi-học)
+- [Bài tập và đồ án](#bài-tập-và-đồ-án)
+- [Cảm nhận cá nhân](#cảm-nhận-cá-nhân)
+- [Thư mục](#thư-mục)
+
+---
+
 ## Môn này nói về cái gì
 
 Môn về hạ tầng CNTT: máy chủ, mạng, lưu trữ, ảo hoá, data center, và gần đây thường có cả cloud. Góc nhìn thiên về vận hành và kiến trúc hệ thống.

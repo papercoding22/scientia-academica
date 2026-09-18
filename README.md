@@ -12,6 +12,16 @@ Repo này là nơi mọi thứ liên quan tới việc học đi qua: bài giả
 
 ---
 
+## Mục lục
+
+- [Bắt đầu từ đâu](#bắt-đầu-từ-đâu)
+- [Bốn tầng thời gian](#bốn-tầng-thời-gian)
+- [Cấu trúc](#cấu-trúc)
+- [Dùng hàng ngày](#dùng-hàng-ngày)
+- [Quy ước đặt tên](#quy-ước-đặt-tên)
+
+---
+
 ## Bắt đầu từ đâu
 
 | Muốn gì | Mở file |

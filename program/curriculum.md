@@ -11,6 +11,18 @@
 
 ---
 
+## Mục lục
+
+- [❓ CẦN XÁC MINH — file này đang rỗng](#-cần-xác-minh--file-này-đang-rỗng)
+- [Ký hiệu trạng thái](#ký-hiệu-trạng-thái)
+- [Khối giáo dục đại cương (❓ TC)](#khối-giáo-dục-đại-cương--tc)
+- [Khối cơ sở ngành (❓ TC)](#khối-cơ-sở-ngành--tc)
+- [Khối chuyên ngành (❓ TC)](#khối-chuyên-ngành--tc)
+- [Tốt nghiệp (❓ TC)](#tốt-nghiệp--tc)
+- [Điều kiện tốt nghiệp khác](#điều-kiện-tốt-nghiệp-khác)
+
+---
+
 ## ❓ CẦN XÁC MINH — file này đang rỗng
 
 Để đổ đầy bảng bên dưới, cần một trong các thứ sau:

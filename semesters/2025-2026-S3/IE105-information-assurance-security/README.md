@@ -14,6 +14,17 @@
 
 ---
 
+## Mục lục
+
+- [Môn này nói về cái gì](#môn-này-nói-về-cái-gì)
+- [Giáo trình và tài liệu](#giáo-trình-và-tài-liệu)
+- [Tiến độ buổi học](#tiến-độ-buổi-học)
+- [Bài tập và đồ án](#bài-tập-và-đồ-án)
+- [Cảm nhận cá nhân](#cảm-nhận-cá-nhân)
+- [Thư mục](#thư-mục)
+
+---
+
 ## Môn này nói về cái gì
 
 Môn nhập môn về bảo đảm thông tin (information assurance) và an ninh thông tin. Nhiều khả năng xoay quanh bộ ba CIA (confidentiality, integrity, availability), quản lý rủi ro, các loại threat và vulnerability, cùng những biện pháp kiểm soát cơ bản.

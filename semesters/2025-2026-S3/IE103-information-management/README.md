@@ -14,6 +14,17 @@
 
 ---
 
+## Mục lục
+
+- [Môn này nói về cái gì](#môn-này-nói-về-cái-gì)
+- [Giáo trình và tài liệu](#giáo-trình-và-tài-liệu)
+- [Tiến độ buổi học](#tiến-độ-buổi-học)
+- [Bài tập và đồ án](#bài-tập-và-đồ-án)
+- [Cảm nhận cá nhân](#cảm-nhận-cá-nhân)
+- [Thư mục](#thư-mục)
+
+---
+
 ## Môn này nói về cái gì
 
 Môn về cách tổ chức, lưu trữ, và quản trị thông tin trong tổ chức. Nhiều khả năng đi qua vòng đời dữ liệu, phân loại thông tin, metadata, data governance, và các hệ thống quản lý thông tin.
