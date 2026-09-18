@@ -1,0 +1,124 @@
+# L<nn> — <Tên chủ đề tiếng Việt>
+
+| | |
+|---|---|
+| Môn | `<MÃ MÔN>` <Tên môn> |
+| Buổi | <nn> |
+| Ngày | YYYY-MM-DD |
+| Giảng viên | <Tên> |
+| Nguồn | [`_raw/L<nn>-YYYY-MM-DD-transcript.md`](_raw/L<nn>-YYYY-MM-DD-transcript.md) |
+
+---
+
+## Tóm tắt một đoạn
+
+<3–5 câu. Đọc đoạn này là nắm được buổi học nói gì, không cần đọc tiếp.>
+
+---
+
+## Nội dung chính
+
+### 1. <Khái niệm>
+
+**Trực giác:** <một câu, không thuật ngữ>
+
+**Analogy:** <so sánh với thứ ngoài đời>
+
+**Ví dụ nhỏ nhất:**
+<con số cụ thể, trường hợp bé nhất>
+
+**Định nghĩa hình thức:**
+> <định nghĩa chuẩn giáo trình>
+
+**Code:**
+```
+<đoạn code chạy được, nếu áp dụng>
+```
+
+---
+
+## Bảng tổng hợp
+
+| | | |
+|---|---|---|
+
+---
+
+## Sơ đồ
+
+```
+<ASCII hoặc Mermaid khi có quan hệ/luồng xử lý>
+```
+
+---
+
+## Gợi ý thi
+
+> ⚠️ **GỢI Ý THI:** <câu giảng viên nói> — buổi <nn>, YYYY-MM-DD
+
+*(Đã append vào `IMPORTANT_NOTES.md` mục 2/3.)*
+
+---
+
+## Deadline phát sinh
+
+| Việc | Hạn nộp | Đã ghi vào `admin/deadlines.md` |
+|---|---|---|
+| | | |
+
+---
+
+## Chỗ chưa rõ
+
+> ❓ **CẦN XÁC MINH:** <phần transcript không rõ hoặc thiếu>
+
+---
+
+## Tự kiểm tra
+
+**1.** <câu hỏi>
+
+<details><summary>Đáp án</summary>
+
+<đáp án>
+
+</details>
+
+**2.** <câu hỏi>
+
+<details><summary>Đáp án</summary>
+
+<đáp án>
+
+</details>
+
+**3.** <câu hỏi>
+
+<details><summary>Đáp án</summary>
+
+<đáp án>
+
+</details>
+
+**4.** <câu hỏi>
+
+<details><summary>Đáp án</summary>
+
+<đáp án>
+
+</details>
+
+**5.** <câu hỏi>
+
+<details><summary>Đáp án</summary>
+
+<đáp án>
+
+</details>
+
+---
+
+## Liên kết
+
+- Khái niệm dùng chung: [`knowledge-base/<khái-niệm>.md`](../../../../knowledge-base/)
+- Buổi trước: [`L<nn-1>-….md`](./)

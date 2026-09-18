@@ -1,0 +1,41 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# File media nặng — lưu ngoài repo, chỉ giữ transcript dạng text
+*.mp4
+*.m4a
+*.mov
+*.avi
+*.mkv
+*.wav
+
+# File tạm của Office
+~$*.docx
+~$*.xlsx
+~$*.pptx
+.~lock.*
+
+# Editor
+.obsidian/
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Python / Node dùng trong code/ và projects/src/
+__pycache__/
+*.pyc
+.venv/
+venv/
+node_modules/
+.env
+
+# Build
+dist/
+build/
+*.class
+*.o
+*.out
