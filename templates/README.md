@@ -58,6 +58,7 @@ AI copy rồi điền khi sinh file mới. Không phải để bạn mở đọc
 | `lecture-raw.md` | `lectures/_raw/L<nn>-*.md` | tạo buổi học |
 | `lecture-note.md` | `lectures/L<nn>-*.md` | xử lý buổi học |
 | `assignment.md` | `assignments/aN/README.md` | tạo bài tập |
+| `assignment-guide.md` | `assignments/aN/GUIDE.md` | hướng dẫn cách làm bài |
 | `project.md` | `projects/prjN/README.md` | tạo đồ án |
 | `research.md` | `research/<chu-de>.md` | đào sâu chủ đề |
 | `concept.md` | `knowledge-base/<khái-niệm>.md` | khái niệm dùng chung |
@@ -72,7 +73,7 @@ Bảy template đầu bảng trên được **script render** bằng token `{{CO
 `{{LECTURER}}`, `{{NUM}}`, `{{DATE}}`…
 
 **Sửa template thì môn/buổi tạo sau sẽ đổi theo** — đó là chủ ý, một nguồn sự thật duy nhất.
-Sáu template còn lại không có token, AI điền tay.
+Bảy template còn lại không có token, AI điền tay.
 
 Danh sách token đầy đủ: xem hàm `render()` trong `scripts/new-course.sh` và
 `scripts/new-lecture.sh`.

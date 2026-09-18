@@ -160,6 +160,10 @@ scripts/new-assignment.sh --course IE105 --num 8 --due 2026-09-25 --dry-run
 Điền trang bìa: `MÃ MÔN` · `MÔN HỌC` · `GVHD` · `Sinh viên thực hiện` · `MSSV` · `Lớp`
 — lấy từ `README.md` của môn. **Nộp file gốc `.docx`, không phải PDF.**
 
+**Chưa biết bắt đầu từ đâu:** `/assignment-guide IE105 5` sinh `aN/GUIDE.md` — từng câu có:
+đề hỏi gì · đầu ra phải nộp · công cụ · các bước · thế nào là đủ · bẫy hay mắc.
+**Guide dạy cách làm, không chứa lời giải** — phần phải tự quyết liệt kê thẳng ở cuối file.
+
 **Khi làm:**
 - Viết hướng tiếp cận của mình vào mục *"Hướng tiếp cận"* trong `a1/README.md` **trước khi hỏi AI**.
   Đây không phải thủ tục — AI được cấu hình để **không viết hộ lời giải khi bạn chưa có bản nháp**.
@@ -423,6 +427,7 @@ giải thích lại deadlock cho tôi, tôi chưa hiểu điều kiện circular
 **Bài tập**
 ```
 tạo bài tập 2 cho IT007, hạn nộp 10/11
+/assignment-guide IE105 5          # hướng dẫn cách làm, KHÔNG phải lời giải
 review giúp tôi code trong assignments/a2, đừng sửa hộ
 ```
 

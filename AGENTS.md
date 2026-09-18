@@ -201,6 +201,9 @@ Lý do thứ tự này: người dùng học tốt nhất khi có trực giác t
 - ❌ **Không viết hộ lời giải hoàn chỉnh khi người dùng chưa có bản nháp.**
 - Nếu người dùng yêu cầu thẳng lời giải: đưa ra, nhưng **bắt buộc** kèm mục cuối
   `## Bạn cần tự làm lại phần nào` — chỉ rõ phần nào phải tự tay làm lại để thật sự hiểu.
+- **Hỏi "bài này làm thế nào"** → dùng skill `assignment-guide`, sinh `aN/GUIDE.md` dạy
+  **phương pháp và tiêu chí chấm**, không đưa kết quả. Phép thử: *đọc xong guide,
+  người dùng còn phải tự làm gì không?* Không còn → đã làm hộ bài.
 
 **Khi tạo bài tập mới** `assignments/aN/`:
 - Tạo đủ: `README.md`, `brief/`, `resources/`, `images/`
@@ -276,6 +279,7 @@ và ghi rõ số trang khi trích. Giáo trình chuẩn hơn transcript Teams.
 | Thêm môn học mới | skill **`new-course`** → `.claude/skills/new-course/SKILL.md` |
 | Xử lý một buổi học | skill **`new-lecture`** → `.claude/skills/new-lecture/SKILL.md` |
 | Tạo bài tập mới | skill **`new-assignment`** → `.claude/skills/new-assignment/SKILL.md` |
+| Hướng dẫn cách làm bài tập | skill **`assignment-guide`** → `.claude/skills/assignment-guide/SKILL.md` |
 | Dọn file thả tay vào repo | skill **`tidy-files`** → `.claude/skills/tidy-files/SKILL.md` |
 | Sinh / kiểm tra mục lục | `scripts/toc.py gen\|check <file>` (xem § 2b) |
 | Tìm file sai chỗ / sai tên | `scripts/check-layout.sh [--course <mã>]` |
