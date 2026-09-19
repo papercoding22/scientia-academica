@@ -81,6 +81,10 @@ Môn nhập môn về bảo đảm thông tin (information assurance) và an nin
 | [`a3b`](assignments/a3b/) | Quét mạng (Scanning) | L06 | 2026-08-19 | ✅ đã nộp |
 | [`a4`](assignments/a4/) | Tấn công hệ thống (System Hacking) | L07 | 2026-08-26 | ✅ đã nộp |
 | [`lab3`](assignments/lab3/) | Bài thực hành 3 — Dò tìm mật khẩu bằng tấn công chủ động | L07 | 2026-09-02 (dự phòng 2026-09-03) | ⚠️ quá hạn — chưa có file nộp |
+| [`lab4`](assignments/lab4/) | Bài thực hành 4 — ❓ chưa có đề | ❓ | ❓ | ⬜ chưa làm |
+| [`lab5`](assignments/lab5/) | Bài thực hành 5 — ❓ chưa có đề | ❓ | ❓ | ⬜ chưa làm |
+| [`lab6a`](assignments/lab6a/) | Bài thực hành 6A — ❓ chưa có đề | ❓ | ❓ | ⬜ chưa làm |
+| [`lab6b`](assignments/lab6b/) | Bài thực hành 6B — ❓ chưa có đề | ❓ | ❓ | ⬜ chưa làm |
 | [`a6`](assignments/a6/) | Bảo mật mạng không dây | ❓ | ❓ | ✅ đã nộp |
 | [`a7`](assignments/a7/) | Giám sát hệ thống & mã độc | ❓ | ❓ | ✅ đã nộp |
 
