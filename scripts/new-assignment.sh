@@ -2,7 +2,7 @@
 #
 # new-assignment.sh — Tạo khung thư mục cho một bài tập mới.
 #
-# Làm phần CƠ HỌC: dựng aN/, render README, copy sẵn file nộp từ template Word
+# Làm phần CƠ HỌC: dựng aN/, labN/ hoặc <prefix>N/, render README, copy sẵn file nộp từ template Word
 # với đúng mẫu tên giảng viên yêu cầu.
 #
 # Phần CẦN PHÁN ĐOÁN (trích đề bài từ transcript, cập nhật bảng tham chiếu)
@@ -16,21 +16,22 @@ source "$(dirname "${BASH_SOURCE[0]}")/lib/common.sh"
 
 usage() {
   cat <<'USAGE'
-new-assignment.sh — Tạo khung thư mục cho một bài tập mới
+new-assignment.sh — Tạo khung thư mục cho một mục nộp mới
 
 CÁCH DÙNG
-  scripts/new-assignment.sh --course IE105 --num 8 [--title "..."]
+  scripts/new-assignment.sh --course IE105 --num 8 [--prefix a] [--title "..."]
                             [--due 2026-09-25] [--lecture L08]
                             [--submission "Bài tập 8_Họ tên_MSSV.docx"]
                             [--semester 2025-2026-S3] [--no-doc] [--dry-run]
 
 THAM SỐ
   --course      BẮT BUỘC  Mã môn, vd IE105
-  --num         BẮT BUỘC  Số bài tập: 8, 3A, 12B — thư mục sẽ là a8, a3a, a12b
-  --title       Tên bài tập
+  --num         BẮT BUỘC  Số giảng viên đặt: 8, 3A, 12B
+  --prefix      Tiền tố thư mục, mặc định a. Ví dụ: a → a3a; lab → lab3; quiz → quiz2
+  --title       Tên mục nộp
   --due         Hạn nộp YYYY-MM-DD
   --lecture     Buổi học liên quan, vd L08
-  --submission  Tên file nộp. Không có → SUY RA từ bài đã nộp trong cùng môn
+  --submission  Tên file nộp. Không có → suy ra từ mục cùng loại đã nộp trong cùng môn
   --no-doc      Không copy template Word
   --semester    Mã học kỳ. Mặc định: học kỳ mới nhất
   --dry-run     Chỉ in ra sẽ làm gì
@@ -39,15 +40,18 @@ THAM SỐ
 VÍ DỤ
   scripts/new-assignment.sh --course IE105 --num 8 \
       --title "Bảo mật ứng dụng web" --due 2026-09-25 --lecture L08
+  scripts/new-assignment.sh --course IE105 --prefix lab --num 3 \
+      --title "Dò tìm mật khẩu bằng tấn công chủ động" --due 2026-09-02 --lecture L07 --no-doc
 USAGE
 }
 
-COURSE=""; NUM=""; TITLE=""; DUE=""; LECTURE=""; SUBMISSION=""; SEMESTER=""
+COURSE=""; NUM=""; PREFIX="a"; TITLE=""; DUE=""; LECTURE=""; SUBMISSION=""; SEMESTER=""
 NODOC=0; DRY=0
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --course)     COURSE="${2:-}";     shift 2 ;;
     --num)        NUM="${2:-}";        shift 2 ;;
+    --prefix)     PREFIX="${2:-}";     shift 2 ;;
     --title)      TITLE="${2:-}";      shift 2 ;;
     --due)        DUE="${2:-}";        shift 2 ;;
     --lecture)    LECTURE="${2:-}";    shift 2 ;;
@@ -69,7 +73,15 @@ NUM="$(printf '%s' "$NUM" | tr '[:lower:]' '[:upper:]')"
 [[ "$NUM" =~ ^[0-9]{1,2}[A-Z]?$ ]] \
   || die "--num '$NUM' sai định dạng. Cần: số, kèm chữ cái phần nếu có.
   Đúng: 1, 8, 3A, 12B    Sai: BT8, bai-8, 3-A"
-FOLDER="a$(printf '%s' "$NUM" | tr '[:upper:]' '[:lower:]')"
+PREFIX="$(printf '%s' "$PREFIX" | tr '[:upper:]' '[:lower:]')"
+[[ "$PREFIX" =~ ^[a-z][a-z0-9-]*$ ]] \
+  || die "--prefix '$PREFIX' sai định dạng. Dùng chữ thường, số, gạch nối; ví dụ a, lab, quiz."
+FOLDER="${PREFIX}$(printf '%s' "$NUM" | tr '[:upper:]' '[:lower:]')"
+case "$PREFIX" in
+  a)   ITEM_LABEL="Bài tập" ;;
+  lab) ITEM_LABEL="Bài thực hành" ;;
+  *)   ITEM_LABEL="Mục nộp" ;;
+esac
 
 # ── tìm môn ─────────────────────────────────────────────────────────────────
 SEMESTER="$(resolve_semester "$REPO" "$SEMESTER")"
@@ -90,13 +102,16 @@ NAME_VI="$(sed -n '1s/^# [A-Z0-9]* — //p' "$CDIR/README.md" 2>/dev/null || tru
 
 # ── suy ra tên file nộp từ bài đã nộp trong cùng môn ─────────────────────────
 # Mẫu tên do GIẢNG VIÊN quy định, mỗi môn mỗi khác (AGENTS.md § 13.3).
-# Cách chắc chắn nhất: bắt chước đúng bài đã nộp trước đó của chính môn này.
+# Chỉ bắt chước mục cùng loại (cùng prefix) của chính môn này.
 INFERRED=""
 if [[ -z "$SUBMISSION" && $NODOC -eq 0 ]]; then
   while IFS= read -r -d '' f; do
     b="$(basename "$f")"
     [[ "$b" == "README.md" || "$b" == ".gitkeep" || "$b" == ".DS_Store" ]] && continue
-    prev_num="$(basename "$(dirname "$f")")"; prev_num="${prev_num#a}"
+    prev_folder="$(basename "$(dirname "$f")")"
+    [[ "$prev_folder" == "$PREFIX"* ]] || continue
+    prev_num="${prev_folder#$PREFIX}"
+    [[ "$prev_num" =~ ^[0-9]{1,2}[a-z]?$ ]] || continue
     # thay số bài cũ bằng số mới, giữ nguyên phần còn lại của mẫu tên
     cand="$(printf '%s' "$b" | sed -E "s/${prev_num}/${NUM}/I")"
     if [[ "$cand" != "$b" ]]; then
@@ -111,7 +126,7 @@ if [[ $NODOC -eq 0 ]]; then
   [[ -f "$TEMPLATE" ]] || { warn "Không thấy $TEMPLATE — bỏ qua bước copy"; NODOC=1; }
 fi
 if [[ $NODOC -eq 0 && -z "$SUBMISSION" ]]; then
-  warn "Chưa biết mẫu tên file nộp của môn $COURSE (chưa có bài nào để suy ra)."
+  warn "Chưa biết mẫu tên file nộp cùng loại '$PREFIX' của môn $COURSE."
   warn "  Tra mẫu ở IMPORTANT_NOTES.md mục 4 của môn, rồi chạy lại với --submission"
   warn "  Bỏ qua bước copy template Word."
   NODOC=1
@@ -124,9 +139,9 @@ fi
   || die "--due phải dạng YYYY-MM-DD, nhận được '$DUE'"
 
 # ── in kế hoạch ─────────────────────────────────────────────────────────────
-printf '\n%sTạo bài tập%s\n' "$B" "$N"
+printf '\n%sTạo %s%s\n' "$B" "$ITEM_LABEL" "$N"
 printf '  Môn        %s  %s\n' "$COURSE" "$NAME_VI"
-printf '  Bài tập    %s  →  thư mục %s%s%s\n' "$NUM" "$B" "$FOLDER" "$N"
+printf '  Mục nộp   %s  →  thư mục %s%s%s\n' "$NUM" "$B" "$FOLDER" "$N"
 printf '  Tên bài    %s\n' "$TITLE"
 printf '  Hạn nộp    %s\n' "$DUE"
 printf '  Buổi học   %s\n' "$LECTURE"
@@ -153,6 +168,7 @@ for d in brief resources images; do mkdir -p "$DIR/$d"; : > "$DIR/$d/.gitkeep"; 
 sed -e "s|{{CODE}}|$(esc "$COURSE")|g" \
     -e "s|{{NAME_VI}}|$(esc "$NAME_VI")|g" \
     -e "s|{{NUM}}|$(esc "$NUM")|g" \
+    -e "s|{{ITEM_LABEL}}|$(esc "$ITEM_LABEL")|g" \
     -e "s|{{FOLDER}}|$(esc "$FOLDER")|g" \
     -e "s|{{TITLE}}|$(esc "$TITLE")|g" \
     -e "s|{{DUE}}|$(esc "$DUE")|g" \
@@ -176,5 +192,5 @@ ${B}Còn lại:${N}
   4. Điền mục "Yêu cầu đề bài" trong README — đề bài thường có trong
      transcript buổi học, ở ${B}$CREL/lectures/_raw/${N}
 
-  ${B}Bảo AI làm nốt:  /new-assignment $COURSE $NUM${N}
+  ${B}Bảo AI làm nốt:  /new-assignment $COURSE --prefix $PREFIX $NUM${N}
 NEXT

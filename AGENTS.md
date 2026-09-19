@@ -205,13 +205,18 @@ Lý do thứ tự này: người dùng học tốt nhất khi có trực giác t
   **phương pháp và tiêu chí chấm**, không đưa kết quả. Phép thử: *đọc xong guide,
   người dùng còn phải tự làm gì không?* Không còn → đã làm hộ bài.
 
-**Khi tạo bài tập mới** `assignments/aN/`:
+**Khi tạo mục nộp mới** trong `assignments/`:
+- Chọn tiền tố theo **loại việc giảng viên giao**: bài tập là `aN/`; bài thực hành
+  (lab) là `labN/`. Loại khác chỉ dùng tiền tố riêng khi giảng viên thực sự gọi như vậy
+  (§ 13.4); không ép lab thành `aN/` chỉ để đồng nhất hình thức.
 - Tạo đủ: `README.md`, `brief/`, `resources/`, `images/`
 - `README.md` phải có: tóm tắt yêu cầu · checklist việc cần làm · hạn nộp (ngày tuyệt đối) · trạng thái
 - **Ghi hạn nộp vào `admin/deadlines.md` ngay lúc tạo thư mục**, không để sau.
-- **Dùng skill `new-assignment`**, đừng tự `mkdir`. Script của nó copy sẵn
+- **Dùng skill `new-assignment`**, đừng tự `mkdir`. Với bài tập dùng tiền tố mặc định
+  `a`; với lab chạy `--prefix lab`. Script chỉ copy sẵn
   `templates/ASSIGNMENT_TEMPLATE.docx` thành file nộp với **mẫu tên suy ra từ bài đã nộp
-  trước đó của chính môn đó** — không hardcode, vì mẫu tên do giảng viên quy định (§ 13.3).
+  trước đó cùng loại của chính môn đó** — không hardcode, vì mẫu tên do giảng viên quy định (§ 13.3).
+  Chưa có mẫu cùng loại thì không copy file và để `❓ chưa xác nhận`.
   **Không điền sẵn tên và MSSV vào trang bìa** — repo đang public.
 
 **Khi người dùng hỏi soạn báo cáo bài tập** → chỉ họ tới `templates/ASSIGNMENT_TEMPLATE.docx`,
@@ -278,7 +283,7 @@ và ghi rõ số trang khi trích. Giáo trình chuẩn hơn transcript Teams.
 |---|---|
 | Thêm môn học mới | skill **`new-course`** → `.claude/skills/new-course/SKILL.md` |
 | Xử lý một buổi học | skill **`new-lecture`** → `.claude/skills/new-lecture/SKILL.md` |
-| Tạo bài tập mới | skill **`new-assignment`** → `.claude/skills/new-assignment/SKILL.md` |
+| Tạo bài tập hoặc lab mới | skill **`new-assignment`** → `.claude/skills/new-assignment/SKILL.md` |
 | Hướng dẫn cách làm bài tập | skill **`assignment-guide`** → `.claude/skills/assignment-guide/SKILL.md` |
 | Dọn file thả tay vào repo | skill **`tidy-files`** → `.claude/skills/tidy-files/SKILL.md` |
 | Sinh / kiểm tra mục lục | `scripts/toc.py gen\|check <file>` (xem § 2b) |
@@ -403,10 +408,18 @@ Ví dụ thật của IE105: `Bài tập 3A_Nguyễn Quốc Trung_25730081.docx`
 
 ### 13.4. Đánh số
 - Buổi học: `L01`, `L02`… · Đồ án: `prj1`, `prj2`…
-- **Thư mục bài tập bám theo số bài giảng viên đặt**, không đánh lại tuần tự:
-  Bài tập 3A → `a3a/` · Bài tập 4 → `a4/` · Bài tập 7 → `a7/`
-  Lý do: số bài hay nhảy cóc và có phần A/B. Đánh tuần tự thì khi bổ sung bài còn thiếu
-  sẽ phải xáo lại toàn bộ.
+- **Tên thư mục mục nộp = tiền tố loại việc + số giảng viên đặt**, không đánh lại tuần tự:
+
+  | Loại | Quy ước | Ví dụ |
+  |---|---|---|
+  | Bài tập | `a<number><part?>/` | Bài tập 3A → `a3a/` · Bài tập 4 → `a4/` |
+  | Bài thực hành / lab | `lab<number><part?>/` | Bài thực hành 3 → `lab3/` · Lab 2B → `lab2b/` |
+  | Đồ án | `prj<number>/` | Đồ án 1 → `prj1/` |
+  | Loại có tiền tố riêng do giảng viên đặt | `<prefix><number><part?>/` | Quiz 2 → `quiz2/` |
+
+  Tiền tố luôn là tiếng Anh, chữ thường, `kebab-case` nếu có nhiều từ; chỉ thêm tiền tố
+  mới khi có nguồn từ giảng viên. Lý do: số bài có thể nhảy cóc, có phần A/B, hoặc xen lab;
+  đánh tuần tự sẽ xáo lại toàn bộ khi bổ sung mục còn thiếu.
 - Ngày: `YYYY-MM-DD`, **luôn tuyệt đối**
 - Học kỳ: `2025-2026-S3` (S = Semester)
 - Tiền tố file nộp (`BT`, `LAB`, `PRJ`) bám theo cách **giảng viên đánh số** trong từng môn,
@@ -433,7 +446,7 @@ Trong một môn học:
 | `lectures/` | Note theo từng buổi học | Không |
 | `notes/` | Note theo khái niệm, gom từ nhiều buổi | Không |
 | `code/` | Thử nhanh, chạy lại ví dụ bài giảng | Không |
-| `assignments/aN/` | Bài tập giảng viên giao, có hạn nộp | **Có** |
+| `assignments/aN/` · `assignments/labN/` | Bài tập hoặc lab giảng viên giao, có hạn nộp | **Có** |
 | `projects/prjN/` | Đồ án môn học, nhiều buổi, nhiều file | **Có** |
 | `research/` | Tự tò mò, đào sâu ngoài syllabus | Không |
 | `exam-prep/` | Flashcard, cheatsheet, ôn thi | Không |

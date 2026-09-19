@@ -80,6 +80,7 @@ Môn nhập môn về bảo đảm thông tin (information assurance) và an nin
 | [`a3a`](assignments/a3a/) | Thăm dò (Footprinting) | L05 | 2026-08-12 | ✅ đã nộp |
 | [`a3b`](assignments/a3b/) | Quét mạng (Scanning) | L06 | 2026-08-19 | ✅ đã nộp |
 | [`a4`](assignments/a4/) | Tấn công hệ thống (System Hacking) | L07 | 2026-08-26 | ✅ đã nộp |
+| [`lab3`](assignments/lab3/) | Bài thực hành 3 — Dò tìm mật khẩu bằng tấn công chủ động | L07 | 2026-09-02 (dự phòng 2026-09-03) | ⚠️ quá hạn — chưa có file nộp |
 | [`a6`](assignments/a6/) | Bảo mật mạng không dây | ❓ | ❓ | ✅ đã nộp |
 | [`a7`](assignments/a7/) | Giám sát hệ thống & mã độc | ❓ | ❓ | ✅ đã nộp |
 
@@ -123,7 +124,7 @@ Môn nhập môn về bảo đảm thông tin (information assurance) và an nin
 | [`lectures/_raw/`](lectures/_raw/) | Transcript Teams gốc — **không bao giờ sửa** |
 | [`lectures/`](lectures/) | Note theo từng buổi |
 | [`notes/`](notes/) | Note theo khái niệm |
-| [`assignments/`](assignments/) | Bài tập — mỗi bài một thư mục `a1`, `a2`… |
+| [`assignments/`](assignments/) | Mục nộp — bài tập `aN`, lab `labN`, hoặc tiền tố có nguồn từ giảng viên |
 | [`projects/`](projects/) | Đồ án — mỗi đồ án một thư mục `prj1`… |
 | [`research/`](research/) | Tự đào sâu ngoài syllabus |
 | [`code/`](code/) | Lab, thử nghiệm nhanh |

@@ -1,4 +1,4 @@
-# {{CODE}} — Bài tập {{NUM}}
+# {{CODE}} — {{ITEM_LABEL}} {{NUM}}
 
 | | |
 |---|---|
@@ -12,9 +12,9 @@
 
 > ✅ Đã ghi hạn nộp vào [`admin/deadlines.md`](../../../../../admin/deadlines.md)? — ❓
 >
-> 📄 File nộp đã được copy sẵn từ `templates/ASSIGNMENT_TEMPLATE.docx` — có trang bìa UIT
-> và khung `Câu 1` · `Bảng` · `Kết luận`. Mở bằng Word, điền trang bìa rồi viết.
-> **Nộp file gốc `.docx`, không phải PDF.**
+> 📄 Nếu đã có file `.docx`, nó được copy từ `templates/ASSIGNMENT_TEMPLATE.docx` — có trang
+> bìa UIT và khung `Câu 1` · `Bảng` · `Kết luận`. Nếu cột **File nộp** còn `❓`, chưa được
+> phép đoán mẫu tên: chờ chỉ dẫn của giảng viên hoặc một bài cùng loại đã nộp trước đó.
 
 ---
 
