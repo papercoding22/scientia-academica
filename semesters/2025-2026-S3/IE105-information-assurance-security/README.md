@@ -80,6 +80,7 @@ Môn nhập môn về bảo đảm thông tin (information assurance) và an nin
 | [`a3a`](assignments/a3a/) | Thăm dò (Footprinting) | L05 | 2026-08-12 | ✅ đã nộp |
 | [`a3b`](assignments/a3b/) | Quét mạng (Scanning) | L06 | 2026-08-19 | ✅ đã nộp |
 | [`a4`](assignments/a4/) | Tấn công hệ thống (System Hacking) | L07 | 2026-08-26 | ✅ đã nộp |
+| [`lab1`](assignments/lab1/) | Bài thực hành 1 — ❓ chưa có đề | ❓ | ❓ | ⬜ chưa làm |
 | [`lab3`](assignments/lab3/) | Bài thực hành 3 — Dò tìm mật khẩu bằng tấn công chủ động | L07 | 2026-09-02 (dự phòng 2026-09-03) | ⚠️ quá hạn — chưa có file nộp |
 | [`lab4`](assignments/lab4/) | Bài thực hành 4 — ❓ chưa có đề | ❓ | ❓ | ⬜ chưa làm |
 | [`lab5`](assignments/lab5/) | Bài thực hành 5 — ❓ chưa có đề | ❓ | ❓ | ⬜ chưa làm |
