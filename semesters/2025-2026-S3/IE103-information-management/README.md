@@ -62,7 +62,7 @@ Môn về cách tổ chức, lưu trữ, và quản trị thông tin trong tổ 
 
 | Mã | Tên | Hạn nộp | Trạng thái |
 |---|---|---|---|
-| [Bài tập 3](assignments/a3/) | ❓ chưa đặt tên · buổi ❓ | ❓ chưa biết | ⬜ chưa làm |
+| [Bài tập 3](assignments/a3/) | An ninh thông tin · buổi ❓ | ❓ chưa biết | ⬜ chưa làm |
 
 ---
 
