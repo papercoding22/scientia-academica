@@ -62,7 +62,8 @@ scientia-academica/
 ├── knowledge-base/            # Khái niệm dùng chung, sống lâu hơn học kỳ
 ├── templates/                 # Khuôn mẫu AI dùng khi tạo file mới
 ├── scripts/                   # Script tự động hoá
-└── .claude/skills/            # Skill riêng của repo
+├── .claude/skills/            # Nguồn skill riêng của repo (Claude)
+└── .agents/skills/            # Symlink để Codex discover cùng các skill đó
 ```
 
 **Thêm môn học mới:** gõ `/new-course` rồi đưa mã môn, tên, giảng viên.

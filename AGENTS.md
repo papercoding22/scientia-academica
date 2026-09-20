@@ -291,6 +291,12 @@ và ghi rõ số trang khi trích. Giáo trình chuẩn hơn transcript Teams.
 | Tìm file sai chỗ / sai tên | `scripts/check-layout.sh [--course <mã>]` |
 | Xem nhanh nội dung .docx/.vtt | `scripts/peek.py <file>` |
 
+**Cầu nối Claude ↔ Codex:** `.claude/skills/` là nguồn sự thật; `.agents/skills/`
+là symlink Git-tracked để Codex tự discover đúng các skill ấy. Khi tạo skill mới,
+**chỉ** tạo tại `.claude/skills/<skill-name>/SKILL.md`, rồi xác nhận
+`test -f .agents/skills/<skill-name>/SKILL.md`. Không copy hai bản. Codex đang mở
+phiên cũ cần bắt đầu phiên mới từ root repo để thấy skill vừa thêm.
+
 Hàm dùng chung của các script nằm ở `scripts/lib/common.sh`.
 
 **Người dùng thả file thủ công vào repo** (transcript, slide, bài tập đã làm) →
