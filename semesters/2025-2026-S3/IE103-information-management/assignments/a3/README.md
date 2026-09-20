@@ -21,6 +21,7 @@
 ## Mục lục
 
 - [Yêu cầu đề bài](#yêu-cầu-đề-bài)
+- [Hướng dẫn làm bài](#hướng-dẫn-làm-bài)
 - [Checklist](#checklist)
 - [Hướng tiếp cận](#hướng-tiếp-cận)
 - [Ghi chú trong quá trình làm](#ghi-chú-trong-quá-trình-làm)
@@ -63,6 +64,13 @@
 - Nộp qua `courses.uit.edu.vn`; **không nén file**.
 
 > *Nguồn: đề gốc 4 trang, [`brief/`](brief/), chưa có thông tin buổi giao hoặc hạn nộp.*
+
+---
+
+## Hướng dẫn làm bài
+
+- [Bài tập 1 — Tổ chức dữ liệu, backup/restore, log, View và mã hóa](guide-exercise-1.md)
+- [Bài tập 2 — Import/export, xác thực và phân quyền](guide-exercise-2.md)
 
 ---
 
