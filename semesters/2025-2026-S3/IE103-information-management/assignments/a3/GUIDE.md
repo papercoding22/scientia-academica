@@ -56,6 +56,8 @@ Nguồn yêu cầu duy nhất là [đề gốc](brief/). Chưa có transcript n�
 
 **Đầu ra:** sáu tiểu mục ngắn, mỗi tiểu mục có kết luận theo **phiên bản SQL Server bạn dùng**, nguồn tham khảo và diễn giải bằng lời của mình.
 
+**Công cụ:** tài liệu SQL Server phù hợp với phiên bản đang dùng, slide chương 5 và SSMS để quan sát CSDL thử nghiệm.
+
 **Các bước:**
 
 1. Lập bảng làm việc gồm: câu hỏi, thông số/tên đối tượng cần tra, phiên bản áp dụng, nguồn Microsoft hoặc tài liệu học phần, diễn giải của bạn.
@@ -73,6 +75,8 @@ Nguồn yêu cầu duy nhất là [đề gốc](brief/). Chưa có transcript n�
 **Đề hỏi:** backup `AAA` thành `AAA.BAK`, xóa CSDL, restore lại bằng cả giao diện lẫn SQL; sau đó xem SQL Server Log và giải thích các trường thông tin.
 
 **Đầu ra:** một chuỗi bằng chứng cho **mỗi** thao tác backup → delete → restore, làm bằng hai cách; phần log có ảnh các bước và bảng giải thích trường.
+
+**Công cụ:** SSMS, cửa sổ truy vấn T-SQL, thư mục cục bộ để lưu `.bak` và công cụ chụp màn hình.
 
 **Các bước:**
 
@@ -92,6 +96,8 @@ Nguồn yêu cầu duy nhất là [đề gốc](brief/). Chưa có transcript n�
 
 **Đầu ra:** hai đoạn lập luận, mỗi đoạn có chuỗi căn cứ rõ ràng thay vì chỉ “có/không” hoặc gọi tên trạng thái.
 
+**Công cụ:** đề PDF, slide chương 5, SSMS và một CSDL thử nghiệm nếu bạn muốn kiểm chứng hành vi của View.
+
 **Các bước:**
 
 1. Với View, lập bảng đối chiếu: cột của base table, ràng buộc trên từng cột, cột được view chiếu ra và dữ liệu mà câu `INSERT` cung cấp. Từ bảng này suy luận khả năng thực thi; nếu dùng SSMS để kiểm chứng, đặt trong CSDL thử nghiệm và ghi nhận thông báo thực tế.
@@ -105,6 +111,8 @@ Nguồn yêu cầu duy nhất là [đề gốc](brief/). Chưa có transcript n�
 **Đề hỏi:** import một file dữ liệu sinh viên Excel vào SQL Server, rồi export một table SQL Server ra Excel, đều bằng giao diện.
 
 **Đầu ra:** hai luồng ảnh theo bước và một kiểm tra kết quả ở đầu vào/đầu ra.
+
+**Công cụ:** SSMS Import and Export Wizard, Excel và công cụ chụp màn hình.
 
 **Các bước:**
 
@@ -120,6 +128,8 @@ Nguồn yêu cầu duy nhất là [đề gốc](brief/). Chưa có transcript n�
 **Đề hỏi:** tạo `u1`–`u6`, `r1`–`r3`, gán đúng thành viên và role theo đề.
 
 **Đầu ra:** script hoặc ảnh thể hiện thứ tự tạo login/user/role, mapping thành viên, và kiểm tra membership.
+
+**Công cụ:** SSMS, cửa sổ truy vấn T-SQL, Object Explorer hoặc truy vấn metadata để đối chiếu membership.
 
 **Các bước:**
 
@@ -137,6 +147,8 @@ Nguồn yêu cầu duy nhất là [đề gốc](brief/). Chưa có transcript n�
 **Đề hỏi:** tạo `U1`–`U3`, chọn `T1`–`T3` theo chữ số cuối MSSV, rồi cấp, từ chối và thu hồi quyền đúng theo danh sách đề bài.
 
 **Đầu ra:** file SQL có các lệnh do bạn viết, cùng bảng đối chiếu để người chấm kiểm tra từng quyền trước và sau khi thay đổi.
+
+**Công cụ:** trang 4 của đề PDF, SSMS, cửa sổ truy vấn T-SQL và một bảng ma trận quyền tự lập.
 
 **Các bước:**
 
