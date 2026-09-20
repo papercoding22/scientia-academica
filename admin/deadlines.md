@@ -11,6 +11,7 @@
 |---|---|---|---|---|---|
 | IE105 | [Bài tập 5](../semesters/2025-2026-S3/IE105-information-assurance-security/assignments/a5/) — Hàm băm, chữ ký số | **2026-08-05 21:30** | ⚠️ quá 44 ngày | ⚠️ **quá hạn** | buổi 4 |
 | IE105 | [Bài thực hành 3](../semesters/2025-2026-S3/IE105-information-assurance-security/assignments/lab3/) — Dò tìm mật khẩu bằng tấn công chủ động | **2026-09-02** · dự phòng **2026-09-03** | ⚠️ quá hạn | ⚠️ **quá hạn** | buổi 7 |
+| IE103 | [Bài tập 3](../semesters/2025-2026-S3/IE103-information-management/assignments/a3/) — ❓ chưa đặt tên | **❓ chưa biết** | — | ⬜ chưa làm | ❓ chưa có nguồn |
 
 ### Quy tắc lặp lại
 
