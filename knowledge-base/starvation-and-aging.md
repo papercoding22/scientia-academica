@@ -2,7 +2,7 @@
 
 > Khi ưu tiên việc này liên tục khiến việc khác không bao giờ đến lượt.
 
-**Xuất hiện ở:** `IT007` — [L04, chương 4](../semesters/2025-2026-S3/IT007-operating-systems/lectures/L04-cpu-scheduling.md).
+**Xuất hiện ở:** `IT007` — [L04, chương 4](../semesters/2025-2026-S3/IT007-operating-systems/lectures/L04-cpu-scheduling.md) · [L05, chương 5](../semesters/2025-2026-S3/IT007-operating-systems/lectures/L05-process-synchronization.md) (bounded waiting, readers-writers, dining-philosophers).
 Ứng dụng mở rộng: chọn job trong worker queue; đây là liên hệ thực tế, chưa phải
 nội dung đã xác nhận ở môn khác.
 

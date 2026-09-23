@@ -34,4 +34,5 @@ xuất hiện ở những môn nào.
 
 | Khái niệm | Xuất hiện ở môn | Ghi chú |
 |---|---|---|
-| [Starvation và aging](starvation-and-aging.md) | IT007 — L04 | Chờ vô hạn và tăng ưu tiên theo thời gian chờ; dùng lại khi thiết kế queue |
+| [Starvation và aging](starvation-and-aging.md) | IT007 — L04, L05 | Chờ vô hạn và tăng ưu tiên theo thời gian chờ; dùng lại khi thiết kế queue |
+| [Race condition và critical section](race-condition.md) | IT007 — L05 | Vì sao phải đồng bộ, 3 yêu cầu của lời giải; dùng lại cho lost update ở database |

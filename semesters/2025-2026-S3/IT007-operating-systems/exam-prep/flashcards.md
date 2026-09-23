@@ -4,8 +4,8 @@ Bản đọc trong repo. Bản import Anki: [`flashcards.csv`](flashcards.csv)
 
 | | |
 |---|---|
-| Số thẻ | 35 |
-| Cập nhật | 2026-09-23 (buổi 3, buổi 4, buổi 10) |
+| Số thẻ | 50 |
+| Cập nhật | 2026-09-23 (buổi 3, buổi 4, buổi 5, buổi 10) |
 
 > Thẻ được sinh ra khi xử lý note bài giảng. Mỗi lần thêm thẻ vào đây thì
 > **đồng thời** thêm vào `flashcards.csv`, hai file phải khớp nhau.
@@ -16,6 +16,7 @@ Bản đọc trong repo. Bản import Anki: [`flashcards.csv`](flashcards.csv)
 
 - `L03` — Quản lý tiến trình (Chương 3)
 - `L04` — CPU scheduling (Chương 4)
+- `L05` — Đồng bộ tiến trình (Chương 5)
 - `L10` — Bộ nhớ ảo (Chương 8)
 
 ---
@@ -193,6 +194,96 @@ Bản đọc trong repo. Bản import Anki: [`flashcards.csv`](flashcards.csv)
 ### Thẻ 10
 **Mặt trước:** Working set WS_i và working-set size WSS_i là gì?
 **Mặt sau:** WS_i là tập các trang được tham chiếu trong Δ lần tham chiếu gần nhất của tiến trình P_i. WSS_i là số lượng trang trong WS_i. Nếu tổng D = Σ WSS_i > số frame hệ thống m → nguy cơ thrashing.
+
+### Thẻ L05-1
+**Mặt trước:** Race condition là gì?
+**Mặt sau:** Hiện tượng các tiến trình cùng truy cập đồng thời dữ liệu chia sẻ, kết quả cuối phụ thuộc thứ tự thực thi. Có thể làm dữ liệu sai, không nhất quán.
+**Tag:** L05
+**Nguồn:** C5-1 s15–16.
+
+### Thẻ L05-2
+**Mặt trước:** 3 yêu cầu mà lời giải bài toán critical section phải đảm bảo?
+**Mặt sau:** (1) Mutual exclusion: P đang trong CS thì không Q nào trong CS. (2) Progress: tiến trình dừng bên ngoài CS không được cản người khác vào CS. (3) Bounded waiting: chỉ phải chờ vào CS trong thời gian có hạn định, không starvation.
+**Tag:** L05
+**Nguồn:** C5-1 s21–25.
+
+### Thẻ L05-3
+**Mặt trước:** Giải thuật Peterson thuộc nhóm giải pháp nào và dùng những biến chia sẻ nào?
+**Mặt sau:** Giải pháp phần mềm (cùng nhóm Bakery, Dekker). Dùng int turn và boolean flag[2]. Đạt cả 3 yêu cầu cho 2 tiến trình.
+**Tag:** L05
+**Nguồn:** C5-1 s27, s42–46.
+
+### Thẻ L05-4
+**Mặt trước:** Vì sao Peterson có thể sai trên kiến trúc hiện đại và sửa bằng gì?
+**Mặt sau:** CPU/compiler có thể sắp xếp lại các thao tác độc lập (gán flag[] và turn) → cả hai cùng vào CS. Sửa bằng memory barrier.
+**Tag:** L05
+**Nguồn:** C5-1 s47–51.
+
+### Thẻ L05-5
+**Mặt trước:** Giải pháp dùng một biến turn cho 2 tiến trình vi phạm yêu cầu nào?
+**Mặt sau:** Đạt mutual exclusion nhưng vi phạm progress và bounded waiting: tiến trình đang chạy remainder section rất lâu vẫn giữ turn, chặn tiến trình kia vào CS.
+**Tag:** L05
+**Nguồn:** C5-1 s34–36.
+
+### Thẻ L05-6
+**Mặt trước:** Spinlock là gì, nhược điểm chính?
+**Mặt sau:** Mutex cài bằng vòng while(!available) — busy waiting liên tục kiểm tra khoá, lãng phí CPU.
+**Tag:** L05
+**Nguồn:** C5-2 s8.
+
+### Thẻ L05-7
+**Mặt trước:** Mutex lock không busy waiting hoạt động thế nào?
+**Mặt sau:** Khoá đang bị khoá → block(): đưa tiến trình vào hàng đợi, trạng thái ngủ. Khi khoá được mở → wakeup(): đưa một tiến trình từ hàng đợi về ready queue.
+**Tag:** L05
+**Nguồn:** C5-2 s10–11.
+
+### Thẻ L05-8
+**Mặt trước:** wait(S) và signal(S) của semaphore làm gì với giá trị S, dùng khi nào?
+**Mặt sau:** wait (P): S không dương thì chờ, vào được thì giảm S đi 1 — dùng khi muốn sử dụng tài nguyên. signal (V): tăng S lên 1 — dùng khi trả tài nguyên.
+**Tag:** L05
+**Nguồn:** C5-2 s15–16.
+
+### Thẻ L05-9
+**Mặt trước:** Counting semaphore khác binary semaphore thế nào?
+**Mặt sau:** Counting: giá trị nguyên không giới hạn. Binary: chỉ 0 hoặc 1, tác dụng giống mutex. Counting semaphore dùng được như binary semaphore.
+**Tag:** L05
+**Nguồn:** C5-2 s26.
+
+### Thẻ L05-10
+**Mặt trước:** Semaphore cài bằng hàng đợi có S->value = −4. Nghĩa là gì?
+**Mặt sau:** Có 4 tiến trình đang bị block trong hàng đợi của S. Khi value ≥ 0 thì value là số lần còn gọi wait mà không bị block.
+**Tag:** L05
+**Nguồn:** C5-2 s38.
+
+### Thẻ L05-11
+**Mặt trước:** Monitor là gì? x.signal() khác signal() của semaphore ở đâu?
+**Mặt sau:** Kiểu dữ liệu trừu tượng gói biến nội bộ + thủ tục + code khởi tạo, chỉ một tiến trình ở trong monitor tại một thời điểm. x.signal() không có tiến trình nào chờ thì không có tác dụng, còn signal() của semaphore luôn tăng giá trị.
+**Tag:** L05
+**Nguồn:** C5-2 s44–48.
+
+### Thẻ L05-12
+**Mặt trước:** Liveness là gì? Kể 3 dạng lỗi liveness trong slide.
+**Mặt sau:** Tập các đặc điểm hệ thống phải thỏa mãn để đảm bảo tiến trình thực sự chạy. Deadlock, starvation, priority inversion (giải bằng priority inheritance protocol).
+**Tag:** L05
+**Nguồn:** C5-2 s51–53.
+
+### Thẻ L05-13
+**Mặt trước:** Bounded-buffer dùng những semaphore nào, khởi tạo bao nhiêu?
+**Mặt sau:** empty = n (số chỗ có thể thêm), full = 0 (số phần tử có thể xoá), mutex = 1 (bảo vệ CS truy cập buffer và count).
+**Tag:** L05
+**Nguồn:** C5-3 s9–10.
+
+### Thẻ L05-14
+**Mặt trước:** Readers-writers biến thể 1 và 2: ai có thể bị starvation?
+**Mặt sau:** Biến thể 1 (ưu tiên Readers): Writers có thể bị starvation. Biến thể 2 (ưu tiên Writers): Readers có thể bị starvation.
+**Tag:** L05
+**Nguồn:** C5-3 s17.
+
+### Thẻ L05-15
+**Mặt trước:** Dining-philosophers: khi nào deadlock và 3 cách tránh trong slide?
+**Mặt sau:** Cả 5 triết gia cùng lúc cầm đũa trái. Tránh: tối đa 4 người ngồi, chỉ cầm khi cả 2 đũa sẵn sàng (cầm trong CS), bất đối xứng lẻ cầm trái trước và chẵn cầm phải trước. Starvation vẫn có thể xảy ra.
+**Tag:** L05
+**Nguồn:** C5-3 s26–27.
 
 <!--
 Mẫu:
