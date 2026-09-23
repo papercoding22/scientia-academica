@@ -32,8 +32,6 @@ xuất hiện ở những môn nào.
 
 ## Index
 
-> Chưa có khái niệm nào. File sẽ được thêm dần trong quá trình học.
-
 | Khái niệm | Xuất hiện ở môn | Ghi chú |
 |---|---|---|
-| — | — | — |
+| [Starvation và aging](starvation-and-aging.md) | IT007 — L04 | Chờ vô hạn và tăng ưu tiên theo thời gian chờ; dùng lại khi thiết kế queue |
