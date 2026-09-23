@@ -28,10 +28,9 @@
   - [6. Tạo và kết thúc tiến trình](#6-tạo-và-kết-thúc-tiến-trình)
   - [7. Cộng tác giữa các tiến trình & IPC](#7-cộng-tác-giữa-các-tiến-trình--ipc)
   - [8. Tiểu trình (Thread)](#8-tiểu-trình-thread)
-- [Bài tập bổ sung — truy vết vòng lặp và kết quả in](#bài-tập-bổ-sung--truy-vết-vòng-lặp-và-kết-quả-in)
-  - [Trực giác và cách đọc đề](#trực-giác-và-cách-đọc-đề)
-  - [Code chạy được và bảng truy vết](#code-chạy-được-và-bảng-truy-vết)
-  - [Liên hệ với quản lý process](#liên-hệ-với-quản-lý-process)
+- [Bài tập bổ sung — chuỗi trạng thái tiến trình](#bài-tập-bổ-sung--chuỗi-trạng-thái-tiến-trình)
+  - [Chuỗi trạng thái khi mỗi lần in đều phải chờ I/O](#chuỗi-trạng-thái-khi-mỗi-lần-in-đều-phải-chờ-io)
+  - [Phân biệt giả định bài tập với thực thi thật](#phân-biệt-giả-định-bài-tập-với-thực-thi-thật)
 - [Bảng tổng hợp](#bảng-tổng-hợp)
 - [Sơ đồ](#sơ-đồ)
 - [Chỗ chưa rõ](#chỗ-chưa-rõ)
@@ -236,103 +235,57 @@ int main(int argc, char *argv[]) {
 
 ---
 
-## Bài tập bổ sung — truy vết vòng lặp và kết quả in
+## Bài tập bổ sung — chuỗi trạng thái tiến trình
 
-> **Nguồn:** ảnh đoạn code do người dùng cung cấp ngày **2026-09-23**.
-> Ảnh chỉ có code, không có câu hỏi bằng chữ. Phạm vi phân tích ở đây là kết quả
-> in, số vòng lặp và số process (tiến trình). Đây là lời giải tự phân tích,
-> không phải đáp án được giảng viên xác nhận; ngày trên không phải ngày buổi học.
+> **Nguồn:** ảnh code người dùng cung cấp ngày **2026-09-23**; phần giải thích
+> dưới đây là phân tích bổ sung, chưa có đáp án xác nhận của giảng viên.
 
-### Trực giác và cách đọc đề
+Chương trình chỉ có **1 process**, gọi `printf()` theo thứ tự **`Bye` → `Hello`
+→ `Hi` → `Bye`**, rồi gọi `exit(0)`.
 
-**Trực giác:** mỗi lượt, chương trình tăng số đang giữ lên một đơn vị rồi mới
-quyết định in lời chào nào.
+### Chuỗi trạng thái khi mỗi lần in đều phải chờ I/O
 
-**Analogy:** như đang cầm thẻ số 2, mỗi lượt phải đổi sang thẻ kế tiếp rồi mới
-đọc lời chào trên thẻ mới: thẻ lẻ ghi `Bye`, thẻ chẵn ghi `Hello` rồi `Hi`.
-
-**Ví dụ nhỏ nhất:** nếu đầu một lượt `i = 3`, điều kiện `3 < 5` đúng;
-`i++` đổi `i` thành `4`, nên lượt đó in `HelloHi`.
-
-**Quy tắc áp dụng:** `while` kiểm tra điều kiện trước mỗi lượt. Khi đã vào thân
-vòng lặp, các lệnh chạy theo thứ tự: `i++` → kiểm tra `i % 2 == 0` → in.
-`i++` là một câu lệnh riêng nên việc tăng đã hoàn tất trước khi đến `if`.
-Sau khi chạy hết thân vòng lặp mới kiểm tra lại `i < 5`.
-
-### Code chạy được và bảng truy vết
-
-Bản dưới giữ nguyên logic của ảnh; bổ sung header, dùng dấu nháy ASCII `"`
-thay dấu nháy cong `“…”`, và rút gọn `main` thành `main(void)` vì không dùng tham số.
-
-```c
-#include <stdio.h>
-#include <stdlib.h>
-
-int main(void) {
-    int i = 2;
-    while (i < 5) {
-        i++;
-        if (i % 2 == 0) {
-            printf("Hello");
-            printf("Hi");
-        } else {
-            printf("Bye");
-        }
-    }
-    exit(0);
-}
-```
-
-| Lượt | `i` khi kiểm tra `while` | `i < 5` | `i` sau `i++` | Nhánh chạy | Chuỗi in thêm |
-|---|---|---|---|---|---|
-| 1 | 2 | Đúng | 3 | `else` vì 3 lẻ | `Bye` |
-| 2 | 3 | Đúng | 4 | `if` vì 4 chẵn | `HelloHi` |
-| 3 | 4 | Đúng | 5 | `else` vì 5 lẻ | `Bye` |
-| Kiểm tra tiếp | 5 | Sai | Không thực hiện | Thoát vòng lặp | Không in |
+**Giả định để vẽ:** mỗi `printf()` đều thực hiện I/O và làm process block
+(chờ); bỏ qua việc bị thu hồi CPU giữa chừng và các lần chờ khác.
 
 ```text
-i = 2
-  → kiểm tra 2 < 5 → tăng lên 3 → in Bye
-  → kiểm tra 3 < 5 → tăng lên 4 → in Hello rồi Hi
-  → kiểm tra 4 < 5 → tăng lên 5 → in Bye
-  → kiểm tra 5 < 5 sai → exit(0)
+New → Ready → Running
+    → Waiting → Ready → Running   (chờ in Bye xong, được cấp CPU lại)
+    → Waiting → Ready → Running   (chờ in Hello xong, được cấp CPU lại)
+    → Waiting → Ready → Running   (chờ in Hi xong, được cấp CPU lại)
+    → Waiting → Ready → Running   (chờ in Bye xong, được cấp CPU lại)
+    → Terminated                 (exit(0))
 ```
 
-Kết quả chính xác trên `stdout` (luồng xuất chuẩn):
-
-```text
-ByeHelloHiBye
-```
-
-Không có dấu cách hoặc ký tự xuống dòng, vì các chuỗi trong `printf` không chứa
-chúng. **Vẫn in `Bye` khi `i = 5`**: lượt cuối đã được cho phép bắt đầu khi
-`i = 4`; điều kiện `while` không được kiểm tra lại ngay sau `i++`.
-
-Lưu code thành `loop-output.c` ngoài thư mục nguồn tài liệu, rồi chạy trên macOS/Linux:
-
-```sh
-cc -std=c11 -Wall -Wextra -pedantic loop-output.c -o loop-output
-./loop-output
-```
-
-`exit(0)` kết thúc thành công và flush (đẩy dữ liệu còn trong buffer) các luồng
-stdio đang mở, nên không cần `\n` để chuỗi cuối cùng xuất hiện khi chương trình
-kết thúc bình thường. Prompt của terminal có thể nằm sát cuối chuỗi.
-
-### Liên hệ với quản lý process
-
-Trong phạm vi một lần chạy chương trình này, **chỉ có 1 process** và không tạo
-process con: code không gọi `fork()` hay API tạo process khác. Vòng lặp chạy
-nhiều lần và nhiều lời gọi `printf()` vẫn thuộc cùng process đó.
-
-| Đại lượng | Kết quả |
+| Chuyển trạng thái | Nguyên nhân trong bài |
 |---|---|
-| Số lượt chạy thân `while` | 3 |
-| Số lần kiểm tra `i < 5` | 4, gồm lần cuối sai |
-| Số lần gọi `printf` | 4: `Bye`, `Hello`, `Hi`, `Bye` |
-| Số lần xuất hiện từng chuỗi | `Hello`: 1; `Hi`: 1; `Bye`: 2 |
-| Giá trị cuối của `i` | 5 |
-| Số process chạy code / số process con được tạo | 1 / 0 |
+| `New → Ready` | OS tạo process và đưa vào ready queue |
+| `Ready → Running` | Scheduler cấp CPU cho process |
+| `Running → Waiting` | Process yêu cầu in và phải chờ I/O theo giả định |
+| `Waiting → Ready` | I/O hoàn tất; process sẵn sàng chạy nhưng chưa chắc được cấp CPU |
+| `Running → Terminated` | Hoàn tất chương trình qua `exit(0)` |
+
+Các lệnh `i++`, kiểm tra `while` và `if` được thực thi khi process ở **Running**.
+Chúng không tự gây chuyển trạng thái. Sau mỗi lần chờ I/O, process tiếp tục công
+việc đang dở khi được cấp CPU lại; không chạy lại từ đầu `main()`.
+
+### Phân biệt giả định bài tập với thực thi thật
+
+**Không thể suy ra chắc chắn 4 lần Waiting chỉ từ 4 lời gọi `printf()`.**
+`printf()` có thể chỉ ghi vào buffer (vùng đệm), chưa phải chờ I/O. Khi đó
+process vẫn ở Running; việc flush dữ liệu khi `exit(0)` cũng có thể phát sinh chờ.
+Nếu toàn bộ lần chạy không block và không bị thu hồi CPU, chuỗi là:
+
+```text
+New → Ready → Running → Terminated
+```
+
+Nếu bị thu hồi CPU khi vẫn có thể chạy tiếp, process đi theo
+`Running → Ready → Running`. Chỉ khi phải chờ sự kiện như I/O mới đi theo
+`Running → Waiting → Ready → Running`.
+
+**Chốt cách phân biệt:** Ready = chờ CPU; Waiting = chờ sự kiện/I/O.
+I/O xong phải về Ready, không chuyển thẳng sang Running.
 
 ---
 
@@ -523,10 +476,6 @@ phòng chờ — không ai được ưu tiên vào khám ngay, đều phải ch�
 
 ## Bạn cần tự làm lại phần nào
 
-Áp dụng cho bài tập bổ sung từ ảnh:
-
-1. Che bảng truy vết, tự ghi `i` trước điều kiện `while`, sau `i++`, và chuỗi
-   in thêm của từng lượt. Tự giải thích vì sao lượt cuối vẫn in khi `i = 5`.
-2. Dự đoán kết quả nếu chuyển `i++` xuống cuối thân `while`, sau khối `if/else`.
-   Sau đó tự sửa code và chạy để đối chiếu.
-3. Giải thích vì sao 3 lượt lặp và 4 lần gọi `printf` vẫn chỉ thuộc 1 process.
+1. Tự vẽ lại chuỗi trạng thái với giả định cả 4 lần in đều phải chờ I/O;
+   ghi nguyên nhân trên từng mũi tên.
+2. Giải thích vì sao I/O xong phải về Ready, còn hết lượt CPU thì không vào Waiting.
