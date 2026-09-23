@@ -1,3 +1,23 @@
 ﻿#separator:semicolon
 #html:false
 #tags column:3
+PCB (Process Control Block) là gì và lưu những thông tin nào?;Cấu trúc dữ liệu hệ điều hành dùng để lưu mọi thông tin cần thiết của một tiến trình: trạng thái, program counter, giá trị thanh ghi, thông tin định thời, quản lý bộ nhớ, thông tin I/O — phục vụ context switch.;L03
+5 trạng thái cơ bản của một tiến trình là gì?;New, Ready, Running, Waiting (blocked), Terminated.;L03
+Context switch là gì?;Việc hệ điều hành lưu trạng thái tiến trình đang chạy vào PCB của nó, rồi nạp trạng thái đã lưu của tiến trình kế tiếp từ PCB tương ứng để tiếp tục thực thi.;L03
+Sự khác nhau giữa long-term scheduler và short-term scheduler?;Long-term scheduler quyết định tiến trình nào được nạp vào bộ nhớ (kiểm soát mức đa chương), chạy không thường xuyên. Short-term scheduler chọn tiến trình nào trong ready queue được cấp CPU kế tiếp, chạy rất thường xuyên.;L03
+fork() làm gì, và giá trị trả về cho biết điều gì?;Tạo tiến trình con là bản sao của tiến trình cha. Trả về >0: đang ở tiến trình cha (giá trị là PID con); =0: đang ở tiến trình con; <0: fork thất bại.;L03
+Họ hàm exec() làm gì, khác fork() ở điểm nào?;Nạp đè một chương trình mới lên không gian địa chỉ của tiến trình gọi hàm, không tạo tiến trình mới (khác với fork() vốn nhân bản thành tiến trình con).;L03
+Hai mô hình IPC (Inter-Process Communication) cơ bản là gì? Khác nhau ở đâu?;Shared memory (vùng nhớ dùng chung, các tiến trình tự lo đồng bộ) và Message passing (gửi/nhận thông điệp qua hàng đợi do nhân hệ điều hành quản lý).;L03
+Thread khác Process ở điểm cốt lõi nào?;Thread là đơn vị thực thi nhỏ hơn process — nhiều thread trong cùng một process chia sẻ chung code/data/file, nhưng mỗi thread có stack và tập thanh ghi riêng.;L03
+3 mô hình ánh xạ thread người dùng - thread hạt nhân, và mô hình nào phổ biến nhất?;Many-to-One, One-to-One, Many-to-Many. One-to-One phổ biến nhất (Windows, Linux dùng) vì tính đồng thời tốt — một thread block không kéo cả tiến trình block.;L03
+Nêu 3 lợi ích chính của tiến trình đa luồng (multithreading)?;Đáp ứng nhanh (không bị chặn toàn bộ khi một phần block), kinh tế (tạo/chuyển ngữ cảnh thread rẻ hơn process nhiều), khả năng mở rộng (chạy song song thật trên nhiều lõi CPU).;L03
+Bộ nhớ ảo (virtual memory) là gì?;Kỹ thuật cho phép thực thi một tiến trình mà không cần nạp toàn bộ tiến trình đó vào bộ nhớ vật lý.;L10
+Demand paging là gì?;Các trang của tiến trình chỉ được nạp vào bộ nhớ chính khi được tham chiếu (yêu cầu), không nạp trước.;L10
+Page-fault trap xảy ra khi nào?;Khi CPU tham chiếu một trang có valid bit = invalid (trang không nằm trong RAM) → phần cứng gây ngắt, gọi Page-Fault Service Routine (PFSR).;L10
+3 bước chính của PFSR khi xử lý page fault (có frame trống)?;(1) Chuyển tiến trình về blocked. (2) Phát yêu cầu đọc đĩa nạp trang vào frame trống, CPU giao cho tiến trình khác. (3) Sau khi I/O xong, cập nhật page table, chuyển tiến trình về ready.;L10
+Giải thuật thay trang FIFO chọn victim page như thế nào?;Chọn trang được nạp vào bộ nhớ sớm nhất (ở lâu nhất trong RAM), bất kể có đang được dùng hay không.;L10
+Nghịch lý Belady (Belady's Anomaly) là gì?;Hiện tượng tăng số frame cấp cho tiến trình lại làm tăng số page fault thay vì giảm — xảy ra với FIFO.;L10
+Giải thuật OPT chọn victim page theo tiêu chí gì, và vì sao không cài đặt được thực tế?;Chọn trang sẽ được tham chiếu trễ nhất trong tương lai. Không cài đặt được vì cần biết trước toàn bộ chuỗi tham chiếu tương lai.;L10
+Giải thuật LRU chọn victim page theo tiêu chí gì?;Chọn trang có thời điểm tham chiếu gần nhất là lâu nhất (ít được dùng gần đây nhất).;L10
+Thrashing là gì, và điều kiện nào (theo locality) khiến nó xảy ra?;Hiện tượng các trang nhớ của tiến trình bị hoán chuyển vào/ra liên tục, CPU utilization giảm mạnh. Xảy ra khi tổng kích thước locality của mọi tiến trình > kích thước bộ nhớ.;L10
+Working set WS_i và working-set size WSS_i là gì?;WS_i là tập các trang được tham chiếu trong Δ lần tham chiếu gần nhất của tiến trình P_i. WSS_i là số lượng trang trong WS_i. Nếu tổng D = Σ WSS_i > số frame hệ thống m → nguy cơ thrashing.;L10
