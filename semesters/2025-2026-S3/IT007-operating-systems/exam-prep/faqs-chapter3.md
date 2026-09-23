@@ -7,6 +7,7 @@ Câu hỏi ngắn, trả lời nhanh khi ôn chương 3. Đầy đủ hơn thì 
 
 1. [Một tiến trình có bao nhiêu trạng thái](#q1-một-tiến-trình-có-bao-nhiêu-trạng-thái)
 2. [Tại sao một tiến trình cần những trạng thái này](#q2-tại-sao-một-tiến-trình-cần-những-trạng-thái-này)
+3. [PCB là gì? có vai trò gì?](#q3-pcb-là-gì-có-vai-trò-gì)
 
 ---
 
@@ -77,3 +78,44 @@ CPU với tiến trình nào *đang chờ việc khác* (I/O), sẽ phí phạm 
 **Cốt lõi:** tách Ready và Waiting là quan trọng nhất — nhờ đó CPU không bao giờ
 đứng im khi còn tiến trình khác thật sự sẵn sàng chạy, thay vì multitasking mù
 quáng kiểu round-robin không phân biệt trạng thái.
+
+## Q3. PCB là gì? có vai trò gì?
+
+**PCB (Process Control Block)** là cấu trúc dữ liệu OS dùng làm **hồ sơ quản lý
+của một process**: process đang ở trạng thái nào, dùng tài nguyên gì và cần
+tiếp tục chạy từ đâu.
+
+**Liên hệ đời thường:** giống phiếu lưu ván chơi — ghi lại đang tới đâu và
+trạng thái hiện tại, để tạm dừng rồi tiếp tục đúng chỗ.
+
+**PCB gồm những gì?** Theo slide chương 3, có 7 nhóm thông tin chính:
+
+| Thành phần | Lưu những gì? | Dùng để làm gì? |
+|---|---|---|
+| **Process state** | New, Ready, Running, Waiting, Terminated | Biết process đang ở trạng thái nào |
+| **Program counter** | Địa chỉ lệnh tiếp theo sẽ thực thi | Biết tiếp tục chạy từ đâu sau khi tạm dừng |
+| **CPU registers** | Giá trị các thanh ghi đã lưu, như thanh ghi đa dụng, stack pointer, thanh ghi trạng thái | Khôi phục dữ liệu làm việc và ngữ cảnh CPU khi chạy tiếp |
+| **CPU scheduling information** | Priority, con trỏ/liên kết tới các hàng đợi scheduling | Hỗ trợ scheduler quản lý và chọn process được cấp CPU |
+| **Memory-management information** | Thông tin ánh xạ bộ nhớ, như con trỏ tới page table hoặc giá trị base/limit tùy cơ chế | Xác định và bảo vệ không gian nhớ của process |
+| **Accounting information** | Thời gian CPU đã dùng, thời gian sử dụng và giới hạn tài nguyên | Thống kê, theo dõi mức sử dụng tài nguyên của process |
+| **I/O status information** | Thiết bị I/O được cấp, danh sách file đang mở | Theo dõi tài nguyên I/O của process |
+
+PCB gắn với **PID (Process ID)** để OS nhận diện process. Tên trường và cách
+tổ chức cụ thể có thể khác nhau giữa các OS; các ví dụ trong bảng mô tả chức năng
+của từng nhóm, không phải một cấu trúc cố định cho mọi OS.
+
+**Ví dụ context switch (chuyển ngữ cảnh):** P1 đang tính dở thì hết lượt CPU.
+OS lưu ngữ cảnh P1 vào PCB của P1, nạp ngữ cảnh P2 từ PCB của P2 rồi chạy P2.
+Khi đến lượt P1, OS khôi phục ngữ cảnh đã lưu; P1 tiếp tục công việc đang dở,
+không chạy lại từ đầu.
+
+```text
+P1 Running → lưu ngữ cảnh vào PCB₁ → nạp ngữ cảnh từ PCB₂ → P2 Running
+```
+
+PCB lưu **thông tin quản lý và ngữ cảnh**, không chứa toàn bộ code/data/stack
+của chương trình; các vùng đó thuộc không gian nhớ của process.
+
+**Nguồn ôn tập:** [L03 — Process Control Block và context switch](../lectures/L03-process-management.md#3-process-control-block-pcb).
+Danh sách thành phần: [slide Chapter3-1](../materials/slides/Copy%20of%20%23Week03-Chapter3-1%202024.pdf),
+trang PDF **16**; định danh process được nhắc ở trang **9**.
