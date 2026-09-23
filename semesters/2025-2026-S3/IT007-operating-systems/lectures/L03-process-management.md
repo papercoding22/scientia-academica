@@ -30,6 +30,7 @@
   - [8. Tiểu trình (Thread)](#8-tiểu-trình-thread)
 - [Bài tập bổ sung — chuỗi trạng thái tiến trình](#bài-tập-bổ-sung--chuỗi-trạng-thái-tiến-trình)
   - [Chuỗi trạng thái khi mỗi lần in đều phải chờ I/O](#chuỗi-trạng-thái-khi-mỗi-lần-in-đều-phải-chờ-io)
+  - [Số lần tiến trình vào hàng đợi](#số-lần-tiến-trình-vào-hàng-đợi)
   - [Phân biệt giả định bài tập với thực thi thật](#phân-biệt-giả-định-bài-tập-với-thực-thi-thật)
 - [Bảng tổng hợp](#bảng-tổng-hợp)
 - [Sơ đồ](#sơ-đồ)
@@ -289,6 +290,24 @@ New → Ready → Running
 Các lệnh `i++`, kiểm tra `while` và `if` được thực thi khi process ở **Running**.
 Chúng không tự gây chuyển trạng thái. Sau mỗi lần chờ I/O, process tiếp tục công
 việc đang dở khi được cấp CPU lại; không chạy lại từ đầu `main()`.
+
+### Số lần tiến trình vào hàng đợi
+
+**Câu hỏi:** sau khi chạy xong chương trình, process đã vào hàng đợi bao nhiêu lần?
+
+Với giả định **4 lần in đều phải chờ I/O, không bị thu hồi CPU giữa chừng và
+không có lần chờ khác**, cần phân biệt loại hàng đợi:
+
+| Hàng đợi được tính | Cách đếm | Số lần vào |
+|---|---|---:|
+| Ready queue — chờ CPU | 1 lần `New → Ready` + 4 lần `Waiting → Ready` sau I/O | **5** |
+| Device queue — chờ I/O | 4 lần `Running → Waiting`, ứng với `Bye`, `Hello`, `Hi`, `Bye` | **4** |
+| Tổng hai loại trên | 5 + 4 | **9** |
+
+Đây là **số lần vào hàng đợi trong suốt lần chạy**, không phải số hàng đợi khác
+nhau. Khi đã Terminated, process không còn chờ trong hai hàng đợi này.
+Nếu bị thu hồi CPU thêm 1 lần, có thêm `Running → Ready`, nên số lần vào
+ready queue tăng từ **5 lên 6**; số lần vào device queue vẫn là **4**.
 
 ### Phân biệt giả định bài tập với thực thi thật
 
