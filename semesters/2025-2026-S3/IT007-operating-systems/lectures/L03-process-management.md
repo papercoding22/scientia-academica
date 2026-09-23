@@ -240,6 +240,27 @@ int main(int argc, char *argv[]) {
 > **Nguồn:** ảnh code người dùng cung cấp ngày **2026-09-23**; phần giải thích
 > dưới đây là phân tích bổ sung, chưa có đáp án xác nhận của giảng viên.
 
+Đoạn code trong ảnh, bổ sung header và dùng dấu nháy chuẩn của C:
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char **argv) {
+    int i = 2;
+    while (i < 5) {
+        i++;
+        if (i % 2 == 0) {
+            printf("Hello");
+            printf("Hi");
+        } else {
+            printf("Bye");
+        }
+    }
+    exit(0);
+}
+```
+
 Chương trình chỉ có **1 process**, gọi `printf()` theo thứ tự **`Bye` → `Hello`
 → `Hi` → `Bye`**, rồi gọi `exit(0)`.
 
