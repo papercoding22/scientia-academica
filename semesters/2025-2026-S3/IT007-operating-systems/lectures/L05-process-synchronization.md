@@ -102,6 +102,32 @@ chạy, khác kết quả** — đó là dấu hiệu nhận biết race conditi
 là hai tiến trình cùng `fork()` và cùng lấy `next_available_pid`, dẫn đến một PID bị cấp
 cho hai tiến trình con [C5-1 s13].
 
+> 💬 *Bổ sung từ phiên gia sư 2026-09-23*
+>
+> **Đọc bảng T1–T6 như chuyện "bảng trắng + giấy nháp".** CPU không sửa thẳng con số
+> trong bộ nhớ. Mỗi nhân viên có một tờ giấy nháp riêng (thanh ghi `reg1`, `reg2`) và muốn
+> sửa số trên bảng (biến `count`) thì phải làm 3 bước: **chép** số trên bảng vào nháp
+> (`load`) → **tính** trên nháp (`inc`/`dec`) → **ghi** nháp đè lên bảng (`store`).
+> Quantum là số bước mỗi người được làm trước khi bị gọi đi, và người đó mang giấy nháp theo.
+>
+> | Lúc | Ai | Việc | Giấy nháp | Bảng |
+> |---|---|---|---|---|
+> | T1 | Producer | chép | P: 5 | 5 |
+> | T2 | Producer | cộng 1 | P: 6 | 5 |
+> | T3 | Consumer | chép | C: **5** ← bảng vẫn là 5 | 5 |
+> | T4 | Consumer | trừ 1 | C: 4 | 5 |
+> | T5 | Producer | ghi | | 6 |
+> | T6 | Consumer | ghi, **đè mất số 6** | | **4** ❌ |
+>
+> **Mấu chốt nằm ở khoảng giữa lúc đọc và lúc ghi.** Consumer **đọc lúc T3** nhưng **ghi
+> lúc T6**. Ở giữa, T5 đã đổi bảng thành 6, còn Consumer vẫn cầm số cũ (stale) và ghi đè
+> lên. Race condition xảy ra khi giữa lúc đọc và lúc ghi của một bên, bên kia chen vào sửa
+> dữ liệu. Cách chữa là làm cho ba bước chép → tính → ghi **liền một mạch**, tức là biến
+> chúng thành critical section (mục 2).
+>
+> Chỗ dễ nhầm: hỏi "Consumer lấy số 5 lúc nào" thì đáp án là lúc **đọc** (T3), không phải
+> lúc **ghi** (T6).
+
 **Định nghĩa hình thức** [C5-1 s15–s16]:
 > **Race condition** là hiện tượng xảy ra khi các tiến trình cùng truy cập đồng thời vào
 > dữ liệu được chia sẻ. Kết quả cuối cùng phụ thuộc vào thứ tự thực thi của các tiến
