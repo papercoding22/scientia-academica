@@ -32,6 +32,7 @@
   - [Chuỗi trạng thái khi mỗi lần in đều phải chờ I/O](#chuỗi-trạng-thái-khi-mỗi-lần-in-đều-phải-chờ-io)
   - [Số lần tiến trình vào hàng đợi](#số-lần-tiến-trình-vào-hàng-đợi)
   - [Phân biệt giả định bài tập với thực thi thật](#phân-biệt-giả-định-bài-tập-với-thực-thi-thật)
+- [Bài tập từ ảnh — đếm READY, RUNNING, WAITING](#bài-tập-từ-ảnh--đếm-ready-running-waiting)
 - [Bảng tổng hợp](#bảng-tổng-hợp)
 - [Sơ đồ](#sơ-đồ)
 - [Chỗ chưa rõ](#chỗ-chưa-rõ)
@@ -329,6 +330,78 @@ I/O xong phải về Ready, không chuyển thẳng sang Running.
 
 ---
 
+## Bài tập từ ảnh — đếm READY, RUNNING, WAITING
+
+> **Nguồn:** [ảnh code L03-exercise-01.png](_raw/L03-exercise-01.png) và câu hỏi
+> người dùng cung cấp: sau khi kết thúc chương trình, process đã ở READY,
+> RUNNING, WAITING bao nhiêu lần?
+
+**Giả định để đếm:** mỗi lần gọi `printf()` làm process block chờ I/O đúng
+1 lần; không bị thu hồi CPU giữa chừng và không có lần chờ nào khác.
+Theo mô hình này: **READY = 5, RUNNING = 5, WAITING = 4**.
+
+Đoạn code trong ảnh (viết dấu `≥` thành `>=` đúng cú pháp C):
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char* argv[])
+{
+    int a, b = 0, i;
+    for (i = 16; i >= 6; i--)
+    {
+        if (i % 3 == 0)
+            printf("So %d chia het cho 3\n", i);
+        else
+            a = b + i;
+    }
+    exit(0);
+}
+```
+
+`i` giảm từ **16 đến 6**, nên `printf()` được gọi **4 lần** tại
+`i = 15, 12, 9, 6`, in ra:
+
+```text
+So 15 chia het cho 3
+So 12 chia het cho 3
+So 9 chia het cho 3
+So 6 chia het cho 3
+```
+
+**Chuỗi trạng thái theo giả định trên:**
+
+```text
+NEW → READY → RUNNING
+    → WAITING → READY → RUNNING   (printf khi i = 15)
+    → WAITING → READY → RUNNING   (printf khi i = 12)
+    → WAITING → READY → RUNNING   (printf khi i = 9)
+    → WAITING → READY → RUNNING   (printf khi i = 6)
+    → TERMINATED                 (exit(0))
+```
+
+Mỗi lần in: đang **RUNNING** → phải chờ nên sang **WAITING** → I/O xong
+về **READY** → được cấp CPU thì **RUNNING** tiếp. Các phép kiểm tra `for`,
+`if`, lệnh `i--` và `a = b + i` diễn ra trong RUNNING, không tạo thêm lượt
+vào trạng thái chỉ vì thực hiện thêm một lệnh hay một vòng lặp.
+
+Sau lần in tại **i = 6**, process vẫn phải về **READY → RUNNING** để tiếp
+tục: giảm `i` còn 5, kiểm tra điều kiện sai rồi gọi `exit(0)`. Vì vậy có
+**5 lượt RUNNING**, không phải 4.
+
+Chỉ từ code không thể khẳng định số lần chuyển trạng thái ngoài thực tế:
+`printf()` có buffering và có thể không block; việc thu hồi CPU hoặc các
+lần chờ khác cũng làm thay đổi số đếm. Bảng dưới áp dụng đúng giả định đã nêu.
+
+| Trạng thái | Cách đếm số lần vào trong toàn bộ lần chạy | Kết quả |
+|---|---|---:|
+| **READY** | 1 lần ban đầu + 4 lần I/O hoàn tất | **5** |
+| **RUNNING** | 1 lần chạy đầu + 4 lần được cấp CPU lại sau I/O | **5** |
+| **WAITING** | 4 lần in phải chờ I/O | **4** |
+
+---
+
 ## Bảng tổng hợp
 
 | Khái niệm | Vai trò cốt lõi |
@@ -519,3 +592,5 @@ phòng chờ — không ai được ưu tiên vào khám ngay, đều phải ch�
 1. Tự vẽ lại chuỗi trạng thái với giả định cả 4 lần in đều phải chờ I/O;
    ghi nguyên nhân trên từng mũi tên.
 2. Giải thích vì sao I/O xong phải về Ready, còn hết lượt CPU thì không vào Waiting.
+3. Với bài `for (i = 16; i >= 6; i--)`, tự đếm lại READY, RUNNING, WAITING;
+   giải thích vì sao sau lần in tại `i = 6` vẫn có thêm một lượt RUNNING.
