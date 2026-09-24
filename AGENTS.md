@@ -3,7 +3,7 @@
 > File này là **luật** cho AI. Đọc trước khi làm bất cứ việc gì trong repo này.
 > Hướng dẫn thao tác cho người dùng nằm ở [`HOW-TO.md`](HOW-TO.md) — khi người dùng
 > hỏi *"làm thế nào để…"*, trả lời rồi trỏ họ tới mục tương ứng ở đó.
-> Cập nhật lần cuối: 2026-09-18
+> Cập nhật lần cuối: 2026-09-24
 
 ---
 
@@ -289,6 +289,7 @@ và ghi rõ số trang khi trích. Giáo trình chuẩn hơn transcript Teams.
 | Tạo bài tập hoặc lab mới | skill **`new-assignment`** → `.claude/skills/new-assignment/SKILL.md` |
 | Hướng dẫn cách làm bài tập | skill **`assignment-guide`** → `.claude/skills/assignment-guide/SKILL.md` |
 | Dọn file thả tay vào repo | skill **`tidy-files`** → `.claude/skills/tidy-files/SKILL.md` |
+| Đồng bộ task University lên Notion, lập lịch ôn thi | skill **`notion-tasks`** → `.claude/skills/notion-tasks/SKILL.md` |
 | Sinh / kiểm tra mục lục | `scripts/toc.py gen\|check <file>` (xem § 2b) |
 | Tìm file sai chỗ / sai tên | `scripts/check-layout.sh [--course <mã>]` |
 | Xem nhanh nội dung .docx/.vtt | `scripts/peek.py <file>` |
@@ -343,6 +344,10 @@ Sáu template còn lại là để AI điền tay, không có token.
   *"nộp tuần sau"* + buổi học ngày 2026-09-20 → **`2026-09-27`**.
   Không đủ thông tin để quy đổi → hỏi, không đoán.
 - **Đầu mỗi phiên làm việc**: nếu có deadline trong 7 ngày tới → báo trước khi làm việc khác.
+- **Notion (☕ Tasks) là tầng thực thi, không phải nguồn sự thật.** Repo quyết định *có việc gì,
+  hạn khi nào*; Notion quyết định *đã xong chưa*. Đồng bộ bằng skill **`notion-tasks`** —
+  luôn xem trước rồi mới ghi. Ánh xạ repo ↔ Notion nằm ở `admin/notion-map.json`
+  (**gitignore** — chứa URL workspace riêng, không chép sang file tracked).
 
 ---
 

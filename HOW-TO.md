@@ -444,6 +444,15 @@ tuần này tôi phải nộp gì
 môn nào đang bị bỏ bê nhất
 ```
 
+**Notion (☕ Tasks)** — repo giữ *hạn*, Notion giữ *đã xong chưa*. AI luôn in bảng xem trước rồi mới ghi.
+```
+đồng bộ Notion
+lập kế hoạch ôn thi ANTT trên Notion
+tạo task HDH xem lại video buổi 6, hạn thứ 7
+```
+Kéo thẻ sang **Done** trên Notion → lần đồng bộ sau repo tự đánh dấu ✅.
+Ánh xạ nằm ở `admin/notion-map.json` (gitignore — không commit).
+
 **Cuối kỳ**
 ```
 kết thúc học kỳ, cập nhật program

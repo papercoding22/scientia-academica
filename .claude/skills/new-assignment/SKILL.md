@@ -119,6 +119,9 @@ Môn có quy tắc nộp lặp lại (IE105: **21:30 cùng ngày học**, dự p
 Báo lại: đã tạo gì · **đề bài lấy được từ đâu** (transcript buổi nào, hay chưa có) ·
 hạn nộp · **file nộp đã copy sẵn tên gì** · chỗ nào còn `❓`.
 
+Sau đó chạy skill **`notion-tasks`** ở chế độ sync **chỉ cho mục vừa tạo** — in 1 dòng
+xem trước, người dùng duyệt thì tạo task trên Notion.
+
 Khi đã có file `.docx`, nhắc người dùng mở file trong `<prefix>N/` để viết và điền
 trang bìa (`MÃ MÔN` · `MÔN HỌC` · `GVHD` · `Sinh viên thực hiện` · `MSSV` · `Lớp`)
 — lấy từ `README.md` của môn.
