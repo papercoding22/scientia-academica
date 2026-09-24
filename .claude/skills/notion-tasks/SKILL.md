@@ -155,7 +155,8 @@ Hạn có **dự phòng** (IE105: hết ngày hôm sau) → Deadline là hạn c
 
 | Tình huống | Hành động |
 |---|---|
-| Dòng repo chưa có khoá trong map | `＋ tạo` task |
+| Dòng **Sắp tới** chưa có khoá trong map | `＋ tạo` task |
+| Dòng **Đã xong** chưa có khoá trong map | bỏ qua — lịch sử, không đưa lên Notion |
 | Hạn trong repo khác `deadline` đã lưu trong map | `✎ sửa` Deadline trên Notion (repo là chủ ngày tháng) |
 | Task trong map có Notion `Done`, repo chưa ✅ | `✓ kéo về`: chuyển dòng sang bảng **Đã xong**, cột *Ngày nộp* = Completion Date (trống thì ghi `✅` và hỏi ngày) · cập nhật trạng thái trong `README.md` của môn và của `aN/` |
 | Repo ✅ mà Notion chưa `Done` | `? hỏi` — có thể người dùng đánh dấu nhầm một bên |
