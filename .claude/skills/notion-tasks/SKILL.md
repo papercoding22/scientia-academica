@@ -27,6 +27,7 @@ Skill này là cầu nối — không bao giờ để hai bên cùng quyết m�
   - [File ánh xạ `admin/notion-map.json`](#file-ánh-xạ-adminnotion-mapjson)
   - [Viết tắt môn](#viết-tắt-môn)
   - [Map property](#map-property)
+  - [Nội dung trang task (template)](#nội-dung-trang-task-template)
 - [Luật chung cho mọi chế độ](#luật-chung-cho-mọi-chế-độ)
 - [Chế độ sync](#chế-độ-sync)
 - [Chế độ exam-plan](#chế-độ-exam-plan)
@@ -118,6 +119,44 @@ chỉ có ngày thì ghi date. Sau lần ghi đầu tiên trong phiên, **fetch 
 kiểm tra giờ hiển thị đúng 21:30** — lệch múi giờ là lỗi âm thầm.
 
 Hạn có **dự phòng** (IE105: hết ngày hôm sau) → Deadline là hạn chính, ghi hạn dự phòng vào Notes.
+
+### Nội dung trang task (template)
+
+**Mọi task tạo ra đều dùng cấu trúc này** — khớp template `☕ Task` của database
+(template chung mọi Category). Skill tự viết nội dung (`content` của `notion-create-pages`),
+**điền sẵn** thay vì để trống, nên không phụ thuộc việc API áp template.
+
+```
+## 📝 Mô tả
+- **Bối cảnh:** môn, bài/đồ án, vai trò người dùng (vd nhóm trưởng)
+- **Vấn đề cần giải quyết:** vì sao task tồn tại, xong thì mở khoá được gì
+- **Liên kết:** repo path · OneDrive/SharePoint · tài liệu · task liên quan
+## 🎯 Kết quả đầu ra
+<table header-row="true">  Câu hỏi | Trả lời   — mỗi dòng một câu hỏi, cột Trả lời để trống
+<callout icon="✅" color="green_bg"> Chỉ chuyển **Done** khi mọi câu hỏi ở trên đã có câu trả lời.
+## 🪜 Các bước thực hiện       — checklist `- [ ]`
+## ⛓️ Phụ thuộc & phối hợp     — Bị chặn bởi · Chặn · Cần phối hợp với
+## 🗒️ Nhật ký & vướng mắc      — bảng Ngày | Đã làm | Vướng; dòng đầu = ngày tạo task
+```
+
+Bản đầy đủ (Notion-flavored markdown, bảng dùng `<table>`) — fetch trang template
+`☕ Task` trong database để copy đúng; **đừng tự nghĩ lại cấu trúc**.
+
+**Viết câu hỏi Kết quả đầu ra thế nào** — đây là phần quan trọng nhất:
+
+| Tốt | Không tốt |
+|---|---|
+| Câu hỏi **trả lời được bằng dữ kiện**: *Có bao nhiêu người đã nộp / tổng số?* | Mệnh lệnh chung chung: *Kiểm tra file* |
+| Mỗi câu một ý; 3–5 câu | Gộp nhiều ý, hoặc > 7 câu |
+| Có câu về **hành động tiếp theo**: *Đã thông báo cho người chưa nộp chưa?* | Chỉ hỏi trạng thái, không hỏi đã xử lý chưa |
+| Bài nộp: *File nộp tên gì, đúng mẫu giảng viên chưa? Đã nộp lên đâu, lúc nào?* | |
+| Task ôn thi: *Tự trả lời được 5 câu Tự kiểm tra của chương N chưa? Câu nào sai?* | |
+
+Bảng xem trước **phải liệt kê các câu hỏi Kết quả đầu ra** của từng task để người dùng duyệt/sửa.
+Người dùng thường không muốn đọc cả trang — chỉ cần câu hỏi + bước chính.
+
+Sửa task cũ sang cấu trúc này dùng `replace_content`, **giữ lại mọi nội dung người dùng đã viết**
+(đưa vào đúng mục, thường là Nhật ký) — không bao giờ xoá chữ của người dùng.
 
 ---
 

@@ -354,6 +354,8 @@ Năm template còn lại là để AI điền tay, không có token.
   luôn xem trước rồi mới ghi. Ánh xạ repo ↔ Notion nằm ở `admin/notion-map.json`
   (**gitignore** — chứa URL workspace riêng, không chép sang file tracked).
 - **Nhắc lịch Google Calendar → luôn dùng lịch `Work`**, không dùng lịch chính.
+- **Mọi task Notion theo template `☕ Task`**: Mô tả · Kết quả đầu ra (bảng câu hỏi → trả lời,
+  Done khi đủ trả lời) · Các bước · Phụ thuộc · Nhật ký. Chi tiết ở skill `notion-tasks`.
 
 ---
 
