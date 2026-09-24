@@ -1,6 +1,6 @@
 ---
 name: notion-tasks
-description: Quản lý task University trên Notion (database ☕ Tasks) từ repo — đồng bộ bài nộp và lịch thi trong admin/deadlines.md lên Notion, kéo trạng thái Done về repo, sinh task ôn thi lùi ngược từ ngày thi, và tạo task lẻ theo yêu cầu. Luôn in bảng thay đổi và chờ duyệt trước khi ghi. Dùng khi người dùng nói "đồng bộ Notion", "sync Notion", "đẩy deadline lên Notion", "tạo task Notion", "thêm task ANTT/HDH/CSHT/QLTT…", "lập kế hoạch ôn thi trên Notion", hoặc ngay sau khi new-assignment tạo mục nộp mới.
+description: Quản lý task University trên Notion (database ☕ Tasks) từ repo — đồng bộ bài nộp và lịch thi trong admin/deadlines.md lên Notion, kéo trạng thái Done về repo, và tạo task lẻ theo yêu cầu (lập kế hoạch ôn thi do skill `exam-plan` lo). Luôn in bảng thay đổi và chờ duyệt trước khi ghi. Dùng khi người dùng nói "đồng bộ Notion", "sync Notion", "đẩy deadline lên Notion", "tạo task Notion", "thêm task ANTT/HDH/CSHT/QLTT…", "lập kế hoạch ôn thi trên Notion", hoặc ngay sau khi new-assignment tạo mục nộp mới.
 ---
 
 # Task University trên Notion
@@ -214,22 +214,12 @@ Dòng quá hạn trong repo mà chưa có file nộp (ví dụ *"Bài 5 quá h�
 
 ## Chế độ exam-plan
 
-**Kích hoạt:** *"lập kế hoạch ôn thi <môn>"*, hoặc sync phát hiện lịch thi có ngày mà chưa có task ôn.
+Đã tách thành skill riêng: **`exam-plan`** (`.claude/skills/exam-plan/SKILL.md`). Skill đó đọc lịch,
+xếp buổi ôn, in bảng xem trước, rồi **gọi lại** các quy ước ở file này (template trang task, map property,
+`notion-map.json`, nhắc lịch trên `Work`) để ghi.
 
-**Cần có ngày thi tuyệt đối** trong `deadlines.md`. Chưa có → dừng, nói rõ, không đoán.
-
-1. **Lấy danh sách phần cần ôn**, ưu tiên theo thứ tự:
-   1. Exam blueprint của skill `exam-map` trong `<môn>/exam-prep/` — chia theo **trọng số điểm**
-   2. `IMPORTANT_NOTES.md` mục 2/3 (phạm vi thi, gợi ý thi) — **có nguồn thì mới dùng**
-   3. Knowledge map (`slide-knowledge-map`) hoặc danh sách `lectures/` — chia đều theo chương
-2. **Hỏi người dùng 2 câu** trước khi xếp lịch: *bắt đầu ôn từ ngày nào* · *mỗi tuần ôn được mấy buổi*.
-   Người dùng đi làm — đừng tự giả định ôn mỗi ngày.
-3. **Xếp lùi từ ngày thi:**
-   - 1–2 ngày cuối: `<TT>: Ôn tổng + làm đề mẫu` (Priority `High`)
-   - Các buổi trước: mỗi task một chương/cụm chương; chương trọng số cao hoặc có `⚠️ GỢI Ý THI` xếp **sớm hơn** và Priority cao hơn
-   - Kiểm tra trùng hạn nộp bài khác trong `deadlines.md` — tránh xếp buổi ôn vào ngày có deadline
-4. Notes mỗi task: phạm vi (mục/slide) + đường dẫn file blueprint hoặc note trong repo.
-5. In bảng lịch ôn → duyệt → tạo → ghi khoá `<MÃ>/exam-<…>/r<nn>` vào map.
+Khi sync phát hiện lịch thi có ngày cụ thể mà chưa có khoá `<MÃ>/exam-<…>/r<nn>` trong map → **đề xuất
+chạy `exam-plan`**, không tự xếp lịch ôn ở đây.
 
 Task ôn là kế hoạch cá nhân, **không ghi vào `deadlines.md`** — file đó chỉ giữ hạn của giảng viên.
 

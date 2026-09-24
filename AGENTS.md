@@ -293,7 +293,8 @@ và ghi rõ số trang khi trích. Giáo trình chuẩn hơn transcript Teams.
 | Tạo đồ án môn học mới | skill **`new-project`** → `.claude/skills/new-project/SKILL.md` |
 | Hướng dẫn cách làm bài tập | skill **`assignment-guide`** → `.claude/skills/assignment-guide/SKILL.md` |
 | Dọn file thả tay vào repo | skill **`tidy-files`** → `.claude/skills/tidy-files/SKILL.md` |
-| Đồng bộ task University lên Notion, lập lịch ôn thi | skill **`notion-tasks`** → `.claude/skills/notion-tasks/SKILL.md` |
+| Đồng bộ task University lên Notion | skill **`notion-tasks`** → `.claude/skills/notion-tasks/SKILL.md` |
+| Lập kế hoạch ôn thi → task Notion + Google Calendar | skill **`exam-plan`** → `.claude/skills/exam-plan/SKILL.md` |
 | Sinh / kiểm tra mục lục | `scripts/toc.py gen\|check <file>` (xem § 2b) |
 | Tìm file sai chỗ / sai tên | `scripts/check-layout.sh [--course <mã>]` |
 | Xem nhanh nội dung .docx/.vtt | `scripts/peek.py <file>` |

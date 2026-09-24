@@ -18,7 +18,8 @@ Chi tiết từng skill ở `.claude/skills/<tên>/SKILL.md`.
 | [`new-project`](.claude/skills/new-project/SKILL.md) | Dựng `projects/prjN/`, trích đề + tiêu chí chấm + các mốc, nối deadlines và Notion | *thầy giao đồ án nhóm IE101* |
 | [`assignment-guide`](.claude/skills/assignment-guide/SKILL.md) | Sinh `GUIDE.md` — phương pháp + tiêu chí chấm, không có lời giải | *bài tập 5 IE105 làm thế nào* |
 | [`exam-map`](.claude/skills/exam-map/SKILL.md) | Đề mẫu → map câu về chương/slide + exam blueprint | *phân tích đề mẫu IE105* |
-| [`notion-tasks`](.claude/skills/notion-tasks/SKILL.md) | Đồng bộ bài nộp, lịch thi với Notion; lập lịch ôn thi | *đồng bộ Notion* |
+| [`exam-plan`](.claude/skills/exam-plan/SKILL.md) | Đọc lịch, xếp buổi ôn lùi từ ngày thi, tạo task Notion + sự kiện Google Calendar | *lên kế hoạch ôn thi IT007 và IE105* |
+| [`notion-tasks`](.claude/skills/notion-tasks/SKILL.md) | Đồng bộ bài nộp, lịch thi với Notion; tạo task lẻ | *đồng bộ Notion* |
 | [`tidy-files`](.claude/skills/tidy-files/SKILL.md) | Đổi tên, xếp file thả tay vào đúng thư mục | *tôi vừa thả file vào IE103, dọn giúp* |
 
 Ngoài repo còn skill dùng chung `lecture-analyzer`, được `new-lecture` dùng khi có transcript.
@@ -38,7 +39,8 @@ flowchart LR
   C --> P[Có đồ án<br/>new-project]
   P --> N
   D --> G[Có đề mẫu<br/>exam-map]
-  G --> N
+  G --> X[Biết ngày thi<br/>exam-plan]
+  X --> N
 ```
 
 | Giai đoạn | Skill | Ghi vào đâu |
@@ -48,7 +50,7 @@ flowchart LR
 | Học lại, hỏi đáp | `study-tutor` · `faq-answer` | `exam-prep/faqs-*.md` · flashcard (sau khi duyệt) |
 | Có bài tập / lab | `new-assignment` → `assignment-guide` | `assignments/<aN\|labN>/` · `admin/deadlines.md` |
 | Có đồ án | `new-project` → `notion-tasks` | `projects/prjN/` · `admin/deadlines.md` · Notion |
-| Ôn thi | `exam-map` → `notion-tasks` (exam-plan) | `exam-prep/` · Notion |
+| Ôn thi | `exam-map` → `exam-plan` | `exam-prep/` · Notion · Google Calendar (lịch `Work`) |
 | Quản lý việc | `notion-tasks` | Notion ☕ Tasks · `admin/deadlines.md` |
 | Lỡ thả file lung tung | `tidy-files` | đúng thư mục theo `AGENTS.md` § 14 |
 

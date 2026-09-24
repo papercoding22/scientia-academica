@@ -229,6 +229,15 @@ khi `IMPORTANT_NOTES.md` đã có dữ liệu suốt học kỳ.
 hỏi tôi 10 câu về chương 3 IT007, đừng đưa đáp án ngay
 ```
 
+**Lên kế hoạch ôn thi** (khi đã biết ngày thi):
+```
+/exam-plan
+lên kế hoạch ôn thi IT007 và IE105, bắt đầu từ ngày mai
+```
+AI đọc lịch Google Calendar (lớp học `UIT Class`, lịch `Work`) để tìm khung giờ trống, xếp buổi ôn lùi từ ngày thi
+theo trọng số đề, **in bảng xem trước** rồi mới tạo task Notion và sự kiện trên lịch `Work` khi bạn gõ OK.
+Trước đó nên có `exam-map` (nếu có đề mẫu) để kế hoạch bám đúng chỗ có điểm.
+
 ---
 
 ## 9. Import flashcard vào Anki
