@@ -7,7 +7,7 @@
 | Ngày | Không gán |
 | Giảng viên | Nguyễn Thanh Thiện |
 | Transcript | Không có; note dựa trên ba bộ slide bên dưới |
-| Code | [`../code/L05/`](../code/L05/) — hai file C chạy được |
+| Code | [`../code/L05/`](../code/L05/) — hai file C chạy được + một script Python kiểm chứng các giải thuật ở mục 3 |
 
 > Không có transcript nên note **chỉ phản ánh slide**: không bắt được lời giảng viên
 > nói thêm, ví dụ ngoài slide hay gợi ý thi. Phần "gốc rễ", analogy, ví dụ nhỏ, code, bài tập
@@ -458,7 +458,7 @@ Không áp dụng — mục này là **đặc tả** (cần đạt gì), chưa p
 
 ### 3. Phân loại giải pháp
 
-*(mục phụ — bản rút gọn: đề mẫu chỉ hỏi 1 câu về phân loại)*
+*(đề mẫu chỉ hỏi 1 câu về phân loại, nhưng các giải pháp được gọi tên ở đây là nền cho mục 4–6 nên mục này được đi sâu)*
 
 #### 📚 Lý thuyết
 
@@ -477,6 +477,86 @@ Giải pháp đơn giản nhất — **cấm ngắt** ở entry section, bật l
 đặt câu hỏi ngược [C5-1 s30]: CS chạy 1 giờ thì sao? có tiến trình bị đói không? có 2 CPU
 thì sao? Ý trả lời: cấm ngắt khiến cả hệ thống đứng chờ CS, và **không có tác dụng trên
 multiprocessor** vì CPU kia vẫn chạy (slide C5-2 s39 xác nhận điểm cuối).
+
+**Đi sâu vào các giải pháp được gọi tên trong bảng.** *Slide chỉ liệt kê **tên** Dekker, Bakery, Test & Set, Compare & Swap [C5-1 s27]; phần dưới là kiến thức chuẩn, **ngoài slide**. Các giải thuật đã được kiểm bằng cách duyệt **mọi lịch xen kẽ** ([`mutex-model-check.py`](../code/L05/mutex-model-check.py)): đều thoả ME và không kẹt, với giả định `load`/`store` đơn nguyên và thứ tự thực thi tuần tự.*
+
+**A. Nhóm phần mềm — ba cái tên, ba lời giải cho cùng một bài toán**
+
+| | Dekker | Peterson | Bakery (Lamport) |
+|---|---|---|---|
+| Số tiến trình | 2 | 2 | **n** |
+| Ý tưởng | Cờ ý định + **lùi bước**: đụng độ mà không phải lượt mình thì hạ cờ và chờ | Cờ ý định + **nhường lượt** ngay khi xin vào | **Phát số thứ tự** như tiệm bánh: số nhỏ vào trước |
+| Biến quyết định | `turn`, chỉ đổi khi **ra khỏi CS** | `turn`, đổi khi **xin vào** | Cặp `(số vé, id)`; không có `turn` |
+| Ra đời | Đầu tiên đạt cả 3 yêu cầu cho 2 tiến trình (đầu thập niên 1960) | 1981 — gọn hơn Dekker | 1974 |
+
+**Dekker** (Pi, j = 1 − i; `flag[]` khởi tạo false):
+
+```c
+flag[i] = true;                    // tôi muốn vào
+while (flag[j]) {                  // Pj cũng muốn vào
+    if (turn == j) {               //   và đang là lượt Pj → tôi lùi
+        flag[i] = false;           //     hạ cờ để Pj đi
+        while (turn == j);         //     chờ đến lượt mình
+        flag[i] = true;            //     giơ cờ lại
+    }                              //   (nếu turn == i thì cứ chờ Pj lùi)
+}
+/* critical section */
+turn = j;                          // ra khỏi CS: trao lượt cho Pj
+flag[i] = false;
+```
+
+**Bakery** (n tiến trình, Pi):
+
+```c
+choosing[i] = true;                          // "tôi đang bốc số, đừng đọc vội"
+number[i] = 1 + max(number[0..n-1]);         // bốc số lớn hơn mọi số đang có
+choosing[i] = false;
+for (j = 0; j < n; j++) {
+    while (choosing[j]);                     // chờ Pj bốc xong
+    while (number[j] != 0 &&
+           (number[j], j) < (number[i], i)); // Pj có vé nhỏ hơn mình → chờ
+}
+/* critical section */
+number[i] = 0;                               // trả vé
+```
+
+`(a, x) < (b, y)` nghĩa là `a < b`, hoặc `a == b` và `x < y`. `number[j] == 0` nghĩa là Pj không xếp hàng. Hai tiến trình bốc số **cùng lúc** có thể ra **cùng một số**, khi đó id nhỏ hơn đi trước.
+
+**B. Nhóm phần cứng — lệnh "kiểm-và-đặt" nguyên tử**
+
+```c
+// Hai hàm dưới do PHẦN CỨNG thực hiện trọn vẹn: không bị ngắt, không bị core khác chen giữa chừng
+bool test_and_set(bool *target) { bool old = *target; *target = true; return old; }
+
+int compare_and_swap(int *v, int expected, int new_value) {
+    int old = *v;
+    if (old == expected) *v = new_value;
+    return old;
+}
+```
+
+```c
+// Khoá bằng Test & Set                    // Khoá bằng Compare & Swap
+while (test_and_set(&lock));               while (compare_and_swap(&lock, 0, 1) != 0);
+/* critical section */                     /* critical section */
+lock = false;                              lock = 0;
+```
+
+- **Đặc điểm:** đạt ME và progress. **Không đảm bảo bounded waiting** ở bản đơn giản này: ai `test_and_set` thắng thì vào, không có hàng đợi, nên một tiến trình có thể thua liên tục (giáo trình có bản dùng mảng `waiting[]` để bù).
+- Cả hai đều **busy waiting** (vòng `while`) — chính là nền của **spinlock** ở mục 6. **Biến đơn nguyên** (`atomic_int`…) cũng dùng CAS bên dưới.
+
+**C. Sleep & wake up — nhờ hệ điều hành**
+- `block()` đưa tiến trình gọi vào **hàng đợi** và chuyển nó sang trạng thái *ngủ* (rời ready queue, không tốn CPU); `wakeup(P)` chuyển P từ hàng đợi về ready queue [C5-2 s10–s11]. Chỉ hệ điều hành mới quản lý được ready queue nên nhóm này **luôn cần OS**.
+- **Đánh đổi:** ngủ và thức tốn một lần context switch. CS **ngắn hơn** chi phí đó thì quay vòng (spin) rẻ hơn; CS **dài** thì ngủ rẻ hơn. Vì vậy kernel dùng spinlock cho CS rất ngắn, mutex/semaphore cho CS dài; nhiều thư viện dùng cách lai (quay một chút rồi mới ngủ).
+
+**D. Chọn nhóm nào khi nào**
+
+| Tình huống | Chọn |
+|---|---|
+| Học lý thuyết, chứng minh bài toán giải được bằng phần mềm thuần | Dekker · Peterson · Bakery |
+| Kernel, CS rất ngắn, nhiều core | Spinlock (Test & Set / CAS) |
+| CS dài hoặc có thể chờ lâu | Mutex (ngủ / đánh thức) |
+| Đếm N tài nguyên, hoặc chờ một sự kiện | Semaphore |
 
 #### 💡 Giải thích dễ hiểu
 
@@ -500,9 +580,39 @@ Phần mềm thuần      │  Peterson, Bakery, Dekker│  (cần OS ⇒ không
 Phần cứng           │  Spinlock (test&set, CAS)│  Mutex, Semaphore, Monitor
 ```
 
+**Dekker — "thẻ ưu tiên":** hai người gặp nhau ở cửa hẹp và có một tấm thẻ ưu tiên ghi tên một người (`turn`). Cả hai cùng muốn qua: ai **không** cầm thẻ thì **lùi một bước** (hạ cờ) và chờ; ai cầm thẻ cứ đứng yên chờ người kia lùi rồi đi. Đi xong thì **trao thẻ** cho người kia. So với Peterson ("mời anh trước" ngay từ đầu), Dekker chỉ nhường **khi đụng độ**.
+*Chỗ analogy vỡ:* người thật nhìn thấy nhau lùi; máy chỉ đọc được cờ, và giữa hai lần đọc cờ có thể đã đổi.
+
+**Bakery — "tiệm bánh":** vào tiệm bốc số **lớn hơn mọi số đang có**, số nhỏ được phục vụ trước. Hai người bốc **cùng lúc** có thể ra **cùng số** — luật phụ: id nhỏ đi trước. Mảng `choosing[]` là tấm biển *"đang bốc số, đừng so vội"*: không có nó, người khác có thể nhìn vé của bạn **trước khi bạn kịp ghi** (đang là 0 = "không xếp hàng") rồi đi qua mặt bạn.
+*Chỗ analogy vỡ:* máy phát số ở tiệm cấp số nguyên tử, không bao giờ trùng; Bakery **không có** máy như vậy (mỗi tiến trình tự đọc số lớn nhất rồi cộng 1), nên mới trùng số và cần luật phụ.
+
+**Ví dụ nhỏ nhất — Bakery, 3 tiến trình:** P1 và P2 bốc cùng lúc, cùng ra vé 1; P0 bốc sau, thấy số lớn nhất là 1 nên nhận vé 2. Thứ tự vào CS: `(1, P1)` → `(1, P2)` → `(2, P0)`.
+
+**Ví dụ nhỏ nhất — Test & Set, 2 tiến trình** (`lock = false` ban đầu):
+
+| Bước | Ai | Việc | Giá trị trả về | `lock` |
+|---|---|---|:-:|:-:|
+| 1 | T1 | `test_and_set(&lock)` | false → **vào CS** | true |
+| 2 | T2 | `test_and_set(&lock)` | true → quay lại `while` | true |
+| 3 | T1 | ra khỏi CS: `lock = false` | | false |
+| 4 | T2 | `test_and_set(&lock)` | false → **vào CS** | true |
+
 #### 💻 Code & thực tế
 
-Không áp dụng — đây là mục phân loại.
+Các đoạn ở phần 📚 là **pseudo-code**, không nên chạy trên máy thật (mục 4–5: CPU có thể đảo lệnh). Để kiểm chứng logic, chạy [`../code/L05/mutex-model-check.py`](../code/L05/mutex-model-check.py) — duyệt mọi lịch xen kẽ:
+
+```
+$ python3 mutex-model-check.py
+Dekker (2)                         trạng thái=    53  vi phạm ME=0  kẹt=0
+Peterson (2)                       trạng thái=    34  vi phạm ME=0  kẹt=0
+Bakery (2)                         trạng thái=   195  vi phạm ME=0  kẹt=0
+Bakery (3)                         trạng thái=  7035  vi phạm ME=0  kẹt=0
+Bakery (2) — BỎ choosing[]         trạng thái=   240  vi phạm ME=1  kẹt=0
+Test&Set lock (2)                  trạng thái=    12  vi phạm ME=0  kẹt=0
+Test&Set lock (3)                  trạng thái=    32  vi phạm ME=0  kẹt=0
+```
+
+Dòng "BỎ `choosing[]`" là bài tập 4 bên dưới.
 
 #### ✍️ Bài tập
 
@@ -526,7 +636,41 @@ Cấm ngắt chỉ ngăn bộ lập lịch cắt ngang **trên CPU đó**. CPU k
 
 </details>
 
-**Chốt mục:** phân loại theo **hai trục độc lập** (phần mềm/phần cứng × busy waiting/sleep). Thi: **Peterson = phần mềm**.
+**Bài 3** *(Vận dụng)* — *tự đặt.* Bakery, 3 tiến trình: P1 và P2 cùng lúc bốc số và cùng ra vé 1; P0 bốc sau và ra vé 2. Thứ tự vào CS?
+
+> 🔑 **Kiến thức mở khoá:** quy tắc so sánh **cặp `(số vé, id)`** — trùng số thì id nhỏ đi trước (phần Lý thuyết A, ghi chú dưới code Bakery).
+
+<details><summary>Hướng giải</summary>
+
+`(1, P1) < (1, P2) < (2, P0)` ⇒ **P1 → P2 → P0**. P0 dù có id nhỏ nhất vẫn vào cuối vì vé 2 lớn hơn.
+
+</details>
+
+**Bài 4** *(Phân tích)* — *tự đặt, đã kiểm bằng model checking.* Nếu bỏ mảng `choosing[]` khỏi Bakery (2 tiến trình) thì hai tiến trình có thể cùng vào CS. Chỉ ra lịch chạy.
+
+> 🔑 **Kiến thức mở khoá:** `number[j] == 0` được hiểu là *"Pj không xếp hàng"* — nhưng nó cũng đúng với người **đang bốc số mà chưa ghi**. `choosing[]` sinh ra để phân biệt hai trường hợp đó (phần 💡, "tấm biển").
+
+<details><summary>Hướng giải</summary>
+
+1. P0 đọc mọi `number[]` (đều 0) rồi **bị ngắt trước khi ghi** `number[0]`.
+2. P1 đọc (0, 0), ghi `number[1] = 1`, duyệt: thấy `number[0] == 0` → coi P0 không xếp hàng → **vào CS**.
+3. P0 chạy tiếp, ghi `number[0] = 1`, duyệt: so `(number[1], 1) = (1, 1)` với `(number[0], 0) = (1, 0)` — `(1, 1) < (1, 0)` là **sai** → P0 không phải chờ → **cũng vào CS**.
+
+Hai tiến trình cùng trong CS. **Khi có `choosing[]`:** P0 đã đặt `choosing[0] = true` từ đầu, nên ở bước 2 P1 phải **chờ P0 bốc xong** (dòng `while (choosing[j])`) rồi mới so vé; lúc đó `(1, 0) < (1, 1)` nên P0 vào trước, P1 chờ đúng như thiết kế.
+
+</details>
+
+**Bài 5** *(Hiểu)* — *tự đặt.* Khoá bằng Test & Set (bản `while (test_and_set(&lock));`) đạt và không đạt yêu cầu nào trong ba yêu cầu?
+
+> 🔑 **Kiến thức mở khoá:** ba định nghĩa ở mục 2 và đặc điểm của Test & Set ở phần Lý thuyết B: có tính nguyên tử nhưng **không có hàng đợi**.
+
+<details><summary>Hướng giải</summary>
+
+**Đạt ME** (chỉ một tiến trình đổi `lock` từ false sang true) và **progress** (khoá trống thì ai tới trước vào được, người ở ngoài không cản). **Không đảm bảo bounded waiting**: không có thứ tự xếp hàng, nên trong nhiều tiến trình một tiến trình có thể thua cuộc đua mãi (bản đơn giản; giáo trình có biến thể dùng `waiting[]` để bù) *(ngoài slide)*.
+
+</details>
+
+**Chốt mục:** phân loại theo **hai trục độc lập** (phần mềm/phần cứng × busy waiting/sleep). Thi: **Peterson, Bakery, Dekker = phần mềm**; **Test & Set, Compare & Swap = phần cứng**. Bakery là bản duy nhất cho **n** tiến trình; Test & Set đơn giản **không** đảm bảo bounded waiting.
 
 ### 4. Giải pháp phần mềm: turn, flag, Peterson
 
@@ -663,7 +807,7 @@ nghiên cứu và trình bày tại lớp" [C5-1 s56], không có nội dung. T�
 slide*: `test_and_set(&lock)` đọc giá trị cũ và gán `true` trong **một** lệnh không bị cắt
 ngang; `compare_and_swap(&v, expected, new)` chỉ ghi `new` nếu `v == expected`; biến đơn
 nguyên (atomic variable) như `atomic_int` dùng CAS bên dưới để `++` an toàn. Mutex trong
-mục 6 được xây trên các lệnh này [C5-2 s7].
+mục 6 được xây trên các lệnh này [C5-2 s7]. Định nghĩa, code khoá và đặc điểm chi tiết ở **mục 3**.
 
 > ❓ **CẦN XÁC MINH:** phạm vi thi của 5.5.2–5.5.4 khi slide để "tự nghiên cứu".
 
