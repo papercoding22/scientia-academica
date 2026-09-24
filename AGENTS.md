@@ -297,7 +297,8 @@ và ghi rõ số trang khi trích. Giáo trình chuẩn hơn transcript Teams.
 **Cầu nối Claude ↔ Codex:** `.claude/skills/` là nguồn sự thật; `.agents/skills/`
 là symlink Git-tracked để Codex tự discover đúng các skill ấy. Khi tạo skill mới,
 **chỉ** tạo tại `.claude/skills/<skill-name>/SKILL.md`, rồi xác nhận
-`test -f .agents/skills/<skill-name>/SKILL.md`. Không copy hai bản. Codex đang mở
+`test -f .agents/skills/<skill-name>/SKILL.md`, rồi thêm một dòng vào bảng
+*Tra nhanh* của [`SKILLS.md`](SKILLS.md) — danh mục skill cho người dùng. Không copy hai bản. Codex đang mở
 phiên cũ cần bắt đầu phiên mới từ root repo để thấy skill vừa thêm.
 
 Hàm dùng chung của các script nằm ở `scripts/lib/common.sh`.
@@ -382,7 +383,7 @@ Sáu template còn lại là để AI điền tay, không có token.
 |---|---|---|
 | Thư mục | `kebab-case` | `exam-prep/`, `knowledge-base/` |
 | File markdown thường | `kebab-case.md` | `process-scheduling.md` |
-| File quy ước đặc biệt | chữ HOA | `README.md`, `IMPORTANT_NOTES.md`, `AGENTS.md`, `HOW-TO.md`, `ASSIGNMENT_TEMPLATE.docx` |
+| File quy ước đặc biệt | chữ HOA | `README.md`, `IMPORTANT_NOTES.md`, `AGENTS.md`, `HOW-TO.md`, `SKILLS.md`, `ASSIGNMENT_TEMPLATE.docx` |
 | Thư mục môn | `<MÃ MÔN>-<tên tiếng Anh>` | `IT007-operating-systems` |
 
 Tên tiếng Việt đầy đủ của môn ghi trong `README.md` của môn, **không nằm ở đường dẫn**.

@@ -27,6 +27,7 @@ Repo này là nơi mọi thứ liên quan tới việc học đi qua: bài giả
 | Muốn gì | Mở file |
 |---|---|
 | **Thao tác thế nào** | [`HOW-TO.md`](HOW-TO.md) |
+| Có skill nào, gọi thế nào | [`SKILLS.md`](SKILLS.md) |
 | Tuần này phải nộp gì | [`admin/deadlines.md`](admin/deadlines.md) |
 | Học kỳ này có môn gì | [`semesters/2025-2026-S3/README.md`](semesters/2025-2026-S3/README.md) |
 | Môn này thi phần nào | `semesters/<kỳ>/<môn>/IMPORTANT_NOTES.md` |
@@ -56,6 +57,7 @@ hỏi *"cái này còn đúng sau bao lâu?"*
 scientia-academica/
 ├── HOW-TO.md                  # Hướng dẫn thao tác — đọc cái này
 ├── AGENTS.md                  # Luật cho AI — đọc trước khi làm gì
+├── SKILLS.md                  # Danh mục skill — tra nhanh skill nào làm gì
 ├── program/                   # Chương trình đào tạo · chuyên ngành · đồ án tốt nghiệp
 ├── admin/                     # Lịch học, deadline, hồ sơ
 ├── semesters/2025-2026-S3/    # Học kỳ hiện tại — 4 môn

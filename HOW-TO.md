@@ -11,6 +11,7 @@ Sổ tay thao tác hàng ngày. Đọc một lần, sau đó chỉ cần tra m�
 | [`README.md`](README.md) | Người đọc lần đầu | *Repo này là gì? Có gì trong đây?* |
 | **`HOW-TO.md`** (file này) | **Bạn, hàng ngày** | ***Muốn làm X thì thao tác thế nào?*** |
 | [`AGENTS.md`](AGENTS.md) | AI | *Luật phải tuân theo khi làm việc trong repo* |
+| [`SKILLS.md`](SKILLS.md) | Bạn, khi quên tên skill | *Có skill nào, gọi thế nào?* |
 
 Bạn hầu như chỉ cần file này. `AGENTS.md` là để AI đọc — nhưng nếu thấy AI làm gì đó
 không vừa ý, sửa `AGENTS.md` là cách thay đổi hành vi của nó vĩnh viễn.
