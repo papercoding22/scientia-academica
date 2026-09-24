@@ -65,6 +65,8 @@ CNTT tại Bệnh viện Nguyễn Tri Phương.
 | Mốc | Ngày | Do ai đặt | Trạng thái |
 |---|---|---|---|
 | Chốt đề tài / hướng làm | ❓ | | ⬜ |
+| Kiểm tra đủ file docx của thành viên (OneDrive) | 2026-09-28 | nhóm trưởng | ⬜ |
+| Ghép báo cáo cuối cùng theo format `docs/Reference_Report.docx` | 2026-09-30 | nhóm trưởng | ⬜ |
 | Xong phần chính | ❓ | | ⬜ |
 | Viết báo cáo | ❓ | | ⬜ |
 | Thuyết trình / demo | ❓ | | ⬜ |
