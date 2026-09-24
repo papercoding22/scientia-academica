@@ -4,8 +4,8 @@ Bản đọc trong repo. Bản import Anki: [`flashcards.csv`](flashcards.csv)
 
 | | |
 |---|---|
-| Số thẻ | 50 |
-| Cập nhật | 2026-09-23 (buổi 3, buổi 4, buổi 5, buổi 10) |
+| Số thẻ | 62 |
+| Cập nhật | 2026-09-24 (buổi 3, buổi 4, buổi 5, buổi 8, buổi 10) |
 
 > Thẻ được sinh ra khi xử lý note bài giảng. Mỗi lần thêm thẻ vào đây thì
 > **đồng thời** thêm vào `flashcards.csv`, hai file phải khớp nhau.
@@ -17,6 +17,7 @@ Bản đọc trong repo. Bản import Anki: [`flashcards.csv`](flashcards.csv)
 - `L03` — Quản lý tiến trình (Chương 3)
 - `L04` — CPU scheduling (Chương 4)
 - `L05` — Đồng bộ tiến trình (Chương 5)
+- `L08` — Quản lý bộ nhớ (Chương 7)
 - `L10` — Bộ nhớ ảo (Chương 8)
 
 ---
@@ -284,6 +285,78 @@ Bản đọc trong repo. Bản import Anki: [`flashcards.csv`](flashcards.csv)
 **Mặt sau:** Cả 5 triết gia cùng lúc cầm đũa trái. Tránh: tối đa 4 người ngồi, chỉ cầm khi cả 2 đũa sẵn sàng (cầm trong CS), bất đối xứng lẻ cầm trái trước và chẵn cầm phải trước. Starvation vẫn có thể xảy ra.
 **Tag:** L05
 **Nguồn:** C5-3 s26–27.
+
+### Thẻ L08-1
+**Mặt trước:** Địa chỉ luận lý (logical address) và địa chỉ vật lý (physical address) khác nhau thế nào?
+**Mặt sau:** Logical: vị trí nhớ được diễn tả trong chương trình (còn gọi virtual address), compiler sinh ra. Physical: vị trí thực trong bộ nhớ chính.
+**Tag:** L08
+**Nguồn:** C7 s12.
+
+### Thẻ L08-2
+**Mặt trước:** Trong source code, biến được tham chiếu bằng loại địa chỉ nào? Sau khi biên dịch thì sao?
+**Mặt sau:** Source: symbolic address (tên biến, hằng, pointer). Sau biên dịch: thường là địa chỉ khả tái định vị (relocatable). Sau link/load: có thể là địa chỉ thực.
+**Tag:** L08
+**Nguồn:** C7 s18.
+
+### Thẻ L08-3
+**Mặt trước:** Ba thời điểm address binding và khuyết điểm của từng cái?
+**Mặt sau:** Compile time: phải biên dịch lại nếu đổi địa chỉ nạp. Load time: phải reload nếu địa chỉ nền đổi. Execution time: cần phần cứng hỗ trợ (MMU, base/limit) nhưng cho phép dời tiến trình khi đang chạy.
+**Tag:** L08
+**Nguồn:** C7 s19–s22.
+
+### Thẻ L08-4
+**Mặt trước:** Dynamic loading khác dynamic linking thế nào?
+**Mặt sau:** Dynamic loading: thủ tục chỉ được nạp khi được gọi, user chịu trách nhiệm. Dynamic linking: link tới module ngoài (.dll, .so) lúc chạy qua stub, cần OS, cho phép chia sẻ mã.
+**Tag:** L08
+**Nguồn:** C7 s24–s27.
+
+### Thẻ L08-5
+**Mặt trước:** Phân mảnh nội và phân mảnh ngoại khác nhau thế nào?
+**Mặt sau:** Nội: vùng được cấp lớn hơn vùng yêu cầu, phần thừa nằm trong khối (fixed partitioning, paging). Ngoại: tổng trống đủ nhưng không liên tục (dynamic partitioning).
+**Tag:** L08
+**Nguồn:** C7 s31.
+
+### Thẻ L08-6
+**Mặt trước:** Cơ chế gom các vùng trống rời rạc thành vùng liên tục gọi là gì?
+**Mặt sau:** Compaction (kết khối) — cách chữa phân mảnh ngoại.
+**Tag:** L08
+**Nguồn:** C7 s31.
+
+### Thẻ L08-7
+**Mặt trước:** First-fit, next-fit, best-fit, worst-fit chọn khối trống nào?
+**Mặt sau:** First: phù hợp đầu tiên tính từ đầu bộ nhớ. Next: phù hợp đầu tiên tính từ vị trí cấp phát cuối. Best: nhỏ nhất còn vừa. Worst: lớn nhất.
+**Tag:** L08
+**Nguồn:** C7 s39.
+
+### Thẻ L08-8
+**Mặt trước:** Paging: tách địa chỉ luận lý A với page size S và tính địa chỉ vật lý thế nào?
+**Mặt sau:** p = floor(A / S) · d = A mod S · tra bảng trang được khung f · physical = f × S + d (offset d giữ nguyên).
+**Tag:** L08
+**Nguồn:** C7 s44–s46.
+
+### Thẻ L08-9
+**Mặt trước:** Không gian 12 trang × 2K ánh xạ vào 32 khung. Địa chỉ logic và physic bao nhiêu bit?
+**Mặt sau:** Offset 11 bit. Logic = ceil(log2 12) = 4 + 11 = 15 bit. Physic = log2 32 = 5 + 11 = 16 bit.
+**Tag:** L08
+**Nguồn:** C7 s68.
+
+### Thẻ L08-10
+**Mặt trước:** Công thức EAT khi có TLB?
+**Mặt sau:** EAT = (ε + x)α + (ε + 2x)(1 − α) = (2 − α)x + ε. ε: thời gian tìm TLB · x: một lần truy xuất bộ nhớ · α: hit ratio.
+**Tag:** L08
+**Nguồn:** C7 s53.
+
+### Thẻ L08-11
+**Mặt trước:** Không có TLB thì mỗi truy xuất bộ nhớ trong paging mất mấy lần vào RAM?
+**Mặt sau:** 2 lần: lần 1 tra bảng trang, lần 2 lấy lệnh hoặc dữ liệu.
+**Tag:** L08
+**Nguồn:** C7 s49.
+
+### Thẻ L08-12
+**Mặt trước:** Bảng trang 2 cấp: số trang của không gian địa chỉ phụ thuộc vào trường nào?
+**Mặt sau:** Chỉ phụ thuộc số bit offset (tương đương tổng bit chỉ số trang = số bit địa chỉ − offset). Cách chia bit giữa các cấp không ảnh hưởng số trang.
+**Tag:** L08
+**Nguồn:** C7 s70–s71.
 
 <!--
 Mẫu:

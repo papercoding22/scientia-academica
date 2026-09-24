@@ -59,6 +59,7 @@ Môn lõi của CS: process và thread, định thời CPU (CPU scheduling), đ�
 | 3 | TBD | Quản lý tiến trình (Chương 3) | [`lectures/L03-process-management.md`](lectures/L03-process-management.md) | ✅ (không có transcript, dựa trên slide; ngày chờ cập nhật) |
 | 4 | — | CPU scheduling (Chương 4) | [`lectures/L04-cpu-scheduling.md`](lectures/L04-cpu-scheduling.md) | ✅ (dựa trên slide; không có transcript, không gán ngày học) |
 | 5 | — | Đồng bộ tiến trình (Chương 5) | [`lectures/L05-process-synchronization.md`](lectures/L05-process-synchronization.md) | ✅ (dựa trên slide; không có transcript, không gán ngày học) |
+| 8–9 | — | Quản lý bộ nhớ (Chương 7) | [`lectures/L08-memory-management.md`](lectures/L08-memory-management.md) | ✅ (dựa trên slide; không có transcript, không gán ngày học) |
 | 10 | 2026-09-11 | Bộ nhớ ảo (Chương 8) | [`lectures/L10-virtual-memory.md`](lectures/L10-virtual-memory.md) | ✅ (không có transcript, dựa trên slide) |
 
 ---

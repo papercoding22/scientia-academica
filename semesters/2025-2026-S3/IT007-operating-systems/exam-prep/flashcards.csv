@@ -51,3 +51,15 @@ Liveness là gì? Kể 3 dạng lỗi liveness trong slide.;Tập các đặc đ
 Bounded-buffer dùng những semaphore nào, khởi tạo bao nhiêu?;empty = n (số chỗ có thể thêm), full = 0 (số phần tử có thể xoá), mutex = 1 (bảo vệ CS truy cập buffer và count).;L05
 Readers-writers biến thể 1 và 2: ai có thể bị starvation?;Biến thể 1 (ưu tiên Readers): Writers có thể bị starvation. Biến thể 2 (ưu tiên Writers): Readers có thể bị starvation.;L05
 Dining-philosophers: khi nào deadlock và 3 cách tránh trong slide?;Cả 5 triết gia cùng lúc cầm đũa trái. Tránh: tối đa 4 người ngồi, chỉ cầm khi cả 2 đũa sẵn sàng (cầm trong CS), bất đối xứng lẻ cầm trái trước và chẵn cầm phải trước. Starvation vẫn có thể xảy ra.;L05
+Địa chỉ luận lý (logical address) và địa chỉ vật lý (physical address) khác nhau thế nào?;Logical: vị trí nhớ được diễn tả trong chương trình (còn gọi virtual address), compiler sinh ra. Physical: vị trí thực trong bộ nhớ chính.;L08
+Trong source code, biến được tham chiếu bằng loại địa chỉ nào? Sau khi biên dịch thì sao?;Source: symbolic address (tên biến, hằng, pointer). Sau biên dịch: thường là địa chỉ khả tái định vị (relocatable). Sau link/load: có thể là địa chỉ thực.;L08
+Ba thời điểm address binding và khuyết điểm của từng cái?;Compile time: phải biên dịch lại nếu đổi địa chỉ nạp. Load time: phải reload nếu địa chỉ nền đổi. Execution time: cần phần cứng hỗ trợ (MMU, base/limit) nhưng cho phép dời tiến trình khi đang chạy.;L08
+Dynamic loading khác dynamic linking thế nào?;Dynamic loading: thủ tục chỉ được nạp khi được gọi, user chịu trách nhiệm. Dynamic linking: link tới module ngoài (.dll, .so) lúc chạy qua stub, cần OS, cho phép chia sẻ mã.;L08
+Phân mảnh nội và phân mảnh ngoại khác nhau thế nào?;Nội: vùng được cấp lớn hơn vùng yêu cầu, phần thừa nằm trong khối (fixed partitioning, paging). Ngoại: tổng trống đủ nhưng không liên tục (dynamic partitioning).;L08
+Cơ chế gom các vùng trống rời rạc thành vùng liên tục gọi là gì?;Compaction (kết khối) — cách chữa phân mảnh ngoại.;L08
+First-fit, next-fit, best-fit, worst-fit chọn khối trống nào?;First: phù hợp đầu tiên tính từ đầu bộ nhớ. Next: phù hợp đầu tiên tính từ vị trí cấp phát cuối. Best: nhỏ nhất còn vừa. Worst: lớn nhất.;L08
+Paging: tách địa chỉ luận lý A với page size S và tính địa chỉ vật lý thế nào?;p = floor(A / S) · d = A mod S · tra bảng trang được khung f · physical = f × S + d (offset d giữ nguyên).;L08
+Không gian 12 trang × 2K ánh xạ vào 32 khung. Địa chỉ logic và physic bao nhiêu bit?;Offset 11 bit. Logic = ceil(log2 12) = 4 + 11 = 15 bit. Physic = log2 32 = 5 + 11 = 16 bit.;L08
+Công thức EAT khi có TLB?;EAT = (ε + x)α + (ε + 2x)(1 − α) = (2 − α)x + ε. ε: thời gian tìm TLB · x: một lần truy xuất bộ nhớ · α: hit ratio.;L08
+Không có TLB thì mỗi truy xuất bộ nhớ trong paging mất mấy lần vào RAM?;2 lần: lần 1 tra bảng trang, lần 2 lấy lệnh hoặc dữ liệu.;L08
+Bảng trang 2 cấp: số trang của không gian địa chỉ phụ thuộc vào trường nào?;Chỉ phụ thuộc số bit offset (tương đương tổng bit chỉ số trang = số bit địa chỉ − offset). Cách chia bit giữa các cấp không ảnh hưởng số trang.;L08
