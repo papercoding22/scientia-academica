@@ -421,7 +421,16 @@ Không áp dụng — mục này là **đặc tả** (cần đạt gì), chưa p
 
 <details><summary>Hướng giải</summary>
 
-Đáp án **(b)**. Ghép từng phát biểu về đúng yêu cầu của nó; phương án (a) là mồi nhử vì nghe giống "nhường" nhưng slide không yêu cầu từ bỏ CPU.
+Đáp án **(b)**. Cách làm: ghép **từng** phát biểu về đúng yêu cầu của nó rồi loại.
+
+| | Phát biểu | Thực ra là | Vì sao **không phải** bounded waiting |
+|---|---|---|---|
+| (a) | Chưa được vào CS thì phải từ bỏ CPU | **Không phải yêu cầu nào** | Đây là *cách một tiến trình chờ*, không phải tính chất của lời giải. Peterson chờ bằng vòng `while` (không nhả CPU) mà vẫn đạt đủ 3 yêu cầu, nên "từ bỏ CPU" không thể là yêu cầu |
+| (b) | Chỉ phải chờ vào CS trong khoảng thời gian **có hạn** | **Bounded waiting** ✅ | — |
+| (c) | Tiến trình **ngoài** CS không được ngăn tiến trình khác vào | **Progress** | Nói về *ai đang chặn* (người không liên quan đến CS), không nói gì về *chờ bao lâu*. Có thể đạt (c) mà vẫn vi phạm bounded waiting: P1 thắng mãi, P0 chờ vô hạn dù chẳng ai ở ngoài CS mà cản (ví dụ ở phần 💡) |
+| (d) | Không hai tiến trình nào **cùng** ở trong CS | **Mutual exclusion** | Nói về *số người ở trong CS cùng lúc*, không nói gì về thời gian chờ. "Khoá cửa vĩnh viễn" cũng thoả (d) nhưng ai cũng chờ mãi (bài 2) |
+
+**Mẹo phân biệt theo từ khoá:** *"chờ … có hạn / bao lâu"* → bounded waiting · *"ngoài CS … không được cản"* → progress · *"không hai … cùng lúc"* → mutual exclusion. Mỗi phương án trả lời một câu hỏi khác nhau: (d) hỏi *"ai ở trong?"*, (c) hỏi *"ai đang cản?"*, (b) hỏi *"chờ bao lâu?"*.
 
 </details>
 
