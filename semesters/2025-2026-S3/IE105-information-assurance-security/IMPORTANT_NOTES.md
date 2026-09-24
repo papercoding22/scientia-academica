@@ -116,12 +116,15 @@ Giảng viên **nói thẳng dạng câu hỏi sẽ ra**. Đây là những ch�
   | | |
   |---|---|
   | Kích thước khoá | 56 bit |
-  | Kích thước khối dữ liệu | 64 bit ❓ |
+  | Kích thước khối dữ liệu | 64 bit ✅ *(đối chiếu slide 2A s43, 2026-09-24)* |
   | Số vòng lặp | 16 |
   | Số khoá con | 16 |
 
-  > ❓ **CẦN XÁC MINH:** transcript ghi *"thứ dữ liệu là 6 bit"* — gần như chắc chắn là
-  > **64 bit** bị nghe nhầm (DES chuẩn là khối 64 bit). Đối chiếu slide để chắc.
+  > ✅ **Đã xác minh 2026-09-24:** slide Bài 2A s43 ghi *"khoá 56 bit … các khối dữ liệu 64 bit"*,
+  > s47–48 ghi 16 vòng và 16 khoá con.
+  >
+  > ~~❓ **CẦN XÁC MINH:** transcript ghi *"thứ dữ liệu là 6 bit"* — gần như chắc chắn là
+  > **64 bit** bị nghe nhầm.~~ Lý do gạch: slide xác nhận 64 bit.
 
 - [ ] **AES — kích thước khối đầu vào 128 bit**
   > *Buổi 3, 2026-07-29 — "Đặc điểm đầu tiên là kích thước khối đầu vào là 128 bit, em nhớ nha"*
