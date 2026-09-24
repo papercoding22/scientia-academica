@@ -185,6 +185,38 @@ cho hai tiến trình con [C5-1 s13].
 > Chỗ dễ nhầm: hỏi "Consumer lấy số 5 lúc nào" thì đáp án là lúc **đọc** (T3), không phải
 > lúc **ghi** (T6).
 
+> 💬 *Bổ sung từ phiên gia sư 2026-09-24*
+>
+> **Vì sao `count++` là 3 lệnh — CPU không sửa thẳng một ô nhớ.**
+> - **Trực giác:** CPU chỉ tính toán được trên vài "ô nháp" nằm ngay trong nó (thanh ghi). RAM ở xa
+>   và chậm hơn nhiều lần, nên muốn sửa một biến phải chép nó vào ô nháp, sửa ở đó, rồi chép ngược lại.
+> - **Analogy:** đầu bếp chỉ thái được trên thớt (thanh ghi), nguyên liệu nằm trong kho (RAM). Thêm 1 quả
+>   trứng vào số trứng trong kho = **lấy số trứng ra thớt → cộng thêm → mang trả về kho**. Giữa ba bước
+>   đó, đầu bếp khác có thể vào kho và thấy số cũ.
+>
+> ```
+> mov eax, [count]    ; 1. load   — chép count từ RAM vào thanh ghi
+> add eax, 1          ; 2. tính   — cộng trên thanh ghi (RAM chưa hề đổi)
+> mov [count], eax    ; 3. store  — ghi thanh ghi đè lên RAM
+> ```
+>
+> Mấu chốt: **giữa bước 1 và bước 3, `count` trong RAM vẫn là số cũ** — đó là khoảng hở mà luồng kia chen vào.
+> *Ngoài slide:* trên x86 có lệnh `inc [count]` trông như một lệnh, nhưng bên trong phần cứng vẫn làm đủ
+> đọc → cộng → ghi, và **không nguyên tử** giữa nhiều core nếu không có tiền tố `lock`. Vì vậy "3 lệnh"
+> là mô hình đúng về bản chất, không phải chi tiết của một máy cụ thể.
+>
+> **"Một lệnh" ≠ "nguyên tử".** Giả sử `count++` chỉ là đúng một lệnh máy:
+>
+> | | Chuyện xảy ra | Còn race condition? |
+> |---|---|:-:|
+> | **Một core** | Ngắt và chuyển luồng chỉ xảy ra **giữa hai lệnh**, không giữa một lệnh → lệnh chạy trọn vẹn rồi mới đến luồng kia | ❌ không |
+> | **Hai core** | Hai core chạy **thật sự cùng lúc**; mỗi core đang làm đọc → cộng → ghi trên cùng một ô nhớ, hai quá trình **chồng lên nhau** | ✅ vẫn có |
+>
+> Trên hai core: cả hai cùng đọc 5; core 1 tính 6, core 2 tính 4; ai ghi sau thì thắng (RAM cuối là 4 hoặc 6, không phải 5).
+> "Một lệnh" chỉ chống được việc **bị ngắt giữa chừng trên cùng một core**. **Nguyên tử** thật sự còn đòi phần
+> cứng **khoá ô nhớ** để core khác không chen được (tiền tố `lock` trên x86, hoặc `test_and_set` /
+> `compare_and_swap` ở mục 5–6) — đây là nền cho cả phần mutex phía sau.
+
 **Minh hoạ:** cùng lịch T1–T6 vẽ theo trục thời gian — nhìn thấy ngay hai đoạn "đọc → ghi" **chồng lên nhau**:
 
 ```
@@ -323,6 +355,31 @@ Sai (vi phạm    P0: ░░░░███░░░░░░░░░░       
 Vi phạm progress: P1 đang ở remainder section (░░░), cửa CS trống,
                   nhưng P0 muốn vào vẫn bị chặn ▶ ▶ ▶ ✗
 ```
+
+> 💬 *Bổ sung từ phiên gia sư 2026-09-24*
+>
+> **Thế nào là "tiến trình thay đổi dữ liệu được chia sẻ"?** **Dữ liệu chia sẻ** là dữ liệu mà từ hai
+> luồng/tiến trình trở lên cùng truy cập được. **Thay đổi** là có **ghi** vào nó, kể cả kiểu đọc → sửa → ghi
+> như `count++`. Critical section là **đoạn code** làm cả hai việc đó; dữ liệu chia sẻ là thứ nó đụng vào.
+> Hai câu hỏi để nhận biết: (1) ô nhớ/file này có luồng khác cùng truy cập không? (2) đoạn code này có ghi
+> vào nó không? Cả hai "có" thì đó là critical section.
+>
+> | Đoạn code | Dữ liệu chia sẻ? | Là CS? |
+> |---|---|---|
+> | `count++` với `count` là biến toàn cục, hai thread cùng chạy | ✅ | ✅ |
+> | `x++` với `x` là biến cục bộ trong hàm | ❌ mỗi thread có stack riêng | ❌ |
+> | Hai tiến trình `fork()` cùng đọc và tăng `next_available_pid` trong kernel [C5-1 s13] | ✅ biến của kernel | ✅ |
+> | Hai tiến trình cùng ghi vào **một** file log | ✅ | ✅ |
+> | Hai tiến trình mỗi bên ghi vào file **riêng** | ❌ | ❌ |
+> | Hai request cùng `UPDATE balance` trên **một** dòng DB | ✅ | ✅ |
+> | Thread `t` chỉ ghi `a[t]++`, mỗi thread một phần tử riêng | ❌ không ai đụng ô của ai | ❌ |
+> | Chỉ **đọc** `count`, không ai ghi | ✅ nhưng không ai thay đổi | ❌ theo định nghĩa của slide |
+>
+> **Hai chi tiết hay nhầm:**
+> - Tiến trình có bộ nhớ **riêng**; chúng chỉ chia sẻ qua shared memory, file, hoặc cấu trúc của kernel.
+>   Còn các **thread trong cùng một tiến trình** thì tự chia sẻ biến toàn cục và vùng heap *(ngoài slide)*.
+> - Chỉ đọc thì an toàn, **nhưng nếu lúc đó có luồng khác đang ghi** thì có thể đọc phải số nửa vời —
+>   lý do có bài readers-writers ở mục 11.
 
 #### 💻 Code & thực tế
 
