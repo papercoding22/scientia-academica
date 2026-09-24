@@ -145,6 +145,10 @@ Mỗi khi giải thích một khái niệm mới, **đi đúng thứ tự này**
 **Kết thúc bằng** outline hoặc bảng so sánh.
 **Khi có quan hệ hoặc luồng xử lý** → vẽ sơ đồ ASCII hoặc Mermaid.
 
+> **Ngoại lệ — note bài giảng** (`lectures/L<nn>-*.md`): dùng thứ tự **Lý thuyết học thuật (có gốc rễ first
+> principles) → Giải thích dễ hiểu → Code → Bài tập**, xem skill `new-lecture` Bước 5. Thứ tự 5 bước ở trên
+> vẫn áp dụng khi giải thích trong chat và trong phiên `study-tutor`.
+
 Lý do thứ tự này: người dùng học tốt nhất khi có trực giác trước, hình thức sau.
 Đưa định nghĩa hình thức lên đầu là cách giáo trình làm — và đó là lý do giáo trình khó đọc.
 

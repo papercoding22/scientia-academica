@@ -6,6 +6,7 @@ description: Xử lý một buổi học thành note hoàn chỉnh — chạy sc
 # Xử lý một buổi học
 
 Luật nền nằm ở `AGENTS.md` § 5 — skill này là quy trình chi tiết, không thay thế nó.
+Riêng **cấu trúc note** (Bước 5) là ngoại lệ có chủ đích của `AGENTS.md` § 3.
 
 Chia hai nửa: **script làm phần cơ học, bạn làm phần đọc hiểu nội dung.**
 
@@ -93,23 +94,87 @@ thời lượng nhiều nhất, đừng ghép ba thứ vào một tên.
 
 ## Bước 5 — Viết note
 
-Dùng `templates/lecture-note.md`. Bắt buộc theo `AGENTS.md` § 3 — **5 bước, đúng thứ tự**:
+Dùng `templates/lecture-note.md`. Mỗi mục (khái niệm) trong `## Nội dung chính` có **bốn phần, đúng thứ tự**:
 
-1. Một câu trực giác (không thuật ngữ)
-2. **Analogy đời thường** — người dùng yêu cầu rõ, không được bỏ
-3. Ví dụ nhỏ nhất (con số cụ thể, 3 process chứ không phải N)
-4. Định nghĩa hình thức
-5. Code chạy được
+| # | Phần | Trả lời câu hỏi | Bắt buộc |
+|---|---|---|---|
+| 1 | 📚 **Lý thuyết** | Khái niệm này là gì **và vì sao buộc phải có** — theo chuẩn học thuật | ✅ |
+| 2 | 💡 **Giải thích dễ hiểu** | Nói lại bằng lời thường: trực giác, analogy, ví dụ nhỏ nhất, hình vẽ | ✅ |
+| 3 | 💻 **Code & thực tế** | Chạy được thế nào; dev đi làm gặp lại nó ở đâu | Khi áp dụng được |
+| 4 | ✍️ **Bài tập** | Biết khái niệm này thì giải được bài gì, giải thế nào | ✅ |
 
-Kết thúc bằng bảng so sánh hoặc outline. Có luồng xử lý → sơ đồ ASCII/Mermaid.
+> **Thứ tự này thay cho thứ tự 5 bước ở `AGENTS.md` § 3** — chỉ áp dụng cho **note bài giảng**.
+> Trả lời trong chat và phiên `study-tutor` vẫn giữ thứ tự trực giác → analogy → ví dụ → định nghĩa.
+> Lý do đổi: note là tài liệu ôn thi dựng lại từ đầu, người đọc cần **nền học thuật chính xác trước**,
+> rồi mới cần lời giải thích thân thiện để hiểu nó; đảo ngược lại thì dễ nhớ lệch.
 
-**Người dùng là dev đang đi làm** (`AGENTS.md` § 1): bỏ qua cú pháp cơ bản.
-Nếu buổi học giải thích thứ họ dùng hàng ngày mà chưa hiểu gốc — nói ra, đó là
-phần đáng giá nhất của buổi.
+### 5a. Lý thuyết — chuẩn học thuật + gốc rễ
 
-Mục `## Tự kiểm tra`: **5 câu**, đáp án gập trong `<details>`.
+**Gốc rễ (first principles)** đặt **đầu tiên**, ngắn (5–8 dòng). Mục đích: khái niệm hiện ra như *hệ quả tất yếu*
+của một vấn đề, không phải một quy ước phải học thuộc. Cấu trúc cố định:
 
----
+1. **Ngữ cảnh:** khái niệm sống trong bức tranh lớn nào?
+2. **Vấn đề gốc:** thiếu nó thì cái gì hỏng hoặc không giải được?
+3. **Những sự thật nền:** 2–3 ràng buộc **không bỏ được** (vd *CPU chỉ tính trên thanh ghi*, *OS có thể ngắt bất cứ lúc nào*).
+4. **Suy luận:** sự thật 1 + sự thật 2 ⇒ … ⇒ khái niệm. Mỗi bước phải là hệ quả **logic**, không phải lịch sử kể lại.
+5. **Nếu không có nó thì sao?** một hậu quả cụ thể, tốt nhất có số.
+
+Cách tìm gốc rễ: hỏi **"nếu chỉ dùng những gì chắc chắn đúng, mình phải tự nghĩ ra thứ này thế nào?"** và **"trong slide,
+cái gì được đặt trước cái này, và nó thiếu gì mà phải cần cái này?"**. Các mục liên tiếp trong một buổi thường nối nhau
+bằng chính câu hỏi thứ hai — đó là chuỗi ghi ở `## Gốc rễ của cả buổi`.
+
+Luật với gốc rễ:
+- Phần suy luận **không có trong slide/transcript** phải ghi nhãn `ngoài slide` (`AGENTS.md` § 12 — không bịa nội dung bài giảng).
+- **Không bịa lịch sử** ("Dijkstra nghĩ ra vì…") khi không chắc. Có thể nêu năm/tác giả nếu chắc, kèm nhãn `ngoài slide`.
+- Mục thuần quy ước (cú pháp, tên gọi) không có gốc rễ suy luận được → **bỏ dòng đó**, đừng gượng.
+
+**Định nghĩa hình thức:** trích **nguyên văn** slide/giáo trình, giữ thuật ngữ, kèm nhãn nguồn `[mã sN]`. Có ebook ở
+`materials/books/` thì dùng làm nguồn chuẩn và ghi số trang (`AGENTS.md` § 8b). Sau đó tách rõ:
+**tính chất · điều kiện áp dụng · ký hiệu**, và thuật toán/cơ chế nếu có.
+
+### 5b. Giải thích dễ hiểu
+
+Viết cho **dev đang đi làm** (`AGENTS.md` § 1): bỏ cú pháp cơ bản, đi thẳng vào *vì sao*.
+
+- **Trực giác:** một câu, không thuật ngữ.
+- **Analogy đời thường** — không được bỏ — kèm dòng ***Chỗ analogy vỡ***: điểm nào của khái niệm mà analogy mô tả sai.
+  Analogy tốt ánh xạ **được từng thành phần** của khái niệm (ai = tiến trình, tờ giấy = biến chung…).
+- **Ví dụ nhỏ nhất:** con số cụ thể, ca bé nhất (3 tiến trình, không phải N), **theo dõi từng bước** trong bảng trace.
+- **Minh hoạ trực quan:** có **luồng, trạng thái hoặc quan hệ** thì **bắt buộc** vẽ (ASCII hoặc Mermaid); có diễn biến theo thời gian
+  thì dùng bảng trace (cột = mỗi biến). Hình phải chỉ ra **chỗ hỏng hoặc chỗ mấu chốt**, không vẽ cho đẹp.
+
+### 5c. Code & thực tế
+
+Code phải chạy được và đã chạy thử; ghi lệnh chạy và kết quả thật. Không áp dụng được thì ghi `không áp dụng — <lý do>`.
+Dòng **Trong production** nối khái niệm với thứ dev dùng hàng ngày, luôn gắn nhãn `ngoài slide`.
+
+### 5d. Bài tập — và kiến thức giải bài thế nào
+
+Mỗi mục 1–3 bài (mục nặng điểm nhiều hơn), **từ dễ đến khó** (Nhớ → Hiểu → Vận dụng → Phân tích). Nguồn, theo thứ tự ưu tiên:
+1. Bài tập có trong slide · 2. Câu trong đề mẫu (`exam-prep/exam-map.md`, ghi số câu) · 3. **Tự đặt** (ghi rõ `tự đặt`).
+
+Mỗi bài có ba phần:
+- **Đề** + mức nhận thức + nguồn.
+- **🔑 Kiến thức mở khoá:** *khái niệm hoặc tính chất nào ở phần Lý thuyết giúp giải bài này, và giúp ở bước nào.* Đây là phần quan trọng
+  nhất — nó chứng minh kiến thức không phải để thuộc mà để dùng.
+- **Hướng giải** gập trong `<details>`, mỗi bước nối về kiến thức ở trên.
+
+Luật:
+- **Không** đưa vào đây bài tập **đang có hạn nộp** — chuyển sang `assignment-guide` (`AGENTS.md` § 6).
+- Đề mẫu là tài liệu tham khảo, không phải lời giảng viên (`AGENTS.md` § 8).
+- Bài tự đặt phải **kiểm được đáp án** (chạy code, tính tay hai lần) trước khi ghi.
+- Mục cuối có dòng **Chốt mục**: điều cần mang đi thi và cái bẫy hay gặp.
+
+### 5e. Mục phụ được rút gọn
+
+Không phải mục nào cũng đáng đủ bốn phần. Mục **ít trọng số** (theo `exam-map.md`, hoặc giảng viên chỉ lướt qua) → bản rút gọn:
+**Định nghĩa hình thức + Trực giác + 1 bài**. Ghi rõ `*(mục phụ — bản rút gọn)*` ở đầu mục để người đọc biết không phải sót.
+
+### 5f. Phần còn lại của note
+
+- `## Tóm tắt một đoạn` và `## Gốc rễ của cả buổi` (sơ đồ chuỗi suy luận từ vấn đề gốc tới các khái niệm) viết **sau khi** xong các mục.
+- Kết thúc bằng **bảng so sánh hoặc sơ đồ tổng**.
+- `## Tự kiểm tra`: **5 câu**, đáp án gập trong `<details>` — khác các bài tập trong mục ở chỗ nó **ôn trộn nhiều mục**.
 
 ## Bước 6 — Rút thông tin ra 3 file khác
 
@@ -176,5 +241,8 @@ số flashcard, và **chỗ nào còn `❓ CẦN XÁC MINH`** để người dù
 - ❌ Không bịa nội dung không có trong transcript. Thiếu → `> ❓ **CẦN XÁC MINH:**`.
 - ❌ Không ghi vào `IMPORTANT_NOTES.md` thứ giảng viên không nói ra.
 - ❌ Không đặt tên file note bằng tiếng Việt bỏ dấu.
-- ❌ Không bỏ bước analogy ở § 3, kể cả khi khái niệm có vẻ đơn giản.
+- ❌ Không bỏ analogy (và dòng *chỗ analogy vỡ*), kể cả khi khái niệm có vẻ đơn giản.
+- ❌ Không viết phần "gốc rễ" bằng lịch sử tự bịa hoặc suy luận không gắn nhãn `ngoài slide`.
+- ❌ Không đưa bài tập đang có hạn nộp vào mục ✍️ Bài tập; không ghi bài tự đặt khi chưa kiểm được đáp án.
+- ❌ Không đảo thứ tự **Lý thuyết → Dễ hiểu → Code → Bài tập** trong note bài giảng.
 - ❌ Không chạy script khi file `_raw` đã tồn tại — sẽ tạo trùng số buổi.
