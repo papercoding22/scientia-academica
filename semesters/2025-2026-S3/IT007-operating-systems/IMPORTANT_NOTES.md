@@ -63,10 +63,11 @@ Giảng viên: **Nguyễn Thanh Thiện**
 
 | | Giữa kỳ | Cuối kỳ |
 |---|---|---|
+| Lịch | ❓ | **Thứ 7 2026-10-03, ca 4 (15:00)** ❓ *xác nhận là cuối kỳ* |
 | Hình thức | ❓ | ❓ |
 | Thời gian | ❓ | ❓ |
 | Được mang gì | ❓ | ❓ |
-| Nguồn | | |
+| Nguồn | | Lịch: người dùng cung cấp, 2026-09-24 — "Ngày 03 tháng 10 năm 2026: Thi IT007 Operating System, ca 4: 15g00" |
 
 ---
 

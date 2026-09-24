@@ -52,10 +52,13 @@
 | IE103 | Giữa kỳ | ❓ | ❓ | ❓ | ❓ |
 | IE101 | Giữa kỳ | ❓ | ❓ | ❓ | ❓ |
 | IT007 | Giữa kỳ | ❓ | ❓ | ❓ | ❓ |
-| IE105 | Cuối kỳ | ❓ thứ 7 / CN | ❓ | **Trắc nghiệm 40 câu, 75 phút**, tập trung tại trường | ❓ |
+| IE105 | Cuối kỳ | **CN 2026-10-04** | **ca 2 — 10:00** | **Trắc nghiệm 40 câu, 75 phút**, tập trung tại trường | ❓ |
 | IE103 | Cuối kỳ | ❓ | ❓ | ❓ | ❓ |
 | IE101 | Cuối kỳ | ❓ | ❓ | ❓ | ❓ |
-| IT007 | Cuối kỳ | ❓ | ❓ | ❓ | ❓ |
+| IT007 | Cuối kỳ ❓ | **T7 2026-10-03** | **ca 4 — 15:00** | Tự luận + trắc nghiệm, thi tập trung, 60–90 phút *(slide C0 s17)* | ❓ |
 
+> Ngày giờ thi IT007 và IE105: người dùng cung cấp, 2026-09-24.
+> ❓ **IT007 — cần xác nhận đây là thi cuối kỳ.** Suy từ: lịch học 10 buổi, giữa kỳ đặt ở buổi 5 *(slide C0 s9)*.
+>
 > ❓ Điền dần khi giảng viên công bố. Thông tin về hình thức thi và tài liệu được mang
 > thường nằm trong `IMPORTANT_NOTES.md` của từng môn.

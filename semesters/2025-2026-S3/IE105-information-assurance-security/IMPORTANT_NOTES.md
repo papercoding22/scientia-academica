@@ -211,7 +211,7 @@ Bảng cần có: **tên · nhóm (cổ điển/hiện đại) · đặc điểm
 | Số câu | — | **40 câu** |
 | Thời gian | — | **75 phút** |
 | Địa điểm | — | **Tập trung tại trường** |
-| Lịch | — | Thứ 7 hoặc Chủ nhật ❓ chưa có ngày cụ thể |
+| Lịch | — | ~~Thứ 7 hoặc Chủ nhật ❓ chưa có ngày cụ thể~~ → **Chủ nhật 2026-10-04, ca 2 (10:00)** |
 | Được mang gì | — | ❓ chưa nói |
 
 > *Buổi 1, 2026-07-08 — SV hỏi "mình có thi giữa kỳ không thưa thầy?" →
@@ -223,8 +223,9 @@ Bảng cần có: **tên · nhóm (cổ điển/hiện đại) · đặc điểm
 > *Buổi 1 — "thầy hay cho sinh viên chọn hình thức thi […] đa số gần như lúc nào mấy em
 > cũng chọn thi trắc nghiệm hết"*
 
-> ❓ **CẦN XÁC MINH:** ngày thi cuối kỳ cụ thể. Khi biết → ghi vào
-> [`admin/deadlines.md`](../../../admin/deadlines.md).
+> ~~❓ **CẦN XÁC MINH:** ngày thi cuối kỳ cụ thể.~~ Đã có — khớp với lời thầy "thứ 7 hay chủ nhật".
+> *Người dùng cung cấp lịch thi, 2026-09-24 — "Ngày 04 tháng 10 năm 2026: Thi IE105, ca 2: 10g00"*.
+> Đã ghi vào [`admin/deadlines.md`](../../../admin/deadlines.md).
 
 ---
 
