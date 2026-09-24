@@ -325,9 +325,9 @@ Kết quả có thể là **70, 80 hoặc 90**; chỉ **70** đúng (3 × 10 = 3
 **Trực giác:** khoanh vùng đoạn code đụng dữ liệu chung, rồi đặt luật "mỗi lúc chỉ
 một người vào" — nhưng luật đó không được làm ai kẹt mãi bên ngoài.
 
-**Analogy:** phòng thử đồ có một buồng. (1) Có người trong buồng thì người khác không
-vào. (2) Buồng trống thì người đang đứng ngoài hàng — không muốn thử đồ — không được
-chặn cửa người khác. (3) Không ai phải đợi vô hạn vì cứ bị người khác chen lên.
+**Analogy:** phòng thử đồ có một buồng. (1) **[ME]** Có người trong buồng thì người khác không
+vào. (2) **[Progress]** Buồng trống thì người đang đứng ngoài hàng — không muốn thử đồ — không được
+chặn cửa người khác. (3) **[Bounded waiting]** Không ai phải đợi vô hạn vì cứ bị người khác chen lên.
 *Chỗ analogy vỡ:* ngoài đời khách tự giác xếp hàng; máy tính **không có sự tự giác** — mỗi luật trên phải được ép bằng cơ chế cụ thể (mục 4–7).
 
 **Ví dụ nhỏ nhất:** P0, P1 cùng tăng `count`. Critical section (CS) là dòng `count++`.
@@ -355,6 +355,32 @@ Sai (vi phạm    P0: ░░░░███░░░░░░░░░░       
 Vi phạm progress: P1 đang ở remainder section (░░░), cửa CS trống,
                   nhưng P0 muốn vào vẫn bị chặn ▶ ▶ ▶ ✗
 ```
+
+**Ba yêu cầu, mỗi yêu cầu một hình ảnh** — so ba yêu cầu cạnh nhau để khỏi lẫn:
+
+| Yêu cầu | Nói bằng lời thường | Bị vi phạm khi | Ở phòng thử đồ |
+|---|---|---|---|
+| **Mutual exclusion** | Trong CS mỗi lúc chỉ một người | Hai tiến trình cùng ở trong CS | Hai người cùng vào một buồng |
+| **Progress** | CS trống mà có người muốn vào thì **phải có người vào**; người ở ngoài không muốn vào thì **không được cản** | Tiến trình **ngoài CS** vẫn chặn được người khác | Người đứng ngoài hàng, đang lướt điện thoại, vẫn giữ "lượt" nên người kia không vào được dù buồng trống |
+| **Bounded waiting** | Đã xin vào thì chỉ phải chờ **một khoảng có hạn** — người khác không được vượt mặt mình mãi | Một tiến trình **bị vượt liên tục**, chờ vô hạn (**starvation** — đói tài nguyên) | Nhân viên liên tục cho khách quen chen ngang, bạn xếp hàng mãi không tới lượt |
+
+**Ví dụ nhỏ nhất cho bounded waiting.** P0 và P1 cùng lặp đi lặp lại "vào CS → ra → xin vào lại". P0 xin vào từ lượt đầu, nhưng mỗi lần CS trống lại đúng lúc P1 xin lại và thắng cuộc đua:
+
+```
+Vi phạm bounded waiting:
+  P0:  ░░ xin vào ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ …   (chờ mãi, chưa bao giờ vào)
+  P1:  ███ ░ ███ ░ ███ ░ ███ ░ ███ ░ ███ …          (vào CS hết lần này đến lần khác)
+
+  ✔ ME đạt      — không lúc nào hai người cùng trong CS
+  ✔ Progress đạt — CS trống lúc nào cũng có người vào (là P1)
+  ✘ Bounded waiting vi phạm — P0 bị vượt vô hạn lần
+
+Thoả bounded waiting (như Peterson, mục 4):
+  P0:  ░░ xin vào ░░░░░░░░░ ███
+  P1:  ███ ░░░░░░░░░░░░░░░░░ …    (P1 chỉ được chen tối đa 1 lần rồi phải nhường P0)
+```
+
+Bài học: **progress đảm bảo "có người nào đó vào"; bounded waiting đảm bảo "người nào xin cũng sẽ vào".** Một lời giải có thể đạt progress mà vẫn vi phạm bounded waiting (như ví dụ trên). Cách nói chuẩn của giáo trình *(ngoài slide)*: sau khi một tiến trình đã xin vào CS, **số lần** các tiến trình khác được vào trước nó **có một cận trên hữu hạn**. Slide [C5-1 s25] diễn đạt là "chỉ phải chờ trong một khoảng thời gian có hạn định".
 
 > 💬 *Bổ sung từ phiên gia sư 2026-09-24*
 >
@@ -391,7 +417,7 @@ Không áp dụng — mục này là **đặc tả** (cần đạt gì), chưa p
 
 **Bài 1** *(Nhớ)* — *đề mẫu câu 2, đề viết lại.* Phát biểu nào mô tả đúng **bounded waiting**? (a) tiến trình chưa được vào CS phải từ bỏ CPU · (b) mỗi tiến trình chỉ phải chờ vào CS trong khoảng thời gian có hạn · (c) tiến trình ngoài CS không được ngăn tiến trình khác vào · (d) không hai tiến trình nào cùng ở trong CS.
 
-> 🔑 **Kiến thức mở khoá:** ba yêu cầu có **ba định nghĩa khác nhau** [C5-1 s21–s25]: (d) = ME, (c) = progress, (b) = bounded waiting; phát biểu (a) **không thuộc yêu cầu nào**.
+> 🔑 **Kiến thức mở khoá:** ba yêu cầu có **ba định nghĩa khác nhau** [C5-1 s21–s25]: (d) = ME, (c) = progress, (b) = bounded waiting; phát biểu (a) **không thuộc yêu cầu nào**. Xem bảng *Ba yêu cầu, mỗi yêu cầu một hình ảnh* ở phần 💡 để thấy khác nhau ở đâu.
 
 <details><summary>Hướng giải</summary>
 
