@@ -52,7 +52,7 @@
 | IE103 | Giữa kỳ | ❓ | ❓ | ❓ | ❓ |
 | IE101 | Giữa kỳ | ❓ | ❓ | ❓ | ❓ |
 | IT007 | Giữa kỳ | ❓ | ❓ | ❓ | ❓ |
-| IE105 | Cuối kỳ | **CN 2026-10-04** | **ca 2 — 10:00** | **Trắc nghiệm 40 câu, 75 phút**, tập trung tại trường | ❓ |
+| IE105 | Cuối kỳ | **CN 2026-10-04** | **ca 2 — 10:00** | **Trắc nghiệm 40 câu, 75 phút**, tập trung tại trường | 2 tờ A4 viết tay *(EXAM_PREP.pdf, nguồn phát hành ❓)* |
 | IE103 | Cuối kỳ | ❓ | ❓ | ❓ | ❓ |
 | IE101 | Cuối kỳ | ❓ | ❓ | ❓ | ❓ |
 | IT007 | Cuối kỳ ❓ | **T7 2026-10-03** | **ca 4 — 15:00** | Tự luận + trắc nghiệm, thi tập trung, 60–90 phút *(slide C0 s17)* | ❓ |

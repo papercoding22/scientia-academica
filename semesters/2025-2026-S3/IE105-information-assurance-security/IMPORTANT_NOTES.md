@@ -212,7 +212,7 @@ Bảng cần có: **tên · nhóm (cổ điển/hiện đại) · đặc điểm
 | Thời gian | — | **75 phút** |
 | Địa điểm | — | **Tập trung tại trường** |
 | Lịch | — | ~~Thứ 7 hoặc Chủ nhật ❓ chưa có ngày cụ thể~~ → **Chủ nhật 2026-10-04, ca 2 (10:00)** |
-| Được mang gì | — | ❓ chưa nói |
+| Được mang gì | — | **2 tờ A4 viết tay** *(nguồn: `exam-prep/EXAM_PREP.pdf`, nguồn phát hành ❓ chưa rõ — không phải lời giảng viên trong transcript)* |
 
 > *Buổi 1, 2026-07-08 — SV hỏi "mình có thi giữa kỳ không thưa thầy?" →
 > **"Không có thi giữa kỳ."** […] "Chỉ có thi cuối kỳ thôi, tập trung của trường
