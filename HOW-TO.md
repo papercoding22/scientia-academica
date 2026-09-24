@@ -184,13 +184,17 @@ Tiền tố (`BT`, `LAB`, `PRJ`) theo cách giảng viên môn đó đánh số.
 ## 6. Làm đồ án
 
 ```
-tạo đồ án 1 cho môn IE103
+/new-project IE101 1
+thầy giao đồ án nhóm môn IE101, hạn 2026-11-15
 ```
 
-Tạo `projects/prj1/` với `src/`, `docs/`, `brief/`, `images/`.
+Tạo `projects/prj1/` với `src/`, `docs/`, `brief/`, `images/`. AI quét transcript để điền
+**đề bài, tiêu chí chấm, các mốc** (kèm nguồn), ghi hạn nộp và mốc của giảng viên vào
+`admin/deadlines.md`, rồi đề xuất task Notion cho từng mốc.
 Code vào `src/`, báo cáo và slide thuyết trình vào `docs/`.
 
-Bản nộp: `PRJ1-NguyễnQuốcTrung-25730081.zip`
+Bản nộp: theo mẫu giảng viên dặn — chưa dặn thì README để `❓`, **AI không đoán tên file**.
+Repo public: chỉ ghi tên đồng đội, không ghi MSSV của họ.
 
 ---
 

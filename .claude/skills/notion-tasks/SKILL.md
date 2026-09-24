@@ -56,7 +56,7 @@ Skill này là cầu nối — không bao giờ để hai bên cùng quyết m�
 ```
 
 **Khoá** = `<MÃ MÔN>/<thư mục mục nộp>` (`a5`, `lab3`, `prj1`) · `<MÃ MÔN>/exam-<mid|final>`
-· `<MÃ MÔN>/exam-<…>/r<nn>` cho task ôn. Task lẻ của chế độ add **không** vào map.
+· `<MÃ MÔN>/exam-<…>/r<nn>` cho task ôn · `<MÃ MÔN>/prjN/<mốc>` cho mốc đồ án giảng viên đặt. Task lẻ của chế độ add **không** vào map.
 
 **File mất** (clone máy khác) → đọc `data_source` bằng cách hỏi người dùng link database,
 rồi dựng lại `tasks` bằng cách khớp **tiền tố + tên bài + ngày hạn** với task Notion có sẵn.

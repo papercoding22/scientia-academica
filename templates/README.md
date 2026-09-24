@@ -69,11 +69,12 @@ AI copy rồi điền khi sinh file mới. Không phải để bạn mở đọc
 
 ## Template có token
 
-Bảy template đầu bảng trên được **script render** bằng token `{{CODE}}`, `{{NAME_VI}}`,
-`{{LECTURER}}`, `{{NUM}}`, `{{DATE}}`…
+Chín template được **script render** bằng token `{{CODE}}`, `{{NAME_VI}}`,
+`{{LECTURER}}`, `{{NUM}}`, `{{DATE}}`…: bảy template đầu bảng trên, cộng `assignment.md`
+(`scripts/new-assignment.sh`) và `project.md` (`scripts/new-project.sh`).
 
 **Sửa template thì môn/buổi tạo sau sẽ đổi theo** — đó là chủ ý, một nguồn sự thật duy nhất.
-Bảy template còn lại không có token, AI điền tay.
+Năm template còn lại không có token, AI điền tay.
 
 Danh sách token đầy đủ: xem hàm `render()` trong `scripts/new-course.sh` và
-`scripts/new-lecture.sh`.
+`scripts/new-lecture.sh`, `scripts/new-assignment.sh`, `scripts/new-project.sh`.

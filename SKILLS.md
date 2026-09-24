@@ -15,6 +15,7 @@ Chi tiết từng skill ở `.claude/skills/<tên>/SKILL.md`.
 | [`study-tutor`](.claude/skills/study-tutor/SKILL.md) | Gia sư hỏi đáp nhiều lượt, cuối phiên đề xuất FAQ/flashcard | *kèm tôi chương 5 IT007* |
 | [`faq-answer`](.claude/skills/faq-answer/SKILL.md) | Trả lời nhanh, dồn câu hỏi vào `faqs-<chương>.md` | *tập trung chương 3, trả lời nhanh* |
 | [`new-assignment`](.claude/skills/new-assignment/SKILL.md) | Dựng `aN/` · `labN/`, trích đề từ transcript, ghi hạn nộp | *thầy giao bài tập 8 IE105* |
+| [`new-project`](.claude/skills/new-project/SKILL.md) | Dựng `projects/prjN/`, trích đề + tiêu chí chấm + các mốc, nối deadlines và Notion | *thầy giao đồ án nhóm IE101* |
 | [`assignment-guide`](.claude/skills/assignment-guide/SKILL.md) | Sinh `GUIDE.md` — phương pháp + tiêu chí chấm, không có lời giải | *bài tập 5 IE105 làm thế nào* |
 | [`exam-map`](.claude/skills/exam-map/SKILL.md) | Đề mẫu → map câu về chương/slide + exam blueprint | *phân tích đề mẫu IE105* |
 | [`notion-tasks`](.claude/skills/notion-tasks/SKILL.md) | Đồng bộ bài nộp, lịch thi với Notion; lập lịch ôn thi | *đồng bộ Notion* |
@@ -34,6 +35,8 @@ flowchart LR
   C --> E[Có bài tập<br/>new-assignment]
   E --> F[Bí cách làm<br/>assignment-guide]
   E --> N[notion-tasks]
+  C --> P[Có đồ án<br/>new-project]
+  P --> N
   D --> G[Có đề mẫu<br/>exam-map]
   G --> N
 ```
@@ -44,6 +47,7 @@ flowchart LR
 | Sau mỗi buổi | `new-lecture` | `lectures/` · `IMPORTANT_NOTES.md` · `admin/deadlines.md` · `exam-prep/` |
 | Học lại, hỏi đáp | `study-tutor` · `faq-answer` | `exam-prep/faqs-*.md` · flashcard (sau khi duyệt) |
 | Có bài tập / lab | `new-assignment` → `assignment-guide` | `assignments/<aN\|labN>/` · `admin/deadlines.md` |
+| Có đồ án | `new-project` → `notion-tasks` | `projects/prjN/` · `admin/deadlines.md` · Notion |
 | Ôn thi | `exam-map` → `notion-tasks` (exam-plan) | `exam-prep/` · Notion |
 | Quản lý việc | `notion-tasks` | Notion ☕ Tasks · `admin/deadlines.md` |
 | Lỡ thả file lung tung | `tidy-files` | đúng thư mục theo `AGENTS.md` § 14 |
@@ -59,6 +63,7 @@ Skill gọi các script này; tự chạy được khi cần.
 | `scripts/new-course.sh` | Dựng khung môn học (dùng bởi `new-course`) |
 | `scripts/new-lecture.sh` | Tạo file `_raw`, nạp `.vtt` Teams (dùng bởi `new-lecture`) |
 | `scripts/new-assignment.sh` | Dựng mục nộp, copy file Word đúng mẫu tên (dùng bởi `new-assignment`) |
+| `scripts/new-project.sh` | Dựng thư mục đồ án `prjN/` (dùng bởi `new-project`) |
 | `scripts/check-layout.sh` | Tìm file sai chỗ / sai tên (dùng bởi `tidy-files`) |
 | `scripts/toc.py gen\|check` | Sinh / kiểm tra mục lục markdown |
 | `scripts/peek.py` | Xem nhanh `.docx` / `.vtt` |

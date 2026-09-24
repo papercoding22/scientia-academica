@@ -224,6 +224,9 @@ Lý do thứ tự này: người dùng học tốt nhất khi có trực giác t
 
 **Khi tạo đồ án mới** `projects/prjN/`:
 - Tạo đủ: `README.md`, `brief/`, `docs/`, `src/`, `images/`
+- **Dùng skill `new-project`**, đừng tự `mkdir`. Hạn nộp cuối và mọi mốc giảng viên đặt
+  vào `admin/deadlines.md`; mốc nhóm tự đặt chỉ nằm trong README đồ án và Notion.
+- Repo public → chỉ ghi **tên** đồng đội, không ghi MSSV/email/SĐT của người khác.
 
 **Ảnh thực hành:** đặt trong `images/` của chính bài đó, **tên tiếng Anh mô tả nội dung**:
 `step3-ping-result.png` ✅ — `Screenshot 2026-09-18 at 14.02.11.png` ❌
@@ -287,6 +290,7 @@ và ghi rõ số trang khi trích. Giáo trình chuẩn hơn transcript Teams.
 | Map đề thi mẫu → chương/mục + exam blueprint | skill **`exam-map`** → `.claude/skills/exam-map/SKILL.md` |
 | Học cùng gia sư về một lecture/chủ đề | skill **`study-tutor`** → `.claude/skills/study-tutor/SKILL.md` |
 | Tạo bài tập hoặc lab mới | skill **`new-assignment`** → `.claude/skills/new-assignment/SKILL.md` |
+| Tạo đồ án môn học mới | skill **`new-project`** → `.claude/skills/new-project/SKILL.md` |
 | Hướng dẫn cách làm bài tập | skill **`assignment-guide`** → `.claude/skills/assignment-guide/SKILL.md` |
 | Dọn file thả tay vào repo | skill **`tidy-files`** → `.claude/skills/tidy-files/SKILL.md` |
 | Đồng bộ task University lên Notion, lập lịch ôn thi | skill **`notion-tasks`** → `.claude/skills/notion-tasks/SKILL.md` |
@@ -316,9 +320,9 @@ Tạo tay thì sẽ quên bước nối, và repo mất đồng bộ.
 
 Script render file từ `templates/` bằng token `{{CODE}}`, `{{NAME_VI}}`, `{{LECTURER}}`…
 **Sửa template thì môn tạo sau sẽ đổi theo** — đó là chủ ý, một nguồn sự thật duy nhất.
-Bảy template có token: `course-readme` · `important-notes` · `materials-readme` ·
-`flashcards` · `cheatsheet` · `lecture-note` · `lecture-raw`.
-Sáu template còn lại là để AI điền tay, không có token.
+Chín template có token: `course-readme` · `important-notes` · `materials-readme` ·
+`flashcards` · `cheatsheet` · `lecture-note` · `lecture-raw` · `assignment` · `project`.
+Năm template còn lại là để AI điền tay, không có token.
 
 ---
 
