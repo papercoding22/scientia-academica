@@ -31,6 +31,7 @@ Skill này là cầu nối — không bao giờ để hai bên cùng quyết m�
 - [Chế độ sync](#chế-độ-sync)
 - [Chế độ exam-plan](#chế-độ-exam-plan)
 - [Chế độ add](#chế-độ-add)
+- [Nhắc lịch trên Google Calendar](#nhắc-lịch-trên-google-calendar)
 - [Commit và báo lại](#commit-và-báo-lại)
 - [Không làm](#không-làm)
 
@@ -205,6 +206,24 @@ Task ôn là kế hoạch cá nhân, **không ghi vào `deadlines.md`** — file
    → có: ghi vào `deadlines.md` trước, xử lý như sync (có khoá, vào map).
    → không (việc tự đặt cho mình): chỉ tạo trên Notion, không vào map.
 4. In 1 dòng xem trước → duyệt → tạo.
+
+---
+
+## Nhắc lịch trên Google Calendar
+
+Người dùng muốn được nhắc (*"tạo lịch nhắc tôi"*) → tạo sự kiện kèm task, **cùng bảng xem trước**.
+
+| | Quy ước |
+|---|---|
+| **Lịch** | Luôn là lịch tên **`Work`** — tra `calendarId` bằng `list_calendars` theo tên, **không dùng lịch chính** |
+| Múi giờ | `Asia/Ho_Chi_Minh` |
+| Khung giờ | Mặc định 20:00 (người dùng đi làm ban ngày); xem `list_events` tránh trùng |
+| Nhắc | popup trước 1 ngày + trước 30 phút |
+| Mô tả | việc cần làm · link task Notion · link tài liệu liên quan |
+| Tiêu đề | `<TT> <việc>` — giống tên task, bỏ dấu `:` |
+
+Không có thao tác chuyển sự kiện giữa hai lịch — tạo nhầm lịch thì tạo lại trên `Work` rồi xoá bản cũ.
+Link cá nhân (OneDrive, SharePoint…) chỉ ghi trên Notion/Calendar, **không ghi vào repo**.
 
 ---
 

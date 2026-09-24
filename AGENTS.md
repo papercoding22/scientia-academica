@@ -353,6 +353,7 @@ Năm template còn lại là để AI điền tay, không có token.
   hạn khi nào*; Notion quyết định *đã xong chưa*. Đồng bộ bằng skill **`notion-tasks`** —
   luôn xem trước rồi mới ghi. Ánh xạ repo ↔ Notion nằm ở `admin/notion-map.json`
   (**gitignore** — chứa URL workspace riêng, không chép sang file tracked).
+- **Nhắc lịch Google Calendar → luôn dùng lịch `Work`**, không dùng lịch chính.
 
 ---
 
