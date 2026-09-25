@@ -386,6 +386,19 @@ Lần 1:  call printf ─▶ [stub] ─▶ OS: đã nạp libc chưa? ─ chưa 
 Lần 2+: call printf ─▶ [địa chỉ printf] ─▶ printf chạy          (không còn qua stub)
 ```
 
+![Dynamic linking với lazy binding: lần đầu qua stub để tìm và lưu địa chỉ printf, lần sau dùng liên kết đã biết; hai process có thể chia sẻ trang mã thư viện](images/dynamic-linking-explained.png)
+
+*Hình do AI dựng bằng SVG và xuất PNG, dựa trên [C7 s24–s25, s27]; analogy và địa chỉ minh họa tự đặt. [Bản SVG có thể chỉnh sửa](images/dynamic-linking-explained.svg).*
+
+**Đọc hình:** đây là ví dụ **lazy binding** — lần gọi đầu tìm địa chỉ hàm, lưu liên kết rồi thực thi;
+lần sau dùng liên kết đã biết. `0x7000` chỉ là **địa chỉ ảo minh họa trong một process**, không phải địa chỉ cố định của `printf`.
+Phân biệt **linking** (nối tham chiếu đến hàm) với **loading** (đưa mã vào bộ nhớ); thư viện có thể đã được nạp trước lần gọi đầu.
+
+**Giới hạn mô hình (ngoài slide):** dynamic linking cũng có thể thực hiện ngay lúc khởi động chương trình.
+Trong cơ chế như PLT/GOT, lần gọi sau vẫn có thể đi qua stub/bảng địa chỉ; phần được bỏ qua là bước **resolve symbol**,
+không phải luôn xóa stub khỏi mã. Hai process có thể ánh xạ trang mã thư viện vào cùng frame vật lý dù địa chỉ ảo khác nhau;
+phần dữ liệu riêng của mỗi process không vì vậy mà trở thành dữ liệu dùng chung. Analogy máy in chỉ minh họa tìm địa chỉ và dùng chung mã, không ngụ ý các process phải lần lượt gọi hàm.
+
 #### 💻 Code & thực tế
 
 ```
