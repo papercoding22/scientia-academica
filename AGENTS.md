@@ -3,7 +3,7 @@
 > File này là **luật** cho AI. Đọc trước khi làm bất cứ việc gì trong repo này.
 > Hướng dẫn thao tác cho người dùng nằm ở [`HOW-TO.md`](HOW-TO.md) — khi người dùng
 > hỏi *"làm thế nào để…"*, trả lời rồi trỏ họ tới mục tương ứng ở đó.
-> Cập nhật lần cuối: 2026-09-24
+> Cập nhật lần cuối: 2026-09-25
 
 ---
 
@@ -38,6 +38,7 @@
 | Trường | Đại học Công nghệ Thông tin (UIT) |
 | Ngành | Công nghệ Thông tin — hệ **đào tạo từ xa** |
 | Học kỳ hiện tại | **HK3 2025–2026** → `semesters/2025-2026-S3/` |
+| Học kỳ tiếp theo | **HK1 2026–2027** → `semesters/2026-2027-S1/` · 4 môn, 14 TC · SS008 đã đăng ký chuyển điểm, kết quả ❓ |
 | Cách học | Lớp online qua **Microsoft Teams** |
 | Nền tảng | **Lập trình viên đang đi làm** |
 
@@ -311,6 +312,10 @@ là symlink Git-tracked để Codex tự discover đúng các skill ấy. Khi t�
 phiên cũ cần bắt đầu phiên mới từ root repo để thấy skill vừa thêm.
 
 Hàm dùng chung của các script nằm ở `scripts/lib/common.sh`.
+
+Khi có nhiều học kỳ, **truyền rõ `--semester <kỳ>`** cho các script tạo môn/buổi học/bài tập/đồ án.
+Script mặc định chọn thư mục học kỳ mới nhất; HK1 2026–2027 đã có khung nhưng vẫn là kỳ sắp học.
+Xử lý môn đang học ở HK3 thì dùng `--semester 2025-2026-S3`.
 
 **Người dùng thả file thủ công vào repo** (transcript, slide, bài tập đã làm) →
 dùng skill **`tidy-files`**, đừng tự `mv` theo cảm tính. Luật quan trọng nhất của nó:

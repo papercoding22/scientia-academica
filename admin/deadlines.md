@@ -5,6 +5,17 @@
 
 ---
 
+## Mục lục
+
+- [Sắp tới](#sắp-tới)
+  - [Quy tắc lặp lại](#quy-tắc-lặp-lại)
+- [Đã xong](#đã-xong)
+- [Lịch thi](#lịch-thi)
+  - [HK3 2025–2026 — đang học](#hk3-20252026--đang-học)
+  - [HK1 2026–2027 — sắp học](#hk1-20262027--sắp-học)
+
+---
+
 ## Sắp tới
 
 | Môn | Việc | Hạn nộp | Còn lại | Trạng thái | Nguồn |
@@ -46,6 +57,8 @@
 
 ## Lịch thi
 
+### HK3 2025–2026 — đang học
+
 | Môn | Loại | Ngày | Giờ | Hình thức | Được mang gì |
 |---|---|---|---|---|---|
 | IE105 | ~~Giữa kỳ~~ | — | — | **KHÔNG CÓ THI GIỮA KỲ** | — |
@@ -62,3 +75,21 @@
 >
 > ❓ Điền dần khi giảng viên công bố. Thông tin về hình thức thi và tài liệu được mang
 > thường nằm trong `IMPORTANT_NOTES.md` của từng môn.
+
+### HK1 2026–2027 — sắp học
+
+| Môn | Loại | Ngày | Giờ | Hình thức | Được mang gì |
+|---|---|---|---|---|---|
+| IE221 | Giữa kỳ ❓ | ❓ | ❓ | ❓ | ❓ |
+| SS009 | Giữa kỳ ❓ | ❓ | ❓ | ❓ | ❓ |
+| IE104 | Giữa kỳ ❓ | ❓ | ❓ | ❓ | ❓ |
+| IE106 | Giữa kỳ ❓ | ❓ | ❓ | ❓ | ❓ |
+| IE221 | Cuối kỳ ❓ | ❓ | ❓ | ❓ | ❓ |
+| SS009 | Cuối kỳ ❓ | ❓ | ❓ | ❓ | ❓ |
+| IE104 | Cuối kỳ ❓ | ❓ | ❓ | ❓ | ❓ |
+| IE106 | Cuối kỳ ❓ | ❓ | ❓ | ❓ | ❓ |
+
+> Các dòng trên là chỗ theo dõi, **chưa xác nhận từng môn có kỳ thi tương ứng**.
+> Danh sách môn: [người dùng cung cấp ngày 2026-09-25](../semesters/2026-2027-S1/README.md).
+> Chưa có lịch thi hoặc deadline của học kỳ mới. SS008 không tạo dòng lịch thi vì đã đăng ký
+> chuyển điểm; kết quả chuyển điểm ❓ chưa xác nhận.

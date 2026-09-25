@@ -6,15 +6,16 @@
 | | |
 |---|---|
 | Tổng tín chỉ tốt nghiệp | ❓ |
-| Nguồn | ❓ chưa có |
-| Cập nhật lần cuối | 2026-09-18 |
+| Nguồn | ❓ chưa có chương trình khung; danh sách HK1 2026–2027 do người dùng cung cấp ngày 2026-09-25 |
+| Cập nhật lần cuối | 2026-09-25 |
 
 ---
 
 ## Mục lục
 
-- [❓ CẦN XÁC MINH — file này đang rỗng](#-cần-xác-minh--file-này-đang-rỗng)
+- [❓ CẦN XÁC MINH — chưa có chương trình khung](#-cần-xác-minh--chưa-có-chương-trình-khung)
 - [Ký hiệu trạng thái](#ký-hiệu-trạng-thái)
+- [Học phần HK1 2026–2027 — chờ đối chiếu chương trình khung](#học-phần-hk1-20262027--chờ-đối-chiếu-chương-trình-khung)
 - [Khối giáo dục đại cương (❓ TC)](#khối-giáo-dục-đại-cương--tc)
 - [Khối cơ sở ngành (❓ TC)](#khối-cơ-sở-ngành--tc)
 - [Khối chuyên ngành (❓ TC)](#khối-chuyên-ngành--tc)
@@ -23,7 +24,7 @@
 
 ---
 
-## ❓ CẦN XÁC MINH — file này đang rỗng
+## ❓ CẦN XÁC MINH — chưa có chương trình khung
 
 Để đổ đầy bảng bên dưới, cần một trong các thứ sau:
 
@@ -37,7 +38,28 @@ Có bất kỳ thứ nào ở trên, đưa vào đây và bảo AI *"đổ chư�
 
 ## Ký hiệu trạng thái
 
-`✅ đã qua` · `🔄 đang học` · `⬜ chưa học` · `❌ rớt, cần học lại` · `➖ được miễn`
+`✅ đã qua` · `🔄 đang học` · `⬜ chưa học / sắp học` · `❌ rớt, cần học lại` · `➖ được miễn`
+
+Chỉ dùng `➖ được miễn` khi đã có xác nhận; **đã đăng ký chuyển điểm** chưa xác nhận kết quả.
+
+---
+
+## Học phần HK1 2026–2027 — chờ đối chiếu chương trình khung
+
+**Nguồn:** [danh sách người dùng cung cấp ngày 2026-09-25](../semesters/2026-2027-S1/README.md).
+Đã có mã môn, tên và tín chỉ; **khối kiến thức và tiên quyết chưa được xác nhận**, nên chưa xếp
+các môn này vào các khối bên dưới. Bảng này theo dõi kế hoạch cá nhân, không thay thế chương trình khung.
+
+| Mã | Tên môn | TC | Tiên quyết | Kỳ dự kiến | Trạng thái |
+|---|---|---:|---|---|---|
+| IE221 | Kỹ thuật lập trình Python | 4 | ❓ | 2026-2027-S1 | ⬜ sắp học |
+| SS009 | Chủ nghĩa xã hội khoa học | 2 | ❓ | 2026-2027-S1 | ⬜ sắp học |
+| IE104 | Internet và công nghệ Web | 4 | ❓ | 2026-2027-S1 | ⬜ sắp học |
+| IE106 | Thiết kế giao diện người dùng | 4 | ❓ | 2026-2027-S1 | ⬜ sắp học |
+| SS008 | Kinh tế chính trị Mác – Lênin | 2 | ❓ | Không xếp học HK1 2026–2027 | Đã đăng ký chuyển điểm; ❓ kết quả |
+
+**Tổng sẽ học: 14 TC / 4 môn.** SS008 (2 TC) đã loại khỏi kế hoạch theo yêu cầu của người dùng;
+chưa ghi là đã qua hoặc được miễn và chưa cộng vào tín chỉ tích luỹ.
 
 ---
 

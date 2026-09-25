@@ -30,6 +30,7 @@ Repo này là nơi mọi thứ liên quan tới việc học đi qua: bài giả
 | Có skill nào, gọi thế nào | [`SKILLS.md`](SKILLS.md) |
 | Tuần này phải nộp gì | [`admin/deadlines.md`](admin/deadlines.md) |
 | Học kỳ này có môn gì | [`semesters/2025-2026-S3/README.md`](semesters/2025-2026-S3/README.md) |
+| Học kỳ tiếp theo — HK1 2026–2027, 4 môn / 14 TC | [`semesters/2026-2027-S1/README.md`](semesters/2026-2027-S1/README.md) |
 | Môn này thi phần nào | `semesters/<kỳ>/<môn>/IMPORTANT_NOTES.md` |
 | Còn bao nhiêu tín chỉ nữa ra trường | [`program/README.md`](program/README.md) |
 | Chọn chuyên ngành nào | [`program/specialization/README.md`](program/specialization/README.md) |
@@ -60,7 +61,9 @@ scientia-academica/
 ├── SKILLS.md                  # Danh mục skill — tra nhanh skill nào làm gì
 ├── program/                   # Chương trình đào tạo · chuyên ngành · đồ án tốt nghiệp
 ├── admin/                     # Lịch học, deadline, hồ sơ
-├── semesters/2025-2026-S3/    # Học kỳ hiện tại — 4 môn
+├── semesters/
+│   ├── 2025-2026-S3/          # Học kỳ hiện tại — 4 môn
+│   └── 2026-2027-S1/          # Học kỳ tiếp theo — 4 môn, 14 TC; SS008 chuyển điểm chờ xác nhận
 ├── knowledge-base/            # Khái niệm dùng chung, sống lâu hơn học kỳ
 ├── templates/                 # Khuôn mẫu AI dùng khi tạo file mới
 ├── scripts/                   # Script tự động hoá

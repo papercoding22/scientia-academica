@@ -46,6 +46,13 @@ vì sau một năm không ai nhớ mình có thích môn đó hay không.
 | IE103 Quản lý thông tin | HK3 25-26 | 🔄 đang học | | |
 | IE105 Bảo đảm & an ninh TT | HK3 25-26 | 🔄 đang học | | |
 | IT007 Hệ điều hành | HK3 25-26 | 🔄 đang học | | |
+| [IE221 Kỹ thuật lập trình Python](../../semesters/2026-2027-S1/IE221-python-programming/README.md) | HK1 26-27 | ⬜ sắp học | ❓ | Chưa có cảm nhận |
+| [SS009 Chủ nghĩa xã hội khoa học](../../semesters/2026-2027-S1/SS009-scientific-socialism/README.md) | HK1 26-27 | ⬜ sắp học | ❓ | Chưa có cảm nhận |
+| [IE104 Internet và công nghệ Web](../../semesters/2026-2027-S1/IE104-internet-web-technologies/README.md) | HK1 26-27 | ⬜ sắp học | ❓ | Chưa có cảm nhận |
+| [IE106 Thiết kế giao diện người dùng](../../semesters/2026-2027-S1/IE106-user-interface-design/README.md) | HK1 26-27 | ⬜ sắp học | ❓ | Chưa có cảm nhận |
+
+> Môn sắp học theo danh sách người dùng ngày **2026-09-25**. SS008 đã loại khỏi kế hoạch học
+> do đăng ký chuyển điểm, nên không tạo dòng cảm nhận; kết quả chuyển điểm ❓ chưa xác nhận.
 
 ---
 

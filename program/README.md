@@ -6,6 +6,16 @@ Ngành Công nghệ Thông tin, hệ đào tạo từ xa, UIT · Khoá 2025 · M
 
 ---
 
+## Mục lục
+
+- [Tiến độ tốt nghiệp](#tiến-độ-tốt-nghiệp)
+- [Ba nguồn sự thật, không chồng lấn](#ba-nguồn-sự-thật-không-chồng-lấn)
+- [Định hướng](#định-hướng)
+- [Việc cần làm ở tầng này](#việc-cần-làm-ở-tầng-này)
+- [Nhịp bảo trì](#nhịp-bảo-trì)
+
+---
+
 ## Tiến độ tốt nghiệp
 
 | | Tín chỉ | Ghi chú |
@@ -13,6 +23,8 @@ Ngành Công nghệ Thông tin, hệ đào tạo từ xa, UIT · Khoá 2025 · M
 | Yêu cầu tốt nghiệp | ❓ | cần dữ liệu từ `curriculum.md` |
 | Đã tích luỹ | ❓ | từ `transcript.md` |
 | Đang học (HK3 2025–2026) | ❓ | 4 môn |
+| Sắp học (HK1 2026–2027) | **14** | [4 môn](../semesters/2026-2027-S1/README.md), chưa tính vào tích luỹ |
+| Đã đăng ký chuyển điểm SS008 | **2** | ❓ chưa xác nhận kết quả; chưa tính vào tích luỹ |
 | Còn lại | ❓ | |
 
 ```
@@ -21,6 +33,7 @@ Ngành Công nghệ Thông tin, hệ đào tạo từ xa, UIT · Khoá 2025 · M
 
 > ❓ **CẦN XÁC MINH:** Chưa có chương trình đào tạo chính thức của trường.
 > Xem [`curriculum.md`](curriculum.md) để biết cần bổ sung gì.
+> Kế hoạch HK1 và thông tin đăng ký chuyển điểm: người dùng cung cấp ngày **2026-09-25**.
 
 ---
 
@@ -50,6 +63,7 @@ Ngành Công nghệ Thông tin, hệ đào tạo từ xa, UIT · Khoá 2025 · M
 
 - [ ] Lấy chương trình đào tạo từ portal trường → đổ vào `curriculum.md`
 - [ ] Điền điểm các học kỳ đã qua (HK1, HK2 2025–2026) vào `transcript.md`
+- [ ] Cập nhật kết quả chuyển điểm SS008 khi có xác nhận từ nhà trường
 - [ ] Viết tiêu chí chọn chuyên ngành → `specialization/criteria.md`
 - [ ] Bắt đầu gom ý tưởng đồ án → `thesis/ideas/`
 
