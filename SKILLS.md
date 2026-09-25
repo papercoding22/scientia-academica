@@ -15,6 +15,7 @@ Chi tiết từng skill ở `.claude/skills/<tên>/SKILL.md`.
 | [`study-tutor`](.claude/skills/study-tutor/SKILL.md) | Gia sư hỏi đáp nhiều lượt, cuối phiên đề xuất FAQ/flashcard | *kèm tôi chương 5 IT007* |
 | [`faq-answer`](.claude/skills/faq-answer/SKILL.md) | Trả lời nhanh, dồn câu hỏi vào `faqs-<chương>.md` | *tập trung chương 3, trả lời nhanh* |
 | [`add-note-image`](.claude/skills/add-note-image/SKILL.md) | Chèn ảnh có sẵn vào đúng mục của ghi chú, giữ ảnh gốc và tránh trùng | *thêm hình bounded waiting vào L05 IT007* |
+| [`illustrate-concept`](.claude/skills/illustrate-concept/SKILL.md) | Tạo hình giải thích khái niệm, kiểm tra nội dung rồi chèn vào đúng mục của note | *tạo hình address binding và thêm vào L08 IT007* |
 | [`new-assignment`](.claude/skills/new-assignment/SKILL.md) | Dựng `aN/` · `labN/`, trích đề từ transcript, ghi hạn nộp | *thầy giao bài tập 8 IE105* |
 | [`new-project`](.claude/skills/new-project/SKILL.md) | Dựng `projects/prjN/`, trích đề + tiêu chí chấm + các mốc, nối deadlines và Notion | *thầy giao đồ án nhóm IE101* |
 | [`assignment-guide`](.claude/skills/assignment-guide/SKILL.md) | Sinh `GUIDE.md` — phương pháp + tiêu chí chấm, không có lời giải | *bài tập 5 IE105 làm thế nào* |
@@ -53,6 +54,7 @@ flowchart LR
 | Sau mỗi buổi | `new-lecture` | `lectures/` · `IMPORTANT_NOTES.md` · `admin/deadlines.md` · `exam-prep/` |
 | Học lại, hỏi đáp | `study-tutor` · `faq-answer` | `exam-prep/faqs-*.md` · flashcard (sau khi duyệt) |
 | Bổ sung ảnh minh họa | `add-note-image` | ghi chú liên quan · ảnh gốc hoặc `images/` phù hợp |
+| Tạo hình giải thích khái niệm | `illustrate-concept` | ghi chú liên quan · ảnh mới trong `images/` cạnh note |
 | Có bài tập / lab | `new-assignment` → `assignment-guide` | `assignments/<aN\|labN>/` · `admin/deadlines.md` |
 | Có đồ án | `new-project` → `notion-tasks` | `projects/prjN/` · `admin/deadlines.md` · Notion |
 | Ôn thi | `exam-map` · `exam-study-guide` · `exam-plan` | `exam-prep/` · Notion · Google Calendar (lịch `Work`) |
