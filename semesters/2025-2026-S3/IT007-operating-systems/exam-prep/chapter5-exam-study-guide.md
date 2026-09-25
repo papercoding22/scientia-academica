@@ -26,7 +26,7 @@
   - [2.5. Peterson thuộc nhóm nào — câu 7](#25-peterson-thuộc-nhóm-nào--câu-7)
   - [2.6. Bounded-buffer: ba yêu cầu độc lập — câu 9](#26-bounded-buffer-ba-yêu-cầu-độc-lập--câu-9)
   - [2.7. Liveness — câu 23a](#27-liveness--câu-23a)
-- [3. Đáp án và hướng dẫn từng câu trong đề](#3-đáp-án-và-hướng-dẫn-từng-câu-trong-đề)
+- [3. Hướng dẫn từng câu trong đề](#3-hướng-dẫn-từng-câu-trong-đề)
   - [Câu 1 — Thao tác xin sử dụng tài nguyên](#câu-1--thao-tác-xin-sử-dụng-tài-nguyên)
   - [Câu 2 — Nhận diện bounded waiting](#câu-2--nhận-diện-bounded-waiting)
   - [Câu 4 — Tìm phát biểu SAI về semaphore](#câu-4--tìm-phát-biểu-sai-về-semaphore)
