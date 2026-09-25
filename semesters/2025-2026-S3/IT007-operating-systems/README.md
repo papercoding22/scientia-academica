@@ -99,4 +99,4 @@ Môn lõi của CS: process và thread, định thời CPU (CPU scheduling), đ�
 | [`projects/`](projects/) | Đồ án — mỗi đồ án một thư mục `prj1`… |
 | [`research/`](research/) | Tự đào sâu ngoài syllabus |
 | [`code/`](code/) | Lab, thử nghiệm nhanh |
-| [`exam-prep/`](exam-prep/) | Flashcard, cheatsheet, [map đề thi + blueprint](exam-prep/exam-map.md), [ôn Chương 5 và hướng dẫn từng câu](exam-prep/chapter5-exam-study-guide.md) |
+| [`exam-prep/`](exam-prep/) | Flashcard, cheatsheet, [map đề thi + blueprint](exam-prep/exam-map.md), [ôn Chương 5 và hướng dẫn từng câu](exam-prep/chapter5-exam-study-guide.md), [ôn Chương 7 và hướng dẫn từng câu](exam-prep/chapter7-exam-study-guide.md) |
