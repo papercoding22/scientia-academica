@@ -919,6 +919,14 @@ T2:          acquire ✗ → block() (ngủ) ───┴─▶ acquire ✓ ─�
 CPU:   T1 chạy        T2 KHÔNG tốn CPU       T2 chạy tiếp
 ```
 
+**Hình minh hoạ mutex locks** — người dùng bổ sung, ngoài slide:
+
+![Mutex locks: hai thread dùng chung một khóa để lần lượt đọc, trừ và ghi số dư, cho kết quả 1000 → 900 → 800](_raw/mutex-locks.png)
+
+*Đọc hình:* A và B dùng **cùng một mutex**, giữ khóa suốt thao tác **đọc → trừ → ghi**.
+Sau khi A `unlock()`, B chỉ được vào CS khi `lock()` thành công; **được đánh thức chưa
+đồng nghĩa đã giữ khóa**. Ví dụ trong hình cho số dư đúng **800** sau hai lần rút 100.
+
 #### 💻 Code & thực tế
 
 Cùng file [`race-condition.c`](../code/L05/race-condition.c), bật `-DUSE_MUTEX`:
