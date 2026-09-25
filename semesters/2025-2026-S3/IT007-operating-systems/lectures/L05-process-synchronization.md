@@ -159,6 +159,14 @@ chạy, khác kết quả** — đó là dấu hiệu nhận biết race conditi
 là hai tiến trình cùng `fork()` và cùng lấy `next_available_pid`, dẫn đến một PID bị cấp
 cho hai tiến trình con [C5-1 s13].
 
+**Hình minh hoạ race condition** — người dùng bổ sung, ngoài slide:
+
+![Race condition khi hai thread cùng rút tiền: mất cập nhật cho số dư 900 thay vì 800; dùng chung mutex để bảo vệ thao tác đọc–sửa–ghi](_raw/Race-Condition.png)
+
+*Đọc hình:* hai thread cùng đọc số dư **1000**, mỗi thread trừ **100** rồi ghi **900**,
+làm mất một lần cập nhật. Khi cả hai dùng **cùng một mutex** bảo vệ toàn bộ thao tác
+**đọc → tính → ghi**, thread sau đọc số dư đã cập nhật nên kết quả đúng là **800**.
+
 > 💬 *Bổ sung từ phiên gia sư 2026-09-23*
 >
 > **Đọc bảng T1–T6 như chuyện "bảng trắng + giấy nháp".** CPU không sửa thẳng con số
