@@ -90,6 +90,10 @@ Mutex: lấy quyền cập nhật lịch sử
 Cập nhật React state bằng functional updater
 ```
 
+![Semaphore cho phép B và C upload trong khi D chờ suất; A đã trả suất upload và giữ mutex để đọc, sửa, ghi lịch sử.](images/mutex-semaphore-upload-flow.png)
+
+*Hình minh họa tự dựng ngoài slide: một trạng thái có thể xảy ra khi các tác vụ xen kẽ. A trả suất semaphore trước khi lấy mutex, nên việc ghi lịch sử của A không ngăn B và C upload. [Bản SVG để chỉnh sửa hoặc phóng lớn](images/mutex-semaphore-upload-flow.svg).*
+
 ## 4. Định nghĩa và mối quan hệ
 
 **Mutex** viết tắt từ **MUTual EXclusion**: bảo vệ quyền truy cập độc quyền vào critical section (đoạn code cần bảo vệ). Mutex theo mô hình OS có ownership: thread giữ khóa phải trả khóa. L05 mục 6 trình bày thao tác `acquire()`/`release()` và yêu cầu tính atomic (nguyên tử). [C5-2 s7–s13]
