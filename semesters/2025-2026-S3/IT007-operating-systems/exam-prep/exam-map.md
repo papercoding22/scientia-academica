@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| Đề đã phân tích | [`Final-Exam-Sample.pdf`](../Final-Exam-Sample.pdf) — Đề thi cuối kỳ, mã đề 01, 6 trang |
+| Đề đã phân tích | [`Final-Exam-Sample.pdf`](Final-Exam-Sample.pdf) — Đề thi cuối kỳ, mã đề 01, 6 trang |
 | Nguồn gốc đề | ❓ Trường/khoa bỏ trống, không ghi giảng viên ra đề — xem [Cần xác minh](#3-cần-xác-minh) |
 | Cập nhật | 2026-09-23 |
 | Sinh bởi | skill `exam-map` |
