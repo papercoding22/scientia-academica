@@ -7,10 +7,10 @@
 | Phạm vi | Câu **3, 13, 14, 15, 16, 18, 20, 21a, 21b, 23c, 23d** |
 | Điểm trong đề này | 7 câu trắc nghiệm × 0,3 + 4 ý tự luận × 0,5 = **4,1/10 điểm** |
 | Cập nhật | 2026-09-25 |
-| Cách dùng | Đọc mục 2 → tự làm đề → dùng mục 3 kiểm tra suy luận → luyện lại mục cuối |
+| Cách dùng | Đọc mục 2 → tự làm đề → đối chiếu đáp án và giải thích ở mục 3 → luyện lại mục cuối |
 | Liên quan | [Lecture L08](../lectures/L08-memory-management.md) · [Map toàn đề](exam-map.md) · [Guide Chương 5](chapter5-exam-study-guide.md) |
 
-> **Phạm vi nguồn:** chắt lọc từ **một đề mẫu**, đối chiếu slide Chương 7. Trường/khoa trên đề để trống, chưa xác nhận người ra đề; trang 6 là bảng trả lời trống, **không có đáp án chính thức**. Guide hướng dẫn cách làm để bạn tự chọn/điền kết quả. Tỷ trọng này không cam kết phạm vi đề thi thật.
+> **Phạm vi nguồn:** chắt lọc từ **một đề mẫu**, đối chiếu slide Chương 7. Trường/khoa trên đề để trống, chưa xác nhận người ra đề; trang 6 là bảng trả lời trống, **không có đáp án chính thức**. Mỗi câu trong guide có **đáp án suy luận kèm giải thích**, đối chiếu với đề và slide. Tỷ trọng này không cam kết phạm vi đề thi thật.
 >
 > `[Đề tr5, C21a]` = trang 5, câu 21a; `[C7 s44]` = **trang PDF thứ 44, tính từ 1** của slide C7. Các analogy, ví dụ nhỏ và TypeScript dưới đây là minh họa tự dựng, không phải lời giảng viên. L08 không có transcript hoặc ngày học; ngày trên là ngày cập nhật guide.
 
@@ -26,7 +26,7 @@
   - [2.4. Placement và first-fit — câu 13](#24-placement-và-first-fit--câu-13)
   - [2.5. Paging: đổi địa chỉ, đếm bit và kích thước bảng — câu 20, 21a, 21b](#25-paging-đổi-địa-chỉ-đếm-bit-và-kích-thước-bảng--câu-20-21a-21b)
   - [2.6. TLB và effective access time — câu 3](#26-tlb-và-effective-access-time--câu-3)
-- [3. Hướng dẫn từng câu trong đề](#3-hướng-dẫn-từng-câu-trong-đề)
+- [3. Đáp án và hướng dẫn từng câu trong đề](#3-đáp-án-và-hướng-dẫn-từng-câu-trong-đề)
   - [Câu 3 — Tìm thời gian tra TLB](#câu-3--tìm-thời-gian-tra-tlb)
   - [Câu 13 — First-fit trên các partition cố định](#câu-13--first-fit-trên-các-partition-cố-định)
   - [Câu 14 — Nhận diện loại fragmentation](#câu-14--nhận-diện-loại-fragmentation)
@@ -250,9 +250,9 @@ Slide s53 gọi các nhánh là “thời gian cần thiết để có được 
 | `α = 0`, luôn miss | `ε + 2x` |
 | `0 ≤ α ≤ 1` | Nằm giữa hai giá trị trên |
 
-## 3. Hướng dẫn từng câu trong đề
+## 3. Đáp án và hướng dẫn từng câu trong đề
 
-Các câu dưới giữ dữ kiện và nhãn phương án của mã đề 01. Phần diễn đạt được rút gọn khi không ảnh hưởng yêu cầu. Bạn tự ghi lựa chọn/kết quả ở mục 7 sau khi làm; không có bảng đáp án chọn sẵn.
+Các câu dưới giữ dữ kiện và nhãn phương án của mã đề 01. Phần diễn đạt được rút gọn khi không ảnh hưởng yêu cầu. Mỗi câu có **đáp án suy luận kèm giải thích** ngay bên dưới đề/phương án. Bảng ở mục 7 dành cho bạn tự ghi lựa chọn/kết quả khi luyện lại.
 
 ### Câu 3 — Tìm thời gian tra TLB
 
@@ -262,12 +262,16 @@ Các câu dưới giữ dữ kiện và nhãn phương án của mã đề 01. P
 |---|---|---|---|
 | 30 ns | 22 ns | 152 ns | 320 ns |
 
+**Đáp án (suy luận): B — 22 ns.**
+
+**Giải thích:** `ε = 190 − (2 − 0,95) × 160 = 190 − 168 = 22 ns`. Thế lại: hit mất `182 ns`, miss mất `342 ns`; `0,95 × 182 + 0,05 × 342 = 190 ns`, khớp đề. [C7 s53]
+
 **Kiến thức:** mục 2.6; [C7 s53].
 
 1. Xác định điều chưa biết là thời gian lookup, không phải hit ratio.
 2. Viết hai nhánh `ε + 160` và `ε + 320`, gắn xác suất `0,95` và `0,05`.
 3. Lập `190 = 0,95(ε + 160) + 0,05(ε + 320)`.
-4. Thu gọn thành `ε = 190 − (2 − 0,95) × 160`, tự tính rồi đối chiếu phương án.
+4. Thu gọn: `ε = 190 − (2 − 0,95) × 160 = 22 ns`, chọn B.
 
 **Bẫy:** lấy `EAT − x` sẽ bỏ quên chi phí tra page table khi miss. Hit ratio là **0,95**, không phải 95; mọi thời gian đều tính bằng ns.
 
@@ -290,6 +294,10 @@ Các câu dưới giữ dữ kiện và nhãn phương án của mã đề 01. P
 |---|---|---|---|
 | Vùng 2 — 250 KB | Vùng 1 — 150 KB | Vùng 4 — 420 KB | Vùng 6 — 240 KB |
 
+**Đáp án (suy luận): A — Vùng 2, kích thước 250 KB.**
+
+**Giải thích:** First-fit duyệt từ đầu: vùng 1 trống nhưng `150 < 220 KB`, vùng 2 trống và `250 ≥ 220 KB`, nên dừng tại vùng 2. PC ở vùng 3 không đổi điểm bắt đầu của first-fit. Cấp trọn partition 250 KB cho P, dư `250 − 220 = 30 KB` internal fragmentation. [C7 s34, s39]
+
 **Kiến thức:** mục 2.4; [C7 s34, s39].
 
 1. Gạch chân **first-fit**: bắt đầu duyệt ở vùng 1, không bắt đầu tại PC.
@@ -297,10 +305,10 @@ Các câu dưới giữ dữ kiện và nhãn phương án của mã đề 01. P
 3. Dừng ngay khi gặp vùng đầu tiên thỏa cả hai điều kiện; không tìm tiếp vùng vừa khít hơn.
 4. Sau khi chọn, đánh dấu **cả partition** đã cấp cho P. Tính phần dư bằng `kích thước partition − 220 KB` nếu muốn tự kiểm tra internal fragmentation.
 
-| Bước tự điền | Trống? | Đủ 220 KB? | Hành động |
+| Bước duyệt | Trống? | Đủ 220 KB? | Hành động |
 |---|---|---|---|
-| Xét vùng 1 | Có | Tự so sánh | Dừng hoặc sang vùng kế |
-| Xét vùng tiếp theo nếu cần | Đọc trạng thái ban đầu | Tự so sánh | Gặp vùng phù hợp đầu tiên thì dừng |
+| Xét vùng 1 — 150 KB | Có | Không | Bỏ qua, sang vùng 2 |
+| Xét vùng 2 — 250 KB | Có | Có | Cấp trọn vùng 2 cho P và dừng |
 
 **Bẫy:** PC gợi next-fit; “vừa khít nhất” gợi best-fit. Không coi phần dư của fixed partition là một hole mới. Chế độ `place` của script L08 trừ kích thước hole để mô phỏng cấp phát động, nên không dùng nguyên trạng cho trạng thái fixed partition sau câu này.
 
@@ -313,6 +321,10 @@ Các câu dưới giữ dữ kiện và nhãn phương án của mã đề 01. P
 | A | B | C | D |
 |---|---|---|---|
 | External fragmentation | Fixed partitioning | Internal fragmentation | Dynamic partitioning |
+
+**Đáp án (suy luận): A — External fragmentation.**
+
+**Giải thích:** Hai dấu hiệu “tổng dung lượng trống đủ” và “không liên tục” đúng định nghĩa external fragmentation. Internal fragmentation là phần dư bên trong vùng đã cấp; fixed/dynamic partitioning là cách quản lý bộ nhớ. [C7 s31]
 
 **Kiến thức:** mục 2.3; [C7 s31].
 
@@ -343,6 +355,10 @@ int main()
 |---|---|---|---|
 | Symbolic address | Physical address | Absolute address | Relocatable address |
 
+**Đáp án (suy luận): A — Symbolic address.**
+
+**Giải thích:** `a`, `b`, `c` là tên ký hiệu trong source code, chưa phải địa chỉ RAM cụ thể hay offset so với đầu module. Slide gọi cách biểu diễn này là symbolic address. Đáp án xét cách gọi tên, không dựa vào việc chạy đoạn code có biến chưa khởi tạo. [C7 s18]
+
 **Kiến thức:** mục 2.1; [C7 s18], phân loại ở [C7 s12].
 
 1. Xác định đề đang chỉ vào **tên trong source code**, chưa đưa địa chỉ RAM hoặc offset.
@@ -364,6 +380,10 @@ int main()
 | C | Phải biên dịch lại nếu thay đổi địa chỉ nạp chương trình |
 | D | Địa chỉ thực phải được tính toán vào thời điểm viết chương trình |
 
+**Đáp án (suy luận): C — Phải biên dịch lại nếu thay đổi địa chỉ nạp chương trình.**
+
+**Giải thích:** Compile-time binding gắn địa chỉ tuyệt đối vào mã dựa trên vị trí nạp đã biết. Đổi vị trí nạp làm các địa chỉ ấy không còn phù hợp, nên phải tạo lại mã bằng biên dịch. Chỉ reload theo địa chỉ nền mới là trường hợp load-time binding ở phương án A. [C7 s19]
+
 **Kiến thức:** mục 2.1; [C7 s19].
 
 1. Giả sử compiler đã tạo địa chỉ tuyệt đối dựa trên nền 1000.
@@ -381,6 +401,10 @@ int main()
 | A | B | C | D |
 |---|---|---|---|
 | Static linking | Dynamic loading | Static fragmentation | Dynamic linking |
+
+**Đáp án (suy luận): B — Dynamic loading.**
+
+**Giải thích:** Câu hỏi định nghĩa thời điểm nạp routine: chỉ đưa vào bộ nhớ khi được gọi. Dynamic linking nói về trì hoãn liên kết tới external module, dù quá trình đó có thể bao gồm bước nạp. [C7 s27; đối chiếu s24]
 
 **Kiến thức:** mục 2.2; [C7 s27], đối chiếu [C7 s24].
 
@@ -407,12 +431,16 @@ int main()
 |---|---|---|---|
 | 5606 | 9702 | 6144 | 1510 |
 
+**Đáp án (suy luận): A — 5606 (địa chỉ vật lý tính theo byte).**
+
+**Giải thích:** Theo quy ước `2 KB = 2048 byte`, `7654 = 3 × 2048 + 1510`: page `p = 3`, offset `d = 1510`. Bảng cho page 3 → frame 2, nên `physical = 2 × 2048 + 1510 = 5606`. Offset vẫn là 1510 và `4096 ≤ 5606 < 6144`, đúng phạm vi frame 2. [C7 s44–s45; Đề tr5, C20]
+
 **Kiến thức:** mục 2.5; [C7 s44–s45]. **Quy ước bài tính:** địa chỉ theo byte, `2 KB = 2 × 1024 = 2048 byte` (cách dùng KB nhị phân trong bài tập bộ nhớ; tương ứng 2 KiB), page và frame cùng kích thước.
 
-1. Tính `p = floor(7654 / 2048)` và `d = 7654 mod 2048`.
-2. Tìm **hàng có Page = p**, lấy Frame ở cùng hàng làm `f`.
-3. Tính `physical = f × 2048 + d`, rồi đối chiếu phương án.
-4. Kiểm tra địa chỉ nằm trong frame đó: `f × 2048 ≤ physical < (f + 1) × 2048`.
+1. Tách địa chỉ: `p = floor(7654 / 2048) = 3`, `d = 7654 mod 2048 = 1510`.
+2. Tra **Page = 3**, lấy **Frame = 2**, nên `f = 2`.
+3. Ghép `physical = 2 × 2048 + 1510 = 5606`, chọn A.
+4. Kiểm tra: `4096 ≤ 5606 < 6144`, đúng phạm vi frame 2.
 
 **Bẫy:** không đổi page number thành frame number bằng cộng/trừ cố định; phải tra bảng. Không lấy riêng offset làm physical address; cũng không bỏ offset và chỉ lấy địa chỉ đầu frame.
 
@@ -422,12 +450,16 @@ int main()
 
 **Đề:** không gian địa chỉ ảo có **256 page**, mỗi page **4096 byte**, ánh xạ vào bộ nhớ physical **64 frame**. Logical address gồm bao nhiêu bit? [Đề tr5, C21a]
 
+**Đáp án (suy luận): 20 bit.**
+
+**Giải thích:** `256 = 2^8` page cần 8 bit page number; `4096 = 2^12` byte/page cần 12 bit offset. Tổng là `8 + 12 = 20 bit`; kiểm tra `256 × 4096 = 1.048.576 = 2^20` địa chỉ byte. 64 frame thuộc không gian physical, không làm thay đổi kết quả logical. [C7 s44]
+
 **Kiến thức:** mục 2.5; [C7 s44].
 
-1. Viết `256 = 2^k` để tìm số bit page number.
-2. Viết `4096 = 2^n` để tìm số bit offset.
-3. Cộng `k + n`; ghi kết quả với đơn vị **bit**.
-4. Kiểm tra độc lập bằng `2^(k+n) = 256 × 4096` địa chỉ byte.
+1. `256 = 2^8` → page number cần **8 bit**.
+2. `4096 = 2^12` → offset cần **12 bit**.
+3. Cộng `8 + 12 = 20 bit`.
+4. Kiểm tra độc lập: `2^20 = 256 × 4096 = 1.048.576` địa chỉ byte, từ 0 đến 1.048.575.
 
 **Bẫy:** 64 frame thuộc phía physical, không thay 256 page khi tính logical address. Chỉ tính `log₂(4096)` sẽ mới có offset, chưa có page number. Số địa chỉ lớn nhất bằng tổng số byte **trừ 1**.
 
@@ -437,11 +469,15 @@ int main()
 
 **Đề:** dùng dữ kiện câu 21; mỗi entry trong page table cần **4 byte**. Bảng cần bao nhiêu byte? [Đề tr5, C21b]
 
+**Đáp án (suy luận): 1024 byte.**
+
+**Giải thích:** Bảng một cấp đầy đủ có một entry cho mỗi logical page: `256 × 4 = 1024 byte` (1 KiB). Số frame 64 không phải số entry của bảng này; kích thước 4 byte/entry đã được đề cho. [C7 s44; Đề tr5, C21b]
+
 **Kiến thức:** mục 2.5; [C7 s44]. Áp dụng mô hình bảng một cấp đầy đủ của bài, không tự thay bằng inverted page table (bảng trang nghịch đảo).
 
-1. Hỏi bảng được đánh chỉ số bằng **page** hay **frame**.
-2. Suy ra số entry từ số logical page.
-3. Lập `tableBytes = 256 entry × 4 byte/entry`, tự tính và ghi **byte**.
+1. Page table được đánh chỉ số bằng **logical page**.
+2. Có 256 logical page → **256 entry** trong mô hình bảng một cấp đầy đủ.
+3. Tính `tableBytes = 256 entry × 4 byte/entry = 1024 byte`.
 
 **Bẫy:** `64 × 4` là nhầm số frame với số entry. Không tự thay 4 byte bằng số bit tối thiểu để mã hóa frame number: đề đã quy định kích thước **toàn entry**.
 
@@ -450,6 +486,10 @@ int main()
 ### Câu 23c — Vị trí nhớ diễn tả trong chương trình
 
 **Đề:** “Một vị trí nhớ được diễn tả trong một chương trình được gọi là gì?” Trả lời **tiếng Anh, tối đa 2 từ**. [Đề tr5, C23c]
+
+**Đáp án (suy luận): `Logical address`.**
+
+**Giải thích:** Slide định nghĩa logical address là “một vị trí nhớ được diễn tả trong một chương trình”, khớp nguyên mô tả của đề. Ghi đúng hai từ tiếng Anh này; slide cũng nêu virtual address là tên đồng nghĩa, nhưng chưa có đáp án chính thức để xác nhận cách chấm từ đồng nghĩa. [C7 s12]
 
 **Kiến thức:** mục 2.1; [C7 s12].
 
@@ -464,6 +504,10 @@ int main()
 ### Câu 23d — Gom vùng trống bị phân mảnh ngoại
 
 **Đề:** cơ chế gom các vùng nhớ bị phân mảnh ngoại thành một vùng nhớ liên tục gọi là gì? Trả lời **tiếng Anh, tối đa 2 từ**. [Đề tr5, C23d]
+
+**Đáp án (suy luận): `Compaction`.**
+
+**Giải thích:** Compaction gom các vùng trống bị external fragmentation thành một vùng liên tục bằng cách sắp xếp lại vùng đang dùng khi có thể di chuyển. Nó không tạo thêm RAM và không xử lý phần dư bên trong các partition đã cấp. Ghi một từ tiếng Anh: `Compaction`. [C7 s31]
 
 **Kiến thức:** mục 2.3; [C7 s31].
 
@@ -531,7 +575,7 @@ Kết quả minh họa: `partitionIndex = 1` (partition thứ hai); `page = 1`, 
 
 **1. Tên biến `total`, vị trí “cách đầu module 12 byte” và một vị trí RAM cụ thể khác nhau ở đâu?**
 
-<details><summary>Đáp án</summary>
+<details><summary>Đáp án và giải thích</summary>
 
 Lần lượt là symbolic address, relocatable address và physical address trong mô hình slide. Chúng khác cách biểu diễn và giai đoạn đã biết vị trí. Nếu compile-time binding đã ghi địa chỉ tuyệt đối mà đổi địa chỉ nạp, phải biên dịch lại. [C7 s12, s18–s19]
 
@@ -539,7 +583,7 @@ Lần lượt là symbolic address, relocatable address và physical address tro
 
 **2. Vì sao “chỉ nạp khi được gọi” chưa đủ để nói mọi trường hợp ấy đều là dynamic linking?**
 
-<details><summary>Đáp án</summary>
+<details><summary>Đáp án và giải thích</summary>
 
 Mô tả đó định nghĩa dynamic loading. Dynamic linking nhấn mạnh việc trì hoãn liên kết tới external module. Trong triển khai hai việc có thể phối hợp, nhưng nhiệm vụ và định nghĩa khác nhau. [C7 s24, s27]
 
@@ -547,7 +591,7 @@ Mô tả đó định nghĩa dynamic loading. Dynamic linking nhấn mạnh vi�
 
 **3. Các partition cố định trống có kích thước 100, 300, 200 KB; cần 180 KB. First-fit chọn gì, phần dư thuộc loại nào? Compaction có xử lý phần dư đó không?**
 
-<details><summary>Đáp án</summary>
+<details><summary>Đáp án và giải thích</summary>
 
 Chọn partition 300 KB, vì đó là vùng đầu tiên đủ lớn. Phần dư 120 KB trong partition đã cấp là internal fragmentation. Compaction nhắm tới các hole rời nhau gây external fragmentation, không biến phần dư trong partition thành vùng cấp phát mới. [C7 s31, s34, s39]
 
@@ -555,7 +599,7 @@ Chọn partition 300 KB, vì đó là vùng đầu tiên đủ lớn. Phần dư
 
 **4. Với page size 16 byte và page 1 ở frame 4, logical address 21 dịch thế nào? Nếu có 8 page, entry 2 byte thì bảng trang có bao nhiêu byte?**
 
-<details><summary>Đáp án</summary>
+<details><summary>Đáp án và giải thích</summary>
 
 `21 = 1 × 16 + 5` → page 1, offset 5 → physical `4 × 16 + 5 = 69`. Offset vẫn 5. Bảng một cấp đầy đủ có 8 entry, tổng `8 × 2 = 16 byte`; không lấy số frame để đếm entry. [C7 s44–s45]
 
@@ -563,7 +607,7 @@ Chọn partition 300 KB, vì đó là vùng đầu tiên đủ lớn. Phần dư
 
 **5. Vì sao TLB miss mất hai lần RAM trong mô hình bài? Nếu hit ratio tăng, EAT thay đổi thế nào?**
 
-<details><summary>Đáp án</summary>
+<details><summary>Đáp án và giải thích</summary>
 
 Một lần đọc page table để lấy frame, một lần đọc dữ liệu; cộng lookup TLB. Với `x > 0` và `ε` giữ nguyên, `EAT = ε + (2 − α)x` giảm khi `α` tăng. Miss trong TLB không tự suy ra page fault hoặc cần đọc đĩa. [C7 s49, s51, s53]
 

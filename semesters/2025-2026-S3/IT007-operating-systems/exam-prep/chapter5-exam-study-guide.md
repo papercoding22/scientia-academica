@@ -6,10 +6,10 @@
 | Phạm vi | Câu **1, 2, 4, 5, 7, 9, 11, 17, 23a** — Chương 5: Process synchronization |
 | Điểm trong đề này | 8 câu trắc nghiệm × 0,3 + 1 ý tự luận × 0,5 = **2,9/10 điểm** |
 | Cập nhật | 2026-09-25 |
-| Cách dùng | Ôn mục 2 → tự làm đề → dùng mục 3 để kiểm tra cách suy luận → làm lại mục cuối |
+| Cách dùng | Ôn mục 2 → tự làm đề → đối chiếu đáp án và giải thích ở mục 3 → làm lại mục cuối |
 | Liên quan | [Map toàn đề](exam-map.md) · [Lecture L05](../lectures/L05-process-synchronization.md) · [Ví dụ React + TypeScript](../notes/mutex-semaphore-react-typescript.md) |
 
-> **Phạm vi nguồn:** đây là kiến thức chắt lọc từ **một đề mẫu**, đối chiếu ba bộ slide Chương 5. Trường/khoa trên đề để trống, chưa xác nhận người ra đề; PDF không kèm đáp án chính thức. Hướng dẫn bên dưới là suy luận từ đề và slide, không phải cam kết phạm vi thi thật. Các ví dụ đời thường và TypeScript là minh họa tự dựng ngoài slide.
+> **Phạm vi nguồn:** đây là kiến thức chắt lọc từ **một đề mẫu**, đối chiếu ba bộ slide Chương 5. Trường/khoa trên đề để trống, chưa xác nhận người ra đề; PDF không kèm đáp án chính thức. Đáp án và hướng dẫn bên dưới là suy luận từ đề và slide, không phải cam kết phạm vi thi thật. Các ví dụ đời thường và TypeScript là minh họa tự dựng ngoài slide.
 >
 > **Cách dẫn nguồn:** `[Đề tr2, C9]` = trang 2, câu 9 của đề; `[C5-2 s16]` = slide/trang PDF thứ 16 của bộ C5-2. Tra file ở mục Nguồn.
 
@@ -26,7 +26,7 @@
   - [2.5. Peterson thuộc nhóm nào — câu 7](#25-peterson-thuộc-nhóm-nào--câu-7)
   - [2.6. Bounded-buffer: ba yêu cầu độc lập — câu 9](#26-bounded-buffer-ba-yêu-cầu-độc-lập--câu-9)
   - [2.7. Liveness — câu 23a](#27-liveness--câu-23a)
-- [3. Hướng dẫn từng câu trong đề](#3-hướng-dẫn-từng-câu-trong-đề)
+- [3. Đáp án và hướng dẫn từng câu trong đề](#3-đáp-án-và-hướng-dẫn-từng-câu-trong-đề)
   - [Câu 1 — Thao tác xin sử dụng tài nguyên](#câu-1--thao-tác-xin-sử-dụng-tài-nguyên)
   - [Câu 2 — Nhận diện bounded waiting](#câu-2--nhận-diện-bounded-waiting)
   - [Câu 4 — Tìm phát biểu SAI về semaphore](#câu-4--tìm-phát-biểu-sai-về-semaphore)
@@ -235,9 +235,9 @@ Consumer: wait(full)  → wait(mutex) → lấy  + count-- → signal(mutex) →
 
 Deadlock và starvation được minh họa ở [C5-2 s53]. Đừng hiểu liveness là “mọi tiến trình luôn luôn ở trạng thái running”; chờ hữu hạn một sự kiện bình thường không tự chứng minh có lỗi liveness.
 
-## 3. Hướng dẫn từng câu trong đề
+## 3. Đáp án và hướng dẫn từng câu trong đề
 
-Các phương án dưới đây được **rút gọn** để tập trung vào logic, giữ nguyên nhãn A/B/C/D. Mở PDF theo trang ghi ở mỗi câu để đọc nguyên văn. Mỗi phần hướng dẫn giúp bạn tự chọn và giải thích phương án; cuối file có bảng để tự ghi lựa chọn.
+Các phương án dưới đây được **rút gọn** để tập trung vào logic, giữ nguyên nhãn A/B/C/D. Mở PDF theo trang ghi ở mỗi câu để đọc nguyên văn. Mỗi câu có **đáp án suy luận kèm giải thích** ngay bên dưới đề/phương án; cuối file giữ bảng để tự ghi lựa chọn khi luyện lại.
 
 ### Câu 1 — Thao tác xin sử dụng tài nguyên
 
@@ -246,6 +246,10 @@ Các phương án dưới đây được **rút gọn** để tập trung vào l
 | A | B | C | D |
 |---|---|---|---|
 | `signal(S)` | `wait(S)` | `return(S)` | `allocate(S)` |
+
+**Đáp án (suy luận): B — `wait(S)`.**
+
+**Giải thích:** `wait(S)` xin một suất tài nguyên; khi lấy được suất thì số suất khả dụng giảm 1. `signal(S)` trả/bổ sung suất; `return` và `allocate` không phải cặp primitive của semaphore trong slide. [C5-2 s15–s16]
 
 **Cách làm:**
 
@@ -268,6 +272,10 @@ Các phương án dưới đây được **rút gọn** để tập trung vào l
 
 Phương án: **A = (1), B = (2), C = (3), D = (4)**.
 
+**Đáp án (suy luận): D — Phát biểu (4), bounded waiting.**
+
+**Giải thích:** (4) giới hạn việc chờ của từng tiến trình. (1) là mutual exclusion; (3) là progress; (2) mô tả cách chờ bằng nhường CPU, không phải định nghĩa bounded waiting. [C5-1 s21, s25]
+
 **Cách làm:**
 
 1. Viết ba câu hỏi cạnh giấy: “có cùng vào không?”, “CS trống có bị cản không?”, “có ai chờ mãi không?”.
@@ -288,6 +296,10 @@ Phương án: **A = (1), B = (2), C = (3), D = (4)**.
 | B | Binary semaphore nhận 0/1, thường dùng như mutex |
 | C | `sem_wait()` luôn tăng giá trị semaphore lên 1 |
 | D | Counting semaphore giới hạn số process truy cập đồng thời tài nguyên |
+
+**Đáp án (suy luận): C — “`sem_wait()` luôn tăng giá trị semaphore lên 1” là phát biểu SAI.**
+
+**Giải thích:** Thao tác xin suất tiêu thụ một suất khi thành công; thao tác trả/bổ sung suất mới làm tăng giá trị. A, B và D phù hợp ý nghĩa đồng bộ và phân loại semaphore trong mô hình đề. [C5-2 s15–s16, s26]
 
 **Cách làm:**
 
@@ -311,6 +323,10 @@ Phương án: **A = (1), B = (2), C = (3), D = (4)**.
 | C | Khởi tạo khi khóa mở; thực thi khi khóa bị giữ |
 | D | Ngủ khi khóa bị giữ; đánh thức khi khóa mở |
 
+**Đáp án (suy luận): D — Ngủ khi khóa bị giữ; đánh thức khi khóa mở.**
+
+**Giải thích:** Tiến trình chưa lấy được khóa được block để không lặp kiểm tra và tiêu tốn CPU. Khi khóa được trả, wakeup đưa tiến trình chờ về hàng đợi ready; scheduler quyết định khi nào nó chạy. A đảo ngược điều kiện; B/C nói về khởi tạo nên không giải quyết việc chờ khóa. [C5-2 s10]
+
 **Cách làm:**
 
 1. Xác định tiến trình đang xét là **người xin khóa nhưng chưa lấy được**, không phải người đang giữ khóa.
@@ -329,6 +345,10 @@ Phương án: **A = (1), B = (2), C = (3), D = (4)**.
 | A | B | C | D |
 |---|---|---|---|
 | Phần mềm | Hỗn hợp | Phần cứng | Sleep & Wake up |
+
+**Đáp án (suy luận): A — Giải pháp phần mềm.**
+
+**Giải thích:** Slide xếp Peterson cùng Bakery và Dekker vào nhóm giải pháp phần mềm; Test & Set và Compare & Swap thuộc nhóm dựa trên phần cứng. Đây là phân loại thuật toán trong giáo trình, với các giả thiết về thao tác bộ nhớ của mô hình. [C5-1 s27]
 
 **Cách làm:**
 
@@ -358,6 +378,10 @@ signal(full);                signal(empty);
 | B | Busy waiting vẫn có thể xuất hiện |
 | C | Lời giải đáp ứng đầy đủ yêu cầu |
 | D | Bỏ qua CS nên không bảo đảm mutual exclusion |
+
+**Đáp án (suy luận): D — Bỏ qua critical section nên không bảo đảm mutual exclusion.**
+
+**Giải thích:** `empty` và `full` kiểm soát chỗ trống/phần tử có sẵn, nhưng không ngăn hai phía đồng thời cập nhật `count`. Với `empty = full = 5`, cả hai đều có thể qua `wait`; lịch bên dưới cho kết quả 4 thay vì 5. Đây đúng lỗi “Bỏ qua vùng tranh chấp” ở slide. B phụ thuộc cách hiện thực semaphore, còn thiếu bảo vệ CS là lỗi thấy trực tiếp trong code, nên D là lựa chọn phù hợp nhất. [C5-3 s8–s9, s13]
 
 **Cách làm:**
 
@@ -394,6 +418,10 @@ Sau một lần thêm và một lần lấy, giá trị đúng phải là 5. Dù
 | C | Chỉ biến global mới bảo đảm dữ liệu nhất quán |
 | D | Để mọi thread trong process truy cập và dùng chung mutex |
 
+**Đáp án (suy luận): D — Để mọi thread trong process truy cập và dùng chung mutex.**
+
+**Giải thích:** Các thread phải tranh cùng một đối tượng khóa để loại trừ nhau. Khai báo global là cách chia sẻ trong ví dụ của slide; vị trí khai báo tự nó không bảo đảm dữ liệu nhất quán và không làm mutex tự được chia sẻ giữa mọi process con. [C5-2 s13]
+
 **Cách làm:**
 
 1. Khoanh đúng đối tượng trong đề: **thread trong cùng một process**.
@@ -415,6 +443,10 @@ Sau một lần thêm và một lần lấy, giá trị đúng phải là 5. Dù
 |---|---|---|---|
 | Critical section | Mutual exclusion | Race condition | Data inconsistency |
 
+**Đáp án (suy luận): C — Race condition.**
+
+**Giải thích:** Theo định nghĩa đầy đủ của slide, các tiến trình truy cập dữ liệu chia sẻ và kết quả phụ thuộc thứ tự thực thi. Critical section là đoạn code cần bảo vệ, mutual exclusion là thuộc tính bảo vệ, data inconsistency là hậu quả có thể xảy ra. Vì câu hỏi rút gọn, cần giữ điều kiện phụ thuộc thứ tự khi giải thích. [C5-1 s15]
+
 **Cách làm:**
 
 1. Gạch chân **hiện tượng**, **đồng thời**, **dữ liệu chia sẻ**.
@@ -428,6 +460,10 @@ Sau một lần thêm và một lần lấy, giá trị đúng phải là 5. Dù
 ### Câu 23a — Điền thuật ngữ tiếng Anh
 
 **Đề hỏi:** thuật ngữ chỉ “một tập các đặc điểm mà hệ thống phải thỏa mãn để bảo đảm tiến trình thực sự chạy”. Trả lời bằng tiếng Anh, **tối đa 2 từ**. `[Đề tr5, C23a]`
+
+**Đáp án (suy luận): `Liveness`.**
+
+**Giải thích:** Đây là thuật ngữ khớp mô tả “tập các đặc điểm ... bảo đảm tiến trình thực sự chạy” trong slide. Deadlock và starvation là các tình trạng làm liveness thất bại, không phải tên thuộc tính cần điền. Ghi một từ tiếng Anh: `Liveness`. [C5-2 s51–s52]
 
 **Cách làm:**
 
@@ -498,7 +534,7 @@ Nếu chỉ cần tăng React state, functional updater như `setCount(previous 
 
 **1.** Một chương trình luôn cấm mọi tác vụ vào CS có thỏa mutual exclusion không? Vì sao vẫn là lời giải không dùng được?
 
-<details><summary>Gợi ý đối chiếu</summary>
+<details><summary>Đáp án và giải thích</summary>
 
 Nó tránh hai tác vụ cùng vào nên thỏa riêng mutual exclusion, nhưng không cho công việc tiến triển. Khi có yêu cầu hợp lệ mà không ai được vào, lời giải không bảo đảm progress/liveness.
 
@@ -506,7 +542,7 @@ Nó tránh hai tác vụ cùng vào nên thỏa riêng mutual exclusion, nhưng 
 
 **2.** Semaphore khởi tạo 2, hai tác vụ đã lấy hết suất. Tác vụ thứ ba gọi xin suất thì sao? Ai có thể giúp nó đi tiếp?
 
-<details><summary>Gợi ý đối chiếu</summary>
+<details><summary>Đáp án và giải thích</summary>
 
 Tác vụ thứ ba chờ. Một suất được trả/bổ sung bởi thao tác signal phù hợp cho phép tác vụ chờ có thể lấy suất. Cách chờ là spin hay block phụ thuộc hiện thực semaphore.
 
@@ -514,7 +550,7 @@ Tác vụ thứ ba chờ. Một suất được trả/bổ sung bởi thao tác 
 
 **3.** Bị đánh thức sau khi chờ mutex có đồng nghĩa chạy ngay trên CPU không?
 
-<details><summary>Gợi ý đối chiếu</summary>
+<details><summary>Đáp án và giải thích</summary>
 
 Không. Theo mô hình slide, wakeup đưa tác vụ về hàng đợi ready; scheduler quyết định khi nào nó chạy. Cơ chế khóa quyết định khi nào nó được vào CS.
 
@@ -522,7 +558,7 @@ Không. Theo mô hình slide, wakeup đưa tác vụ về hàng đợi ready; sc
 
 **4.** Hai hàm cùng sửa một store, mỗi hàm tự tạo một mutex. Vì sao vẫn sai?
 
-<details><summary>Gợi ý đối chiếu</summary>
+<details><summary>Đáp án và giải thích</summary>
 
 Hai khóa độc lập không loại trừ nhau. Phải dùng chung cùng đối tượng mutex và bảo vệ đủ chuỗi thao tác liên quan; chỉ khóa bước ghi vẫn có thể giữ lại snapshot cũ.
 
@@ -530,7 +566,7 @@ Hai khóa độc lập không loại trừ nhau. Phải dùng chung cùng đối
 
 **5.** Trong bounded-buffer, vì sao không dùng riêng `empty` và `full` để bảo vệ `count`?
 
-<details><summary>Gợi ý đối chiếu</summary>
+<details><summary>Đáp án và giải thích</summary>
 
 Hai semaphore quản lý hai loại suất. Khi buffer vừa có hàng vừa còn chỗ trống, Producer và Consumer đều có thể đi tiếp. Cần thêm bảo vệ CS chung để chuỗi cập nhật buffer/`count` không bị xen kẽ sai.
 
