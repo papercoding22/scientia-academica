@@ -293,6 +293,7 @@ và ghi rõ số trang khi trích. Giáo trình chuẩn hơn transcript Teams.
 | Xử lý một buổi học | skill **`new-lecture`** → `.claude/skills/new-lecture/SKILL.md` |
 | Khám phá toàn bộ slide và lập knowledge map | skill **`slide-knowledge-map`** → `.claude/skills/slide-knowledge-map/SKILL.md` |
 | Map đề thi mẫu → chương/mục + exam blueprint | skill **`exam-map`** → `.claude/skills/exam-map/SKILL.md` |
+| Chắt lọc kiến thức một chương từ đề mẫu và hướng dẫn từng câu | skill **`exam-study-guide`** → `.claude/skills/exam-study-guide/SKILL.md` |
 | Học cùng gia sư về một lecture/chủ đề | skill **`study-tutor`** → `.claude/skills/study-tutor/SKILL.md` |
 | Tạo bài tập hoặc lab mới | skill **`new-assignment`** → `.claude/skills/new-assignment/SKILL.md` |
 | Tạo đồ án môn học mới | skill **`new-project`** → `.claude/skills/new-project/SKILL.md` |

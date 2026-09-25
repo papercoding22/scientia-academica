@@ -13,6 +13,10 @@ nằm chung một file `exam-prep/exam-map.md` của môn:
 2. **Exam Blueprint** — gộp các câu lại: trọng số theo chương, theo mục, theo dạng câu,
    theo mức nhận thức; phần slide chưa bị hỏi; ưu tiên ôn.
 
+Nếu người dùng muốn **chắt lọc kiến thức của một chương và hướng dẫn từng câu** từ
+đề, dùng [exam-study-guide](../exam-study-guide/SKILL.md). Skill đó có thể tham khảo
+map đã có và tạo guide riêng trong `exam-prep/`.
+
 ## Mục lục
 
 - [Xác định đầu vào](#xác-định-đầu-vào)
