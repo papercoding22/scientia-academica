@@ -294,6 +294,15 @@ source ──compile──▶ object ──link──▶ load module ──load�
                                          đổi → nạp lại)      khi đang chạy)
 ```
 
+![Ba thời điểm address binding và ví dụ MMU giữ logical address 1000, đổi physical address từ 5000 sang 8000 khi base đổi từ 4000 sang 7000](images/address-binding-explained.png)
+
+*Hình do AI dựng bằng SVG và xuất PNG, dựa trên [C7 s13, s18–s22]; analogy và ví dụ số tự đặt. [Bản SVG có thể chỉnh sửa](images/address-binding-explained.svg).*
+
+**Đọc hình:** ba cột là **ba lựa chọn thời điểm binding**, không phải ba bước chuyển đổi bắt buộc nối tiếp nhau.
+Hai hàng bên dưới minh họa riêng **execution-time binding bằng relocation cộng base**, với địa chỉ tính theo byte:
+`1000 + 4000 = 5000`; khi process được dời và base cập nhật thành `7000`, địa chỉ luận lý vẫn là `1000` nhưng địa chỉ vật lý thành `8000`.
+Đây không phải công thức chung của paging; analogy giao thư chỉ minh họa thời điểm xác định địa chỉ, không mô tả cơ chế phần cứng.
+
 #### 💻 Code & thực tế
 
 Không áp dụng bản chạy được.
