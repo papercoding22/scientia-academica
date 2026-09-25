@@ -94,7 +94,7 @@ Môn lõi của CS: process và thread, định thời CPU (CPU scheduling), đ�
 | [`materials/`](materials/) | **Tài liệu giảng viên cung cấp** — slide, đề cương, ebook. **Chỉ đọc** |
 | [`lectures/_raw/`](lectures/_raw/) | Transcript Teams gốc — **không bao giờ sửa** |
 | [`lectures/`](lectures/) | Note theo từng buổi |
-| [`notes/`](notes/) | Note theo khái niệm |
+| [`notes/`](notes/) | Note theo khái niệm; [mutex và semaphore với React + TypeScript](notes/mutex-semaphore-react-typescript.md) |
 | [`assignments/`](assignments/) | Bài tập — mỗi bài một thư mục `a1`, `a2`… |
 | [`projects/`](projects/) | Đồ án — mỗi đồ án một thư mục `prj1`… |
 | [`research/`](research/) | Tự đào sâu ngoài syllabus |
