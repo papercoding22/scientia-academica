@@ -14,6 +14,7 @@ Chi tiết từng skill ở `.claude/skills/<tên>/SKILL.md`.
 | [`new-lecture`](.claude/skills/new-lecture/SKILL.md) | Transcript + slide → note buổi học, gợi ý thi, deadline, flashcard | *xử lý buổi 6 môn IT007* |
 | [`study-tutor`](.claude/skills/study-tutor/SKILL.md) | Gia sư hỏi đáp nhiều lượt, cuối phiên đề xuất FAQ/flashcard | *kèm tôi chương 5 IT007* |
 | [`faq-answer`](.claude/skills/faq-answer/SKILL.md) | Trả lời nhanh, dồn câu hỏi vào `faqs-<chương>.md` | *tập trung chương 3, trả lời nhanh* |
+| [`add-note-image`](.claude/skills/add-note-image/SKILL.md) | Chèn ảnh có sẵn vào đúng mục của ghi chú, giữ ảnh gốc và tránh trùng | *thêm hình bounded waiting vào L05 IT007* |
 | [`new-assignment`](.claude/skills/new-assignment/SKILL.md) | Dựng `aN/` · `labN/`, trích đề từ transcript, ghi hạn nộp | *thầy giao bài tập 8 IE105* |
 | [`new-project`](.claude/skills/new-project/SKILL.md) | Dựng `projects/prjN/`, trích đề + tiêu chí chấm + các mốc, nối deadlines và Notion | *thầy giao đồ án nhóm IE101* |
 | [`assignment-guide`](.claude/skills/assignment-guide/SKILL.md) | Sinh `GUIDE.md` — phương pháp + tiêu chí chấm, không có lời giải | *bài tập 5 IE105 làm thế nào* |
@@ -51,6 +52,7 @@ flowchart LR
 | Đầu môn / đầu kỳ | `new-course` → `slide-knowledge-map` | thư mục môn · `materials/` map |
 | Sau mỗi buổi | `new-lecture` | `lectures/` · `IMPORTANT_NOTES.md` · `admin/deadlines.md` · `exam-prep/` |
 | Học lại, hỏi đáp | `study-tutor` · `faq-answer` | `exam-prep/faqs-*.md` · flashcard (sau khi duyệt) |
+| Bổ sung ảnh minh họa | `add-note-image` | ghi chú liên quan · ảnh gốc hoặc `images/` phù hợp |
 | Có bài tập / lab | `new-assignment` → `assignment-guide` | `assignments/<aN\|labN>/` · `admin/deadlines.md` |
 | Có đồ án | `new-project` → `notion-tasks` | `projects/prjN/` · `admin/deadlines.md` · Notion |
 | Ôn thi | `exam-map` · `exam-study-guide` · `exam-plan` | `exam-prep/` · Notion · Google Calendar (lịch `Work`) |

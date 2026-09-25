@@ -390,6 +390,12 @@ Thoả bounded waiting (như Peterson, mục 4):
 
 Bài học: **progress đảm bảo "có người nào đó vào"; bounded waiting đảm bảo "người nào xin cũng sẽ vào".** Một lời giải có thể đạt progress mà vẫn vi phạm bounded waiting (như ví dụ trên). Cách nói chuẩn của giáo trình *(ngoài slide)*: sau khi một tiến trình đã xin vào CS, **số lần** các tiến trình khác được vào trước nó **có một cận trên hữu hạn**. Slide [C5-1 s25] diễn đạt là "chỉ phải chờ trong một khoảng thời gian có hạn định".
 
+![Bounded waiting: P0–P3 xếp hàng vào critical section; đối chiếu P3 bị vượt lượt liên tục với trường hợp các tiến trình lần lượt được vào](_raw/bounded-waiting.png)
+
+*Hình do người dùng bổ sung: minh họa bounded waiting bằng hàng đợi và đối chiếu với starvation.*
+
+> **Đọc đúng hình:** “tối đa 3 lần chờ” ở đây là tối đa 3 lượt tiến trình khác vào trước P3 trong ví dụ 4 tiến trình xếp hàng FIFO, với giả thiết các tiến trình được chạy và rời CS. Không phải cứ có 4 tiến trình là mọi thuật toán đều bảo đảm giới hạn 3 lượt; đây cũng không phải giới hạn thời gian tính bằng giây. FIFO là một cách phục vụ yêu cầu, không phải định nghĩa của bounded waiting. Chỉ có biến `turn` hoặc một hàng đợi bất kỳ chưa đủ để kết luận thuật toán bảo đảm progress và bounded waiting.
+
 > 💬 *Bổ sung từ phiên gia sư 2026-09-24*
 >
 > **Thế nào là "tiến trình thay đổi dữ liệu được chia sẻ"?** **Dữ liệu chia sẻ** là dữ liệu mà từ hai
