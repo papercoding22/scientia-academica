@@ -6,6 +6,7 @@
 | Nguồn gốc đề | ❓ Trường/khoa bỏ trống, không ghi giảng viên ra đề — xem [Cần xác minh](#3-cần-xác-minh) |
 | Cập nhật | 2026-09-23 |
 | Sinh bởi | skill `exam-map` |
+| Hướng dẫn ôn | [Chương 5 — kiến thức chắt lọc và hướng dẫn từng câu](chapter5-exam-study-guide.md) |
 
 > **Quy ước nguồn:** `[C7 s44]` = file slide mã **C7**, slide số **44** (tra mã ở [Nguồn slide](#4-nguồn-slide)).
 > Đây là phân tích **một đề mẫu**, không phải lời giảng viên — không thay cho mục 2, 3 của
