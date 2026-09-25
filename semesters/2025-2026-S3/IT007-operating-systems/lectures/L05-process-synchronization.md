@@ -719,6 +719,14 @@ giơ tay rồi cùng đứng chờ nhau. Peterson: cả hai giơ tay **và** nó
 "mời" sau cùng thì người đó chờ, người kia đi.
 *Chỗ analogy vỡ:* hai người thật **nghe thấy nhau** nói. Với máy, ai "nói sau cùng" được quyết định bởi **lệnh `store` nào tới bộ nhớ sau cùng** — và chính điểm đó bị CPU đảo thứ tự trên máy hiện đại.
 
+**Hình minh hoạ Peterson** — người dùng bổ sung, ngoài slide:
+
+![Peterson: cờ ý định, biến turn, thuật toán và các bước P0 vào rồi rời critical section](_raw/Peterson.png)
+
+*Đọc hình:* phần dưới minh hoạ **chỉ P0 muốn vào**: `flag[1] = false` nên P0 không phải chờ,
+dù `turn = 1`. CS là **đoạn code truy cập tài nguyên chung**, không phải bản thân tài nguyên.
+Trường hợp cả hai cùng muốn vào được theo dõi trong bảng vết chạy bên dưới.
+
 **Ví dụ nhỏ nhất** — so sánh 3 giải pháp cho 2 tiến trình P0, P1:
 
 | Giải pháp | Entry section của Pi | Mutual exclusion | Progress | Bounded waiting |
