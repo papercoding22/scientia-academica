@@ -1,13 +1,14 @@
 ---
 name: exam-study-guide
-description: Tạo hoặc cập nhật ghi chú ôn một chương từ các câu hỏi thuộc chương đó trong đề thi mẫu, gồm kiến thức chắt lọc, dẫn chiếu tài liệu và hướng dẫn suy luận từng câu. Dùng khi người dùng muốn tổng hợp kiến thức chương N từ đề mẫu, chắt lọc kiến thức theo câu hỏi, hoặc hướng dẫn từng câu của một chương; map và thống kê toàn đề dùng exam-map.
+description: Tạo hoặc cập nhật ghi chú ôn một chương từ các câu hỏi thuộc chương đó trong đề thi mẫu, gồm kiến thức chắt lọc, dẫn chiếu tài liệu, đáp án và giải thích từng câu. Dùng khi người dùng muốn tổng hợp kiến thức chương N từ đề mẫu, chắt lọc kiến thức theo câu hỏi, hoặc hướng dẫn từng câu của một chương; map và thống kê toàn đề dùng exam-map.
 ---
 
 # Ôn từng chương từ đề thi mẫu
 
 Biến các câu hỏi của **chương được yêu cầu** thành tài liệu học có thể đọc độc lập:
-hiểu kiến thức nền trước, rồi biết cách vận dụng vào từng câu. Dùng cho mọi môn có
-đề mẫu và tài liệu đối chiếu, không giới hạn ở IT007 hay câu trắc nghiệm.
+hiểu kiến thức nền trước, rồi biết cách vận dụng vào từng câu, có đáp án kèm giải
+thích để đối chiếu ngay. Dùng cho mọi môn có đề mẫu và tài liệu đối chiếu, không
+giới hạn ở IT007 hay câu trắc nghiệm.
 
 Đầu ra mặc định: `<môn>/exam-prep/chapter<N>-exam-study-guide.md`.
 Nếu người dùng chỉ định tên hoặc vị trí khác, dùng lựa chọn đó. Nhiều chương được
@@ -101,13 +102,14 @@ câu nào và có nguồn cụ thể: tên/mã tài liệu + số trang/slide đ
   thành quy tắc tuyệt đối.
 
 **Phần từng câu:** giữ thứ tự và số câu gốc trong từng đề. Mỗi câu cần đủ thông tin
-để người học biết mình phải làm gì:
+để người học biết cách làm và đối chiếu kết quả:
 
 | Thành phần | Nội dung |
 |---|---|
 | Đề hỏi và nguồn | Số trang, dữ kiện, phương án hoặc yêu cầu đầu ra; rút gọn phải ghi rõ, giữ nhãn và logic gốc |
+| Đáp án | Ghi rõ kết quả ngay trong mục của câu, kèm nhãn chính thức/suy luận và nguồn; chưa đủ căn cứ thì ghi `❓ CẦN XÁC MINH` cùng lý do |
 | Kiến thức cần dùng | Trỏ về khối kiến thức tương ứng và trang/slide nguồn |
-| Cách làm | Các bước nhận diện yêu cầu, áp dụng quy tắc, kiểm tra hoặc loại trừ; nêu lý do của bước khó |
+| Cách làm và giải thích | Các bước dẫn đến đáp án, áp dụng quy tắc, kiểm tra hoặc loại trừ; nêu lý do của bước khó |
 | Bẫy và giả thiết | Chữ ĐÚNG/SAI/KHÔNG, đơn vị, thứ tự, điều kiện biên, thuật ngữ hay bị nhầm |
 | Việc tự kiểm tra | Cách tự biết lập luận/kết quả có hợp lý và phần cần làm lại |
 
@@ -115,18 +117,31 @@ câu nào và có nguồn cụ thể: tên/mã tài liệu + số trang/slide đ
 thế số; mô phỏng giải thuật có bảng trạng thái; phân tích code chỉ ra dữ liệu chung,
 điểm xen kẽ hoặc bất biến; điền thuật ngữ nhắc ngôn ngữ và số từ đúng như đề.
 
-Mặc định hướng dẫn để người học tự chọn/điền kết quả, như file mẫu. Nếu người dùng
-yêu cầu đáp án hoặc lời giải, cung cấp kèm lập luận trong `<details>` và phần cần
-tự làm lại; không hỏi lại để xin phép. Phân biệt **đáp án chính thức có nguồn** với
-**đáp án suy luận**. Khi câu hỏi mơ hồ hoặc thiếu dữ kiện, ghi các cách hiểu và giới
-hạn kết luận thay vì ép một đáp án chắc chắn.
+**Mặc định mỗi câu/ý đều có đáp án và giải thích**, không chờ người dùng yêu cầu
+thêm. Đặt dòng **Đáp án** hiển thị trực tiếp sau đề/phương án, trước phần giải thích;
+chỉ ẩn đáp án các câu trong đề khi người dùng yêu cầu tự luyện trước.
+
+- Trắc nghiệm: ghi cả nhãn và nội dung được chọn, ví dụ `B — wait(S)`, rồi giải
+  thích vì sao chọn; chỉ ra phương án nhiễu dễ nhầm khi cần.
+- Điền từ/tính toán: ghi thuật ngữ hoặc kết quả cuối, đúng ngôn ngữ, giới hạn số
+  từ và đơn vị theo đề. Tự luận/mô phỏng/code: có câu trả lời mẫu hoặc kết quả cụ
+  thể cùng lập luận, không chỉ dừng ở câu hỏi gợi mở.
+- Phân biệt **đáp án chính thức có nguồn** với **đáp án suy luận** từ đề và tài
+  liệu. Không có đáp án chính thức vẫn cung cấp đáp án suy luận nếu đủ căn cứ.
+  Nếu nguồn mâu thuẫn, nêu rõ thay vì âm thầm chọn một phía.
+- Khi câu hỏi mơ hồ hoặc thiếu dữ kiện, vẫn có dòng **Đáp án: ❓ CẦN XÁC MINH**,
+  ghi lý do và kết luận theo từng giả thiết nếu có; không ép một đáp án chắc chắn.
+
+Luôn giữ phần **Bạn cần tự làm lại phần nào** để người học luyện lại sau khi xem
+đáp án.
 
 ## 4. Tổ chức file và cập nhật
 
 File mẫu để tham khảo mức độ hướng dẫn khi cần:
 [IT007 Chương 5](../../../semesters/2025-2026-S3/IT007-operating-systems/exam-prep/chapter5-exam-study-guide.md).
 Dùng cấu trúc phù hợp nội dung mới; không sao chép số câu, điểm, kiến thức hay kết
-quả kiểm chứng của mẫu sang môn/chương khác.
+quả kiểm chứng của mẫu sang môn/chương khác. Nếu mẫu chưa có đáp án từng câu,
+vẫn áp dụng yêu cầu đáp án ở mục 3 khi tạo hoặc cập nhật guide.
 
 Khung đầu ra gợi ý:
 
@@ -135,10 +150,11 @@ Khung đầu ra gợi ý:
 2. **Mục lục** và **bảng câu hỏi thuộc chương**: câu, trang đề, kiến thức, việc cần
    làm, điểm; ghi phần chưa xác minh ngay cạnh dữ kiện liên quan.
 3. **Kiến thức chắt lọc:** các khối khái niệm có liên hệ câu hỏi và nguồn.
-4. **Hướng dẫn từng câu:** theo bảng thành phần ở mục 3.
+4. **Đáp án và hướng dẫn từng câu:** mỗi câu/ý có đáp án kèm giải thích theo mục 3.
 5. **Ví dụ vận dụng/code:** chỉ thêm khi giúp hiểu hoặc kiểm chứng; có thể gộp ngay
    trong khối kiến thức, không cần tạo một chương trình hay ứng dụng mới.
-6. **Tự kiểm tra:** 5 câu recall, gợi ý/đáp án gập trong `<details>`.
+6. **Tự kiểm tra:** 5 câu recall, mỗi câu có đáp án kèm giải thích gập trong
+   `<details><summary>Đáp án và giải thích</summary>` để tự luyện trước khi mở.
 7. **Nguồn** và **Bạn cần tự làm lại phần nào:** link nguồn cụ thể, danh sách việc
    luyện lại hoặc bảng tự ghi lựa chọn.
 
@@ -153,6 +169,9 @@ vào `IMPORTANT_NOTES.md` như lời giảng viên.
 - Đối chiếu danh sách đã lọc với bảng câu hỏi **và** các mục hướng dẫn: đủ mỗi
   câu/ý trong phạm vi, không sót/trùng hoặc đánh nhầm mã đề. Kiểm tra lại nhãn đáp
   án, hình/code và dữ kiện của câu có nhiều phương án gần giống nhau.
+- Kiểm từng câu/ý và câu tự kiểm tra có đáp án cụ thể kèm giải thích, hoặc ghi rõ
+  chưa thể kết luận cùng lý do. Không dùng hướng dẫn suy luận hay bảng trống để
+  thay cho đáp án; kết quả chốt phải khớp lập luận và nguồn được dẫn.
 - Kiểm tổng điểm bằng công cụ khi có dữ kiện; điểm liên chương/điểm chưa rõ phải
   được ghi riêng. Không dùng tỷ trọng của một đề để cam kết đề thật.
 - Kiểm nguồn dẫn: số trang/slide tồn tại và nội dung thực sự hỗ trợ nhận định;

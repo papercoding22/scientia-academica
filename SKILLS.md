@@ -19,7 +19,7 @@ Chi tiết từng skill ở `.claude/skills/<tên>/SKILL.md`.
 | [`new-project`](.claude/skills/new-project/SKILL.md) | Dựng `projects/prjN/`, trích đề + tiêu chí chấm + các mốc, nối deadlines và Notion | *thầy giao đồ án nhóm IE101* |
 | [`assignment-guide`](.claude/skills/assignment-guide/SKILL.md) | Sinh `GUIDE.md` — phương pháp + tiêu chí chấm, không có lời giải | *bài tập 5 IE105 làm thế nào* |
 | [`exam-map`](.claude/skills/exam-map/SKILL.md) | Đề mẫu → map câu về chương/slide + exam blueprint | *phân tích đề mẫu IE105* |
-| [`exam-study-guide`](.claude/skills/exam-study-guide/SKILL.md) | Chắt lọc kiến thức một chương từ đề mẫu, hướng dẫn từng câu và dẫn chiếu nguồn | *tổng hợp kiến thức chương 5 IT007 từ đề mẫu và hướng dẫn từng câu* |
+| [`exam-study-guide`](.claude/skills/exam-study-guide/SKILL.md) | Chắt lọc kiến thức một chương từ đề mẫu, kèm đáp án, giải thích từng câu và dẫn chiếu nguồn | *tổng hợp kiến thức chương 5 IT007 từ đề mẫu và hướng dẫn từng câu* |
 | [`exam-plan`](.claude/skills/exam-plan/SKILL.md) | Đọc lịch, xếp buổi ôn lùi từ ngày thi, tạo task Notion + sự kiện Google Calendar | *lên kế hoạch ôn thi IT007 và IE105* |
 | [`notion-tasks`](.claude/skills/notion-tasks/SKILL.md) | Đồng bộ bài nộp, lịch thi với Notion; tạo task lẻ | *đồng bộ Notion* |
 | [`tidy-files`](.claude/skills/tidy-files/SKILL.md) | Đổi tên, xếp file thả tay vào đúng thư mục | *tôi vừa thả file vào IE103, dọn giúp* |
