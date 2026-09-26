@@ -297,6 +297,7 @@ và ghi rõ số trang khi trích. Giáo trình chuẩn hơn transcript Teams.
 | Học cùng gia sư về một lecture/chủ đề | skill **`study-tutor`** → `.claude/skills/study-tutor/SKILL.md` |
 | Thêm ảnh có sẵn vào đúng mục của ghi chú | skill **`add-note-image`** → `.claude/skills/add-note-image/SKILL.md` |
 | Tạo hình giải thích khái niệm và chèn vào ghi chú | skill **`illustrate-concept`** → `.claude/skills/illustrate-concept/SKILL.md` |
+| Tạo hình minh họa cơ chế hoạt động theo từng trạng thái và tương tác | skill **`illustrate-mechanism`** → `.claude/skills/illustrate-mechanism/SKILL.md` |
 | Tạo bài tập hoặc lab mới | skill **`new-assignment`** → `.claude/skills/new-assignment/SKILL.md` |
 | Tạo đồ án môn học mới | skill **`new-project`** → `.claude/skills/new-project/SKILL.md` |
 | Hướng dẫn cách làm bài tập | skill **`assignment-guide`** → `.claude/skills/assignment-guide/SKILL.md` |
