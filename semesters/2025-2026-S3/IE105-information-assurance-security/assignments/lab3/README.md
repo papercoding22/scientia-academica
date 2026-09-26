@@ -5,12 +5,13 @@
 | Tên bài | Dò tìm mật khẩu bằng tấn công chủ động |
 | Môn | `IE105` Nhập môn bảo đảm và an ninh thông tin |
 | Buổi học | L07 |
-| **Hạn nộp** | **2026-09-02** · dự phòng **2026-09-03** |
+| Hạn nộp gốc (lưu tham khảo) | 2026-09-02 · dự phòng 2026-09-03 |
 | Tỷ trọng | Thuộc nhóm điểm quá trình |
 | **File nộp** | `❓ chưa có` |
-| Trạng thái | ⚠️ **quá hạn — chưa có file nộp trong repo** |
+| Trạng thái | **Đã bỏ theo dõi** — theo yêu cầu người dùng, 2026-09-26 |
 
-> ✅ Đã ghi hạn nộp vào [`admin/deadlines.md`](../../../../../admin/deadlines.md)? — có
+> Đã xóa việc này khỏi danh sách deadline và việc cần làm theo yêu cầu người dùng ngày 2026-09-26.
+> Tài liệu bên dưới giữ để tham khảo; không đưa bài này vào các báo cáo việc chưa xong hoặc quá hạn.
 >
 > 📄 Nếu đã có file `.docx`, nó được copy từ `templates/ASSIGNMENT_TEMPLATE.docx` — có trang
 > bìa UIT và khung `Câu 1` · `Bảng` · `Kết luận`. Nếu cột **File nộp** còn `❓`, chưa được

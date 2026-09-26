@@ -5,13 +5,14 @@
 | Tên bài | **Hàm băm, chứng chỉ số và chữ ký số** |
 | Môn | `IE105` Nhập môn bảo đảm và an ninh thông tin |
 | Buổi học | **L04** · 2026-08-05 |
-| **Hạn nộp** | **2026-08-05, 21:30** ⚠️ đã qua |
+| Hạn nộp gốc (lưu tham khảo) | 2026-08-05, 21:30 |
 | Tỷ trọng | Thuộc nhóm điểm quá trình |
 | **File nộp** | `Bài tập 5_Nguyễn Quốc Trung_25730081.docx` |
-| Trạng thái | ⚠️ **quá hạn — chưa có file nộp trong repo** |
+| Trạng thái | **Đã bỏ theo dõi** — theo yêu cầu người dùng, 2026-09-26 |
 | Hướng dẫn cách làm | [`GUIDE.md`](GUIDE.md) — phương pháp, không phải lời giải |
 
-> ✅ Đã ghi hạn nộp vào [`admin/deadlines.md`](../../../../../admin/deadlines.md)? — ❓
+> Đã xóa việc này khỏi danh sách deadline và việc cần làm theo yêu cầu người dùng ngày 2026-09-26.
+> Tài liệu bên dưới giữ để tham khảo; không đưa bài này vào các báo cáo việc chưa xong hoặc quá hạn.
 >
 > 📄 File nộp đã được copy sẵn từ `templates/ASSIGNMENT_TEMPLATE.docx` — có trang bìa UIT
 > và khung `Câu 1` · `Bảng` · `Kết luận`. Mở bằng Word, điền trang bìa rồi viết.
