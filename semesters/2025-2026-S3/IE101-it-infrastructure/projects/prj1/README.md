@@ -5,13 +5,14 @@
 | Tên đồ án | Tìm hiểu hạ tầng CNTT tại Bệnh viện Nguyễn Tri Phương |
 | Môn | `IE101` Cơ sở hạ tầng Công nghệ thông tin |
 | Giao ở buổi | ❓ |
-| **Hạn nộp** | **❓ chưa biết** |
+| Hạn nộp gốc (lưu tham khảo) | ❓ chưa biết |
 | Tỷ trọng điểm | ❓ % |
 | Làm nhóm / cá nhân | Nhóm — *theo task Notion "CSHT-CNTT: Lên Kế Hoạch Phân Chia Đề Tài Cho Team"* |
 | **File nộp** | `❓ chưa xác nhận` |
-| Trạng thái | 🔄 đang làm |
+| Trạng thái | **Đã bỏ theo dõi** — theo yêu cầu người dùng, 2026-09-26 |
 
-> ✅ Đã ghi hạn nộp và các mốc vào [`admin/deadlines.md`](../../../../../admin/deadlines.md)? — ❓
+> Đã xóa đồ án và toàn bộ mốc nhóm khỏi danh sách việc cần làm theo yêu cầu người dùng ngày 2026-09-26.
+> Tài liệu và các mốc bên dưới giữ để tham khảo; không đưa vào các báo cáo việc chưa xong hoặc quá hạn.
 >
 > Cột **File nộp** còn `❓` thì chưa được đoán mẫu tên — chờ giảng viên dặn (`AGENTS.md` § 13.3).
 
@@ -64,13 +65,13 @@ CNTT tại Bệnh viện Nguyễn Tri Phương.
 
 | Mốc | Ngày | Do ai đặt | Trạng thái |
 |---|---|---|---|
-| Chốt đề tài / hướng làm | ❓ | | ⬜ |
-| Kiểm tra đủ file docx của thành viên (OneDrive) | 2026-09-28 | nhóm trưởng | ⬜ |
-| Ghép báo cáo cuối cùng theo format `docs/Reference_Report.docx` | 2026-09-30 | nhóm trưởng | ⬜ |
-| Xong phần chính | ❓ | | ⬜ |
-| Viết báo cáo | ❓ | | ⬜ |
-| Thuyết trình / demo | ❓ | | ⬜ |
-| **Nộp** | **❓ chưa biết** | giảng viên | ⬜ |
+| Chốt đề tài / hướng làm | ❓ | | Đã bỏ theo dõi |
+| Kiểm tra đủ file docx của thành viên (OneDrive) | 2026-09-28 | nhóm trưởng | Đã bỏ theo dõi |
+| Ghép báo cáo cuối cùng theo format `docs/Reference_Report.docx` | 2026-09-30 | nhóm trưởng | Đã bỏ theo dõi |
+| Xong phần chính | ❓ | | Đã bỏ theo dõi |
+| Viết báo cáo | ❓ | | Đã bỏ theo dõi |
+| Thuyết trình / demo | ❓ | | Đã bỏ theo dõi |
+| **Nộp** | **❓ chưa biết** | giảng viên | Đã bỏ theo dõi |
 
 **Do ai đặt:** `giảng viên` → phải có trong `admin/deadlines.md` · `nhóm` / `tự đặt` → chỉ ở đây và Notion.
 

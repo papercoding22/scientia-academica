@@ -74,21 +74,14 @@ Môn nhập môn về bảo đảm thông tin (information assurance) và an nin
 
 | Bài | Tên | Buổi | Hạn nộp | Trạng thái |
 |---|---|---|---|---|
-| — | *Bài tập 1* | L01 | 2026-07-08 | ⬜ **chưa có file trong repo** |
-| — | *Bài tập 2* | L02–L04 | ❓ | ⬜ **chưa có file trong repo** |
 | [`a3a`](assignments/a3a/) | Thăm dò (Footprinting) | L05 | 2026-08-12 | ✅ đã nộp |
 | [`a3b`](assignments/a3b/) | Quét mạng (Scanning) | L06 | 2026-08-19 | ✅ đã nộp |
 | [`a4`](assignments/a4/) | Tấn công hệ thống (System Hacking) | L07 | 2026-08-26 | ✅ đã nộp |
-| [`lab1`](assignments/lab1/) | Bài thực hành 1 — ❓ chưa có đề | ❓ | ❓ | ⬜ chưa làm |
-| [`lab4`](assignments/lab4/) | Bài thực hành 4 — ❓ chưa có đề | ❓ | ❓ | ⬜ chưa làm |
-| [`lab5`](assignments/lab5/) | Bài thực hành 5 — ❓ chưa có đề | ❓ | ❓ | ⬜ chưa làm |
-| [`lab6a`](assignments/lab6a/) | Bài thực hành 6A — ❓ chưa có đề | ❓ | ❓ | ⬜ chưa làm |
-| [`lab6b`](assignments/lab6b/) | Bài thực hành 6B — ❓ chưa có đề | ❓ | ❓ | ⬜ chưa làm |
 | [`a6`](assignments/a6/) | Bảo mật mạng không dây | ❓ | ❓ | ✅ đã nộp |
 | [`a7`](assignments/a7/) | Giám sát hệ thống & mã độc | ❓ | ❓ | ✅ đã nộp |
 
-> ⚠️ **Thiếu bài 1 và 2** — chưa rõ là chưa làm hay chưa đưa vào repo.
->
+> Bài tập 1–2 đã bỏ theo dõi theo yêu cầu người dùng ngày 2026-09-26.
+
 > 📌 **Số bài tập KHÔNG trùng số chương trên slide.** Bài tập 5 được giao ở buổi 4
 > (chứng thực dữ liệu), còn slide "Bài 5" nói về mã độc. Đừng suy số bài từ tên slide.
 > Điểm quá trình chiếm **20%** và mỗi buổi một cột điểm, nên thiếu bài là mất điểm thật.

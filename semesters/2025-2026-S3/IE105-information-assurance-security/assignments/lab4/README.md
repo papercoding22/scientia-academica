@@ -5,12 +5,13 @@
 | Tên bài | ❓ chưa đặt tên |
 | Môn | `IE105` Nhập môn bảo đảm và an ninh thông tin |
 | Buổi học | ❓ |
-| **Hạn nộp** | **❓ chưa biết** |
+| Hạn nộp gốc (lưu tham khảo) | ❓ chưa biết |
 | Tỷ trọng | Thuộc nhóm điểm quá trình |
 | **File nộp** | `TH4_Nguyễn Quốc Trung_25730081.docx` |
-| Trạng thái | ⬜ chưa làm |
+| Trạng thái | **Đã bỏ theo dõi** — theo yêu cầu người dùng, 2026-09-26 |
 
-> ✅ Đã ghi hạn nộp vào [`admin/deadlines.md`](../../../../../admin/deadlines.md)? — ❓
+> Đã xóa việc này khỏi danh sách deadline và việc cần làm theo yêu cầu người dùng ngày 2026-09-26.
+> Tài liệu bên dưới giữ để tham khảo; không đưa bài này vào các báo cáo việc chưa xong hoặc quá hạn.
 >
 > 📄 Nếu đã có file `.docx`, nó được copy từ `templates/ASSIGNMENT_TEMPLATE.docx` — có trang
 > bìa UIT và khung `Câu 1` · `Bảng` · `Kết luận`. Nếu cột **File nộp** còn `❓`, chưa được

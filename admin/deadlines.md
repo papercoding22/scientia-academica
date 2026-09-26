@@ -18,10 +18,7 @@
 
 ## Sắp tới
 
-| Môn | Việc | Hạn nộp | Còn lại | Trạng thái | Nguồn |
-|---|---|---|---|---|---|
-| IE103 | [Bài tập 3](../semesters/2025-2026-S3/IE103-information-management/assignments/a3/) — An ninh thông tin | **❓ chưa biết** | — | ⬜ chưa làm | đề `BTTH3 - An ninh thông tin.pdf` |
-| IE101 | [Đồ án 1](../semesters/2025-2026-S3/IE101-it-infrastructure/projects/prj1/) — Hạ tầng CNTT tại BV Nguyễn Tri Phương (nhóm) | **❓ chưa biết** | — | 🔄 đang làm | người dùng, 2026-09-24 |
+Hiện không có bài tập hoặc đồ án đang theo dõi trong danh sách này.
 
 ### Quy tắc lặp lại
 
@@ -46,9 +43,6 @@
 | IE105 | [Bài tập 4](../semesters/2025-2026-S3/IE105-information-assurance-security/assignments/a4/) — System Hacking | 2026-08-26 21:30 | ✅ | ❓ |
 | IE105 | [Bài tập 6](../semesters/2025-2026-S3/IE105-information-assurance-security/assignments/a6/) — Mạng không dây | ❓ | ✅ | ❓ |
 | IE105 | [Bài tập 7](../semesters/2025-2026-S3/IE105-information-assurance-security/assignments/a7/) — Giám sát & mã độc | ❓ | ✅ | ❓ |
-
-> ⚠️ **IE105 thiếu bài tập 1 và 2** — chưa rõ chưa làm hay chưa đưa vào repo.
-> Mỗi bài là một cột trong 20% điểm quá trình.
 
 ---
 

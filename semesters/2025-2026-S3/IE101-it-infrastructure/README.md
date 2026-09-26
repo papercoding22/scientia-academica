@@ -60,9 +60,7 @@ Môn về hạ tầng CNTT: máy chủ, mạng, lưu trữ, ảo hoá, data cent
 
 ## Bài tập và đồ án
 
-| Mã | Tên | Hạn nộp | Trạng thái |
-|---|---|---|---|
-| [`prj1`](projects/prj1/) | Đồ án 1 — Tìm hiểu hạ tầng CNTT tại Bệnh viện Nguyễn Tri Phương (nhóm) | ❓ chưa biết | 🔄 đang làm |
+Hiện không có bài tập hoặc đồ án đang theo dõi.
 
 ---
 
