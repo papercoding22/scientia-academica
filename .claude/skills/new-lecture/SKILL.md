@@ -68,6 +68,10 @@ Chủ đề chỉ biết chắc sau khi đọc nội dung — đặt tên ở b�
 | `lectures/_raw/L<nn>-*.md` | Lời giảng viên nói thêm ngoài slide, **gợi ý thi**, deadline | Sai chính tả thuật ngữ rất nhiều |
 | `materials/slides/L<nn>-*.pdf` | Cấu trúc bài, thuật ngữ viết đúng, công thức | Không có phần nói miệng |
 
+Đọc slide qua bộ đệm text: `scripts/slides-to-md.py --course <mã>` rồi mở
+`.cache/md/…/<tên slide>.md` — mỗi trang một mục `## Trang N`. Trang gắn
+`⚠️ chủ yếu là hình` thì Read đúng trang đó trong PDF gốc. Link trong note vẫn trỏ tới PDF gốc.
+
 Transcript Teams tiếng Việt lẫn thuật ngữ tiếng Anh **luôn sai chính tả** —
 `"đét lốc"` là `deadlock`, `"ét gio rítừm"` là `algorithm`. Slide sửa lại cho đúng.
 Ngược lại, câu *"cái này chắc chắn sẽ thi"* chỉ có trong transcript.

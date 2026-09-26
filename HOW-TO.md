@@ -490,7 +490,8 @@ scripts/new-course.sh --help
 scripts/new-lecture.sh --help
 scripts/new-assignment.sh --help
 scripts/check-layout.sh --course IE105   # tìm file sai chỗ hoặc sai tên
-scripts/peek.py <file>                   # xem nhanh nội dung .docx/.vtt
+scripts/peek.py <file>                   # xem nhanh nội dung .pdf/.docx/.pptx/.vtt
+scripts/slides-to-md.py --course IT007   # dựng bộ đệm text của slide để grep
 scripts/toc.py check <file>              # kiểm tra link mục lục còn đúng không
 scripts/toc.py gen <file>                # sinh lại mục lục sau khi thêm mục mới
 ```

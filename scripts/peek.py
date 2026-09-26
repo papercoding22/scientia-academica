@@ -5,10 +5,15 @@ peek.py — Nhìn nhanh vào trong file để biết nó là gì, phục vụ vi
     scripts/peek.py <file> [<file>...]     In metadata + vài đoạn đầu
     scripts/peek.py --full <file>          In toàn bộ text
 
-Hỗ trợ: .docx  .vtt  .txt  .md  .csv
-PDF: script không đọc được — dùng công cụ đọc file của AI (Read) thay thế.
+Hỗ trợ: .pdf  .docx  .pptx  .xlsx  .vtt  .txt  .md  .csv
+.pdf .pptx .xlsx cần MarkItDown (xem scripts/lib/doc2md.py). .docx dùng MarkItDown nếu
+đã cài — giữ được heading và bảng — không thì tự đọc XML như cũ.
+PDF không có lớp chữ, hoặc trang toàn hình: dùng công cụ Read của AI để xem.
 """
 import sys, re, zipfile, pathlib
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent / "lib"))
+import doc2md  # noqa: E402
 
 def docx(p):
     with zipfile.ZipFile(p) as z:
@@ -40,10 +45,30 @@ def vtt(p):
     meta["lượt nói"] = len(cues)
     return cues, meta
 
+def via_doc2md(mode):
+    def read(p):
+        md, err = doc2md.run(mode, p)
+        if err:
+            raise RuntimeError(err)
+        lines = [l for l in md.splitlines() if l.strip()]
+        meta = {}
+        if mode == "pdf":
+            meta["trang"] = sum(l.startswith("## Trang ") for l in lines)
+            warn = [l[2:] for l in lines if l.startswith("> ⚠️")]
+            if warn:
+                meta["cảnh báo"] = warn[0]
+            lines = [l for l in lines if not l.startswith(("# ", "> "))]
+        return lines, meta
+    return read
+
+def docx_any(p):
+    return via_doc2md("office")(p) if doc2md.tool_python() else docx(p)
+
 def plain(p):
     return [l for l in p.read_text(encoding="utf-8", errors="replace").splitlines() if l.strip()], {}
 
-READERS = {".docx": docx, ".vtt": vtt, ".txt": plain, ".md": plain, ".csv": plain}
+READERS = {".pdf": via_doc2md("pdf"), ".pptx": via_doc2md("office"),
+           ".xlsx": via_doc2md("office"), ".docx": docx_any, ".vtt": vtt, ".txt": plain, ".md": plain, ".csv": plain}
 
 def peek(path, full=False):
     p = pathlib.Path(path)
@@ -54,10 +79,7 @@ def peek(path, full=False):
     print(f"   {size:,} byte · {p.suffix or '(không đuôi)'}")
     fn = READERS.get(p.suffix.lower())
     if not fn:
-        if p.suffix.lower() == ".pdf":
-            print("   → PDF: script không đọc được. Dùng công cụ Read của AI để xem nội dung.")
-        else:
-            print(f"   → Không hỗ trợ đuôi {p.suffix}")
+        print(f"   → Không hỗ trợ đuôi {p.suffix}")
         return
     try:
         parts, meta = fn(p)

@@ -3,7 +3,7 @@
 > File này là **luật** cho AI. Đọc trước khi làm bất cứ việc gì trong repo này.
 > Hướng dẫn thao tác cho người dùng nằm ở [`HOW-TO.md`](HOW-TO.md) — khi người dùng
 > hỏi *"làm thế nào để…"*, trả lời rồi trỏ họ tới mục tương ứng ở đó.
-> Cập nhật lần cuối: 2026-09-25
+> Cập nhật lần cuối: 2026-09-26
 
 ---
 
@@ -306,7 +306,8 @@ và ghi rõ số trang khi trích. Giáo trình chuẩn hơn transcript Teams.
 | Lập kế hoạch ôn thi → task Notion + Google Calendar | skill **`exam-plan`** → `.claude/skills/exam-plan/SKILL.md` |
 | Sinh / kiểm tra mục lục | `scripts/toc.py gen\|check <file>` (xem § 2b) |
 | Tìm file sai chỗ / sai tên | `scripts/check-layout.sh [--course <mã>]` |
-| Xem nhanh nội dung .docx/.vtt | `scripts/peek.py <file>` |
+| Xem nhanh nội dung .pdf/.docx/.pptx/.xlsx/.vtt | `scripts/peek.py <file>` |
+| Dựng bộ đệm text của PDF trong `materials/` để `grep` | `scripts/slides-to-md.py [--course <mã>]` |
 
 **Cầu nối Claude ↔ Codex:** `.claude/skills/` là nguồn sự thật; `.agents/skills/`
 là symlink Git-tracked để Codex tự discover đúng các skill ấy. Khi tạo skill mới,
@@ -316,6 +317,14 @@ là symlink Git-tracked để Codex tự discover đúng các skill ấy. Khi t�
 phiên cũ cần bắt đầu phiên mới từ root repo để thấy skill vừa thêm.
 
 Hàm dùng chung của các script nằm ở `scripts/lib/common.sh`.
+
+**Đọc PDF / Office:** `peek.py` và `slides-to-md.py` gọi `scripts/lib/doc2md.py`, chạy trên
+Python riêng của tool MarkItDown (`uv tool install --python 3.12 'markitdown[pdf,docx,pptx,xlsx]'`)
+— Python hệ thống là 3.9, không chạy được MarkItDown. Bộ đệm nằm ở `.cache/md/` (gitignore),
+mỗi trang một mục `## Trang N`. **Tìm bằng `grep` trong bộ đệm trước, rồi Read đúng trang
+trong PDF gốc** — không Read cả file chỉ để tìm một khái niệm. Bộ đệm chỉ để tìm kiếm:
+trích dẫn luôn ghi tên PDF gốc + số trang. Trang gắn `⚠️ chủ yếu là hình` và PDF
+`Không có lớp chữ` chỉ đọc được bằng Read (cần `poppler` — `brew install poppler`).
 
 Khi có nhiều học kỳ, **truyền rõ `--semester <kỳ>`** cho các script tạo môn/buổi học/bài tập/đồ án.
 Script mặc định chọn thư mục học kỳ mới nhất; HK1 2026–2027 đã có khung nhưng vẫn là kỳ sắp học.

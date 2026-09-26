@@ -77,7 +77,8 @@ Skill gọi các script này; tự chạy được khi cần.
 | `scripts/new-project.sh` | Dựng thư mục đồ án `prjN/` (dùng bởi `new-project`) |
 | `scripts/check-layout.sh` | Tìm file sai chỗ / sai tên (dùng bởi `tidy-files`) |
 | `scripts/toc.py gen\|check` | Sinh / kiểm tra mục lục markdown |
-| `scripts/peek.py` | Xem nhanh `.docx` / `.vtt` |
+| `scripts/peek.py` | Xem nhanh `.pdf` / `.docx` / `.pptx` / `.xlsx` / `.vtt` |
+| `scripts/slides-to-md.py` | Dựng bộ đệm text của PDF trong `materials/` → `.cache/md/` để `grep` |
 
 ---
 

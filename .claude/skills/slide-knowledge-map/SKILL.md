@@ -34,8 +34,12 @@ không thay đổi bất kỳ slide gốc nào.
 
 ## Đọc slide theo bằng chứng
 
-Trước khi đọc PDF, nạp skill `pdf:pdf` và theo quy trình của skill đó. Đọc **tất
-cả trang** của mỗi slide, không chỉ tiêu đề, metadata hay trang đầu.
+Trước khi đọc PDF, chạy `scripts/slides-to-md.py --course <mã>` để có bản text từng
+trang ở `.cache/md/` (file đã có và không đổi thì script bỏ qua). Đọc **tất cả trang**
+của mỗi slide qua bản text đó, không chỉ tiêu đề, metadata hay trang đầu. Đầu mỗi file
+bộ đệm liệt kê các trang `⚠️ chủ yếu là hình` — **Read đúng các trang đó** trong PDF gốc
+để xem sơ đồ; PDF ghi `Không có lớp chữ` thì Read toàn bộ. Bản text chỉ là công cụ đọc:
+nguồn trích dẫn luôn là PDF gốc.
 
 - Ưu tiên trích text để tìm outline, định nghĩa, công thức, ví dụ, bảng so sánh
   và tham chiếu chéo; khi text trống, vỡ nghĩa, hoặc sơ đồ mang ý chính, render

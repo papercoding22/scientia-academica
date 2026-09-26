@@ -43,3 +43,6 @@ build/
 draft/
 # Ánh xạ repo ↔ Notion (chứa URL workspace riêng — repo public)
 admin/notion-map.json
+
+# Bộ đệm text trích từ materials/ — dựng lại bằng scripts/slides-to-md.py
+.cache/

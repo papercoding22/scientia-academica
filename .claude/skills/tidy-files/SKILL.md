@@ -70,11 +70,14 @@ Người dùng nói rõ vừa thả file vào đâu → xem thẳng chỗ đó, 
 **Không bao giờ đoán từ tên file.** Tên cũ chính là thứ đang sai.
 
 ```bash
-scripts/peek.py <file>          # .docx .vtt .txt .md — in metadata + 15 đoạn đầu
+scripts/peek.py <file>          # .pdf .docx .pptx .xlsx .vtt .txt .md — metadata + 15 đoạn đầu
 scripts/peek.py --full <file>   # toàn bộ
 ```
 
-**PDF:** `peek.py` không đọc được — dùng công cụ **Read** để xem nội dung.
+**PDF:** `peek.py` in số trang và chữ trích từ trang đầu. Báo `Không có lớp chữ` hoặc
+chữ trích ra không đủ để nhận dạng → dùng công cụ **Read** cho vài trang đầu.
+Sau khi xếp PDF vào `materials/`, chạy `scripts/slides-to-md.py --course <mã>` để bộ đệm
+tìm kiếm có file mới.
 
 Cần rút ra:
 

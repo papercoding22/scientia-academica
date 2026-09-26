@@ -50,6 +50,10 @@ map đã có và tạo guide riêng trong `exam-prep/`.
 Nạp skill `anthropic-skills:pdf` nếu đề là PDF. Đọc **mọi trang**, gồm cả bảng trả lời
 cuối đề — bảng trả lời cho biết ý nào được chấm riêng.
 
+Khi map câu hỏi → slide: chạy `scripts/slides-to-md.py --course <mã>` rồi `grep -rn -i
+"<thuật ngữ>" .cache/md/semesters/*/<mã>-*/` để tìm file và trang chứa khái niệm, sau đó
+Read đúng trang đó để xác nhận. Không ghi số slide chỉ dựa vào kết quả grep.
+
 Trích cho mỗi câu: số câu, phần (trắc nghiệm/tự luận), nội dung ngắn, các phương án,
 mã chuẩn đầu ra nếu đề ghi (ví dụ `G2.1`), và điểm.
 
