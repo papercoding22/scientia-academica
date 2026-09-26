@@ -833,6 +833,49 @@ Ví dụ của slide [C7 s54], `ε = 20 ns`, `x = 100 ns`: `α = 0.8` → EAT = 
 **Analogy:** bạn hay gọi 10 người quen. Danh bạ đầy đủ nằm trong ngăn kéo (bảng trang trong RAM); 10 số hay gọi dán trên màn hình (TLB). Nhìn thấy số trên màn hình (hit) thì bấm luôn; không có (miss) thì mở ngăn kéo tra rồi mới bấm.
 *Chỗ analogy vỡ:* tờ ghi chú bạn tự chọn; TLB do **phần cứng** tự thay mục cũ bằng mục mới, và khi đổi sang tiến trình khác thì các mục cũ thường **không còn đúng** *(ngoài slide)*.
 
+> 💬 *Bổ sung từ phiên gia sư 2026-09-26*
+
+**Ví dụ mở Google Chrome — PTBR giúp tìm đúng page table:**
+
+Chrome có nhiều process *(liên hệ thực tế, ngoài slide)*. Để hiểu vai trò PTBR, ta dùng **mô hình bảng trang một cấp** của bài học [C7 s49–s51]: mỗi process có page table riêng, vì có không gian địa chỉ ảo riêng. Hình dung page table là cuốn sổ tra cứu; PTBR là địa chỉ chỗ cất cuốn sổ.
+
+**Giả thiết minh họa:** page/frame = **4 KB = 4096 byte**, mỗi entry = **8 byte**; các page đang xét đã có trong RAM. Mọi địa chỉ và ánh xạ dưới đây là **số liệu tự đặt**, không phải dữ liệu đo từ Chrome thực tế.
+
+| Process | Địa chỉ bắt đầu page table trong RAM | Entry của page 1 ghi |
+|---|---:|---|
+| Chrome A | 40960 | Frame 7 |
+| Chrome B | 45056 | Frame 12 |
+
+- **OS:** khi cho process A chạy, thiết lập `PTBR = 40960` trên CPU đó. Khi chuyển sang process B, thiết lập PTBR trỏ đến bảng của B, tức `45056` trong ví dụ.
+- **MMU:** đọc PTBR để tìm đúng page table khi cần tra bảng; **OS thiết lập PTBR, không phải MMU báo vị trí bảng cho PTBR**.
+- **Page table riêng:** cùng là page 1 nhưng A và B có thể ánh xạ đến các frame khác nhau. Không phải toàn bộ ứng dụng Chrome chỉ có một page table.
+
+Giả sử **Chrome A truy cập địa chỉ ảo 4196 và TLB miss**:
+
+1. Tách địa chỉ: `4196 = 1 × 4096 + 100` → **page 1, offset 100**.
+2. Tìm entry: `PTBR + page number × kích thước entry = 40960 + 1 × 8 = 40968`.
+3. Đọc entry tại địa chỉ vật lý **40968** → nhận được **frame number = 7**.
+4. Giữ nguyên offset; đọc dữ liệu tại địa chỉ vật lý `7 × 4096 + 100 = ` **28772**.
+
+```text
+OS chọn Chrome A → PTBR = 40960
+
+Logical 4196 → page 1, offset 100
+                       │ TLB miss
+                       ▼
+   Tra page table: 40960 + 1 × 8 = 40968
+                       │ entry chứa frame number 7
+                       ▼
+   Đọc dữ liệu: 7 × 4096 + 100 = 28772
+```
+
+| Lần truy cập RAM khi TLB miss | Đọc gì? |
+|---|---|
+| **Lần 1 — địa chỉ 40968** | Entry trong page table, để biết page 1 nằm ở frame nào |
+| **Lần 2 — địa chỉ 28772** | Byte dữ liệu mà Chrome A thực sự muốn đọc |
+
+Nếu **TLB hit** đã cho ánh xạ page 1 → frame 7 của Chrome A, bỏ qua lần đọc entry tại 40968; vẫn phải đọc dữ liệu tại 28772. Đó là lý do trong mô hình này **hit tốn `ε + x`, miss tốn `ε + 2x`**. Mô hình minh họa vai trò các thành phần, không mô tả đầy đủ bảng trang nhiều cấp và cache của máy chạy Chrome thực tế.
+
 **Ví dụ nhỏ nhất** — 10 lần truy cập, `x = 100 ns`, `ε = 20 ns`, TLB trúng 8 lần (α = 0.8):
 
 | Loại | Số lần | Mỗi lần | Tổng |
