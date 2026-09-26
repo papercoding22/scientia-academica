@@ -145,6 +145,17 @@ Mind map do AI tạo dựa trên slide C7 s12, s18–s22. Các đáp án câu 15
 | “Thủ tục chỉ được nạp khi được gọi” | Thời điểm đưa mã vào bộ nhớ |
 | “Liên kết tới external module sau khi tạo executable” | Thời điểm nối tham chiếu tới mã ngoài |
 
+![Mind map dynamic loading và dynamic linking: khái niệm, điểm phân biệt và dấu hiệu nhận diện câu 18](images/dynamic-loading-linking-mindmap.png)
+
+Mind map do AI dựng dựa trên slide C7 s24–s25, s27. Câu 18: B — Dynamic loading là đáp án suy luận từ slide; đề mẫu không có đáp án chính thức.
+
+[SVG chỉnh sửa](images/dynamic-loading-linking-mindmap.svg)
+
+**Đọc hình:**
+
+- **Hai nhánh trên:** dynamic loading trì hoãn nạp routine; dynamic linking trì hoãn liên kết tới module ngoài.
+- **Hai nhánh dưới:** nhận diện câu 18 bằng “chỉ nạp khi được gọi”; dynamic linking có thể kèm loading nhưng hai khái niệm không đồng nghĩa.
+
 ### 2.3. Fragmentation và compaction — câu 14, 23d
 
 **Trực giác:** đủ chỗ cộng lại chưa chắc có một chỗ liền nhau đủ lớn.
