@@ -126,13 +126,20 @@ trùng, ghi Markdown và kiểm tra link của skill đó. Với ảnh mới t�
 - Ghi đúng nguồn gốc: ảnh mới do AI tạo không phải ảnh người dùng cung cấp hay
   slide giảng viên. Caption có nguồn kiến thức, ví dụ tự đặt và giả thiết cần
   thiết; không gán nguồn chưa kiểm chứng.
+- Phần **Đọc hình** luôn trình bày bằng bullet list, mỗi bullet một ý; mở đầu
+  bằng nhãn in đậm chỉ vùng, bước hoặc lưu ý tương ứng. Đặt `**Đọc hình:**` trên
+  dòng riêng, cách danh sách một dòng trống; không gộp các ý thành đoạn văn.
 
 ```markdown
 ![Mô tả ngắn cơ chế hoặc kết quả mà hình thể hiện](images/concept-explained.png)
 
 *Hình minh họa do AI tạo dựa trên [nguồn kiến thức đã đối chiếu]; ví dụ tự đặt.*
 
-**Đọc hình:** Giải thích ngắn hướng đọc, kết quả và giả thiết quan trọng.
+**Đọc hình:**
+
+- **Vùng/bước thứ nhất:** Giải thích điều cần quan sát và ý nghĩa.
+- **Vùng/bước tiếp theo:** Giải thích quan hệ hoặc kết quả.
+- **Lưu ý:** Nêu giả thiết hoặc giới hạn cần thiết để đọc đúng hình, nếu có.
 ```
 
 ## 5. Kiểm tra và bàn giao

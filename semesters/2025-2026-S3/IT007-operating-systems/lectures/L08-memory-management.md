@@ -498,9 +498,11 @@ Slide s32 giải thích ví dụ trên: quản lý một khoảng trống chỉ 
 Analogy và số liệu trong hình là ví dụ tự đặt, bỏ qua overhead (chi phí quản lý); 1 KiB = 1024 byte.
 Các khối RAM được vẽ theo tỷ lệ trong từng ví dụ, hai cột dùng tỷ lệ riêng. [Bản SVG để chỉnh sửa](images/fragmentation-explained.svg).*
 
-**Đọc hình:** cột trái, đường viền bao cả 13 KiB đang dùng lẫn 3 KiB thừa — phần thừa vẫn thuộc khối đã cấp cho P.
-Cột phải, các lỗ trống **chưa cấp cho ai** nhưng bị P1, P2 ngăn cách: tổng đủ 90 KiB, lỗ lớn nhất chỉ 40 KiB.
-Chúng vẫn có thể phục vụ yêu cầu nhỏ hơn; thất bại ở đây là cấp **một vùng liên tục 90 KiB**.
+**Đọc hình:**
+
+- **Cột trái:** đường viền bao cả 13 KiB đang dùng lẫn 3 KiB thừa — phần thừa vẫn thuộc khối đã cấp cho P.
+- **Cột phải:** các lỗ trống **chưa cấp cho ai** nhưng bị P1, P2 ngăn cách: tổng đủ 90 KiB, lỗ lớn nhất chỉ 40 KiB.
+- **Lưu ý:** các lỗ trống vẫn có thể phục vụ yêu cầu nhỏ hơn; thất bại ở đây là cấp **một vùng liên tục 90 KiB**.
 
 #### 💻 Code & thực tế
 
