@@ -186,8 +186,12 @@ Sửa task cũ sang cấu trúc này dùng `replace_content`, **giữ lại mọ
 
 ## Chế độ sync
 
-**Kích hoạt:** *"đồng bộ Notion"*, *"đồng bộ lịch"*, *"sync"*, hoặc sau `new-assignment` /
-`new-project` (chỉ sync mục vừa tạo).
+**Kích hoạt:** *"đồng bộ Notion"*, *"sync Notion với admin/tasks"*, *"đồng bộ lịch"*, *"sync"*, hoặc sau `new-assignment` /
+`new-project` (chỉ sync mục vừa tạo). Đây là đồng bộ **hai chiều** repo ↔ Notion trong một lượt: đẩy việc/hạn
+lên, kéo trạng thái về.
+
+**Phạm vi:** mặc định cả Notion lẫn Calendar. Người dùng nói *"chỉ Notion"* → bỏ phần Calendar (không đọc,
+không tạo/dời sự kiện); *"chỉ lịch"* → bỏ phần Notion.
 
 ### 1. Đọc ba bên
 
@@ -214,6 +218,7 @@ Sửa task cũ sang cấu trúc này dùng `replace_content`, **giữ lại mọ
 | Hạn/giờ thi khác `deadline` đã lưu trong map | `✎ sửa` Deadline (repo là chủ ngày tháng) | `✎ dời` sự kiện |
 | Hạn đổi từ `❓` sang ngày cụ thể | `✎ sửa` Deadline, `Backlog` → `To Do` | `＋ tạo` sự kiện |
 | Task trong map có Notion `Done`, repo chưa ✅ | `✓ kéo về`: đổi **Trạng thái** dòng đó thành `✅ đã nộp`, *Ngày nộp* = Completion Date (trống thì hỏi ngày) · cập nhật trạng thái trong `README.md` của môn và của `aN/` | giữ nguyên sự kiện — lịch sử |
+| Task trong map có Notion `In progress`, repo còn `⬜` | `✓ kéo về`: Trạng thái → `🔄 đang làm` | — |
 | Repo ✅ mà Notion chưa `Done` | `? hỏi` — có thể người dùng đánh dấu nhầm một bên | — |
 | Lịch thi có ngày cụ thể, chưa có khoá `exam-*` trong map | `＋ tạo` task thi · gợi ý chạy `exam-plan` | `＋ tạo` sự kiện thi |
 | Khoá có trong map nhưng **dòng đã bị xoá** khỏi file (bỏ theo dõi) | `? hỏi`: chuyển `Archived` hay để nguyên | `? hỏi`: xoá sự kiện hay để nguyên |
