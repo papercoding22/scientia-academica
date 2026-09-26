@@ -57,12 +57,15 @@ Chỉ đổi trạng thái một vài task người dùng vừa nhắc (*"đã n
   "database_url": "https://app.notion.com/p/<id>",
   "data_source": "collection://<id>",
   "tasks": {
-    "IE105/a5":             { "page": "https://app.notion.com/p/<id>", "title": "ANTT: Bài tập 5 — Hàm băm, chữ ký số", "deadline": "2026-08-05T21:30", "event": "<id sự kiện Calendar>" },
+    "IE105/a5":             { "id": "T005", "page": "https://app.notion.com/p/<id>", "title": "[T005] ANTT: Bài tập 5 — Hàm băm, chữ ký số", "deadline": "2026-08-05T21:30", "event": "<id sự kiện Calendar>" },
     "IE105/exam-final":     { "page": "…", "title": "ANTT: Thi cuối kỳ", "deadline": "…" },
     "IE105/exam-final/r03": { "page": "…", "title": "ANTT: Ôn chương 3 — …", "deadline": "…" }
   }
 }
 ```
+
+**ID** = cột *ID* (`T001`…) trong `admin/tasks-<kỳ>.md` — tên gọi của task với người dùng, **duy nhất toàn repo**, lưu ở trường `id`.
+Người dùng nhắc *"T015"* → tra `id` trong map (hoặc cột *ID* trong file) để ra trang Notion / sự kiện.
 
 **Khoá** = cột *Khoá* trong `admin/tasks-<kỳ>.md` = `<MÃ MÔN>/<thư mục mục nộp>` (`a5`, `lab3`, `prj1`) · `<MÃ MÔN>/exam-<mid|final>`
 · `<MÃ MÔN>/exam-<…>/r<nn>` cho task ôn · `<MÃ MÔN>/prjN/<mốc>` cho mốc đồ án giảng viên đặt. Task lẻ của chế độ add **không** vào map.
@@ -92,7 +95,7 @@ Môn mới chưa có trong bảng → **hỏi** người dùng viết tắt, r�
 
 | Property | Bài nộp | Lịch thi | Task ôn thi | Task lẻ |
 |---|---|---|---|---|
-| **Tasks** | `ANTT: Bài tập 5 — Hàm băm, chữ ký số` | `ANTT: Thi cuối kỳ` | `ANTT: Ôn chương 3 — <tên chương>` | theo lời người dùng, có tiền tố |
+| **Tasks** | `[T005] ANTT: Bài tập 5 — Hàm băm, chữ ký số` | `[T014] ANTT: Thi cuối kỳ` | `[T007] ANTT: Ôn chương 3 — <tên chương>` | theo lời người dùng, có tiền tố môn; **không có ID** (không nằm trong file) |
 | **Category** | `University` | `University` | `University` | `University` |
 | **Topic** | `Homework` (đồ án: `Project Task`) | trống | trống | tuỳ, mặc định trống |
 | **Deadline** | hạn nộp, có giờ nếu biết | ngày giờ thi | ngày ôn xong | theo lời người dùng |
@@ -112,7 +115,11 @@ python3 -c "import random,sys;print(' '.join(random.sample('📘 📗 📙 📕 
 ```
 
 Chỉ đặt icon lúc **tạo** — không đổi icon của task đã có (người dùng có thể đã tự chọn). Icon ghi trong
-bảng xem trước, cột *Task* (vd `🧩 ANTT: Bài tập 8`).
+bảng xem trước, cột *Task* (vd `🧩 [T027] ANTT: Bài tập 8`).
+
+**ID trong tên** — mọi task có dòng trong `tasks-<kỳ>.md` mở đầu tên bằng `[<ID>] ` rồi mới tới tiền tố môn.
+Dòng chưa có ID → chạy `scripts/tasks-overview.py` **trước** khi tạo trang để script cấp ID. Tìm task trên Notion
+theo ID: `notion-search` / SQL `WHERE Tasks LIKE '[T015]%'`.
 
 Tên loại việc trong tiêu đề giữ đúng cách giảng viên gọi: `Bài tập 5`, `Bài thực hành 3`, `Đồ án 1`.
 
@@ -237,6 +244,7 @@ không tạo/dời sự kiện); *"chỉ lịch"* → bỏ phần Notion.
 | Task University trên Notion **ngoài map**, chưa Done, Deadline đã qua | `? hỏi`: chuyển `Done`, `Archived`, hay để nguyên | — |
 | Task trong map không còn trên Notion (bị xoá) | `? hỏi`: tạo lại hay bỏ khỏi map | — |
 | Task ôn (`…/r<nn>`) có trong map mà file chưa có dòng | `✓ kéo về`: thêm dòng `Ôn thi` vào nhóm 1 (hạn · môn · buổi ôn · trạng thái theo Notion · khoá) | — |
+| Task trong map mà tên Notion / tiêu đề sự kiện **thiếu `[<ID>]`** hoặc sai ID | `✎ sửa` tên — thêm/sửa tiền tố `[<ID>] `, giữ phần còn lại | `✎ sửa` tiêu đề y như vậy |
 | Priority lệch luật (task sắp tới hạn mà vẫn `Low`) | `✎ sửa` — **chỉ đề xuất nâng**, không bao giờ hạ Priority người dùng đã đặt | — |
 
 Dòng quá hạn trong repo mà chưa có file nộp → vẫn tạo task `High`, ghi vào Notes
@@ -247,8 +255,8 @@ Bảng xem trước có thêm cột **Calendar** để người dùng thấy s�
 
 ### 3. Duyệt → ghi → cập nhật map
 
-Thứ tự **Notion trước, Calendar sau** — mô tả sự kiện cần link trang Notion. Ghi xong mỗi lô
-thì lưu `page`, `deadline`, `event` vào `admin/notion-map.json` ngay. Sửa file `tasks-<kỳ>.md`
+Thứ tự **repo (cấp ID) → Notion → Calendar** — tên task cần ID, mô tả sự kiện cần link trang Notion. Ghi xong mỗi lô
+thì lưu `id`, `page`, `deadline`, `event` vào `admin/notion-map.json` ngay. Sửa file `tasks-<kỳ>.md`
 (kéo trạng thái về, thêm khoá) trong cùng lượt.
 
 **Luôn** chạy `scripts/tasks-overview.py admin/tasks-<kỳ>.md` ở cuối mỗi lượt sync — **kể cả khi file không có
@@ -295,7 +303,7 @@ cùng lượt với task Notion, **cùng bảng xem trước**. Dòng hạn `❓
 | **Lịch** | **`Work`** — tra `calendarId` bằng `list_calendars` theo tên, **không dùng lịch chính** | như bên trái |
 | Thời gian | Có giờ: sự kiện 30 phút **kết thúc đúng giờ hạn** (21:30 → 21:00–21:30). Chỉ có ngày: sự kiện cả ngày | giờ thi → + thời lượng thi (chưa biết thì 2 giờ) |
 | Nhắc | popup trước **1 ngày** + trước **2 giờ** | popup trước **1 ngày** + trước **2 giờ** |
-| Tiêu đề | `<TT> Hạn <việc>` — vd `ANTT Hạn Bài tập 8` | `<TT> Thi <mã môn> — ca <n>` |
+| Tiêu đề | `[<ID>] <TT> Hạn <việc>` — vd `[T027] ANTT Hạn Bài tập 8` | `[<ID>] <TT> Thi <mã môn> — ca <n>` |
 | Mô tả | việc cần làm · hạn dự phòng nếu có · link task Notion · đường dẫn repo | hình thức, được mang gì, phòng thi `❓` nếu chưa biết · link task Notion |
 | `location` | — | nơi thi nếu biết |
 

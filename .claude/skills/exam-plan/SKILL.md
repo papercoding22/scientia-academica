@@ -121,10 +121,12 @@ Xếp **lùi từ ngày thi**. Mỗi kỳ thi có khung:
 
 | Loại | Tên |
 |---|---|
-| Ôn | `<TT>: Ôn <phạm vi>` |
-| Đề mẫu | `<TT>: Làm đề mẫu có bấm giờ` |
-| Tổng | `<TT>: Ôn tổng + sửa chỗ sai` |
-| Thi | `<TT>: Thi <mã môn> — ca <n>` |
+| Ôn | `[<ID>] <TT>: Ôn <phạm vi>` |
+| Đề mẫu | `[<ID>] <TT>: Làm đề mẫu có bấm giờ` |
+| Tổng | `[<ID>] <TT>: Ôn tổng + sửa chỗ sai` |
+| Thi | `[<ID>] <TT>: Thi <mã môn> — ca <n>` |
+
+`<ID>` = cột *ID* của dòng trong `admin/tasks-<kỳ>.md` — có sau khi ghi repo ở bước 7 (bảng xem trước ghi `T?`).
 
 `<TT>` = viết tắt môn (bảng trong `notion-tasks`). **Deadline task = giờ kết thúc buổi.**
 
@@ -159,7 +161,11 @@ Chưa có chữ *OK* thì **chưa ghi gì** — cả Notion lẫn Calendar.
 
 ## Bước 7 — Ghi
 
-Thứ tự **Notion trước, Calendar sau**, vì sự kiện cần link trang Notion.
+Thứ tự **repo → Notion → Calendar**: repo cấp ID cho tên task, sự kiện cần link trang Notion.
+
+**0. `admin/tasks-<kỳ>.md`** — thêm mỗi buổi thành một dòng ở nhóm 1, ô *ID* để trống: *Hạn* = giờ kết thúc buổi ·
+*Môn* · *Loại* `Ôn thi` · *Việc* = tên buổi ôn · `⬜ chưa làm` · khoá `<MÃ>/exam-<…>/r<nn>`. Chạy
+`scripts/tasks-overview.py admin/tasks-<kỳ>.md` — script cấp ID; đọc lại ID từng dòng để đặt tên task.
 
 **1. Notion** (`notion-create-pages` lên data source ☕ Tasks; schema đọc bằng `notion-fetch` đầu phiên):
 
@@ -175,15 +181,11 @@ Thứ tự **Notion trước, Calendar sau**, vì sự kiện cần link trang N
 | Buổi ôn / đề mẫu | đúng khung đã duyệt | popup 30 phút | Mô tả: phạm vi + link task Notion |
 | Thi | giờ thi → + thời lượng | popup **1 ngày** + **2 giờ** | `location` = nơi thi; mô tả: hình thức, được mang gì, phòng thi `❓` nếu chưa biết |
 
-Tiêu đề sự kiện = tên task bỏ dấu `:` (vd `HDH Ôn chương 7 — Quản lý bộ nhớ`).
+Tiêu đề sự kiện = tên task bỏ dấu `:` (vd `[T005] HDH Ôn chương 7 — Quản lý bộ nhớ`).
 
 **3. `admin/notion-map.json`** (gitignore): khoá `<MÃ>/exam-<final|mid>` cho task thi và
 `<MÃ>/exam-<final|mid>/r<nn>` cho task ôn, ghi ngay sau khi tạo — đứt giữa chừng thì lần sau
-vẫn biết cái nào đã có. Lưu thêm `event` (id sự kiện Calendar) nếu muốn dời/xoá sau này.
-
-**4. `admin/tasks-<kỳ>.md`** — thêm mỗi buổi đã tạo thành một dòng ở nhóm 1: *Hạn* = giờ kết thúc buổi ·
-*Môn* · *Loại* `Ôn thi` · *Việc* = tên buổi ôn · `⬜ chưa làm` · khoá `<MÃ>/exam-<…>/r<nn>`.
-Ghi xong chạy `scripts/tasks-overview.py admin/tasks-<kỳ>.md` để xếp dòng vào đúng nhóm.
+vẫn biết cái nào đã có. Lưu `id` (ID task) và `event` (id sự kiện Calendar) để dời/xoá sau này.
 
 Sau khi ghi, **mở lại** một task Notion và một sự kiện để kiểm tra giờ hiển thị đúng (lệch múi giờ là lỗi âm thầm).
 

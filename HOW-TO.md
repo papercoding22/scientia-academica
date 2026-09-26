@@ -471,7 +471,15 @@ biết hạn. Mặc định xem trong chat, không tạo task Notion hay sự ki
 **1. Sẽ làm** · **2. Đang làm** · **3. Trễ tiến độ** · **4. Quan trọng, đáng chú ý** (kỳ thi, hạn giảng viên ≤ 7 ngày,
 hạn hôm nay/ngày mai — chỉ để xem) · **5. Đã xong**.
 
-Tự quản lý ngay trong file: thêm task vào nhóm 1, đổi *Trạng thái* (`⬜` `🔄` `✅` `⚠️`) hoặc *Hạn* ngay trên dòng,
+Mỗi task có **ID** riêng `T001`, `T002`… (duy nhất toàn repo, cũng hiện ở đầu tên task Notion và sự kiện lịch:
+`[T015] ANTT: …`). Nhắc task bằng ID cho nhanh:
+```
+T015 xong rồi
+dời T010 sang tối mai
+T007 là việc gì?
+```
+
+Tự quản lý ngay trong file: thêm task vào nhóm 1 (để trống ô ID — script tự cấp), đổi *Trạng thái* (`⬜` `🔄` `✅` `⚠️`) hoặc *Hạn* ngay trên dòng,
 rồi chạy `scripts/tasks-overview.py` — dòng tự chuyển sang đúng nhóm. Không xoá dòng; xong thì `✅`.
 AI tự chạy script sau mỗi lần sửa.
 

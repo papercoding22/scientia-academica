@@ -1,6 +1,6 @@
 ---
 name: replan-late
-description: Xếp lại nhanh các task đang trễ tiến độ (nhóm "3. Trễ tiến độ" trong admin/tasks-<học kỳ>.md) vào khung giờ còn trống trước hạn cuối hoặc ngày thi — đọc lịch Google Calendar, đề xuất lịch mới trong một bảng, sau khi duyệt thì dời cùng lúc hạn trong repo, Deadline trên Notion và sự kiện trên lịch Work. Dùng khi người dùng nói "planning lại việc trễ", "xếp lại các buổi bị lỡ", "dời task trễ hạn", "replan", "lỡ buổi ôn hôm qua", "các việc quá hạn xếp lại giúp". Lập kế hoạch ôn thi từ đầu thì dùng exam-plan.
+description: Xếp lại nhanh các task đang trễ tiến độ (nhóm "3. Trễ tiến độ" trong admin/tasks-<học kỳ>.md) vào khung giờ còn trống trước hạn cuối hoặc ngày thi — đọc lịch Google Calendar, đề xuất lịch mới trong một bảng, sau khi duyệt thì dời cùng lúc hạn trong repo, Deadline trên Notion và sự kiện trên lịch Work. Dùng khi người dùng nói "planning lại việc trễ", "xếp lại các buổi bị lỡ", "dời task trễ hạn", "replan", "lỡ buổi ôn hôm qua", "các việc quá hạn xếp lại giúp", "dời T010 sang tối mai". Lập kế hoạch ôn thi từ đầu thì dùng exam-plan.
 ---
 
 # Xếp lại task trễ tiến độ → repo + Notion + Calendar
@@ -89,11 +89,12 @@ Không đủ khung → nói thẳng **thiếu bao nhiêu giờ**, đưa phương
 
 ## Bước 4 — Bảng xem trước
 
-Một bảng duy nhất, rồi **một** câu hỏi duyệt:
+Một bảng duy nhất, rồi **một** câu hỏi duyệt. Người dùng chỉnh bằng ID: *"T009 bỏ"*, *"T010 sang 20:00"*.
+Người dùng chỉ định sẵn (*"dời T010, T012"*) → chỉ xếp các ID đó, kể cả khi chưa trễ.
 
-| # | Task | Lịch cũ (đã lỡ) | **Lịch mới** | Thời lượng | Lý do xếp |
-|---|---|---|---|---|---|
-| 1 | HDH: Ôn chương 7 (🔄) | T7 26/9 09:00–11:30 | **CN 27/9 09:00–11:30** | 2,5 giờ | 41% đề mẫu, xếp sớm nhất |
+| # | ID | Task | Lịch cũ (đã lỡ) | **Lịch mới** | Thời lượng | Lý do xếp |
+|---|---|---|---|---|---|---|
+| 1 | T005 | HDH: Ôn chương 7 (🔄) | T7 26/9 09:00–11:30 | **CN 27/9 09:00–11:30** | 2,5 giờ | 41% đề mẫu, xếp sớm nhất |
 
 Dưới bảng, chỉ những gì người dùng cần để quyết:
 

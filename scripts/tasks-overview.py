@@ -18,6 +18,10 @@ ngay trên dòng (ở nhóm nào cũng được), thêm task mới vào nhóm 1,
 
 Script tính lại cột "Còn lại", chuyển dòng sang đúng nhóm, sắp theo hạn, sinh lại nhóm 4.
 Mọi cột khác giữ nguyên chữ người dùng viết.
+
+ID: mỗi task có một ID `T001`, `T002`… duy nhất trong TOÀN repo (mọi admin/tasks-*.md),
+không bao giờ dùng lại. Dòng mới để trống ô ID → script cấp số kế tiếp (lớn nhất + 1).
+ID trùng → script dừng và báo, không tự sửa.
 """
 import argparse, datetime as dt, pathlib, re, sys
 
@@ -27,7 +31,8 @@ END = "<!-- tasks:end -->"
 IMPORTANT_DAYS = 7  # hạn giảng viên còn ≤ N ngày thì vào nhóm "Quan trọng"
 WEEKDAY = ["T2", "T3", "T4", "T5", "T6", "T7", "CN"]
 
-COLS = ["Hạn", "Còn lại", "Môn", "Loại", "Việc", "Trạng thái", "Khoá", "Ghi chú"]
+COLS = ["ID", "Hạn", "Còn lại", "Môn", "Loại", "Việc", "Trạng thái", "Khoá", "Ghi chú"]
+ID_RE = re.compile(r"^T(\d{3,})$")
 GROUPS = [
     ("todo", "1. Sẽ làm", "Chưa bắt đầu, chưa tới hạn (kể cả hạn ❓) · kỳ thi chưa diễn ra. **Thêm task mới vào đây.**"),
     ("doing", "2. Đang làm", "Trạng thái `🔄`, chưa quá hạn."),
@@ -148,9 +153,25 @@ def table(rows, cols):
     return out
 
 
-def build(block, now):
+def assign_ids(rows, next_id):
+    """Cấp ID cho dòng chưa có, theo thứ tự hạn. next_id: số kế tiếp dùng chung toàn repo (list 1 phần tử)."""
+    for row in sorted((r for r in rows if not row_id(r)), key=sort_key):
+        row["ID"] = f"T{next_id[0]:03d}"
+        next_id[0] += 1
+    return rows
+
+
+def row_id(row):
+    m = ID_RE.match(row.get("ID", "").strip().strip("`"))
+    return int(m.group(1)) if m else None
+
+
+def build(block, now, next_id=None):
     groups = {key: [] for key, *_ in GROUPS}
-    for row in parse_rows(block):
+    rows = parse_rows(block)
+    if next_id is None:
+        next_id = [max([row_id(r) or 0 for r in rows] + [0]) + 1]
+    for row in assign_ids(rows, next_id):
         g = classify(row, now)
         groups[g].append(normalize(row, now, g))
     for key in groups:
@@ -167,7 +188,7 @@ def build(block, now):
     for key, title, desc in GROUPS:
         out += [f"## {title}", "", desc, ""]
         if key == "notable":
-            cols = ["Hạn", "Còn lại", "Môn", "Loại", "Việc", "Vì sao"]
+            cols = ["ID", "Hạn", "Còn lại", "Môn", "Loại", "Việc", "Vì sao"]
             out += table(marked, cols) if marked else ["Không có."]
         else:
             out += table(groups[key], COLS)
@@ -176,11 +197,31 @@ def build(block, now):
     return "\n".join(out)
 
 
-def apply(md, now):
+def block_of(md):
     if START not in md or END not in md:
         sys.exit("Không tìm thấy marker <!-- tasks:start … --> / <!-- tasks:end --> — file tạo từ templates/tasks.md chưa?")
-    a, b = md.index(START), md.index(END) + len(END)
-    return md[:a] + build(md[a:b], now) + md[b:]
+    return md.index(START), md.index(END) + len(END)
+
+
+def apply(md, now, next_id=None):
+    a, b = block_of(md)
+    return md[:a] + build(md[a:b], now, next_id) + md[b:]
+
+
+def repo_ids(files):
+    """Mọi ID đang dùng trong các file → (số lớn nhất, danh sách trùng)."""
+    seen, dup = {}, []
+    for f in files:
+        md = f.read_text(encoding="utf-8")
+        a, b = block_of(md)
+        for r in parse_rows(md[a:b]):
+            n = row_id(r)
+            if n is None:
+                continue
+            if n in seen:
+                dup.append(f"T{n:03d} ({rel(seen[n])} và {rel(f)})")
+            seen[n] = f
+    return max(seen, default=0), dup
 
 
 def rel(f):
@@ -197,10 +238,15 @@ def main():
     ap.add_argument("--print", action="store_true", dest="dry")
     args = ap.parse_args()
     now = dt.datetime.strptime(args.today, "%Y-%m-%d") if args.today else dt.datetime.now()
-    files = [pathlib.Path(f) for f in args.files] or sorted((REPO / "admin").glob("tasks-*.md"))
+    all_files = sorted((REPO / "admin").glob("tasks-*.md"))
+    files = [pathlib.Path(f) for f in args.files] or all_files
+    top, dup = repo_ids(sorted(set(all_files) | {f.resolve() for f in files}))
+    if dup:
+        sys.exit("ID trùng — sửa tay rồi chạy lại: " + ", ".join(dup))
+    next_id = [top + 1]
     for f in files:
         md = f.read_text(encoding="utf-8")
-        new = apply(md, now)
+        new = apply(md, now, next_id)
         if args.dry:
             print(f"── {rel(f)}\n{new}\n")
         elif new != md:

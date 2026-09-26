@@ -26,7 +26,7 @@ Chi tiết từng skill ở `.claude/skills/<tên>/SKILL.md`.
 | [`exam-plan`](.claude/skills/exam-plan/SKILL.md) | Đọc lịch, xếp buổi ôn lùi từ ngày thi, tạo task Notion + sự kiện Google Calendar | *lên kế hoạch ôn thi IT007 và IE105* |
 | [`replan-late`](.claude/skills/replan-late/SKILL.md) | Xếp lại nhanh task trễ tiến độ vào khung trống trước hạn/ngày thi; dời cùng lúc repo, Notion, Calendar | *planning lại các việc bị trễ* |
 | [`notion-tasks`](.claude/skills/notion-tasks/SKILL.md) | Đồng bộ bài nộp, lịch thi từ `admin/tasks-<kỳ>.md` lên Notion và Google Calendar; tạo task lẻ | *đồng bộ Notion* · *đồng bộ lịch* |
-| [`task-status`](.claude/skills/task-status/SKILL.md) | Cập nhật trạng thái task theo lời bạn: ghi `admin/tasks-<kỳ>.md` + README bài, rồi đẩy Status lên Notion | *đã nộp bài tập 8 IE105* · *xong buổi ôn chương 7* |
+| [`task-status`](.claude/skills/task-status/SKILL.md) | Cập nhật trạng thái task theo lời bạn: ghi `admin/tasks-<kỳ>.md` + README bài, rồi đẩy Status lên Notion | *T015 xong rồi* · *đã nộp bài tập 8 IE105* |
 | [`task-summary`](.claude/skills/task-summary/SKILL.md) | Tóm tắt việc cần làm, hạn nộp, lịch thi và mốc nhóm; chỉ rõ quá hạn/chưa rõ hạn | *tóm tắt task và deadline tuần này* |
 | [`tidy-files`](.claude/skills/tidy-files/SKILL.md) | Đổi tên, xếp file thả tay vào đúng thư mục | *tôi vừa thả file vào IE103, dọn giúp* |
 
@@ -85,7 +85,7 @@ Skill gọi các script này; tự chạy được khi cần.
 | `scripts/new-project.sh` | Dựng thư mục đồ án `prjN/` (dùng bởi `new-project`) |
 | `scripts/check-layout.sh` | Tìm file sai chỗ / sai tên (dùng bởi `tidy-files`) |
 | `scripts/toc.py gen\|check` | Sinh / kiểm tra mục lục markdown |
-| `scripts/tasks-overview.py` | Xếp task của `admin/tasks-<kỳ>.md` vào 5 nhóm, tính lại *Còn lại*, sinh nhóm Quan trọng (dùng bởi `notion-tasks`, `task-status`, `exam-plan`, `new-*`) |
+| `scripts/tasks-overview.py` | Cấp ID `T<nnn>` cho task mới, xếp task của `admin/tasks-<kỳ>.md` vào 5 nhóm, tính lại *Còn lại*, sinh nhóm Quan trọng (dùng bởi `notion-tasks`, `task-status`, `exam-plan`, `new-*`) |
 | [`scripts/note-image.py`](scripts/note-image.md) | Mẫu concept/mechanism/mindmap → SVG → PNG; sinh Markdown với bullet Đọc hình, dùng chung cho các skill hình ảnh |
 | `scripts/peek.py` | Xem nhanh `.pdf` / `.docx` / `.pptx` / `.xlsx` / `.vtt` |
 | `scripts/slides-to-md.py` | Dựng bộ đệm text của PDF trong `materials/` → `.cache/md/` để `grep` |

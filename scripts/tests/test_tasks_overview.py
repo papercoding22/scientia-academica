@@ -3,6 +3,7 @@
 import datetime as dt
 import importlib.util
 from pathlib import Path
+import tempfile
 import unittest
 
 SCRIPTS = Path(__file__).resolve().parents[1]
@@ -84,6 +85,29 @@ class TasksOverviewTest(unittest.TestCase):
         self.assertEqual(again, ov.apply(again, NOW))
         self.assertTrue(again.startswith("# Task — test\n\nPhần đầu file giữ nguyên."))
         self.assertTrue(again.endswith("Phần cuối file giữ nguyên.\n"))
+
+    def test_ids_assigned_by_deadline_and_stable(self):
+        ids = {r["Việc"]: r["ID"] for r in ov.parse_rows(self.md)}
+        self.assertEqual(ids["Thi giữa kỳ"], "T001")  # hạn sớm nhất
+        self.assertEqual(ids["Bài tập 3"], "T009")  # hạn ❓ nhận số cuối
+        self.assertEqual(len(set(ids.values())), 9)
+        self.assertEqual(ov.apply(self.md, NOW), self.md)  # chạy lại không đổi ID
+
+    def test_new_row_gets_next_id_even_across_files(self):
+        row = "| | 2026-09-29 | | AB123 | Hạn nộp | Bài tập 5 | ⬜ chưa làm | `AB123/a5` | |"
+        edited = self.md.replace("|---|---|---|---|---|---|---|---|---|\n", "|---|---|---|---|---|---|---|---|---|\n" + row + "\n", 1)
+        out = ov.apply(edited, NOW, next_id=[42])  # file khác đã dùng tới T041
+        self.assertIn("| T042 | T3 2026-09-29 |", out)
+        self.assertIn("Bài tập 5", group(out, "1. Sẽ làm"))
+
+    def test_duplicate_ids_are_reported(self):
+        with tempfile.TemporaryDirectory() as d:
+            a, b = Path(d) / "tasks-a.md", Path(d) / "tasks-b.md"
+            a.write_text(self.md, encoding="utf-8")
+            b.write_text(self.md, encoding="utf-8")
+            top, dup = ov.repo_ids([a, b])
+            self.assertEqual(top, 9)
+            self.assertEqual(len(dup), 9)
 
 
 if __name__ == "__main__":

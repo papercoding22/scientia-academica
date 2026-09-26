@@ -107,7 +107,7 @@ và người dùng chỉ phát hiện ra lúc cần tra cứu gấp.
 | File | Sửa gì |
 |---|---|
 | `semesters/<kỳ>/README.md` | Thêm dòng vào **bảng môn** + **bảng tiến độ**; cập nhật số môn ở đầu file; viết thêm vào mục **"học kỳ này gắn với nhau thế nào"** |
-| `admin/tasks-<kỳ>.md` | Thêm 2 dòng `Thi` vào nhóm 1: `<MÃ>/exam-mid`, `<MÃ>/exam-final`, hạn `❓`, *Ghi chú* `chưa có lịch`; rồi chạy `scripts/tasks-overview.py` |
+| `admin/tasks-<kỳ>.md` | Thêm 2 dòng `Thi` vào nhóm 1 (ô *ID* trống): `<MÃ>/exam-mid`, `<MÃ>/exam-final`, hạn `❓`, *Ghi chú* `chưa có lịch`; rồi chạy `scripts/tasks-overview.py` để cấp ID |
 | `program/curriculum.md` | Thêm dòng vào khối phù hợp, trạng thái `🔄 đang học`, kỳ dự kiến = học kỳ này |
 | `program/transcript.md` | Thêm dòng vào mục học kỳ hiện tại, điểm `🔄` |
 | `program/specialization/README.md` | Thêm dòng vào bảng **"cảm nhận từng môn"**, trạng thái `🔄 đang học` |

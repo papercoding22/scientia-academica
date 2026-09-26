@@ -99,9 +99,10 @@ Mở bằng **ngày chốt, học kỳ/môn và nguồn đã kiểm tra**. Nêu 
 3. **Sau đó** — việc còn lại có ngày, theo thứ tự deadline tăng dần.
 4. **Chưa rõ hạn / cần xác minh** — vẫn là việc cần theo dõi, không giấu khỏi báo cáo.
 
-| Môn | Việc cần làm | Deadline / loại mốc | Còn lại | Trạng thái | Nguồn |
-|---|---|---|---|---|---|
+| ID | Môn | Việc cần làm | Deadline / loại mốc | Còn lại | Trạng thái | Nguồn |
+|---|---|---|---|---|---|---|
 
+- Cột *ID* lấy từ `admin/tasks-<kỳ>.md` (`T015`); việc không có dòng trong file (mốc nhóm) để `—`.
 - Dùng ngày tuyệt đối `YYYY-MM-DD`, kèm giờ khi biết. Giữ dấu `❓` đúng chỗ thiếu
   (ví dụ ngày thi biết nhưng loại giữa kỳ/cuối kỳ chưa xác nhận). Mỗi dòng có link
   tới nguồn cụ thể; có thể gắn link ở tên việc để bảng gọn.

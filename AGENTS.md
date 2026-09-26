@@ -374,10 +374,14 @@ Sáu template còn lại là để AI điền tay, không có token.
 
 - **`admin/tasks-<kỳ>.md`** (vd `admin/tasks-2025-2026-S3.md`) là **nguồn sự thật duy nhất**
   cho mọi task có hạn và lịch thi của học kỳ đó, **xem và quản lý ngay trong file**. File chỉ gồm 5 nhóm,
-  mỗi dòng là một task (cột Hạn · Còn lại · Môn · Loại · Việc · Trạng thái · Khoá · Ghi chú):
+  mỗi dòng là một task (cột ID · Hạn · Còn lại · Môn · Loại · Việc · Trạng thái · Khoá · Ghi chú):
   **1. Sẽ làm** · **2. Đang làm** · **3. Trễ tiến độ** · **4. Quan trọng, đáng chú ý** (bảng xem, tự sinh) · **5. Đã xong**.
   *Loại* = `Hạn nộp` (hạn giảng viên) · `Thi` · `Ôn thi` (buổi ôn tự đặt). Nguồn, ca thi, ngày nộp, điểm → cột *Ghi chú*.
-- Thêm task → thêm dòng vào nhóm 1. Đổi trạng thái/hạn → sửa ngay trên dòng. **Không xoá dòng** — xong thì `✅`.
+- **ID task** `T001`, `T002`… — duy nhất **toàn repo** (mọi học kỳ), không bao giờ dùng lại, do script cấp cho dòng
+  để trống ô ID. Người dùng nhắc task bằng ID (*"T015 xong"*, *"dời T010"*) → tìm đúng dòng đó trong mọi
+  `admin/tasks-*.md`. ID cũng đứng đầu tên task Notion và tiêu đề sự kiện Calendar: `[T015] ANTT: …`.
+  Khi báo lại về task nào, **luôn kèm ID**.
+- Thêm task → thêm dòng vào nhóm 1, ô ID để trống. Đổi trạng thái/hạn → sửa ngay trên dòng. **Không xoá dòng** — xong thì `✅`.
   Sửa xong **luôn** chạy `scripts/tasks-overview.py` — script chuyển dòng sang đúng nhóm theo trạng thái và ngày,
   tính lại *Còn lại*, sinh lại nhóm 4. Học kỳ mới → tạo từ `templates/tasks.md`. Lịch học xem lịch `UIT Class`;
   quy định lặp lại của giảng viên (vd IE105 nộp 21:30) nằm ở `IMPORTANT_NOTES.md` của môn.

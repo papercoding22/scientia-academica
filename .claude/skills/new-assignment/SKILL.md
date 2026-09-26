@@ -108,7 +108,8 @@ ngày tuyệt đối. Không đủ thông tin quy đổi thì hỏi, **không đ
 Môn có quy tắc nộp lặp lại (IE105: **21:30 cùng ngày học**, dự phòng hết hôm sau) →
 áp dụng luôn, đã ghi ở `IMPORTANT_NOTES.md` của môn (mục 4).
 
-Ghi xong chạy `scripts/tasks-overview.py admin/tasks-<kỳ>.md` để xếp dòng vào đúng nhóm, rồi đề xuất chạy `notion-tasks` (sync mục vừa tạo) để lên Notion và Calendar.
+Ô *ID* để trống — ghi xong chạy `scripts/tasks-overview.py admin/tasks-<kỳ>.md`: script cấp ID và xếp dòng vào đúng nhóm;
+**báo ID vừa cấp** trong câu trả lời (*"Bài tập 8 = T027"*), rồi đề xuất chạy `notion-tasks` (sync mục vừa tạo) để lên Notion và Calendar.
 
 ---
 

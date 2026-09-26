@@ -11,6 +11,9 @@
 > nhóm 1, rồi chạy `scripts/tasks-overview.py` (AI tự chạy sau mỗi lần sửa) — script chuyển dòng sang
 > đúng nhóm, tính lại *Còn lại* và sinh lại nhóm 4. Không xoá dòng: xong thì đổi sang `✅`.
 
+- **ID** — `T001`, `T002`… **duy nhất trong toàn repo**, không bao giờ dùng lại. Dòng mới để **trống** ô này,
+  script tự cấp số kế tiếp. Nhắc task trong prompt bằng ID: *"T015 xong rồi"*, *"dời T010 sang tối mai"*.
+  ID cũng đứng đầu tên task Notion và tiêu đề sự kiện Calendar: `[T015] ANTT: …`.
 - **Hạn** — ngày tuyệt đối `YYYY-MM-DD [HH:MM]`, chưa biết thì `❓`. **Còn lại** — script tự tính.
 - **Loại** — `Hạn nộp` (hạn giảng viên đặt) · `Thi` · `Ôn thi` (buổi ôn tự đặt, skill `exam-plan`).
   Mốc nhóm tự đặt không ghi ở đây (README đồ án + Notion); lịch học xem ở lịch `UIT Class`.
@@ -39,10 +42,10 @@
 
 Chưa bắt đầu, chưa tới hạn (kể cả hạn ❓) · kỳ thi chưa diễn ra. **Thêm task mới vào đây.**
 
-| Hạn | Còn lại | Môn | Loại | Việc | Trạng thái | Khoá | Ghi chú |
-|---|---|---|---|---|---|---|---|
-| ❓ | — | <MÃ> | Thi | Thi cuối kỳ | — | `<MÃ>/exam-final` | chưa có lịch |
-| ❓ | — | <MÃ> | Thi | Thi giữa kỳ | — | `<MÃ>/exam-mid` | chưa có lịch |
+| ID | Hạn | Còn lại | Môn | Loại | Việc | Trạng thái | Khoá | Ghi chú |
+|---|---|---|---|---|---|---|---|---|
+|  | ❓ | — | <MÃ> | Thi | Thi cuối kỳ | — | `<MÃ>/exam-final` | chưa có lịch |
+|  | ❓ | — | <MÃ> | Thi | Thi giữa kỳ | — | `<MÃ>/exam-mid` | chưa có lịch |
 
 ---
 
@@ -50,8 +53,8 @@ Chưa bắt đầu, chưa tới hạn (kể cả hạn ❓) · kỳ thi chưa di
 
 Trạng thái `🔄`, chưa quá hạn.
 
-| Hạn | Còn lại | Môn | Loại | Việc | Trạng thái | Khoá | Ghi chú |
-|---|---|---|---|---|---|---|---|
+| ID | Hạn | Còn lại | Môn | Loại | Việc | Trạng thái | Khoá | Ghi chú |
+|---|---|---|---|---|---|---|---|---|
 
 ---
 
@@ -59,8 +62,8 @@ Trạng thái `🔄`, chưa quá hạn.
 
 Quá hạn mà chưa `✅`, hoặc Trạng thái `⚠️`.
 
-| Hạn | Còn lại | Môn | Loại | Việc | Trạng thái | Khoá | Ghi chú |
-|---|---|---|---|---|---|---|---|
+| ID | Hạn | Còn lại | Môn | Loại | Việc | Trạng thái | Khoá | Ghi chú |
+|---|---|---|---|---|---|---|---|---|
 
 ---
 
@@ -76,7 +79,7 @@ Không có.
 
 Trạng thái `✅` · kỳ thi đã qua. Giữ làm lịch sử — không xoá dòng.
 
-| Hạn | Còn lại | Môn | Loại | Việc | Trạng thái | Khoá | Ghi chú |
-|---|---|---|---|---|---|---|---|
+| ID | Hạn | Còn lại | Môn | Loại | Việc | Trạng thái | Khoá | Ghi chú |
+|---|---|---|---|---|---|---|---|---|
 
 <!-- tasks:end -->

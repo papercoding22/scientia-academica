@@ -1,6 +1,6 @@
 ---
 name: task-status
-description: Cập nhật trạng thái một hoặc vài task (bài tập, lab, đồ án, mốc giảng viên, buổi ôn thi) theo lời người dùng — ghi vào admin/tasks-<học kỳ>.md và README liên quan, rồi đẩy Status/Completion Date lên Notion ☕ Tasks. Dùng khi người dùng nói "đã nộp bài tập 8 IE105", "xong buổi ôn chương 7", "đang làm lab 4", "đánh dấu … là done", "cập nhật trạng thái task", "bài 3A được 9 điểm". Đồng bộ toàn bộ hai chiều hoặc tạo task mới thì dùng notion-tasks.
+description: Cập nhật trạng thái một hoặc vài task (bài tập, lab, đồ án, mốc giảng viên, buổi ôn thi) theo lời người dùng — ghi vào admin/tasks-<học kỳ>.md và README liên quan, rồi đẩy Status/Completion Date lên Notion ☕ Tasks. Dùng khi người dùng nói "T015 xong rồi", "đã nộp bài tập 8 IE105", "xong buổi ôn chương 7", "đang làm lab 4", "đánh dấu … là done", "cập nhật trạng thái task", "bài 3A được 9 điểm". Đồng bộ toàn bộ hai chiều hoặc tạo task mới thì dùng notion-tasks.
 ---
 
 # Cập nhật trạng thái task → repo + Notion
@@ -41,7 +41,9 @@ Khác `notion-tasks`: skill đó **quét toàn bộ** hai bên để tìm lệch
 1. **Học kỳ:** mặc định học kỳ đang học (`AGENTS.md` § 1) → `admin/tasks-<kỳ>.md`.
 2. **Môn:** mã môn hoặc viết tắt Notion (`ANTT` = IE105, `HDH` = IT007, `CSHT` = IE101, `QLTT` = IE103 —
    bảng đầy đủ ở skill `notion-tasks`). Không rõ môn → hỏi.
-3. **Dòng:** tìm trong các nhóm 1, 2, 3, 5 của file (nhóm 4 chỉ là bảng xem), theo cột *Môn* và *Khoá* / *Việc*:
+3. **Dòng:** người dùng nói **ID** (*"T015 xong"*) → tìm đúng dòng có *ID* đó, **trong mọi** `admin/tasks-*.md` (ID duy nhất
+   toàn repo, không cần biết học kỳ). Không có ID → tìm trong các nhóm 1, 2, 3, 5 (nhóm 4 chỉ là bảng xem) theo cột
+   *Môn* và *Khoá* / *Việc*:
 
    | Người dùng nói | *Loại* | Khoá |
    |---|---|---|
@@ -54,7 +56,7 @@ Khác `notion-tasks`: skill đó **quét toàn bộ** hai bên để tìm lệch
    - **Không có dòng nào** → việc này repo chưa theo dõi. Dừng và đề xuất: hạn giảng viên → `new-assignment`
      / `new-project`; việc tự đặt chỉ có trên Notion → cập nhật được trên Notion, nhưng chỉ khi người dùng
      chỉ rõ đúng task đó (luật 5 của `notion-tasks`).
-4. **Trang Notion:** tra khoá trong `admin/notion-map.json`. Không có khoá → task chưa lên Notion:
+4. **Trang Notion:** tra khoá (hoặc trường `id`) trong `admin/notion-map.json`. Không có khoá → task chưa lên Notion:
    chỉ cập nhật repo và nói rõ; gợi ý chạy `notion-tasks` nếu muốn đưa lên.
 
 Nhiều task trong một câu (*"xong ôn chương 7 và chương 8 HDH"*) → xử lý chung một lượt, một bảng xem trước.
@@ -104,9 +106,9 @@ có dự phòng (IE105: hết ngày hôm sau).
 
 **Bắt buộc**, kể cả khi chỉ có một task:
 
-| # | Task | Khoá | Repo | Notion | File khác |
+| # | ID | Task | Repo | Notion | File khác |
 |---|---|---|---|---|---|
-| 1 | ANTT: Bài tập 8 | `IE105/a8` | `⬜` → `✅ đã nộp`, nộp **2026-09-27** | `To Do` → `Done`, Completion 2026-09-27 | `a8/README.md` · `IE105/README.md` |
+| 1 | T027 | ANTT: Bài tập 8 | `⬜` → `✅ đã nộp`, nộp **2026-09-27** | `To Do` → `Done`, Completion 2026-09-27 | `a8/README.md` · `IE105/README.md` |
 
 Kèm câu hỏi duyệt ngắn: *OK?* Người dùng có thể sửa ngày hoặc bỏ một dòng (*"OK trừ 2"*).
 Chưa có *OK* thì **chưa ghi gì** — cả repo lẫn Notion.
