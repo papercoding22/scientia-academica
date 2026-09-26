@@ -180,8 +180,9 @@ Tiêu đề sự kiện = tên task bỏ dấu `:` (vd `HDH Ôn chương 7 — Q
 `<MÃ>/exam-<final|mid>/r<nn>` cho task ôn, ghi ngay sau khi tạo — đứt giữa chừng thì lần sau
 vẫn biết cái nào đã có. Lưu thêm `event` (id sự kiện Calendar) nếu muốn dời/xoá sau này.
 
-**Không ghi kế hoạch ôn vào `admin/tasks-<kỳ>.md`** — file đó chỉ giữ hạn của giảng viên và lịch thi. Ngày thi mới
-là dữ liệu của nó, và đã ghi từ trước.
+**4. `admin/tasks-<kỳ>.md`** — ghi các buổi đã tạo vào bảng **Kế hoạch ôn thi** của môn (ngay dưới *Lịch thi*):
+khoá `<MÃ>/exam-<…>/r<nn>` · buổi ôn · hạn (giờ kết thúc buổi) · trạng thái. **Không** trộn vào bảng
+*Việc và hạn nộp* — bảng đó chỉ giữ hạn giảng viên. Ngày thi đã ghi từ trước ở *Lịch thi*.
 
 Sau khi ghi, **mở lại** một task Notion và một sự kiện để kiểm tra giờ hiển thị đúng (lệch múi giờ là lỗi âm thầm).
 
@@ -191,7 +192,7 @@ Sau khi ghi, **mở lại** một task Notion và một sự kiện để kiểm
 
 Người dùng trượt buổi ôn, đổi giờ thi, hay xong sớm → **cập nhật** thay vì lập lại:
 
-- Dời buổi: sửa `Deadline` task (`notion-update-page`) **và** sự kiện (`update_event`). Hỏi trước khi dời.
+- Dời buổi: sửa hạn trong bảng *Kế hoạch ôn thi* trước, rồi `Deadline` task (`notion-update-page`) **và** sự kiện (`update_event`). Hỏi trước khi dời.
 - Sự kiện tạo nhầm lịch: Google Calendar không cho chuyển lịch → tạo lại trên `Work`, rồi xoá bản cũ (`notificationLevel = NONE`).
 - Buổi bỏ hẳn: chuyển task sang `Archived` (nếu được duyệt), **không xoá**; xoá sự kiện tương ứng.
 - Đổi ngày thi: cập nhật `admin/tasks-<kỳ>.md` trước (nguồn sự thật), rồi mới tính lại kế hoạch.
@@ -203,8 +204,7 @@ Người dùng trượt buổi ôn, đổi giờ thi, hay xong sớm → **cập
 Bao nhiêu task và sự kiện đã tạo · **link** database Notion · buổi ôn đầu tiên sắp tới · lỗ hổng nguồn ôn
 còn lại và skill nào xử lý được · deadline giảng viên trong 7 ngày tới.
 
-Kế hoạch chỉ nằm trên Notion và Calendar nên **thường không có gì để commit**. Chỉ commit khi kèm sửa file
-tracked (`admin/tasks-<kỳ>.md`, `IMPORTANT_NOTES.md`): `<MÃ MÔN>: kế hoạch ôn thi`.
+Commit bảng *Kế hoạch ôn thi* vừa ghi (và `IMPORTANT_NOTES.md` nếu có sửa): `<MÃ MÔN>: kế hoạch ôn thi`.
 
 ---
 
@@ -215,7 +215,7 @@ tracked (`admin/tasks-<kỳ>.md`, `IMPORTANT_NOTES.md`): `<MÃ MÔN>: kế hoạ
 - ❌ **Không đoán ngày thi hay giờ của ca.**
 - ❌ Không bịa phạm vi thi hay "gợi ý thi". Chia đều thì ghi *chia đều*; suy luận từ đề mẫu thì ghi *suy luận*.
 - ❌ Không giấu lỗ hổng nguồn ôn (slide hỏng, chưa có note) — chúng quyết định kế hoạch có làm được không.
-- ❌ Không ghi kế hoạch ôn vào `admin/tasks-<kỳ>.md`.
+- ❌ Không trộn buổi ôn vào bảng *Việc và hạn nộp* — chỉ vào bảng *Kế hoạch ôn thi*.
 - ❌ Không tạo task trùng; không xoá task Notion (tối đa `Archived`, và chỉ khi được duyệt).
 - ❌ Không hạ Priority người dùng đã tự đặt.
 - ❌ Không nhồi buổi ôn khi khung trống không đủ — nói thiếu bao nhiêu giờ.

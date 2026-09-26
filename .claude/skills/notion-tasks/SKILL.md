@@ -217,6 +217,7 @@ Sửa task cũ sang cấu trúc này dùng `replace_content`, **giữ lại mọ
 | Khoá có trong map nhưng **dòng đã bị xoá** khỏi file (bỏ theo dõi) | `? hỏi`: chuyển `Archived` hay để nguyên | `? hỏi`: xoá sự kiện hay để nguyên |
 | Task University trên Notion **ngoài map**, chưa Done, Deadline đã qua | `? hỏi`: chuyển `Done`, `Archived`, hay để nguyên | — |
 | Task trong map không còn trên Notion (bị xoá) | `? hỏi`: tạo lại hay bỏ khỏi map | — |
+| Task ôn (`…/r<nn>`) có trong map mà chưa có dòng trong bảng *Kế hoạch ôn thi* | `✓ kéo về`: thêm dòng (khoá · buổi ôn · hạn · trạng thái theo Notion) | — |
 | Priority lệch luật (task sắp tới hạn mà vẫn `Low`) | `✎ sửa` — **chỉ đề xuất nâng**, không bao giờ hạ Priority người dùng đã đặt | — |
 
 Dòng quá hạn trong repo mà chưa có file nộp → vẫn tạo task `High`, ghi vào Notes
@@ -241,7 +242,9 @@ xếp buổi ôn, in bảng xem trước, rồi **gọi lại** các quy ước 
 Khi sync phát hiện lịch thi có ngày cụ thể mà chưa có khoá `<MÃ>/exam-<…>/r<nn>` trong map → **đề xuất
 chạy `exam-plan`**, không tự xếp lịch ôn ở đây.
 
-Task ôn là kế hoạch cá nhân, **không ghi vào `tasks-<kỳ>.md`** — file đó chỉ giữ hạn của giảng viên và lịch thi.
+Task ôn là kế hoạch cá nhân: nằm ở bảng **Kế hoạch ôn thi** của môn trong `tasks-<kỳ>.md`, **không** trộn vào
+*Việc và hạn nộp*. Sync đối xử với bảng này như các bảng khác: hạn lệch → repo thắng; Notion `Done`/`In progress`
+→ kéo trạng thái về cột *Trạng thái* (`✅ xong` / `🔄 đang làm`).
 
 ---
 

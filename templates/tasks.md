@@ -25,8 +25,9 @@
   (gitignore) — **không đổi khoá** của dòng đã đồng bộ.
 - **Trạng thái:** `⬜ chưa làm` · `🔄 đang làm` · `✅ đã nộp` · `⚠️ trễ hạn`. Việc xong vẫn giữ dòng,
   chỉ đổi trạng thái và điền *Ngày nộp*.
-- File này chỉ giữ **hạn do giảng viên đặt** và **lịch thi**. Mốc nhóm tự đặt nằm trong README đồ án;
-  kế hoạch ôn thi nằm trên Notion/Calendar (skill `exam-plan`).
+- Bảng *Việc và hạn nộp* chỉ giữ **hạn do giảng viên đặt**; *Lịch thi* giữ ngày thi. Buổi ôn tự đặt
+  (skill `exam-plan`) nằm ở bảng riêng **Kế hoạch ôn thi** của môn, khoá `<MÃ>/exam-<…>/r<nn>`.
+  Mốc nhóm tự đặt chỉ nằm trong README đồ án và Notion.
 - Lịch học hằng tuần xem trên Google Calendar lịch `UIT Class`; mã lớp và giảng viên ở
   [README học kỳ](../semesters/<kỳ>/README.md).
 
@@ -63,3 +64,13 @@
 |---|---|---|---|---|---|
 | `<MÃ>/exam-mid` | Giữa kỳ | ❓ | ❓ | ❓ | ❓ |
 | `<MÃ>/exam-final` | Cuối kỳ | ❓ | ❓ | ❓ | ❓ |
+
+<!-- Chỉ thêm khi đã chạy exam-plan cho môn này. -->
+
+### Kế hoạch ôn thi
+
+Buổi ôn tự đặt (skill `exam-plan`), **không phải hạn giảng viên**. *Hạn* = giờ kết thúc buổi ôn.
+
+| Khoá | Buổi ôn | Hạn | Trạng thái |
+|---|---|---|---|
+| `<MÃ>/exam-final/r01` | Ôn <phạm vi> | YYYY-MM-DD HH:MM | ⬜ chưa làm |
