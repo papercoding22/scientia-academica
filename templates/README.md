@@ -64,7 +64,7 @@ AI copy rồi điền khi sinh file mới. Không phải để bạn mở đọc
 | `concept.md` | `knowledge-base/<khái-niệm>.md` | khái niệm dùng chung |
 | `thesis-idea.md` | `program/thesis/ideas/<slug>.md` | ý tưởng đồ án tốt nghiệp |
 | `specialization-track.md` | `program/specialization/tracks/<hướng>.md` | đánh giá hướng chuyên ngành |
-| `tasks.md` | `admin/tasks-<kỳ>.md` | bắt đầu học kỳ mới — task, deadline, lịch thi theo từng môn |
+| `tasks.md` | `admin/tasks-<kỳ>.md` | bắt đầu học kỳ mới — mọi task, deadline, lịch thi trong 5 nhóm |
 
 ---
 

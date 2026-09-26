@@ -91,11 +91,11 @@ Người dùng muốn thêm mốc nội bộ (nhóm tự chia) → thêm dòng v
 
 | File | Thêm gì |
 |---|---|
-| `admin/tasks-<kỳ>.md` | Bảng **Việc và hạn nộp** trong mục môn: khoá `<MÃ>/prjN` hoặc `<MÃ>/prjN/<mốc>` · hạn nộp cuối **và mọi mốc giảng viên đặt** (mỗi mốc một dòng: `Đồ án 1 — thuyết trình`) · link `projects/prjN/` · nguồn |
+| `admin/tasks-<kỳ>.md` | Dòng `Hạn nộp` ở nhóm 1, khoá `<MÃ>/prjN` hoặc `<MÃ>/prjN/<mốc>`: hạn nộp cuối **và mọi mốc giảng viên đặt** (mỗi mốc một dòng: `Đồ án 1 — thuyết trình`) · link `projects/prjN/` · nguồn |
 | `<môn>/README.md` | Bảng **Bài tập và đồ án**: link `projects/prjN/` · tên · buổi giao · hạn · trạng thái |
 | `<môn>/IMPORTANT_NOTES.md` | Tỷ trọng, tiêu chí chấm, hình thức nộp — **chỉ khi có nguồn**, append theo luật § 8 |
 
-Ghi xong chạy `scripts/tasks-overview.py admin/tasks-<kỳ>.md` (tính lại **Tổng quan**).
+Ghi xong chạy `scripts/tasks-overview.py admin/tasks-<kỳ>.md` để xếp dòng vào đúng nhóm.
 
 Mốc do nhóm tự đặt **không** vào `tasks-<kỳ>.md` — file đó chỉ giữ hạn của giảng viên.
 

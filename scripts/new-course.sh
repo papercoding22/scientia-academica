@@ -165,7 +165,7 @@ cat <<NEXT
 ${B}Script chỉ tạo khung. Còn 5 file khác đang giữ danh sách môn cần cập nhật:${N}
 
   semesters/$SEMESTER/README.md      bảng môn + bảng tiến độ + mục "gắn với nhau thế nào"
-  admin/tasks-$SEMESTER.md       mục $CODE: bảng việc + lịch thi
+  admin/tasks-$SEMESTER.md       2 dòng thi ❓ của $CODE
   program/curriculum.md              trạng thái → 🔄 đang học
   program/transcript.md              dòng ở $SEMESTER_VI
   program/specialization/README.md   bảng cảm nhận từng môn

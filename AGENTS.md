@@ -190,7 +190,7 @@ Lý do thứ tự này: người dùng học tốt nhất khi có trực giác t
    *"đề hay ra phần này"*, *"năm nào cũng có"*, *"về nhà xem lại"* →
    đánh dấu `> ⚠️ **GỢI Ý THI:**` trong note **VÀ** append vào mục 2/3 của `IMPORTANT_NOTES.md`.
 5. **Quét quy định và cách tính điểm** → cập nhật mục 1 và 4 của `IMPORTANT_NOTES.md`.
-6. **Trích mọi deadline** → ghi vào mục môn trong `admin/tasks-<kỳ>.md`, **ngày tuyệt đối**.
+6. **Trích mọi deadline** → thêm dòng vào nhóm 1 của `admin/tasks-<kỳ>.md`, **ngày tuyệt đối**.
 7. Khái niệm dùng được cho môn khác → tạo file trong `knowledge-base/`, link hai chiều.
 8. **Ý tưởng đồ án tốt nghiệp** — nếu buổi học gợi ra hướng hay,
    tạo `program/thesis/ideas/<slug>.md` ghi rõ nảy ra từ buổi nào, môn nào.
@@ -216,7 +216,7 @@ Lý do thứ tự này: người dùng học tốt nhất khi có trực giác t
   (§ 13.4); không ép lab thành `aN/` chỉ để đồng nhất hình thức.
 - Tạo đủ: `README.md`, `brief/`, `resources/`, `images/`
 - `README.md` phải có: tóm tắt yêu cầu · checklist việc cần làm · hạn nộp (ngày tuyệt đối) · trạng thái
-- **Ghi hạn nộp vào `admin/tasks-<kỳ>.md` (mục môn) ngay lúc tạo thư mục**, không để sau.
+- **Ghi hạn nộp vào `admin/tasks-<kỳ>.md` (thêm dòng vào nhóm 1) ngay lúc tạo thư mục**, không để sau.
 - **Dùng skill `new-assignment`**, đừng tự `mkdir`. Với bài tập dùng tiền tố mặc định
   `a`; với lab chạy `--prefix lab`. Script chỉ copy sẵn
   `templates/ASSIGNMENT_TEMPLATE.docx` thành file nộp với **mẫu tên suy ra từ bài đã nộp
@@ -308,7 +308,7 @@ và ghi rõ số trang khi trích. Giáo trình chuẩn hơn transcript Teams.
 | Cập nhật trạng thái task (đã nộp, đang làm, xong buổi ôn) → repo + Notion | skill **`task-status`** → `.claude/skills/task-status/SKILL.md` |
 | Lập kế hoạch ôn thi → task Notion + Google Calendar | skill **`exam-plan`** → `.claude/skills/exam-plan/SKILL.md` |
 | Sinh / kiểm tra mục lục | `scripts/toc.py gen\|check <file>` (xem § 2b) |
-| Tính lại mục Tổng quan của `admin/tasks-<kỳ>.md` | `scripts/tasks-overview.py [file]` (xem § 10) |
+| Xếp lại task của `admin/tasks-<kỳ>.md` vào đúng nhóm | `scripts/tasks-overview.py [file]` (xem § 10) |
 | Dựng SVG, render PNG và sinh Markdown cho các skill hình ảnh | `python3 scripts/note-image.py` — [hướng dẫn](scripts/note-image.md) |
 | Tìm file sai chỗ / sai tên | `scripts/check-layout.sh [--course <mã>]` |
 | Xem nhanh nội dung .pdf/.docx/.pptx/.xlsx/.vtt | `scripts/peek.py <file>` |
@@ -372,14 +372,14 @@ Sáu template còn lại là để AI điền tay, không có token.
 ## § 10. Deadline & lịch
 
 - **`admin/tasks-<kỳ>.md`** (vd `admin/tasks-2025-2026-S3.md`) là **nguồn sự thật duy nhất**
-  cho mọi task có hạn và ngày tháng của học kỳ đó — **mỗi môn một mục** `## <MÃ MÔN> — …` gồm bảng
-  *Việc và hạn nộp* (có cột **Khoá** `<MÃ>/aN`, `<MÃ>/prjN`, `<MÃ>/exam-final`…) và *Lịch thi*.
-  Phát hiện deadline ở bất kỳ đâu → phải chảy về đúng mục môn trong file của học kỳ đó.
-  Học kỳ mới → tạo từ `templates/tasks.md`. Lịch học hằng tuần không ghi ở repo — xem lịch `UIT Class`.
-- Mục **Tổng quan** (ngay dưới *Mốc học kỳ*) gộp task mọi môn thành 4 nhóm: **Sẽ làm** · **Đang làm** ·
-  **Trễ tiến độ** (mỗi task đúng một nhóm, ưu tiên trễ > đang làm > sẽ làm) · **Quan trọng, đáng chú ý**
-  (kỳ thi, hạn giảng viên ≤ 7 ngày, hạn hôm nay/ngày mai — có thể trùng ba nhóm trên). Đây là **dữ liệu suy ra**, sinh bằng
-  `scripts/tasks-overview.py` — **mọi lần sửa file tasks đều phải chạy lại script**, không sửa tay.
+  cho mọi task có hạn và lịch thi của học kỳ đó, **xem và quản lý ngay trong file**. File chỉ gồm 5 nhóm,
+  mỗi dòng là một task (cột Hạn · Còn lại · Môn · Loại · Việc · Trạng thái · Khoá · Ghi chú):
+  **1. Sẽ làm** · **2. Đang làm** · **3. Trễ tiến độ** · **4. Quan trọng, đáng chú ý** (bảng xem, tự sinh) · **5. Đã xong**.
+  *Loại* = `Hạn nộp` (hạn giảng viên) · `Thi` · `Ôn thi` (buổi ôn tự đặt). Nguồn, ca thi, ngày nộp, điểm → cột *Ghi chú*.
+- Thêm task → thêm dòng vào nhóm 1. Đổi trạng thái/hạn → sửa ngay trên dòng. **Không xoá dòng** — xong thì `✅`.
+  Sửa xong **luôn** chạy `scripts/tasks-overview.py` — script chuyển dòng sang đúng nhóm theo trạng thái và ngày,
+  tính lại *Còn lại*, sinh lại nhóm 4. Học kỳ mới → tạo từ `templates/tasks.md`. Lịch học xem lịch `UIT Class`;
+  quy định lặp lại của giảng viên (vd IE105 nộp 21:30) nằm ở `IMPORTANT_NOTES.md` của môn.
 - **Luôn chuyển ngày tương đối → tuyệt đối.**
   *"nộp tuần sau"* + buổi học ngày 2026-09-20 → **`2026-09-27`**.
   Không đủ thông tin để quy đổi → hỏi, không đoán.

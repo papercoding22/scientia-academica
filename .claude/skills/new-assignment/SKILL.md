@@ -99,16 +99,16 @@ Tạo thư mục xong mà không làm bước này thì bài tập vô hình v�
 
 | File | Thêm gì |
 |---|---|
-| `admin/tasks-<kỳ>.md` | Dòng vào bảng **Việc và hạn nộp** trong mục môn: khoá `<MÃ>/<thư mục>` · việc (link thư mục) · hạn (**ngày tuyệt đối**) · trạng thái ⬜ · nguồn |
+| `admin/tasks-<kỳ>.md` | Dòng mới ở nhóm 1: hạn (**ngày tuyệt đối**) · môn · `Hạn nộp` · việc (link thư mục) · `⬜ chưa làm` · khoá `<MÃ>/<thư mục>` · *Ghi chú* = nguồn (buổi, ngày) |
 | `<môn>/README.md` | Dòng vào bảng **Bài tập và đồ án**: link đúng (`aN/`, `labN/`…) · tên · buổi · hạn · trạng thái |
 
 Hạn nộp chỉ biết dạng tương đối (*"tuần sau"*) → quy đổi bằng ngày buổi học rồi ghi
 ngày tuyệt đối. Không đủ thông tin quy đổi thì hỏi, **không đoán** (`AGENTS.md` § 10).
 
 Môn có quy tắc nộp lặp lại (IE105: **21:30 cùng ngày học**, dự phòng hết hôm sau) →
-áp dụng luôn, đã ghi ở `admin/tasks-<kỳ>.md`, mục môn → *Quy tắc lặp lại*.
+áp dụng luôn, đã ghi ở `IMPORTANT_NOTES.md` của môn (mục 4).
 
-Ghi xong chạy `scripts/tasks-overview.py admin/tasks-<kỳ>.md` (tính lại **Tổng quan**), rồi đề xuất chạy `notion-tasks` (sync mục vừa tạo) để lên Notion và Calendar.
+Ghi xong chạy `scripts/tasks-overview.py admin/tasks-<kỳ>.md` để xếp dòng vào đúng nhóm, rồi đề xuất chạy `notion-tasks` (sync mục vừa tạo) để lên Notion và Calendar.
 
 ---
 

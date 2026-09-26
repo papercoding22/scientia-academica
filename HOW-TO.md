@@ -131,7 +131,7 @@ AI sẽ:
    ví dụ nhỏ → định nghĩa hình thức → code
 3. Thêm mục **Tự kiểm tra** với 5 câu hỏi, đáp án gập lại
 4. Quét câu kiểu *"cái này sẽ thi"* → ghi vào `IMPORTANT_NOTES.md` kèm nguồn
-5. Quét deadline → ghi vào mục môn trong `admin/tasks-<kỳ>.md` với ngày tuyệt đối
+5. Quét deadline → thêm dòng vào `admin/tasks-<kỳ>.md` với ngày tuyệt đối
 6. Sinh flashcard vào `exam-prep/flashcards.md` + `.csv`
 7. Commit
 
@@ -467,12 +467,13 @@ hạn nộp, lịch thi và mốc nhóm thành bảng có nguồn; đánh dấu 
 biết hạn. Mặc định xem trong chat, không tạo task Notion hay sự kiện Calendar.
 
 **Task theo học kỳ** — mọi việc có hạn và lịch thi nằm ở `admin/tasks-<kỳ>.md`
-(vd [`admin/tasks-2025-2026-S3.md`](admin/tasks-2025-2026-S3.md)), **mỗi môn một mục**. Mở file là thấy
-môn nào còn gì, hạn khi nào, thi ngày nào. Việc xong không xoá dòng — chỉ đổi trạng thái sang ✅.
+(vd [`admin/tasks-2025-2026-S3.md`](admin/tasks-2025-2026-S3.md)). File chỉ có 5 nhóm, mỗi dòng là một task:
+**1. Sẽ làm** · **2. Đang làm** · **3. Trễ tiến độ** · **4. Quan trọng, đáng chú ý** (kỳ thi, hạn giảng viên ≤ 7 ngày,
+hạn hôm nay/ngày mai — chỉ để xem) · **5. Đã xong**.
 
-Đầu file có mục **Tổng quan** gộp mọi môn thành 4 nhóm: **1. Sẽ làm** · **2. Đang làm** ·
-**3. Trễ tiến độ** · **4. Quan trọng, đáng chú ý** (kỳ thi, hạn giảng viên ≤ 7 ngày, hạn hôm nay/ngày mai). Mục này do script sinh — AI tự chạy lại sau mỗi lần sửa file;
-muốn tính lại theo ngày hôm nay thì chạy `scripts/tasks-overview.py`.
+Tự quản lý ngay trong file: thêm task vào nhóm 1, đổi *Trạng thái* (`⬜` `🔄` `✅` `⚠️`) hoặc *Hạn* ngay trên dòng,
+rồi chạy `scripts/tasks-overview.py` — dòng tự chuyển sang đúng nhóm. Không xoá dòng; xong thì `✅`.
+AI tự chạy script sau mỗi lần sửa.
 
 **Notion (☕ Tasks) + Google Calendar** — đồng bộ **từ** file trên: repo giữ *hạn*, Notion giữ *đã xong chưa*,
 Calendar (lịch `Work`) chỉ nhắc. AI luôn in bảng xem trước rồi mới ghi.

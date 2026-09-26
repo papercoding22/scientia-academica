@@ -170,7 +170,7 @@ Chuyển file xong mà không cập nhật các bảng thì repo mất đồng b
 |---|---|
 | `<môn>/README.md` — bảng **Tiến độ buổi học** | thêm transcript hoặc note |
 | `<môn>/README.md` — bảng **Bài tập và đồ án** | thêm bài tập hoặc đồ án |
-| `admin/tasks-<kỳ>.md` — mục môn | bài tập có hạn nộp, hoặc đã nộp xong — xong thì chạy `scripts/tasks-overview.py` |
+| `admin/tasks-<kỳ>.md` | bài tập có hạn nộp (dòng mới ở nhóm 1), hoặc đã nộp xong (`✅`) — xong thì chạy `scripts/tasks-overview.py` |
 | `<môn>/IMPORTANT_NOTES.md` mục 6 | có buổi học mới |
 | `semesters/<kỳ>/README.md` — bảng tiến độ | số buổi, số bài thay đổi |
 

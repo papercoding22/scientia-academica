@@ -1,74 +1,79 @@
 #!/usr/bin/env python3
 """
-tasks-overview.py — Sinh mục "Tổng quan" cho admin/tasks-<kỳ>.md từ chính các bảng chi tiết.
+tasks-overview.py — Xếp lại task trong admin/tasks-<kỳ>.md theo trạng thái và ngày.
 
-    scripts/tasks-overview.py                      Cập nhật mọi admin/tasks-*.md
+    scripts/tasks-overview.py                      Xếp lại mọi admin/tasks-*.md
     scripts/tasks-overview.py admin/tasks-2025-2026-S3.md
     scripts/tasks-overview.py --today 2026-09-27 <file>   Tính theo một ngày chốt khác
     scripts/tasks-overview.py --print <file>       Chỉ in ra, không ghi file
 
-Tổng quan là DỮ LIỆU SUY RA — nguồn vẫn là bảng "Việc và hạn nộp", "Lịch thi",
-"Kế hoạch ôn thi" của từng môn. Sửa bảng chi tiết xong thì chạy lại script này,
-đừng sửa tay phần giữa hai marker.
+File task của học kỳ CHỈ gồm các nhóm dưới đây. Mỗi dòng là một task — sửa Trạng thái / Hạn
+ngay trên dòng (ở nhóm nào cũng được), thêm task mới vào nhóm 1, rồi chạy script:
+
+    1. Sẽ làm        chưa bắt đầu, chưa tới hạn (kể cả hạn ❓) · kỳ thi chưa diễn ra
+    2. Đang làm      Trạng thái 🔄, chưa quá hạn
+    3. Trễ tiến độ   quá hạn mà chưa ✅, hoặc Trạng thái ⚠️ (kỳ thi không bao giờ vào đây)
+    4. Quan trọng    BẢNG XEM, tự sinh — kỳ thi · hạn giảng viên ≤ 7 ngày · hạn hôm nay/ngày mai
+    5. Đã xong       Trạng thái ✅ · kỳ thi đã qua
+
+Script tính lại cột "Còn lại", chuyển dòng sang đúng nhóm, sắp theo hạn, sinh lại nhóm 4.
+Mọi cột khác giữ nguyên chữ người dùng viết.
 """
 import argparse, datetime as dt, pathlib, re, sys
 
 REPO = pathlib.Path(__file__).resolve().parents[1]
-START = "<!-- tasks-overview:start — sinh bằng scripts/tasks-overview.py, đừng sửa tay -->"
-END = "<!-- tasks-overview:end -->"
+START = "<!-- tasks:start — sửa dòng thoải mái, rồi chạy scripts/tasks-overview.py để xếp lại nhóm -->"
+END = "<!-- tasks:end -->"
 IMPORTANT_DAYS = 7  # hạn giảng viên còn ≤ N ngày thì vào nhóm "Quan trọng"
 WEEKDAY = ["T2", "T3", "T4", "T5", "T6", "T7", "CN"]
 
-# ── đọc file ────────────────────────────────────────────────────────────────
-def parse_table(lines):
-    """lines bắt đầu từ dòng header của bảng markdown → list[dict]."""
-    def cells(line):
-        return [c.strip() for c in line.strip().strip("|").split("|")]
-    head = cells(lines[0])
-    rows = []
-    for line in lines[2:]:
+COLS = ["Hạn", "Còn lại", "Môn", "Loại", "Việc", "Trạng thái", "Khoá", "Ghi chú"]
+GROUPS = [
+    ("todo", "1. Sẽ làm", "Chưa bắt đầu, chưa tới hạn (kể cả hạn ❓) · kỳ thi chưa diễn ra. **Thêm task mới vào đây.**"),
+    ("doing", "2. Đang làm", "Trạng thái `🔄`, chưa quá hạn."),
+    ("late", "3. Trễ tiến độ", "Quá hạn mà chưa `✅`, hoặc Trạng thái `⚠️`."),
+    ("notable", "4. Quan trọng, đáng chú ý",
+     f"**Chỉ để xem — tự sinh, đừng sửa ở đây.** Kỳ thi sắp tới · hạn giảng viên còn ≤ {IMPORTANT_DAYS} ngày · "
+     "hạn hôm nay/ngày mai. Task vẫn nằm ở nhóm 1–3."),
+    ("done", "5. Đã xong", "Trạng thái `✅` · kỳ thi đã qua. Giữ làm lịch sử — không xoá dòng."),
+]
+
+
+# ── đọc ─────────────────────────────────────────────────────────────────────
+def cells(line):
+    return [c.strip() for c in line.strip().strip("|").split("|")]
+
+
+def parse_rows(block):
+    """Mọi dòng task trong các bảng của nhóm 1, 2, 3, 5 (bỏ qua bảng xem của nhóm 4)."""
+    rows, head, group = [], None, None
+    for line in block.splitlines():
+        m = re.match(r"^## (\d)\.", line)
+        if m:
+            group, head = m.group(1), None
+            continue
         if not line.lstrip().startswith("|"):
-            break
+            head = None
+            continue
+        if group == "4":
+            continue
         vals = cells(line)
-        rows.append(dict(zip(head, vals + [""] * (len(head) - len(vals)))))
+        if head is None:
+            head = vals
+        elif not all(re.fullmatch(r":?-+:?", v) for v in vals if v):
+            row = dict(zip(head, vals + [""] * (len(head) - len(vals))))
+            if row.get("Việc"):
+                rows.append({c: row.get(c, "") for c in COLS})
     return rows
 
 
-def parse_courses(md):
-    """→ list[{code, heading, tables: {tên ###: rows}}] theo thứ tự trong file."""
-    courses, cur, sub = [], None, None
-    lines = md.splitlines()
-    i = 0
-    while i < len(lines):
-        line = lines[i]
-        m = re.match(r"^## ([A-Z]{2}\d{3}) — (.+)$", line)
-        if m:
-            cur = {"code": m.group(1), "heading": line[3:].strip(), "tables": {}}
-            courses.append(cur)
-            sub = None
-        elif line.startswith("## "):
-            cur, sub = None, None
-        elif cur and line.startswith("### "):
-            sub = line[4:].strip()
-        elif cur and sub and line.lstrip().startswith("|") and sub not in cur["tables"]:
-            block = []
-            while i < len(lines) and lines[i].lstrip().startswith("|"):
-                block.append(lines[i])
-                i += 1
-            cur["tables"][sub] = parse_table(block)
-            continue
-        i += 1
-    return courses
-
-
-# ── suy ra ngày giờ, trạng thái ─────────────────────────────────────────────
-def when(*texts):
-    """Ngày (+ giờ nếu có) trong các ô → datetime; không có ngày → None."""
-    joined = " ".join(texts)
-    d = re.search(r"(\d{4})-(\d{2})-(\d{2})", joined)
+# ── suy ra ngày giờ, nhóm ───────────────────────────────────────────────────
+def when(text):
+    """Ngày (+ giờ nếu có) trong ô → (datetime, có giờ?); không có ngày → (None, False)."""
+    d = re.search(r"(\d{4})-(\d{2})-(\d{2})", text)
     if not d:
         return None, False
-    t = re.search(r"(?<![\d-])(\d{1,2}):(\d{2})", joined)
+    t = re.search(r"(?<![\d-])(\d{1,2}):(\d{2})", text[d.end():])
     y, mo, da = map(int, d.groups())
     if t:
         return dt.datetime(y, mo, da, int(t.group(1)), int(t.group(2))), True
@@ -80,126 +85,102 @@ def fmt(moment, has_time):
     return f"{s} {moment:%H:%M}" if has_time else s
 
 
-def plain(text):
-    """Bỏ link, in đậm, backtick — giữ chữ để hiện gọn trong bảng tổng quan."""
-    text = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", text)
-    return re.sub(r"[*`]", "", text).strip()
-
-
-def done(status):
-    return "✅" in status
-
-
-def items(course):
-    """Mọi việc có thể có hạn của một môn → list[dict]."""
-    out = []
-    for row in course["tables"].get("Việc và hạn nộp", []):
-        if not row.get("Việc"):
-            continue
-        moment, has_time = when(row.get("Hạn", ""))
-        out.append(dict(kind="Hạn nộp", name=plain(row["Việc"]), at=moment, has_time=has_time,
-                        status=row.get("Trạng thái", ""), done=done(row.get("Trạng thái", ""))))
-    for row in course["tables"].get("Lịch thi", []):
-        loai = row.get("Loại", "")
-        if loai.startswith("~~"):
-            continue
-        moment, has_time = when(row.get("Ngày", ""), row.get("Giờ", ""))
-        out.append(dict(kind="Thi", name="Thi " + plain(loai).replace("❓", "").strip().lower(),
-                        at=moment, has_time=has_time, status="", done=False, exam=True))
-    for row in course["tables"].get("Kế hoạch ôn thi", []):
-        if not row.get("Buổi ôn"):
-            continue
-        moment, has_time = when(row.get("Hạn", ""))
-        out.append(dict(kind="Ôn thi", name=plain(row["Buổi ôn"]), at=moment, has_time=has_time,
-                        status=row.get("Trạng thái", ""), done=done(row.get("Trạng thái", "")), review=True))
-    return out
-
-
-# ── dựng mục Tổng quan ──────────────────────────────────────────────────────
 def days_left(moment, now):
     n = (moment.date() - now.date()).days
     return "hôm nay" if n == 0 else f"còn {n} ngày" if n > 0 else f"quá {-n} ngày"
 
 
-def classify(x, now):
-    """Nhóm 1–3, mỗi task đúng một nhóm: trễ tiến độ > đang làm > sẽ làm. Thi không phải task."""
-    if x["done"] or x.get("exam"):
-        return None
-    if "⚠️" in x["status"] or (x["at"] and x["at"] < now):
+def is_exam(row):
+    return row["Loại"].strip().lower() == "thi"
+
+
+def classify(row, now):
+    at, _ = when(row["Hạn"])
+    if is_exam(row):
+        return "done" if at and at < now else "todo"
+    status = row["Trạng thái"]
+    if "✅" in status:
+        return "done"
+    if "⚠️" in status or (at and at < now):
         return "late"
-    if "🔄" in x["status"]:
+    if "🔄" in status:
         return "doing"
     return "todo"
 
 
-def notable(x, now):
-    """Nhóm 4 — lý do đáng chú ý, hoặc None. Có thể trùng với nhóm 1–3."""
-    if x["done"] or not x["at"] or x["at"] < now:
+def notable(row, now):
+    """Lý do đáng chú ý, hoặc None."""
+    at, _ = when(row["Hạn"])
+    if not at or at < now or "✅" in row["Trạng thái"]:
         return None
-    left = (x["at"].date() - now.date()).days
-    if x.get("exam"):
+    left = (at.date() - now.date()).days
+    if is_exam(row):
         return "kỳ thi"
-    if x["kind"] == "Hạn nộp" and left <= IMPORTANT_DAYS:
+    if row["Loại"].strip().lower() == "hạn nộp" and left <= IMPORTANT_DAYS:
         return "hạn giảng viên"
     if left <= 1:
         return "hạn hôm nay/ngày mai"
     return None
 
 
-def table(entries, now, extra=None):
-    if not entries:
-        return ["Không có."]
-    entries.sort(key=lambda e: (e[1]["at"] is None, e[1]["at"] or dt.datetime.max))
-    head = "| Hạn | Còn lại | Môn | Loại | Việc |" + (f" {extra} |" if extra else "")
-    rows = [head, "|---|---|---|---|---|" + ("---|" if extra else "")]
-    for code, x, *more in entries:
-        at = fmt(x["at"], x["has_time"]) if x["at"] else "❓"
-        left = days_left(x["at"], now) if x["at"] else "—"
-        rows.append(f"| {at} | {left} | {code} | {x['kind']} | {x['name']} |" + (f" {more[0]} |" if extra else ""))
-    return rows
+def normalize(row, now, group):
+    at, has_time = when(row["Hạn"])
+    row = dict(row)
+    if at:
+        row["Hạn"] = fmt(at, has_time)
+        row["Còn lại"] = ("đã thi" if is_exam(row) else "—") if group == "done" else days_left(at, now)
+    else:
+        row["Còn lại"] = "—"
+    return row
 
 
-def build(md, now):
-    groups = {"todo": [], "doing": [], "late": []}
+# ── dựng ────────────────────────────────────────────────────────────────────
+def sort_key(row, newest_first=False):
+    """Theo hạn; hạn ❓ luôn xếp cuối. Nhóm Đã xong: mới nhất lên đầu."""
+    at, _ = when(row["Hạn"])
+    stamp = at.timestamp() if at else 0
+    return (at is None, -stamp if newest_first else stamp, row["Môn"], row["Việc"])
+
+
+def table(rows, cols):
+    out = ["| " + " | ".join(cols) + " |", "|" + "---|" * len(cols)]
+    out += ["| " + " | ".join(r.get(c, "") for c in cols) + " |" for r in rows]
+    return out
+
+
+def build(block, now):
+    groups = {key: [] for key, *_ in GROUPS}
+    for row in parse_rows(block):
+        g = classify(row, now)
+        groups[g].append(normalize(row, now, g))
+    for key in groups:
+        groups[key].sort(key=lambda r: sort_key(r, newest_first=(key == "done")))
     marked = []
-    for c in parse_courses(md):
-        for x in items(c):
-            g = classify(x, now)
-            if g:
-                groups[g].append((c["code"], x))
-            why = notable(x, now)
+    for key in ("todo", "doing", "late"):
+        for row in groups[key]:
+            why = notable(row, now)
             if why:
-                marked.append((c["code"], x, why))
+                marked.append(dict(row, **{"Vì sao": why}))
+    marked.sort(key=sort_key)
 
-    out = [START, "",
-           f"> Tính ngày **{now:%Y-%m-%d}** từ các bảng chi tiết bên dưới. Sửa bảng chi tiết xong thì chạy",
-           "> `scripts/tasks-overview.py` — không sửa tay phần này.", "",
-           f"**1. Sẽ làm** — chưa bắt đầu, chưa tới hạn ({len(groups['todo'])})", "",
-           *table(groups["todo"], now), "",
-           f"**2. Đang làm** ({len(groups['doing'])})", "",
-           *table(groups["doing"], now), "",
-           f"**3. Trễ tiến độ** — quá hạn mà chưa xong ({len(groups['late'])})", "",
-           *table(groups["late"], now), "",
-           f"**4. Quan trọng, đáng chú ý** — kỳ thi · hạn giảng viên ≤ {IMPORTANT_DAYS} ngày · hạn hôm nay/ngày mai", "",
-           *table(marked, now, extra="Vì sao"), "",
-           END]
+    out = [START, "", f"> Xếp lại ngày **{now:%Y-%m-%d}**. *Còn lại* và nhóm của từng dòng tính theo ngày này.", ""]
+    for key, title, desc in GROUPS:
+        out += [f"## {title}", "", desc, ""]
+        if key == "notable":
+            cols = ["Hạn", "Còn lại", "Môn", "Loại", "Việc", "Vì sao"]
+            out += table(marked, cols) if marked else ["Không có."]
+        else:
+            out += table(groups[key], COLS)
+        out += ["", "---", ""]
+    out = out[:-3] + ["", END]
     return "\n".join(out)
 
 
-# ── ghi vào file ────────────────────────────────────────────────────────────
-def apply(md, section):
-    if START in md and END in md:
-        a, b = md.index(START), md.index(END) + len(END)
-        return md[:a] + section + md[b:]
-    # Chưa có mục: chèn "## Tổng quan" ngay sau mục "## Mốc học kỳ"
-    m = re.search(r"^## Mốc học kỳ\n.*?(?=^---\n)", md, flags=re.S | re.M)
-    if not m:
-        sys.exit("Không tìm thấy mục '## Mốc học kỳ' để chèn Tổng quan sau nó.")
-    md = md[:m.end()] + "---\n\n## Tổng quan\n\n" + section + "\n\n" + md[m.end():]
-    toc_line = "- [Mốc học kỳ](#mốc-học-kỳ)\n"
-    if toc_line in md and "- [Tổng quan](#tổng-quan)" not in md:
-        md = md.replace(toc_line, toc_line + "- [Tổng quan](#tổng-quan)\n", 1)
-    return md
+def apply(md, now):
+    if START not in md or END not in md:
+        sys.exit("Không tìm thấy marker <!-- tasks:start … --> / <!-- tasks:end --> — file tạo từ templates/tasks.md chưa?")
+    a, b = md.index(START), md.index(END) + len(END)
+    return md[:a] + build(md[a:b], now) + md[b:]
 
 
 def rel(f):
@@ -212,21 +193,19 @@ def rel(f):
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("files", nargs="*")
-    ap.add_argument("--today", help="YYYY-MM-DD — mặc định: ngày hiện tại")
+    ap.add_argument("--today", help="YYYY-MM-DD — mặc định: thời điểm hiện tại")
     ap.add_argument("--print", action="store_true", dest="dry")
     args = ap.parse_args()
     now = dt.datetime.strptime(args.today, "%Y-%m-%d") if args.today else dt.datetime.now()
     files = [pathlib.Path(f) for f in args.files] or sorted((REPO / "admin").glob("tasks-*.md"))
     for f in files:
         md = f.read_text(encoding="utf-8")
-        section = build(md, now)
+        new = apply(md, now)
         if args.dry:
-            print(f"── {f}\n{section}\n")
-            continue
-        new = apply(md, section)
-        if new != md:
+            print(f"── {rel(f)}\n{new}\n")
+        elif new != md:
             f.write_text(new, encoding="utf-8")
-            print(f"✓ cập nhật tổng quan: {rel(f)}")
+            print(f"✓ xếp lại: {rel(f)}")
         else:
             print(f"· không đổi: {rel(f)}")
 

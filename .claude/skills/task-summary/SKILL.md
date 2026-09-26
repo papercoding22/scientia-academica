@@ -47,7 +47,7 @@ $task-summary các bài quá hạn trong học kỳ 2025-2026-S3
 
 | Nguồn | Lấy thông tin gì |
 |---|---|
-| `admin/tasks-<kỳ>.md` | Theo từng môn: hạn giảng viên, ngày/giờ thi, bài đang chờ và đã nộp. Mục **Tổng quan** là bản suy ra có ngày tính — dùng để định hướng, còn số liệu báo cáo lấy từ bảng chi tiết và tính lại theo ngày chốt (hoặc `scripts/tasks-overview.py --print --today <ngày>`) |
+| `admin/tasks-<kỳ>.md` | Mọi task của học kỳ theo 5 nhóm (sẽ làm · đang làm · trễ · quan trọng · đã xong). Nhóm và *Còn lại* tính theo ngày ghi đầu bảng — báo cáo theo ngày chốt khác thì tính lại (`scripts/tasks-overview.py --print --today <ngày>`) |
 | `semesters/<kỳ>/README.md`, README môn | Danh sách môn, bảng bài tập/đồ án để phát hiện việc bị bỏ sót |
 | `assignments/<bài>/README.md` | Tên bài, trạng thái, sản phẩm cần nộp, phần việc còn lại |
 | `projects/<đồ án>/README.md` | Trạng thái, mốc giảng viên và mốc nhóm/tự đặt, phân công |
@@ -71,7 +71,7 @@ $task-summary các bài quá hạn trong học kỳ 2025-2026-S3
 - **Ngày tháng:** `admin/tasks-<kỳ>.md` là nguồn chính cho hạn giảng viên và lịch thi;
   mốc nhóm lấy từ README đồ án, không đẩy vào admin. Giữ cả hạn chính và hạn dự
   phòng có nguồn, không âm thầm thay hạn chính bằng hạn dự phòng.
-- Nếu tìm thấy hạn giảng viên mới đã xác minh, bổ sung vào mục môn trong `admin/tasks-<kỳ>.md`
+- Nếu tìm thấy hạn giảng viên mới đã xác minh, thêm dòng vào nhóm 1 của `admin/tasks-<kỳ>.md`
   theo `AGENTS.md` § 10, giữ nguồn và chạy kiểm tra/commit đúng file. Nếu yêu cầu
   hiện tại là **chỉ đọc**, chỉ báo hạn mới cần bổ sung. Nguồn mâu thuẫn thì nêu cả
   hai cùng căn cứ, không tự chọn ngày muộn hơn hoặc sửa một ngày thành chắc chắn.

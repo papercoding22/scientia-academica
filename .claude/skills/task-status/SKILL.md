@@ -41,14 +41,14 @@ Khác `notion-tasks`: skill đó **quét toàn bộ** hai bên để tìm lệch
 1. **Học kỳ:** mặc định học kỳ đang học (`AGENTS.md` § 1) → `admin/tasks-<kỳ>.md`.
 2. **Môn:** mã môn hoặc viết tắt Notion (`ANTT` = IE105, `HDH` = IT007, `CSHT` = IE101, `QLTT` = IE103 —
    bảng đầy đủ ở skill `notion-tasks`). Không rõ môn → hỏi.
-3. **Dòng:** tìm trong mục `## <MÃ MÔN> — …` của file, ở cả ba bảng:
+3. **Dòng:** tìm trong các nhóm 1, 2, 3, 5 của file (nhóm 4 chỉ là bảng xem), theo cột *Môn* và *Khoá* / *Việc*:
 
-   | Người dùng nói | Bảng | Khoá |
+   | Người dùng nói | *Loại* | Khoá |
    |---|---|---|
-   | *bài tập 8*, *bài 3A* | *Việc và hạn nộp* | `<MÃ>/a8`, `<MÃ>/a3a` |
-   | *lab 4*, *bài thực hành 4* | *Việc và hạn nộp* | `<MÃ>/lab4` |
-   | *đồ án 1*, *nộp đồ án*, *mốc thuyết trình* | *Việc và hạn nộp* | `<MÃ>/prj1`, `<MÃ>/prj1/<mốc>` |
-   | *buổi ôn chương 7*, *làm đề mẫu*, *ôn tổng* | *Kế hoạch ôn thi* | `<MÃ>/exam-<…>/r<nn>` — khớp theo tên buổi ôn |
+   | *bài tập 8*, *bài 3A* | `Hạn nộp` | `<MÃ>/a8`, `<MÃ>/a3a` |
+   | *lab 4*, *bài thực hành 4* | `Hạn nộp` | `<MÃ>/lab4` |
+   | *đồ án 1*, *nộp đồ án*, *mốc thuyết trình* | `Hạn nộp` | `<MÃ>/prj1`, `<MÃ>/prj1/<mốc>` |
+   | *buổi ôn chương 7*, *làm đề mẫu*, *ôn tổng* | `Ôn thi` | `<MÃ>/exam-<…>/r<nn>` — khớp theo tên buổi ôn |
 
    - Khớp đúng một dòng → dùng. Khớp nhiều dòng hoặc không chắc → **hỏi**, liệt kê các dòng ứng viên.
    - **Không có dòng nào** → việc này repo chưa theo dõi. Dừng và đề xuất: hạn giảng viên → `new-assignment`
@@ -66,11 +66,11 @@ Nhiều task trong một câu (*"xong ôn chương 7 và chương 8 HDH"*) → x
 | Người dùng nói | Repo — cột *Trạng thái* | Notion `Status` | Ghi thêm |
 |---|---|---|---|
 | *bắt đầu làm*, *đang làm* | `🔄 đang làm` | `In progress` | — |
-| *đã nộp*, *xong*, *done* — bài nộp | `✅ đã nộp` | `Done` | *Ngày nộp* + `Completion Date` |
+| *đã nộp*, *xong*, *done* — bài nộp | `✅ đã nộp` | `Done` | `nộp <ngày>` trong *Ghi chú* + `Completion Date` |
 | *xong* — buổi ôn | `✅ xong` | `Done` | `Completion Date` |
-| *chưa làm*, *làm lại*, *đánh dấu nhầm* | `⬜ chưa làm` | `To Do` | xoá *Ngày nộp* đã ghi |
-| *nộp trễ* | `⚠️ trễ hạn` → khi đã nộp thì `✅ đã nộp` kèm *(trễ)* ở *Ngày nộp* | `Done` | — |
-| *được 9 điểm* | giữ nguyên | giữ nguyên | cột *Điểm* + `Điểm` trong `aN/README.md`, ghi *(người dùng, <ngày>)* |
+| *chưa làm*, *làm lại*, *đánh dấu nhầm* | `⬜ chưa làm` | `To Do` | xoá `nộp <ngày>` đã ghi trong *Ghi chú* |
+| *nộp trễ* | `⚠️ trễ hạn` → khi đã nộp thì `✅ đã nộp`, *Ghi chú* `nộp <ngày> (trễ)` | `Done` | — |
+| *được 9 điểm* | giữ nguyên | giữ nguyên | *Ghi chú* `điểm 9 (người dùng, <ngày>)` + `Điểm` trong `aN/README.md` |
 
 **Ngày nộp** — tuyệt đối. Không nói ngày → hôm nay (`Asia/Ho_Chi_Minh`), và **nói lại ngày đó** trong
 bảng xem trước. *"hôm qua"*, *"tối thứ 6"* → quy đổi, nói lại. Nói *"đã nộp"* mà không chắc ngày nào → hỏi,
@@ -121,14 +121,14 @@ Thứ tự **repo trước, Notion sau** — đứt giữa chừng thì repo v�
 
 | File | Sửa |
 |---|---|
-| `admin/tasks-<kỳ>.md` | Cột *Trạng thái* (+ *Ngày nộp*, *Điểm*) của đúng dòng. **Không xoá dòng**, không chuyển bảng |
+| `admin/tasks-<kỳ>.md` | Cột *Trạng thái* của đúng dòng; ngày nộp, điểm ghi vào *Ghi chú* (`nộp 2026-09-27 · điểm 9`). **Không xoá dòng**, không tự chuyển nhóm — script làm |
 | `assignments/<aN\|labN>/README.md` · `projects/prjN/README.md` | Dòng *Trạng thái* (+ *Điểm*) ở bảng đầu file |
 | `<môn>/README.md` | Cột trạng thái ở bảng **Bài tập và đồ án** |
 
 Buổi ôn chỉ sửa `tasks-<kỳ>.md` — không có README riêng.
 
-Sửa xong chạy `scripts/tasks-overview.py admin/tasks-<kỳ>.md` — mục **Tổng quan** đếm lại việc chưa nộp,
-tiến độ ôn thi, danh sách quá hạn. Commit cùng lượt.
+Sửa xong chạy `scripts/tasks-overview.py admin/tasks-<kỳ>.md` — dòng tự chuyển sang nhóm đúng
+(`✅` → *5. Đã xong*, `🔄` → *2. Đang làm*). Commit cùng lượt.
 
 **2. Notion** — `notion-update-page` trên trang trong map:
 

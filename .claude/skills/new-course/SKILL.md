@@ -107,7 +107,7 @@ và người dùng chỉ phát hiện ra lúc cần tra cứu gấp.
 | File | Sửa gì |
 |---|---|
 | `semesters/<kỳ>/README.md` | Thêm dòng vào **bảng môn** + **bảng tiến độ**; cập nhật số môn ở đầu file; viết thêm vào mục **"học kỳ này gắn với nhau thế nào"** |
-| `admin/tasks-<kỳ>.md` | Thêm mục `## <MÃ MÔN> — <tên tiếng Việt>` (link thư mục môn · viết tắt Notion hoặc `❓`) với hai bảng **Việc và hạn nộp** (trống) và **Lịch thi** (2 dòng `<MÃ>/exam-mid`, `<MÃ>/exam-final`, `❓`); cập nhật mục lục (`scripts/toc.py`), rồi chạy `scripts/tasks-overview.py` để thêm môn vào **Tổng quan** |
+| `admin/tasks-<kỳ>.md` | Thêm 2 dòng `Thi` vào nhóm 1: `<MÃ>/exam-mid`, `<MÃ>/exam-final`, hạn `❓`, *Ghi chú* `chưa có lịch`; rồi chạy `scripts/tasks-overview.py` |
 | `program/curriculum.md` | Thêm dòng vào khối phù hợp, trạng thái `🔄 đang học`, kỳ dự kiến = học kỳ này |
 | `program/transcript.md` | Thêm dòng vào mục học kỳ hiện tại, điểm `🔄` |
 | `program/specialization/README.md` | Thêm dòng vào bảng **"cảm nhận từng môn"**, trạng thái `🔄 đang học` |
@@ -116,7 +116,7 @@ Số tín chỉ để `❓` — **không đoán**. Đó là dữ liệu từ nh�
 
 Nếu học kỳ đang tạo **chưa tồn tại**, tạo `semesters/<kỳ>/README.md` trước,
 theo mẫu của học kỳ hiện có. Chưa có `admin/tasks-<kỳ>.md` thì tạo từ
-[`templates/tasks.md`](../../../templates/tasks.md) — bảng đầu file, quy ước, mốc học kỳ — rồi mới thêm mục môn. Mục **Tổng quan** để script sinh, không viết tay.
+[`templates/tasks.md`](../../../templates/tasks.md) (thay `<kỳ>`, tên học kỳ; xoá 2 dòng mẫu `<MÃ>`), rồi mới thêm dòng thi của môn.
 
 ---
 

@@ -39,7 +39,7 @@ property, `notion-map.json`) — đọc phần đó thay vì tự nghĩ lại.
 
 | Cần | Lấy ở đâu | Nếu thiếu |
 |---|---|---|
-| **Ngày + giờ thi** (tuyệt đối) | `admin/tasks-<kỳ>.md`, mục môn → *Lịch thi* | **Hỏi.** Không đoán ngày, không đoán ca |
+| **Ngày + giờ thi** (tuyệt đối) | `admin/tasks-<kỳ>.md`, dòng *Loại* `Thi` của môn (ca thi, hình thức ở *Ghi chú*) | **Hỏi.** Không đoán ngày, không đoán ca |
 | Hình thức, thời lượng, được mang gì | `IMPORTANT_NOTES.md` mục 5, `exam-prep/EXAM_PREP.pdf` nếu có | Ghi `❓` vào task thi, nhắc người dùng tra |
 | Phạm vi + trọng số | Theo thứ tự tin cậy: (1) `exam-prep/exam-map.md` blueprint · (2) phạm vi ôn tập giảng viên đưa (`EXAM_PREP.pdf`) · (3) `IMPORTANT_NOTES.md` mục 2, 3 — **có nguồn mới dùng** · (4) `materials/slides/knowledge-map.md` hoặc danh sách `lectures/` | Chia đều theo chương và **nói rõ đó là chia đều** |
 | Mã ca thi → giờ | Người dùng cung cấp (vd *ca 4 = 15:00*) | Hỏi; không suy ca khác từ một ca |
@@ -97,7 +97,7 @@ Rút ra **khung giờ trống**. Mặc định khi chưa có ràng buộc riêng
 | Ngày thường không có lớp | Tối, tránh sự kiện có sẵn | ≤ 2 giờ |
 | Cuối tuần | Sáng ~09:00–11:30, chiều ~14:00–16:30 | ≤ 2,5 giờ / buổi |
 
-Đọc thêm `admin/tasks-<kỳ>.md` (bảng *Việc và hạn nộp* mọi môn): **tránh xếp buổi ôn nặng vào ngày sát hạn bài nộp** của giảng viên.
+Đọc thêm `admin/tasks-<kỳ>.md` (dòng `Hạn nộp` mọi môn): **tránh xếp buổi ôn nặng vào ngày sát hạn bài nộp** của giảng viên.
 
 ---
 
@@ -181,10 +181,9 @@ Tiêu đề sự kiện = tên task bỏ dấu `:` (vd `HDH Ôn chương 7 — Q
 `<MÃ>/exam-<final|mid>/r<nn>` cho task ôn, ghi ngay sau khi tạo — đứt giữa chừng thì lần sau
 vẫn biết cái nào đã có. Lưu thêm `event` (id sự kiện Calendar) nếu muốn dời/xoá sau này.
 
-**4. `admin/tasks-<kỳ>.md`** — ghi các buổi đã tạo vào bảng **Kế hoạch ôn thi** của môn (ngay dưới *Lịch thi*):
-khoá `<MÃ>/exam-<…>/r<nn>` · buổi ôn · hạn (giờ kết thúc buổi) · trạng thái. **Không** trộn vào bảng
-*Việc và hạn nộp* — bảng đó chỉ giữ hạn giảng viên. Ngày thi đã ghi từ trước ở *Lịch thi*.
-Ghi xong chạy `scripts/tasks-overview.py admin/tasks-<kỳ>.md` để tính lại mục **Tổng quan**.
+**4. `admin/tasks-<kỳ>.md`** — thêm mỗi buổi đã tạo thành một dòng ở nhóm 1: *Hạn* = giờ kết thúc buổi ·
+*Môn* · *Loại* `Ôn thi` · *Việc* = tên buổi ôn · `⬜ chưa làm` · khoá `<MÃ>/exam-<…>/r<nn>`.
+Ghi xong chạy `scripts/tasks-overview.py admin/tasks-<kỳ>.md` để xếp dòng vào đúng nhóm.
 
 Sau khi ghi, **mở lại** một task Notion và một sự kiện để kiểm tra giờ hiển thị đúng (lệch múi giờ là lỗi âm thầm).
 
@@ -194,7 +193,7 @@ Sau khi ghi, **mở lại** một task Notion và một sự kiện để kiểm
 
 Người dùng trượt buổi ôn, đổi giờ thi, hay xong sớm → **cập nhật** thay vì lập lại:
 
-- Dời buổi: sửa hạn trong bảng *Kế hoạch ôn thi* trước, rồi `Deadline` task (`notion-update-page`) **và** sự kiện (`update_event`). Hỏi trước khi dời.
+- Dời buổi: sửa *Hạn* của dòng `Ôn thi` trong `admin/tasks-<kỳ>.md` trước, rồi `Deadline` task (`notion-update-page`) **và** sự kiện (`update_event`). Hỏi trước khi dời.
 - Sự kiện tạo nhầm lịch: Google Calendar không cho chuyển lịch → tạo lại trên `Work`, rồi xoá bản cũ (`notificationLevel = NONE`).
 - Buổi bỏ hẳn: chuyển task sang `Archived` (nếu được duyệt), **không xoá**; xoá sự kiện tương ứng.
 - Đổi ngày thi: cập nhật `admin/tasks-<kỳ>.md` trước (nguồn sự thật), rồi mới tính lại kế hoạch.
@@ -206,7 +205,7 @@ Người dùng trượt buổi ôn, đổi giờ thi, hay xong sớm → **cập
 Bao nhiêu task và sự kiện đã tạo · **link** database Notion · buổi ôn đầu tiên sắp tới · lỗ hổng nguồn ôn
 còn lại và skill nào xử lý được · deadline giảng viên trong 7 ngày tới.
 
-Commit bảng *Kế hoạch ôn thi* vừa ghi (và `IMPORTANT_NOTES.md` nếu có sửa): `<MÃ MÔN>: kế hoạch ôn thi`.
+Commit các dòng `Ôn thi` vừa ghi (và `IMPORTANT_NOTES.md` nếu có sửa): `<MÃ MÔN>: kế hoạch ôn thi`.
 
 ---
 
@@ -217,7 +216,7 @@ Commit bảng *Kế hoạch ôn thi* vừa ghi (và `IMPORTANT_NOTES.md` nếu c
 - ❌ **Không đoán ngày thi hay giờ của ca.**
 - ❌ Không bịa phạm vi thi hay "gợi ý thi". Chia đều thì ghi *chia đều*; suy luận từ đề mẫu thì ghi *suy luận*.
 - ❌ Không giấu lỗ hổng nguồn ôn (slide hỏng, chưa có note) — chúng quyết định kế hoạch có làm được không.
-- ❌ Không trộn buổi ôn vào bảng *Việc và hạn nộp* — chỉ vào bảng *Kế hoạch ôn thi*.
+- ❌ Không ghi buổi ôn thành *Loại* `Hạn nộp` — `Hạn nộp` chỉ dành cho hạn giảng viên.
 - ❌ Không tạo task trùng; không xoá task Notion (tối đa `Archived`, và chỉ khi được duyệt).
 - ❌ Không hạ Priority người dùng đã tự đặt.
 - ❌ Không nhồi buổi ôn khi khung trống không đủ — nói thiếu bao nhiêu giờ.

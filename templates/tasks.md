@@ -1,84 +1,82 @@
-# Task & deadline — HK<n> <yyyy>–<yyyy>
+# Task — HK<n> <yyyy>–<yyyy>
 
 | | |
 |---|---|
 | Học kỳ | **HK<n> <yyyy>–<yyyy>** → [`semesters/<kỳ>/`](../semesters/<kỳ>/README.md) |
 | Trạng thái | ⬜ sắp học · 🔄 đang học · ✅ đã xong |
-| Vai trò | **Nguồn sự thật duy nhất** cho việc có hạn và ngày tháng của học kỳ này |
+| Vai trò | **Nguồn sự thật duy nhất** cho mọi task có hạn và lịch thi của học kỳ — xem và quản lý ngay tại đây |
 | Đồng bộ ra | Notion ☕ Tasks · Google Calendar lịch `Work` — skill [`notion-tasks`](../.claude/skills/notion-tasks/SKILL.md) |
 
-> Mọi ngày tháng phát hiện ở bất kỳ đâu (bài giảng, email, Teams, đề bài) **phải chảy về đây** trước,
-> rồi mới lên Notion/Calendar. Ngày **luôn tuyệt đối** — không bao giờ ghi "tuần sau".
+> **Cách dùng:** mỗi dòng là một task. Sửa *Trạng thái* hoặc *Hạn* ngay trên dòng, thêm task mới vào
+> nhóm 1, rồi chạy `scripts/tasks-overview.py` (AI tự chạy sau mỗi lần sửa) — script chuyển dòng sang
+> đúng nhóm, tính lại *Còn lại* và sinh lại nhóm 4. Không xoá dòng: xong thì đổi sang `✅`.
+
+- **Hạn** — ngày tuyệt đối `YYYY-MM-DD [HH:MM]`, chưa biết thì `❓`. **Còn lại** — script tự tính.
+- **Loại** — `Hạn nộp` (hạn giảng viên đặt) · `Thi` · `Ôn thi` (buổi ôn tự đặt, skill `exam-plan`).
+  Mốc nhóm tự đặt không ghi ở đây (README đồ án + Notion); lịch học xem ở lịch `UIT Class`.
+- **Trạng thái** — `⬜ chưa làm` · `🔄 đang làm` · `✅ đã nộp` / `✅ xong` · `⚠️ trễ hạn`. Dòng `Thi` để `—`.
+- **Khoá** — `<MÃ>/aN` · `labN` · `prjN` · `prjN/<mốc>` · `exam-mid` · `exam-final` · `exam-…/rNN`.
+  Cầu nối với Notion và Calendar trong `admin/notion-map.json` — **không đổi khoá** của dòng đã đồng bộ.
+- **Ghi chú** — nguồn (buổi, ngày), ngày nộp, điểm, ca thi, hình thức thi, lưu ý `❓`.
 
 ---
 
 ## Mục lục
 
-<!-- scripts/toc.py gen admin/tasks-<kỳ>.md — Quy ước · Mốc học kỳ · Tổng quan · từng môn -->
+- [1. Sẽ làm](#1-sẽ-làm)
+- [2. Đang làm](#2-đang-làm)
+- [3. Trễ tiến độ](#3-trễ-tiến-độ)
+- [4. Quan trọng, đáng chú ý](#4-quan-trọng-đáng-chú-ý)
+- [5. Đã xong](#5-đã-xong)
 
 ---
 
-## Quy ước
+<!-- tasks:start — sửa dòng thoải mái, rồi chạy scripts/tasks-overview.py để xếp lại nhóm -->
 
-- **Khoá** = `<MÃ MÔN>/<thư mục mục nộp>` (`a3a`, `lab4`, `prj1`) · `<MÃ MÔN>/prjN/<mốc>` ·
-  `<MÃ MÔN>/exam-<mid|final>`. Khoá là cầu nối với Notion và Calendar trong `admin/notion-map.json`
-  (gitignore) — **không đổi khoá** của dòng đã đồng bộ.
-- **Trạng thái:** `⬜ chưa làm` · `🔄 đang làm` · `✅ đã nộp` · `⚠️ trễ hạn`. Việc xong vẫn giữ dòng,
-  chỉ đổi trạng thái và điền *Ngày nộp*.
-- Bảng *Việc và hạn nộp* chỉ giữ **hạn do giảng viên đặt**; *Lịch thi* giữ ngày thi. Buổi ôn tự đặt
-  (skill `exam-plan`) nằm ở bảng riêng **Kế hoạch ôn thi** của môn, khoá `<MÃ>/exam-<…>/r<nn>`.
-  Mốc nhóm tự đặt chỉ nằm trong README đồ án và Notion.
-- Lịch học hằng tuần xem trên Google Calendar lịch `UIT Class`; mã lớp và giảng viên ở
-  [README học kỳ](../semesters/<kỳ>/README.md).
+> Xếp lại ngày **YYYY-MM-DD**. *Còn lại* và nhóm của từng dòng tính theo ngày này.
 
----
+## 1. Sẽ làm
 
-## Mốc học kỳ
+Chưa bắt đầu, chưa tới hạn (kể cả hạn ❓) · kỳ thi chưa diễn ra. **Thêm task mới vào đây.**
 
-| Mốc | Ngày |
-|---|---|
-| Bắt đầu học kỳ | ❓ |
-| Tuần thi giữa kỳ | ❓ |
-| Kết thúc giảng dạy | ❓ |
-| Tuần thi cuối kỳ | ❓ |
-| Công bố điểm | ❓ |
+| Hạn | Còn lại | Môn | Loại | Việc | Trạng thái | Khoá | Ghi chú |
+|---|---|---|---|---|---|---|---|
+| ❓ | — | <MÃ> | Thi | Thi cuối kỳ | — | `<MÃ>/exam-final` | chưa có lịch |
+| ❓ | — | <MÃ> | Thi | Thi giữa kỳ | — | `<MÃ>/exam-mid` | chưa có lịch |
 
 ---
 
-## Tổng quan
+## 2. Đang làm
 
-<!-- Sinh tự động — chạy `scripts/tasks-overview.py admin/tasks-<kỳ>.md` sau khi thêm mục môn đầu tiên. -->
-<!-- tasks-overview:start — sinh bằng scripts/tasks-overview.py, đừng sửa tay -->
-<!-- tasks-overview:end -->
+Trạng thái `🔄`, chưa quá hạn.
+
+| Hạn | Còn lại | Môn | Loại | Việc | Trạng thái | Khoá | Ghi chú |
+|---|---|---|---|---|---|---|---|
 
 ---
 
-<!-- Mỗi môn một mục như dưới đây, theo thứ tự bảng môn trong README học kỳ.
-     "Quy tắc lặp lại" chỉ thêm khi giảng viên có quy tắc nộp lặp lại (có nguồn). -->
+## 3. Trễ tiến độ
 
-## <MÃ MÔN> — <Tên tiếng Việt>
+Quá hạn mà chưa `✅`, hoặc Trạng thái `⚠️`.
 
-[Thư mục môn](../semesters/<kỳ>/<MÃ MÔN>-<slug>/) · Notion `<TT>:`
+| Hạn | Còn lại | Môn | Loại | Việc | Trạng thái | Khoá | Ghi chú |
+|---|---|---|---|---|---|---|---|
 
-### Việc và hạn nộp
+---
 
-| Khoá | Việc | Hạn | Trạng thái | Ngày nộp | Điểm | Nguồn |
-|---|---|---|---|---|---|---|
-| `<MÃ>/a1` | [Bài tập 1](../semesters/<kỳ>/<MÃ MÔN>-<slug>/assignments/a1/) — <tên> | YYYY-MM-DD HH:MM | ⬜ chưa làm | | | buổi N, YYYY-MM-DD |
+## 4. Quan trọng, đáng chú ý
 
-### Lịch thi
+**Chỉ để xem — tự sinh, đừng sửa ở đây.** Kỳ thi sắp tới · hạn giảng viên còn ≤ 7 ngày · hạn hôm nay/ngày mai. Task vẫn nằm ở nhóm 1–3.
 
-| Khoá | Loại | Ngày | Giờ | Hình thức | Được mang gì |
-|---|---|---|---|---|---|
-| `<MÃ>/exam-mid` | Giữa kỳ | ❓ | ❓ | ❓ | ❓ |
-| `<MÃ>/exam-final` | Cuối kỳ | ❓ | ❓ | ❓ | ❓ |
+Không có.
 
-<!-- Chỉ thêm khi đã chạy exam-plan cho môn này. -->
+---
 
-### Kế hoạch ôn thi
+## 5. Đã xong
 
-Buổi ôn tự đặt (skill `exam-plan`), **không phải hạn giảng viên**. *Hạn* = giờ kết thúc buổi ôn.
+Trạng thái `✅` · kỳ thi đã qua. Giữ làm lịch sử — không xoá dòng.
 
-| Khoá | Buổi ôn | Hạn | Trạng thái |
-|---|---|---|---|
-| `<MÃ>/exam-final/r01` | Ôn <phạm vi> | YYYY-MM-DD HH:MM | ⬜ chưa làm |
+| Hạn | Còn lại | Môn | Loại | Việc | Trạng thái | Khoá | Ghi chú |
+|---|---|---|---|---|---|---|---|
+
+<!-- tasks:end -->

@@ -83,7 +83,7 @@ Skill gọi các script này; tự chạy được khi cần.
 | `scripts/new-project.sh` | Dựng thư mục đồ án `prjN/` (dùng bởi `new-project`) |
 | `scripts/check-layout.sh` | Tìm file sai chỗ / sai tên (dùng bởi `tidy-files`) |
 | `scripts/toc.py gen\|check` | Sinh / kiểm tra mục lục markdown |
-| `scripts/tasks-overview.py` | Tính lại mục **Tổng quan** của `admin/tasks-<kỳ>.md` (dùng bởi `notion-tasks`, `task-status`, `exam-plan`, `new-*`) |
+| `scripts/tasks-overview.py` | Xếp task của `admin/tasks-<kỳ>.md` vào 5 nhóm, tính lại *Còn lại*, sinh nhóm Quan trọng (dùng bởi `notion-tasks`, `task-status`, `exam-plan`, `new-*`) |
 | [`scripts/note-image.py`](scripts/note-image.md) | Mẫu concept/mechanism/mindmap → SVG → PNG; sinh Markdown với bullet Đọc hình, dùng chung cho các skill hình ảnh |
 | `scripts/peek.py` | Xem nhanh `.pdf` / `.docx` / `.pptx` / `.xlsx` / `.vtt` |
 | `scripts/slides-to-md.py` | Dựng bộ đệm text của PDF trong `materials/` → `.cache/md/` để `grep` |
