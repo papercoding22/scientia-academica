@@ -376,8 +376,9 @@ Sáu template còn lại là để AI điền tay, không có token.
   *Việc và hạn nộp* (có cột **Khoá** `<MÃ>/aN`, `<MÃ>/prjN`, `<MÃ>/exam-final`…) và *Lịch thi*.
   Phát hiện deadline ở bất kỳ đâu → phải chảy về đúng mục môn trong file của học kỳ đó.
   Học kỳ mới → tạo từ `templates/tasks.md`. Lịch học hằng tuần không ghi ở repo — xem lịch `UIT Class`.
-- Mục **Tổng quan** (ngay dưới *Mốc học kỳ*) — mỗi môn một dòng: việc chưa nộp, hạn gần nhất, thi, tiến độ
-  ôn thi; kèm danh sách *Sắp tới 14 ngày* và *Quá hạn*. Đây là **dữ liệu suy ra**, sinh bằng
+- Mục **Tổng quan** (ngay dưới *Mốc học kỳ*) gộp task mọi môn thành 4 nhóm: **Sẽ làm** · **Đang làm** ·
+  **Trễ tiến độ** (mỗi task đúng một nhóm, ưu tiên trễ > đang làm > sẽ làm) · **Quan trọng, đáng chú ý**
+  (kỳ thi, hạn giảng viên ≤ 7 ngày, hạn hôm nay/ngày mai — có thể trùng ba nhóm trên). Đây là **dữ liệu suy ra**, sinh bằng
   `scripts/tasks-overview.py` — **mọi lần sửa file tasks đều phải chạy lại script**, không sửa tay.
 - **Luôn chuyển ngày tương đối → tuyệt đối.**
   *"nộp tuần sau"* + buổi học ngày 2026-09-20 → **`2026-09-27`**.

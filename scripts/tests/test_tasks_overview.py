@@ -36,6 +36,7 @@ SAMPLE = """# Task & deadline — test
 | `AB123/a1` | [Bài tập 1](x/) — Một | 2026-09-20 21:30 | ✅ đã nộp | | | |
 | `AB123/a2` | [Bài tập 2](x/) — Hai | 2026-09-30 | ⬜ chưa làm | | | |
 | `AB123/a3` | Bài tập 3 | ❓ | ⬜ chưa làm | | | |
+| `AB123/a4` | Bài tập 4 | 2026-10-20 | 🔄 đang làm | | | |
 
 ### Lịch thi
 
@@ -55,24 +56,40 @@ SAMPLE = """# Task & deadline — test
 NOW = dt.datetime(2026, 9, 27, 12, 0)
 
 
+def group(section, title):
+    """Nội dung một nhóm, từ tiêu đề tới tiêu đề nhóm kế tiếp."""
+    part = section.split(f"**{title}")[1]
+    return part.split("\n**")[0]
+
+
 class TasksOverviewTest(unittest.TestCase):
     def setUp(self):
         self.section = ov.build(SAMPLE, NOW)
 
-    def test_course_row(self):
-        self.assertIn("| [AB123](#ab123--môn-thử) | 2 | T4 2026-09-30 (còn 3 ngày) |", self.section)
-        self.assertIn("~~Giữa kỳ~~ không thi", self.section)
-        self.assertIn("**Cuối kỳ T7 2026-10-03 15:00** (còn 6 ngày)", self.section)
-        self.assertIn("1/2 xong · ⚠️ 1 quá hạn", self.section)
+    def test_todo(self):
+        todo = group(self.section, "1. Sẽ làm")
+        self.assertIn("| T4 2026-09-30 | còn 3 ngày | AB123 | Hạn nộp | Bài tập 2 — Hai |", todo)
+        self.assertIn("| ❓ | — | AB123 | Hạn nộp | Bài tập 3 |", todo)
+        self.assertLess(todo.index("Bài tập 2"), todo.index("Bài tập 3"))  # chưa rõ hạn xếp cuối
+        self.assertNotIn("Bài tập 1", self.section)  # đã nộp
+        self.assertNotIn("Thi cuối kỳ", todo)  # thi không phải task
 
-    def test_upcoming_and_overdue(self):
-        upcoming = self.section.split("**Sắp tới")[1].split("**Quá hạn")[0]
-        overdue = self.section.split("**Quá hạn")[1]
-        self.assertIn("Bài tập 2 — Hai", upcoming)
-        self.assertIn("| T7 2026-10-03 15:00 | AB123 | Thi | Thi cuối kỳ |", upcoming)
-        self.assertNotIn("Bài tập 1", upcoming + overdue)  # đã nộp
-        self.assertIn("Ôn chương 1", overdue)
-        self.assertNotIn("Ôn chương 2", overdue)
+    def test_doing_and_late(self):
+        self.assertIn("Bài tập 4", group(self.section, "2. Đang làm"))
+        late = group(self.section, "3. Trễ tiến độ")
+        self.assertIn("| T7 2026-09-26 11:30 | quá 1 ngày | AB123 | Ôn thi | Ôn chương 1 |", late)
+        self.assertNotIn("Ôn chương 2", late)  # đã xong
+
+    def test_each_task_in_one_group(self):
+        groups = [group(self.section, t) for t in ("1. Sẽ làm", "2. Đang làm", "3. Trễ tiến độ")]
+        for name in ("Bài tập 2", "Bài tập 3", "Bài tập 4", "Ôn chương 1"):
+            self.assertEqual(sum(name in g for g in groups), 1, name)
+
+    def test_notable(self):
+        notable = group(self.section, "4. Quan trọng")
+        self.assertIn("| AB123 | Thi | Thi cuối kỳ | kỳ thi |", notable)
+        self.assertIn("| Bài tập 2 — Hai | hạn giảng viên |", notable)
+        self.assertNotIn("Bài tập 4", notable)  # còn 23 ngày
 
     def test_apply_inserts_then_is_idempotent(self):
         once = ov.apply(SAMPLE, self.section)

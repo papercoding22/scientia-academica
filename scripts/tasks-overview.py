@@ -11,18 +11,13 @@ Tổng quan là DỮ LIỆU SUY RA — nguồn vẫn là bảng "Việc và hạ
 "Kế hoạch ôn thi" của từng môn. Sửa bảng chi tiết xong thì chạy lại script này,
 đừng sửa tay phần giữa hai marker.
 """
-import argparse, datetime as dt, importlib.util, pathlib, re, sys
+import argparse, datetime as dt, pathlib, re, sys
 
 REPO = pathlib.Path(__file__).resolve().parents[1]
 START = "<!-- tasks-overview:start — sinh bằng scripts/tasks-overview.py, đừng sửa tay -->"
 END = "<!-- tasks-overview:end -->"
-HORIZON = 14  # số ngày của danh sách "Sắp tới"
+IMPORTANT_DAYS = 7  # hạn giảng viên còn ≤ N ngày thì vào nhóm "Quan trọng"
 WEEKDAY = ["T2", "T3", "T4", "T5", "T6", "T7", "CN"]
-
-_spec = importlib.util.spec_from_file_location("toc", REPO / "scripts" / "toc.py")
-toc = importlib.util.module_from_spec(_spec)
-_spec.loader.exec_module(toc)
-
 
 # ── đọc file ────────────────────────────────────────────────────────────────
 def parse_table(lines):
@@ -103,20 +98,20 @@ def items(course):
             continue
         moment, has_time = when(row.get("Hạn", ""))
         out.append(dict(kind="Hạn nộp", name=plain(row["Việc"]), at=moment, has_time=has_time,
-                        done=done(row.get("Trạng thái", ""))))
+                        status=row.get("Trạng thái", ""), done=done(row.get("Trạng thái", ""))))
     for row in course["tables"].get("Lịch thi", []):
         loai = row.get("Loại", "")
         if loai.startswith("~~"):
             continue
         moment, has_time = when(row.get("Ngày", ""), row.get("Giờ", ""))
         out.append(dict(kind="Thi", name="Thi " + plain(loai).replace("❓", "").strip().lower(),
-                        at=moment, has_time=has_time, done=False, exam=True))
+                        at=moment, has_time=has_time, status="", done=False, exam=True))
     for row in course["tables"].get("Kế hoạch ôn thi", []):
         if not row.get("Buổi ôn"):
             continue
         moment, has_time = when(row.get("Hạn", ""))
         out.append(dict(kind="Ôn thi", name=plain(row["Buổi ôn"]), at=moment, has_time=has_time,
-                        done=done(row.get("Trạng thái", "")), review=True))
+                        status=row.get("Trạng thái", ""), done=done(row.get("Trạng thái", "")), review=True))
     return out
 
 
@@ -126,81 +121,68 @@ def days_left(moment, now):
     return "hôm nay" if n == 0 else f"còn {n} ngày" if n > 0 else f"quá {-n} ngày"
 
 
-def exam_cell(course, now):
-    parts = []
-    for row in course["tables"].get("Lịch thi", []):
-        loai = plain(row.get("Loại", ""))
-        if row.get("Loại", "").startswith("~~"):
-            parts.append(f"~~{loai.strip('~')}~~ không thi")
-            continue
-        moment, has_time = when(row.get("Ngày", ""), row.get("Giờ", ""))
-        label = loai.replace("❓", "").strip()
-        if not moment:
-            parts.append(f"{label} ❓")
-        elif moment < now:
-            parts.append(f"{label} {fmt(moment, has_time)} (đã thi)")
-        else:
-            parts.append(f"**{label} {fmt(moment, has_time)}** ({days_left(moment, now)})")
-    return " · ".join(parts) or "—"
+def classify(x, now):
+    """Nhóm 1–3, mỗi task đúng một nhóm: trễ tiến độ > đang làm > sẽ làm. Thi không phải task."""
+    if x["done"] or x.get("exam"):
+        return None
+    if "⚠️" in x["status"] or (x["at"] and x["at"] < now):
+        return "late"
+    if "🔄" in x["status"]:
+        return "doing"
+    return "todo"
+
+
+def notable(x, now):
+    """Nhóm 4 — lý do đáng chú ý, hoặc None. Có thể trùng với nhóm 1–3."""
+    if x["done"] or not x["at"] or x["at"] < now:
+        return None
+    left = (x["at"].date() - now.date()).days
+    if x.get("exam"):
+        return "kỳ thi"
+    if x["kind"] == "Hạn nộp" and left <= IMPORTANT_DAYS:
+        return "hạn giảng viên"
+    if left <= 1:
+        return "hạn hôm nay/ngày mai"
+    return None
+
+
+def table(entries, now, extra=None):
+    if not entries:
+        return ["Không có."]
+    entries.sort(key=lambda e: (e[1]["at"] is None, e[1]["at"] or dt.datetime.max))
+    head = "| Hạn | Còn lại | Môn | Loại | Việc |" + (f" {extra} |" if extra else "")
+    rows = [head, "|---|---|---|---|---|" + ("---|" if extra else "")]
+    for code, x, *more in entries:
+        at = fmt(x["at"], x["has_time"]) if x["at"] else "❓"
+        left = days_left(x["at"], now) if x["at"] else "—"
+        rows.append(f"| {at} | {left} | {code} | {x['kind']} | {x['name']} |" + (f" {more[0]} |" if extra else ""))
+    return rows
 
 
 def build(md, now):
-    courses = parse_courses(md)
-    seen = {}
-    anchors = {}
-    for line in toc.strip_fences(md).splitlines():
-        m = re.match(r"^(#{2,3}) (.+)$", line)
-        if m:
-            anchors.setdefault(m.group(2).strip(), toc.slug(m.group(2), seen))
-
-    rows, upcoming, overdue = [], [], []
-    for c in courses:
-        its = items(c)
-        tasks = [x for x in its if x["kind"] == "Hạn nộp"]
-        open_tasks = [x for x in tasks if not x["done"]]
-        dated = sorted((x for x in open_tasks if x["at"]), key=lambda x: x["at"])
-        if dated:
-            nxt = f"{fmt(dated[0]['at'], dated[0]['has_time'])} ({days_left(dated[0]['at'], now)})"
-        elif open_tasks:
-            nxt = "❓"
-        else:
-            nxt = "—"
-        reviews = [x for x in its if x.get("review")]
-        if reviews:
-            ok = sum(x["done"] for x in reviews)
-            late = sum(1 for x in reviews if not x["done"] and x["at"] and x["at"] < now)
-            rv = f"{ok}/{len(reviews)} xong" + (f" · ⚠️ {late} quá hạn" if late else "")
-        else:
-            rv = "—"
-        rows.append(f"| [{c['code']}](#{anchors.get(c['heading'], '')}) | {len(open_tasks)} | {nxt} | "
-                    f"{exam_cell(c, now)} | {rv} |")
-
-        for x in its:
-            if x["done"] or not x["at"]:
-                continue
-            entry = (x["at"], f"| {fmt(x['at'], x['has_time'])} | {c['code']} | {x['kind']} | {x['name']} |")
-            if x["at"] < now:
-                if not x.get("exam"):
-                    overdue.append(entry)
-            elif (x["at"].date() - now.date()).days <= HORIZON:
-                upcoming.append(entry)
+    groups = {"todo": [], "doing": [], "late": []}
+    marked = []
+    for c in parse_courses(md):
+        for x in items(c):
+            g = classify(x, now)
+            if g:
+                groups[g].append((c["code"], x))
+            why = notable(x, now)
+            if why:
+                marked.append((c["code"], x, why))
 
     out = [START, "",
            f"> Tính ngày **{now:%Y-%m-%d}** từ các bảng chi tiết bên dưới. Sửa bảng chi tiết xong thì chạy",
            "> `scripts/tasks-overview.py` — không sửa tay phần này.", "",
-           "| Môn | Việc chưa nộp | Hạn gần nhất | Thi | Ôn thi |", "|---|---|---|---|---|", *rows, "",
-           f"**Sắp tới — {HORIZON} ngày**", ""]
-    if upcoming:
-        out += ["| Khi nào | Môn | Loại | Việc |", "|---|---|---|---|",
-                *[r for _, r in sorted(upcoming)]]
-    else:
-        out.append("Không có việc nào có hạn trong khoảng này.")
-    out += ["", "**Quá hạn, chưa xong**", ""]
-    if overdue:
-        out += ["| Hạn | Môn | Loại | Việc |", "|---|---|---|---|", *[r for _, r in sorted(overdue)]]
-    else:
-        out.append("Không có.")
-    out += ["", END]
+           f"**1. Sẽ làm** — chưa bắt đầu, chưa tới hạn ({len(groups['todo'])})", "",
+           *table(groups["todo"], now), "",
+           f"**2. Đang làm** ({len(groups['doing'])})", "",
+           *table(groups["doing"], now), "",
+           f"**3. Trễ tiến độ** — quá hạn mà chưa xong ({len(groups['late'])})", "",
+           *table(groups["late"], now), "",
+           f"**4. Quan trọng, đáng chú ý** — kỳ thi · hạn giảng viên ≤ {IMPORTANT_DAYS} ngày · hạn hôm nay/ngày mai", "",
+           *table(marked, now, extra="Vì sao"), "",
+           END]
     return "\n".join(out)
 
 
