@@ -308,6 +308,7 @@ và ghi rõ số trang khi trích. Giáo trình chuẩn hơn transcript Teams.
 | Cập nhật trạng thái task (đã nộp, đang làm, xong buổi ôn) → repo + Notion | skill **`task-status`** → `.claude/skills/task-status/SKILL.md` |
 | Lập kế hoạch ôn thi → task Notion + Google Calendar | skill **`exam-plan`** → `.claude/skills/exam-plan/SKILL.md` |
 | Sinh / kiểm tra mục lục | `scripts/toc.py gen\|check <file>` (xem § 2b) |
+| Tính lại mục Tổng quan của `admin/tasks-<kỳ>.md` | `scripts/tasks-overview.py [file]` (xem § 10) |
 | Dựng SVG, render PNG và sinh Markdown cho các skill hình ảnh | `python3 scripts/note-image.py` — [hướng dẫn](scripts/note-image.md) |
 | Tìm file sai chỗ / sai tên | `scripts/check-layout.sh [--course <mã>]` |
 | Xem nhanh nội dung .pdf/.docx/.pptx/.xlsx/.vtt | `scripts/peek.py <file>` |
@@ -375,6 +376,9 @@ Sáu template còn lại là để AI điền tay, không có token.
   *Việc và hạn nộp* (có cột **Khoá** `<MÃ>/aN`, `<MÃ>/prjN`, `<MÃ>/exam-final`…) và *Lịch thi*.
   Phát hiện deadline ở bất kỳ đâu → phải chảy về đúng mục môn trong file của học kỳ đó.
   Học kỳ mới → tạo từ `templates/tasks.md`. Lịch học hằng tuần không ghi ở repo — xem lịch `UIT Class`.
+- Mục **Tổng quan** (ngay dưới *Mốc học kỳ*) — mỗi môn một dòng: việc chưa nộp, hạn gần nhất, thi, tiến độ
+  ôn thi; kèm danh sách *Sắp tới 14 ngày* và *Quá hạn*. Đây là **dữ liệu suy ra**, sinh bằng
+  `scripts/tasks-overview.py` — **mọi lần sửa file tasks đều phải chạy lại script**, không sửa tay.
 - **Luôn chuyển ngày tương đối → tuyệt đối.**
   *"nộp tuần sau"* + buổi học ngày 2026-09-20 → **`2026-09-27`**.
   Không đủ thông tin để quy đổi → hỏi, không đoán.

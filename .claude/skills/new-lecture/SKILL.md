@@ -209,6 +209,7 @@ Buổi đầu tiên thường công bố cách tính điểm. Nghe thấy → đ
 **Luôn chuyển sang ngày tuyệt đối.** *"nộp tuần sau"* + buổi ngày `2026-10-06`
 → `2026-10-13`. Không đủ thông tin quy đổi → hỏi, không đoán.
 Ghi vào đúng mục môn (bảng *Việc và hạn nộp* hoặc *Lịch thi*), cột *Nguồn* = buổi + ngày.
+Có ghi thì chạy `scripts/tasks-overview.py admin/tasks-<kỳ>.md` để tính lại **Tổng quan**.
 
 ### 6d. Flashcard → `exam-prep/flashcards.md` **và** `.csv`
 

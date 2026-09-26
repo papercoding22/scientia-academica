@@ -470,6 +470,10 @@ biết hạn. Mặc định xem trong chat, không tạo task Notion hay sự ki
 (vd [`admin/tasks-2025-2026-S3.md`](admin/tasks-2025-2026-S3.md)), **mỗi môn một mục**. Mở file là thấy
 môn nào còn gì, hạn khi nào, thi ngày nào. Việc xong không xoá dòng — chỉ đổi trạng thái sang ✅.
 
+Đầu file có mục **Tổng quan**: mỗi môn một dòng (việc chưa nộp · hạn gần nhất · thi · tiến độ ôn thi),
+rồi danh sách *Sắp tới 14 ngày* và *Quá hạn*. Mục này do script sinh — AI tự chạy lại sau mỗi lần sửa file;
+muốn tính lại theo ngày hôm nay thì chạy `scripts/tasks-overview.py`.
+
 **Notion (☕ Tasks) + Google Calendar** — đồng bộ **từ** file trên: repo giữ *hạn*, Notion giữ *đã xong chưa*,
 Calendar (lịch `Work`) chỉ nhắc. AI luôn in bảng xem trước rồi mới ghi.
 ```

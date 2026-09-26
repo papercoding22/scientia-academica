@@ -108,7 +108,7 @@ ngày tuyệt đối. Không đủ thông tin quy đổi thì hỏi, **không đ
 Môn có quy tắc nộp lặp lại (IE105: **21:30 cùng ngày học**, dự phòng hết hôm sau) →
 áp dụng luôn, đã ghi ở `admin/tasks-<kỳ>.md`, mục môn → *Quy tắc lặp lại*.
 
-Ghi xong thì đề xuất chạy `notion-tasks` (sync mục vừa tạo) để lên Notion và Calendar.
+Ghi xong chạy `scripts/tasks-overview.py admin/tasks-<kỳ>.md` (tính lại **Tổng quan**), rồi đề xuất chạy `notion-tasks` (sync mục vừa tạo) để lên Notion và Calendar.
 
 ---
 

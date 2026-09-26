@@ -127,6 +127,9 @@ Thứ tự **repo trước, Notion sau** — đứt giữa chừng thì repo v�
 
 Buổi ôn chỉ sửa `tasks-<kỳ>.md` — không có README riêng.
 
+Sửa xong chạy `scripts/tasks-overview.py admin/tasks-<kỳ>.md` — mục **Tổng quan** đếm lại việc chưa nộp,
+tiến độ ôn thi, danh sách quá hạn. Commit cùng lượt.
+
 **2. Notion** — `notion-update-page` trên trang trong map:
 
 - `Status` theo bảng ở bước 2.

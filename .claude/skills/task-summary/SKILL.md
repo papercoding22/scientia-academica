@@ -47,7 +47,7 @@ $task-summary các bài quá hạn trong học kỳ 2025-2026-S3
 
 | Nguồn | Lấy thông tin gì |
 |---|---|
-| `admin/tasks-<kỳ>.md` | Theo từng môn: hạn giảng viên, ngày/giờ thi, bài đang chờ và đã nộp |
+| `admin/tasks-<kỳ>.md` | Theo từng môn: hạn giảng viên, ngày/giờ thi, bài đang chờ và đã nộp. Mục **Tổng quan** là bản suy ra có ngày tính — dùng để định hướng, còn số liệu báo cáo lấy từ bảng chi tiết và tính lại theo ngày chốt (hoặc `scripts/tasks-overview.py --print --today <ngày>`) |
 | `semesters/<kỳ>/README.md`, README môn | Danh sách môn, bảng bài tập/đồ án để phát hiện việc bị bỏ sót |
 | `assignments/<bài>/README.md` | Tên bài, trạng thái, sản phẩm cần nộp, phần việc còn lại |
 | `projects/<đồ án>/README.md` | Trạng thái, mốc giảng viên và mốc nhóm/tự đặt, phân công |

@@ -248,7 +248,7 @@ Bảng xem trước có thêm cột **Calendar** để người dùng thấy s�
 
 Thứ tự **Notion trước, Calendar sau** — mô tả sự kiện cần link trang Notion. Ghi xong mỗi lô
 thì lưu `page`, `deadline`, `event` vào `admin/notion-map.json` ngay. Sửa file `tasks-<kỳ>.md`
-(kéo trạng thái về, thêm khoá) trong cùng lượt.
+(kéo trạng thái về, thêm khoá) trong cùng lượt, rồi chạy `scripts/tasks-overview.py` để tính lại mục **Tổng quan**.
 
 ---
 

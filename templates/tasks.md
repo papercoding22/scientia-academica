@@ -14,7 +14,7 @@
 
 ## Mục lục
 
-<!-- scripts/toc.py gen admin/tasks-<kỳ>.md -->
+<!-- scripts/toc.py gen admin/tasks-<kỳ>.md — Quy ước · Mốc học kỳ · Tổng quan · từng môn -->
 
 ---
 
@@ -42,6 +42,14 @@
 | Kết thúc giảng dạy | ❓ |
 | Tuần thi cuối kỳ | ❓ |
 | Công bố điểm | ❓ |
+
+---
+
+## Tổng quan
+
+<!-- Sinh tự động — chạy `scripts/tasks-overview.py admin/tasks-<kỳ>.md` sau khi thêm mục môn đầu tiên. -->
+<!-- tasks-overview:start — sinh bằng scripts/tasks-overview.py, đừng sửa tay -->
+<!-- tasks-overview:end -->
 
 ---
 

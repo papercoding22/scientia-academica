@@ -184,6 +184,7 @@ vẫn biết cái nào đã có. Lưu thêm `event` (id sự kiện Calendar) n�
 **4. `admin/tasks-<kỳ>.md`** — ghi các buổi đã tạo vào bảng **Kế hoạch ôn thi** của môn (ngay dưới *Lịch thi*):
 khoá `<MÃ>/exam-<…>/r<nn>` · buổi ôn · hạn (giờ kết thúc buổi) · trạng thái. **Không** trộn vào bảng
 *Việc và hạn nộp* — bảng đó chỉ giữ hạn giảng viên. Ngày thi đã ghi từ trước ở *Lịch thi*.
+Ghi xong chạy `scripts/tasks-overview.py admin/tasks-<kỳ>.md` để tính lại mục **Tổng quan**.
 
 Sau khi ghi, **mở lại** một task Notion và một sự kiện để kiểm tra giờ hiển thị đúng (lệch múi giờ là lỗi âm thầm).
 

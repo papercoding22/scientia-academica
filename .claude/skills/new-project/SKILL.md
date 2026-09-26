@@ -95,6 +95,8 @@ Người dùng muốn thêm mốc nội bộ (nhóm tự chia) → thêm dòng v
 | `<môn>/README.md` | Bảng **Bài tập và đồ án**: link `projects/prjN/` · tên · buổi giao · hạn · trạng thái |
 | `<môn>/IMPORTANT_NOTES.md` | Tỷ trọng, tiêu chí chấm, hình thức nộp — **chỉ khi có nguồn**, append theo luật § 8 |
 
+Ghi xong chạy `scripts/tasks-overview.py admin/tasks-<kỳ>.md` (tính lại **Tổng quan**).
+
 Mốc do nhóm tự đặt **không** vào `tasks-<kỳ>.md` — file đó chỉ giữ hạn của giảng viên.
 
 Buổi học gợi ra hướng hay cho khoá luận → đề xuất tạo `program/thesis/ideas/<slug>.md` (`AGENTS.md` § 5 bước 8).
