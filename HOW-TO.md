@@ -485,6 +485,13 @@ tạo task HDH xem lại video buổi 6, hạn thứ 7
 ```
 Kéo thẻ sang **Done** trên Notion → lần đồng bộ sau repo tự đánh dấu ✅.
 
+**Lỡ buổi, có việc trễ tiến độ** — skill [replan-late](.claude/skills/replan-late/SKILL.md) đọc lịch, đề xuất
+lịch mới cho mọi task ở nhóm *3. Trễ tiến độ* trong một bảng, bạn *OK* là dời cùng lúc hạn trong repo,
+Deadline Notion và sự kiện lịch `Work`. Hạn nộp của giảng viên không bao giờ bị dời.
+```
+planning lại các việc bị trễ
+```
+
 **Vừa nộp bài hay xong buổi ôn** — nói thẳng, skill [task-status](.claude/skills/task-status/SKILL.md)
 sửa trạng thái trong `admin/tasks-<kỳ>.md`, README của bài, rồi đẩy `Status` lên Notion (xem trước rồi mới ghi):
 ```

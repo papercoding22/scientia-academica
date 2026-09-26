@@ -24,6 +24,7 @@ Chi tiết từng skill ở `.claude/skills/<tên>/SKILL.md`.
 | [`exam-map`](.claude/skills/exam-map/SKILL.md) | Đề mẫu → map câu về chương/slide + exam blueprint | *phân tích đề mẫu IE105* |
 | [`exam-study-guide`](.claude/skills/exam-study-guide/SKILL.md) | Chắt lọc kiến thức một chương từ đề mẫu, kèm đáp án, giải thích từng câu và dẫn chiếu nguồn | *tổng hợp kiến thức chương 5 IT007 từ đề mẫu và hướng dẫn từng câu* |
 | [`exam-plan`](.claude/skills/exam-plan/SKILL.md) | Đọc lịch, xếp buổi ôn lùi từ ngày thi, tạo task Notion + sự kiện Google Calendar | *lên kế hoạch ôn thi IT007 và IE105* |
+| [`replan-late`](.claude/skills/replan-late/SKILL.md) | Xếp lại nhanh task trễ tiến độ vào khung trống trước hạn/ngày thi; dời cùng lúc repo, Notion, Calendar | *planning lại các việc bị trễ* |
 | [`notion-tasks`](.claude/skills/notion-tasks/SKILL.md) | Đồng bộ bài nộp, lịch thi từ `admin/tasks-<kỳ>.md` lên Notion và Google Calendar; tạo task lẻ | *đồng bộ Notion* · *đồng bộ lịch* |
 | [`task-status`](.claude/skills/task-status/SKILL.md) | Cập nhật trạng thái task theo lời bạn: ghi `admin/tasks-<kỳ>.md` + README bài, rồi đẩy Status lên Notion | *đã nộp bài tập 8 IE105* · *xong buổi ôn chương 7* |
 | [`task-summary`](.claude/skills/task-summary/SKILL.md) | Tóm tắt việc cần làm, hạn nộp, lịch thi và mốc nhóm; chỉ rõ quá hạn/chưa rõ hạn | *tóm tắt task và deadline tuần này* |
@@ -66,6 +67,7 @@ flowchart LR
 | Ôn thi | `exam-map` · `exam-study-guide` · `exam-plan` | `exam-prep/` · Notion · Google Calendar (lịch `Work`) |
 | Quản lý việc | `notion-tasks` | `admin/tasks-<kỳ>.md` → Notion ☕ Tasks · Google Calendar `Work` |
 | Vừa nộp bài / xong buổi ôn | `task-status` | `admin/tasks-<kỳ>.md` · README bài · Notion `Status` |
+| Lỡ buổi, có việc trễ tiến độ | `replan-late` | `admin/tasks-<kỳ>.md` (*Hạn*) · Notion `Deadline` · sự kiện lịch `Work` |
 | Xem việc cần làm và deadline | `task-summary` | báo cáo trong chat; snapshot khi yêu cầu lưu |
 | Lỡ thả file lung tung | `tidy-files` | đúng thư mục theo `AGENTS.md` § 14 |
 

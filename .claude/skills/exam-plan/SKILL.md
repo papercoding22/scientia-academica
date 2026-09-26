@@ -191,7 +191,8 @@ Sau khi ghi, **mở lại** một task Notion và một sự kiện để kiểm
 
 ## Khi kế hoạch lệch
 
-Người dùng trượt buổi ôn, đổi giờ thi, hay xong sớm → **cập nhật** thay vì lập lại:
+Người dùng trượt buổi ôn, đổi giờ thi, hay xong sớm → **cập nhật** thay vì lập lại.
+Chỉ cần dời các buổi đã lỡ (nhóm *Trễ tiến độ*) → dùng skill **`replan-late`**, nhanh hơn:
 
 - Dời buổi: sửa *Hạn* của dòng `Ôn thi` trong `admin/tasks-<kỳ>.md` trước, rồi `Deadline` task (`notion-update-page`) **và** sự kiện (`update_event`). Hỏi trước khi dời.
 - Sự kiện tạo nhầm lịch: Google Calendar không cho chuyển lịch → tạo lại trên `Work`, rồi xoá bản cũ (`notificationLevel = NONE`).

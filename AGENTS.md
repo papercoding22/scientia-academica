@@ -307,6 +307,7 @@ và ghi rõ số trang khi trích. Giáo trình chuẩn hơn transcript Teams.
 | Tóm tắt việc cần làm, deadline, lịch thi và mốc nhóm | skill **`task-summary`** → `.claude/skills/task-summary/SKILL.md` |
 | Cập nhật trạng thái task (đã nộp, đang làm, xong buổi ôn) → repo + Notion | skill **`task-status`** → `.claude/skills/task-status/SKILL.md` |
 | Lập kế hoạch ôn thi → task Notion + Google Calendar | skill **`exam-plan`** → `.claude/skills/exam-plan/SKILL.md` |
+| Xếp lại nhanh task trễ tiến độ (dời repo + Notion + Calendar) | skill **`replan-late`** → `.claude/skills/replan-late/SKILL.md` |
 | Sinh / kiểm tra mục lục | `scripts/toc.py gen\|check <file>` (xem § 2b) |
 | Xếp lại task của `admin/tasks-<kỳ>.md` vào đúng nhóm | `scripts/tasks-overview.py [file]` (xem § 10) |
 | Dựng SVG, render PNG và sinh Markdown cho các skill hình ảnh | `python3 scripts/note-image.py` — [hướng dẫn](scripts/note-image.md) |
