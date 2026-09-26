@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1760" height="1350" viewBox="0 0 1760 1350" role="img" aria-labelledby="title desc">
+<title id="title">Paging: các page nằm rải rác, CPU vẫn tìm đúng byte</title>
+<desc id="desc">Page và frame đều 1024 byte. Page table của process P ánh xạ page 0 sang frame 5, page 1 sang frame 6, page 2 sang frame 25. CPU truy cập địa chỉ luận lý 1502: p bằng 1, offset d bằng 478. Tra entry 1 lấy frame 6; giữ nguyên offset, tạo địa chỉ vật lý 6 nhân 1024 cộng 478 bằng 6622. Mũi tên nét đứt chỉ ánh xạ; nét liền chỉ luồng xử lý địa chỉ, không phải di chuyển page.</desc>
+<rect x="0" y="0" width="1760" height="1350" rx="0" fill="#fbfcfd" stroke="none" stroke-width="2"/>
+<text x="48" y="62" font-family="Arial, Helvetica, sans-serif" font-size="38" fill="#233b4f" font-weight="700" text-anchor="start">PAGING — PAGE RẢI RÁC, CPU VẪN TÌM ĐÚNG BYTE</text>
+<text x="48" y="106" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#536d80" font-weight="400" text-anchor="start">Page (trang) và frame (khung) cùng cỡ: 1 KiB = 1024 byte</text>
+<path d="M48 139H1712" fill="none" stroke="#d7e1e8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="48" y="190" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#233b4f" font-weight="700" text-anchor="start">01 · OS đã nạp các page và thiết lập ánh xạ cho process P</text>
+<text x="80" y="250" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#233b4f" font-weight="700" text-anchor="start">Không gian luận lý của P</text>
+<text x="660" y="250" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#233b4f" font-weight="700" text-anchor="start">Page table của P</text>
+<text x="1290" y="250" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#233b4f" font-weight="700" text-anchor="start">RAM · trích các frame</text>
+<text x="80" y="284" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#667f90" font-weight="400" text-anchor="start">Trích page 0, 1, 2 liên tiếp</text>
+<text x="660" y="284" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#667f90" font-weight="400" text-anchor="start">Trích 3 entry · bảng nằm trong RAM</text>
+<rect x="80" y="315" width="310" height="110" rx="0" fill="#d8efec" stroke="#718b9f" stroke-width="2"/>
+<text x="110" y="360" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#247b75" font-weight="700" text-anchor="start">Page 0</text>
+<text x="110" y="399" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#247b75" font-weight="400" text-anchor="start">0–1023</text>
+<rect x="80" y="425" width="310" height="110" rx="0" fill="#dce9ff" stroke="#718b9f" stroke-width="2"/>
+<text x="110" y="470" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#3265a6" font-weight="700" text-anchor="start">Page 1</text>
+<text x="110" y="509" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#3265a6" font-weight="400" text-anchor="start">1024–2047</text>
+<rect x="80" y="535" width="310" height="110" rx="0" fill="#eee3f7" stroke="#718b9f" stroke-width="2"/>
+<text x="110" y="580" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#8053a1" font-weight="700" text-anchor="start">Page 2</text>
+<text x="110" y="619" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#8053a1" font-weight="400" text-anchor="start">2048–3071</text>
+<rect x="660" y="315" width="300" height="50" rx="0" fill="#eaf0f5" stroke="#718b9f" stroke-width="2"/>
+<text x="735" y="349" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#233b4f" font-weight="700" text-anchor="middle">page p</text>
+<text x="885" y="349" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#233b4f" font-weight="700" text-anchor="middle">frame f</text>
+<rect x="660" y="365" width="300" height="90" rx="0" fill="#d8efec" stroke="#718b9f" stroke-width="2"/>
+<path d="M810 365V455" fill="none" stroke="#718b9f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="735" y="421" font-family="Arial, Helvetica, sans-serif" font-size="31" fill="#247b75" font-weight="700" text-anchor="middle">0</text>
+<text x="885" y="421" font-family="Arial, Helvetica, sans-serif" font-size="31" fill="#247b75" font-weight="700" text-anchor="middle">5</text>
+<rect x="660" y="455" width="300" height="90" rx="0" fill="#dce9ff" stroke="#718b9f" stroke-width="2"/>
+<path d="M810 455V545" fill="none" stroke="#718b9f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="735" y="511" font-family="Arial, Helvetica, sans-serif" font-size="31" fill="#3265a6" font-weight="700" text-anchor="middle">1</text>
+<text x="885" y="511" font-family="Arial, Helvetica, sans-serif" font-size="31" fill="#3265a6" font-weight="700" text-anchor="middle">6</text>
+<rect x="660" y="545" width="300" height="90" rx="0" fill="#eee3f7" stroke="#718b9f" stroke-width="2"/>
+<path d="M810 545V635" fill="none" stroke="#718b9f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="735" y="601" font-family="Arial, Helvetica, sans-serif" font-size="31" fill="#8053a1" font-weight="700" text-anchor="middle">2</text>
+<text x="885" y="601" font-family="Arial, Helvetica, sans-serif" font-size="31" fill="#8053a1" font-weight="700" text-anchor="middle">25</text>
+<path d="M406 370C505 370 546 410 643 410" fill="none" stroke="#247b75" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 6"/>
+<polygon points="631,403 643,410 631,417" fill="#247b75"/>
+<path d="M406 480C505 480 546 500 643 500" fill="none" stroke="#3265a6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 6"/>
+<polygon points="631,493 643,500 631,507" fill="#3265a6"/>
+<path d="M406 590C505 590 546 590 643 590" fill="none" stroke="#8053a1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 6"/>
+<polygon points="631,583 643,590 631,597" fill="#8053a1"/>
+<rect x="1290" y="315" width="350" height="110" rx="0" fill="#d8efec" stroke="#718b9f" stroke-width="2"/>
+<text x="1310" y="361" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#247b75" font-weight="700" text-anchor="start">Frame 5</text>
+<text x="1310" y="400" font-family="Arial, Helvetica, sans-serif" font-size="25" fill="#247b75" font-weight="400" text-anchor="start">Chứa page 0</text>
+<rect x="1290" y="425" width="350" height="110" rx="0" fill="#dce9ff" stroke="#718b9f" stroke-width="2"/>
+<text x="1310" y="471" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#3265a6" font-weight="700" text-anchor="start">Frame 6</text>
+<text x="1310" y="510" font-family="Arial, Helvetica, sans-serif" font-size="25" fill="#3265a6" font-weight="400" text-anchor="start">Chứa page 1</text>
+<rect x="1290" y="605" width="350" height="110" rx="0" fill="#eee3f7" stroke="#718b9f" stroke-width="2"/>
+<text x="1310" y="651" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#8053a1" font-weight="700" text-anchor="start">Frame 25</text>
+<text x="1310" y="690" font-family="Arial, Helvetica, sans-serif" font-size="25" fill="#8053a1" font-weight="400" text-anchor="start">Chứa page 2</text>
+<rect x="1290" y="535" width="350" height="70" rx="0" fill="#f4f7fa" stroke="#b7c6d0" stroke-width="1" stroke-dasharray="6 5"/>
+<text x="1465" y="578" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#71889b" font-weight="400" text-anchor="middle">… frame 7–24 …</text>
+<path d="M978 410C1090 410 1150 370 1274 370" fill="none" stroke="#247b75" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 6"/>
+<polygon points="1262,363 1274,370 1262,377" fill="#247b75"/>
+<path d="M978 500C1090 500 1150 480 1274 480" fill="none" stroke="#3265a6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 6"/>
+<polygon points="1262,473 1274,480 1262,487" fill="#3265a6"/>
+<path d="M978 590C1090 590 1150 660 1274 660" fill="none" stroke="#8053a1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 6"/>
+<polygon points="1262,653 1274,660 1262,667" fill="#8053a1"/>
+<text x="80" y="699" font-family="Arial, Helvetica, sans-serif" font-size="25" fill="#233b4f" font-weight="400" text-anchor="start">Page liên tiếp về địa chỉ luận lý;</text>
+<text x="80" y="735" font-family="Arial, Helvetica, sans-serif" font-size="25" fill="#233b4f" font-weight="700" text-anchor="start">frame được cấp không cần liên tiếp.</text>
+<text x="1290" y="749" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#536d80" font-weight="400" text-anchor="start">Mỗi khối màu = 1024 byte</text>
+<path d="M48 787H1712" fill="none" stroke="#d7e1e8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="48" y="836" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#233b4f" font-weight="700" text-anchor="start">02 · CPU đọc địa chỉ luận lý 1502 → MMU tìm địa chỉ vật lý</text>
+<rect x="40" y="979" width="170" height="96" rx="10" fill="#eaf0f5" stroke="#8199ac" stroke-width="2"/>
+<text x="125" y="1017" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#233b4f" font-weight="700" text-anchor="middle">CPU</text>
+<text x="125" y="1053" font-family="Arial, Helvetica, sans-serif" font-size="25" fill="#233b4f" font-weight="400" text-anchor="middle">đọc 1502</text>
+<path d="M218 1027H264" fill="none" stroke="#72899b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="252,1020 264,1027 252,1034" fill="#72899b"/>
+<text x="280" y="933" font-family="Arial, Helvetica, sans-serif" font-size="25" fill="#233b4f" font-weight="700" text-anchor="start">Tách địa chỉ 1502</text>
+<text x="280" y="966" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#536d80" font-weight="400" text-anchor="start">1502 = 1 × 1024 + 478</text>
+<rect x="280" y="979" width="110" height="96" rx="0" fill="#dce9ff" stroke="#718b9f" stroke-width="2"/>
+<rect x="390" y="979" width="170" height="96" rx="0" fill="#fff0d4" stroke="#b8904c" stroke-width="2"/>
+<text x="335" y="1017" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#3265a6" font-weight="700" text-anchor="middle">p</text>
+<text x="335" y="1053" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#3265a6" font-weight="700" text-anchor="middle">1</text>
+<text x="475" y="1017" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#916417" font-weight="700" text-anchor="middle">d</text>
+<text x="475" y="1053" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#916417" font-weight="700" text-anchor="middle">478</text>
+<text x="647" y="1056" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#233b4f" font-weight="700" text-anchor="start">Tra page table[1]</text>
+<rect x="647" y="1080" width="215" height="82" rx="0" fill="#dce9ff" stroke="#3265a6" stroke-width="2"/>
+<path d="M754 1080V1162" fill="none" stroke="#8ca8c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="699" y="1112" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#3265a6" font-weight="700" text-anchor="middle">p</text>
+<text x="807" y="1112" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#3265a6" font-weight="700" text-anchor="middle">f</text>
+<text x="699" y="1148" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#3265a6" font-weight="700" text-anchor="middle">1</text>
+<text x="807" y="1148" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#3265a6" font-weight="700" text-anchor="middle">6</text>
+<path d="M335 1084V1121H629" fill="none" stroke="#3265a6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="617,1114 629,1121 617,1128" fill="#3265a6"/>
+<text x="960" y="945" font-family="Arial, Helvetica, sans-serif" font-size="25" fill="#233b4f" font-weight="700" text-anchor="start">Địa chỉ vật lý</text>
+<rect x="960" y="979" width="130" height="96" rx="0" fill="#dce9ff" stroke="#718b9f" stroke-width="2"/>
+<rect x="1090" y="979" width="180" height="96" rx="0" fill="#fff0d4" stroke="#b8904c" stroke-width="2"/>
+<text x="1025" y="1017" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#3265a6" font-weight="700" text-anchor="middle">f</text>
+<text x="1025" y="1053" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#3265a6" font-weight="700" text-anchor="middle">6</text>
+<text x="1180" y="1017" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#916417" font-weight="700" text-anchor="middle">d</text>
+<text x="1180" y="1053" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#916417" font-weight="700" text-anchor="middle">478</text>
+<path d="M878 1121H1025V1085" fill="none" stroke="#3265a6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="1018,1097 1025,1085 1032,1097" fill="#3265a6"/>
+<path d="M568 1027H590V891H1180V969" fill="none" stroke="#b98425" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="1173,957 1180,969 1187,957" fill="#b98425"/>
+<text x="795" y="881" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#946212" font-weight="700" text-anchor="middle">offset 478 giữ nguyên</text>
+<text x="939" y="1178" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#3265a6" font-weight="700" text-anchor="start">6 × 1024 + 478 = 6622</text>
+<text x="1398" y="941" font-family="Arial, Helvetica, sans-serif" font-size="25" fill="#233b4f" font-weight="700" text-anchor="start">Frame 6 · phóng to</text>
+<rect x="1398" y="974" width="284" height="195" rx="0" fill="#dce9ff" stroke="#718b9f" stroke-width="2"/>
+<path d="M1398 1065.025390625H1682" fill="none" stroke="#b98425" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1540" y="1008" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#3265a6" font-weight="400" text-anchor="middle">bắt đầu: 6144</text>
+<text x="1540" y="1055.025390625" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#946212" font-weight="700" text-anchor="middle">offset 478</text>
+<text x="1540" y="1102.025390625" font-family="Arial, Helvetica, sans-serif" font-size="25" fill="#3265a6" font-weight="700" text-anchor="middle">byte tại 6622</text>
+<text x="1540" y="1150" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#3265a6" font-weight="400" text-anchor="middle">cuối: 7167</text>
+<path d="M1285 1027H1335V1065.025390625H1384" fill="none" stroke="#3265a6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="1372,1058.025390625 1384,1065.025390625 1372,1072.025390625" fill="#3265a6"/>
+<path d="M48 1222H1712" fill="none" stroke="#d7e1e8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M52 1254H97" fill="none" stroke="#72899b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 6"/>
+<polygon points="85,1247 97,1254 85,1261" fill="#72899b"/>
+<text x="114" y="1262" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#536d80" font-weight="400" text-anchor="start">Ánh xạ page → frame</text>
+<path d="M459 1254H504" fill="none" stroke="#72899b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="492,1247 504,1254 492,1261" fill="#72899b"/>
+<text x="521" y="1262" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#536d80" font-weight="400" text-anchor="start">Luồng xử lý địa chỉ</text>
+<text x="877" y="1262" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#536d80" font-weight="400" text-anchor="start">Không có thao tác dời page khi tra địa chỉ.</text>
+<text x="48" y="1304" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#667f90" font-weight="400" text-anchor="start">Các page đã ở RAM, ánh xạ hợp lệ; bỏ qua TLB, page fault và chi tiết bit bảo vệ. Chỉ vẽ các page/frame liên quan.</text>
+<text x="48" y="1336" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#667f90" font-weight="400" text-anchor="start">AI dựng theo IT007 · C7 s41, s44–s47 · Số liệu theo s46; địa chỉ thập phân và bố cục được bổ sung để dễ theo dõi.</text>
+</svg>

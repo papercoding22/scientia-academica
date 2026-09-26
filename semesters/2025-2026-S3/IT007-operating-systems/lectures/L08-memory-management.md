@@ -714,7 +714,7 @@ kích thước bảng trang = số mục (2^(m−n)) × kích thước mỗi m�
 **Analogy:** một cuốn sách (chương trình) xé ra thành từng trang, cất vào các ngăn tủ (khung) còn trống bất kỳ; **mục lục** (bảng trang) ghi "trang 2 ở ngăn 7". Muốn tìm dòng 904 của trang 2: tra mục lục ra ngăn 7, rồi đếm đúng dòng 904 trong ngăn đó — **số dòng trong trang không đổi**.
 *Chỗ analogy vỡ:* mục lục sách nằm ngay đầu sách; bảng trang nằm **trong RAM** nên mỗi lần tra cũng tốn một lần truy cập bộ nhớ — đó là vấn đề của mục 8.
 
-**Ví dụ nhỏ nhất** — slide [C7 s46]: địa chỉ luận lý 16 bit, **6 bit page number**, **10 bit offset** (trang 1 KB). Bảng trang: trang 0 → khung 5, trang 1 → khung 6, trang 2 → khung 3.
+**Ví dụ nhỏ nhất** — slide [C7 s46]: địa chỉ luận lý 16 bit, **6 bit page number**, **10 bit offset** (trang 1 KB). Bảng trang: trang 0 → khung 5, trang 1 → khung 6, trang 2 → khung **25** (`011001` trong slide).
 
 | Bước | Việc | Giá trị |
 |---|---|---|
@@ -724,14 +724,24 @@ kích thước bảng trang = số mục (2^(m−n)) × kích thước mỗi m�
 | 4 | Tra bảng: trang 1 → khung | `000110` = **6** |
 | 5 | Ghép `f` với `d` (giữ nguyên `d`) | `000110 0111011110` = 6 × 1024 + 478 = **6622** |
 
-**Minh hoạ** — đường đi của một địa chỉ [C7 s45]:
+**Minh hoạ cơ chế** — ánh xạ page → frame và đường đi của một địa chỉ:
 
-```
- CPU ──▶ logical = [ p | d ]
-                     │   └──────────────────────────┐ d giữ nguyên
-                     ▼                              ▼
-             bảng trang[p] ──▶ f ──────────▶ physical = [ f | d ] ──▶ RAM
-```
+![Các page 0, 1, 2 của process P ánh xạ tới frame 5, 6, 25; CPU truy cập địa chỉ luận lý 1502, tách page 1 và offset 478, tra bảng lấy frame 6 rồi truy cập địa chỉ vật lý 6622 với offset giữ nguyên](images/paging-mechanism.png)
+
+*Hình minh họa cơ chế do AI dựng dựa trên [C7 s41](../materials/slides/Copy%20of%20%23Week12-Chapter7%202024.pdf#page=41)
+và [s44–s47](../materials/slides/Copy%20of%20%23Week12-Chapter7%202024.pdf#page=44).
+Kích thước page/frame, địa chỉ nhị phân và ba entry theo s46; các giá trị thập phân và bố cục minh họa được bổ sung, đã kiểm bằng code.
+Giả thiết: truy cập theo byte, các page đã ở RAM và ánh xạ hợp lệ; bỏ qua TLB, page fault và chi tiết bit bảo vệ.
+Chỉ trích các page/frame liên quan; bảng nhỏ và frame 6 ở phần dưới là phần phóng to của cùng hệ thống, không phải bản sao dữ liệu.
+[Bản SVG để chỉnh sửa](images/paging-mechanism.svg).*
+
+**Đọc hình:**
+
+- **Ánh xạ — phần trên:** OS đã thiết lập page table của P: page `0 → frame 5`, `1 → frame 6`, `2 → frame 25`. Các page liên tiếp trong không gian luận lý không cần nằm ở các frame liên tiếp trong RAM; page table cũng nằm trong RAM, được tách ra để dễ nhìn.
+- **Tách địa chỉ — phần dưới:** CPU cần đọc byte tại logical address `1502`. Với page size `1024 byte`, MMU tách `p = 1502 // 1024 = 1`, `d = 1502 % 1024 = 478`.
+- **Tra bảng:** dùng **page number 1** để chọn entry; giá trị nhận về là **frame number 6**. Offset `478` đi theo nhánh riêng và **giữ nguyên**.
+- **Truy cập RAM:** frame 6 bắt đầu tại `6 × 1024 = 6144`; thêm offset `478` được physical address **6622**. Mốc offset được tính từ 0 ở đầu frame.
+- **Mũi tên:** nét đứt chỉ quan hệ ánh xạ; nét liền chỉ luồng xử lý địa chỉ. Việc tra địa chỉ không dời page hay chép dữ liệu sang frame khác.
 
 #### 💻 Code & thực tế
 
