@@ -17,6 +17,7 @@ Chi tiết từng skill ở `.claude/skills/<tên>/SKILL.md`.
 | [`add-note-image`](.claude/skills/add-note-image/SKILL.md) | Chèn ảnh có sẵn vào đúng mục của ghi chú, giữ ảnh gốc và tránh trùng | *thêm hình bounded waiting vào L05 IT007* |
 | [`illustrate-concept`](.claude/skills/illustrate-concept/SKILL.md) | Tạo hình giải thích khái niệm, kiểm tra nội dung rồi chèn vào đúng mục của note | *tạo hình address binding và thêm vào L08 IT007* |
 | [`illustrate-mechanism`](.claude/skills/illustrate-mechanism/SKILL.md) | Tạo hình cho thấy các thành phần và trạng thái thay đổi khi cơ chế hoạt động, rồi chèn vào note | *minh họa cơ chế dynamic loading từng bước vào L08 IT007* |
+| [`concept-mindmap`](.claude/skills/concept-mindmap/SKILL.md) | Vẽ mind map một concept: khái niệm ngắn gọn và các ý cốt lõi; chèn vào note khi được yêu cầu | *vẽ mind map cho address binding* |
 | [`new-assignment`](.claude/skills/new-assignment/SKILL.md) | Dựng `aN/` · `labN/`, trích đề từ transcript, ghi hạn nộp | *thầy giao bài tập 8 IE105* |
 | [`new-project`](.claude/skills/new-project/SKILL.md) | Dựng `projects/prjN/`, trích đề + tiêu chí chấm + các mốc, nối deadlines và Notion | *thầy giao đồ án nhóm IE101* |
 | [`assignment-guide`](.claude/skills/assignment-guide/SKILL.md) | Sinh `GUIDE.md` — phương pháp + tiêu chí chấm, không có lời giải | *bài tập 5 IE105 làm thế nào* |
@@ -57,6 +58,7 @@ flowchart LR
 | Bổ sung ảnh minh họa | `add-note-image` | ghi chú liên quan · ảnh gốc hoặc `images/` phù hợp |
 | Tạo hình giải thích khái niệm | `illustrate-concept` | ghi chú liên quan · ảnh mới trong `images/` cạnh note |
 | Minh họa cơ chế hoạt động | `illustrate-mechanism` | ghi chú liên quan · ảnh diễn biến trong `images/` cạnh note |
+| Tóm tắt một concept bằng mind map | `concept-mindmap` | hình trong chat · `images/` và note khi yêu cầu chèn |
 | Có bài tập / lab | `new-assignment` → `assignment-guide` | `assignments/<aN\|labN>/` · `admin/deadlines.md` |
 | Có đồ án | `new-project` → `notion-tasks` | `projects/prjN/` · `admin/deadlines.md` · Notion |
 | Ôn thi | `exam-map` · `exam-study-guide` · `exam-plan` | `exam-prep/` · Notion · Google Calendar (lịch `Work`) |
