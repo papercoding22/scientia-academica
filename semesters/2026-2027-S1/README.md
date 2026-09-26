@@ -80,12 +80,12 @@ Khái niệm dùng chung giữa các môn → ghi ở [`knowledge-base/`](../../
 - ❓ Kết quả chuyển điểm SS008.
 
 Khi có đề cương, đặt bản gốc vào `materials/syllabus/` của từng môn để cập nhật thông tin có nguồn.
-Mọi deadline và lịch thi được công bố phải ghi vào [`admin/deadlines.md`](../../admin/deadlines.md).
+Mọi deadline và lịch thi được công bố phải ghi vào [`admin/tasks-2026-2027-S1.md`](../../admin/tasks-2026-2027-S1.md).
 
 ## Liên kết
 
 - Học kỳ đang học: [HK3 2025–2026](../2025-2026-S3/README.md)
-- Lịch học: [`admin/schedule.md`](../../admin/schedule.md)
-- Deadline và lịch thi: [`admin/deadlines.md`](../../admin/deadlines.md)
+- Lịch học: Google Calendar lịch `UIT Class` (khi có thời khoá biểu)
+- Task, deadline và lịch thi theo từng môn: [`admin/tasks-2026-2027-S1.md`](../../admin/tasks-2026-2027-S1.md)
 - Kế hoạch học tập: [`program/study-plan.md`](../../program/study-plan.md)
 - Tiến độ tốt nghiệp: [`program/README.md`](../../program/README.md)

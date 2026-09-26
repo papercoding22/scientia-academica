@@ -64,6 +64,7 @@ AI copy rồi điền khi sinh file mới. Không phải để bạn mở đọc
 | `concept.md` | `knowledge-base/<khái-niệm>.md` | khái niệm dùng chung |
 | `thesis-idea.md` | `program/thesis/ideas/<slug>.md` | ý tưởng đồ án tốt nghiệp |
 | `specialization-track.md` | `program/specialization/tracks/<hướng>.md` | đánh giá hướng chuyên ngành |
+| `tasks.md` | `admin/tasks-<kỳ>.md` | bắt đầu học kỳ mới — task, deadline, lịch thi theo từng môn |
 
 ---
 
@@ -74,7 +75,7 @@ Chín template được **script render** bằng token `{{CODE}}`, `{{NAME_VI}}`
 (`scripts/new-assignment.sh`) và `project.md` (`scripts/new-project.sh`).
 
 **Sửa template thì môn/buổi tạo sau sẽ đổi theo** — đó là chủ ý, một nguồn sự thật duy nhất.
-Năm template còn lại không có token, AI điền tay.
+Sáu template còn lại không có token, AI điền tay.
 
 Danh sách token đầy đủ: xem hàm `render()` trong `scripts/new-course.sh` và
 `scripts/new-lecture.sh`, `scripts/new-assignment.sh`, `scripts/new-project.sh`.

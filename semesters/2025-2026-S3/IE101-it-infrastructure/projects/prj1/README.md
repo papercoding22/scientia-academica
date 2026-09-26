@@ -73,7 +73,7 @@ CNTT tại Bệnh viện Nguyễn Tri Phương.
 | Thuyết trình / demo | ❓ | | Đã bỏ theo dõi |
 | **Nộp** | **❓ chưa biết** | giảng viên | Đã bỏ theo dõi |
 
-**Do ai đặt:** `giảng viên` → phải có trong `admin/deadlines.md` · `nhóm` / `tự đặt` → chỉ ở đây và Notion.
+**Do ai đặt:** `giảng viên` → phải có trong `admin/tasks-2025-2026-S3.md` · `nhóm` / `tự đặt` → chỉ ở đây và Notion.
 
 ---
 

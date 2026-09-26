@@ -1680,7 +1680,7 @@ Tổng quát hoá từ 4 bước của bounded-buffer [C5-3 s8–s10] và ứng 
 ## Gợi ý thi và deadline phát sinh
 
 Không có transcript để trích lời dặn thi. Không tìm thấy hạn nộp trong ba bộ slide; không
-phát sinh cập nhật cho `IMPORTANT_NOTES.md` hoặc `admin/deadlines.md`.
+phát sinh cập nhật cho `IMPORTANT_NOTES.md` hoặc `admin/tasks-2025-2026-S3.md`.
 
 Tham khảo (không phải lời giảng viên): **đề thi mẫu** dành **2.9/10 điểm** cho chương 5, rải
 đều các mục 5.1.3, 5.3.1, 5.3.2, 5.6.2, 5.6.3, 5.7.1–5.7.2, 5.9 và liveness, toàn bộ ở dạng

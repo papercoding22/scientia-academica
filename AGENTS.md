@@ -190,7 +190,7 @@ Lý do thứ tự này: người dùng học tốt nhất khi có trực giác t
    *"đề hay ra phần này"*, *"năm nào cũng có"*, *"về nhà xem lại"* →
    đánh dấu `> ⚠️ **GỢI Ý THI:**` trong note **VÀ** append vào mục 2/3 của `IMPORTANT_NOTES.md`.
 5. **Quét quy định và cách tính điểm** → cập nhật mục 1 và 4 của `IMPORTANT_NOTES.md`.
-6. **Trích mọi deadline** → ghi vào `admin/deadlines.md`, **ngày tuyệt đối**.
+6. **Trích mọi deadline** → ghi vào mục môn trong `admin/tasks-<kỳ>.md`, **ngày tuyệt đối**.
 7. Khái niệm dùng được cho môn khác → tạo file trong `knowledge-base/`, link hai chiều.
 8. **Ý tưởng đồ án tốt nghiệp** — nếu buổi học gợi ra hướng hay,
    tạo `program/thesis/ideas/<slug>.md` ghi rõ nảy ra từ buổi nào, môn nào.
@@ -216,7 +216,7 @@ Lý do thứ tự này: người dùng học tốt nhất khi có trực giác t
   (§ 13.4); không ép lab thành `aN/` chỉ để đồng nhất hình thức.
 - Tạo đủ: `README.md`, `brief/`, `resources/`, `images/`
 - `README.md` phải có: tóm tắt yêu cầu · checklist việc cần làm · hạn nộp (ngày tuyệt đối) · trạng thái
-- **Ghi hạn nộp vào `admin/deadlines.md` ngay lúc tạo thư mục**, không để sau.
+- **Ghi hạn nộp vào `admin/tasks-<kỳ>.md` (mục môn) ngay lúc tạo thư mục**, không để sau.
 - **Dùng skill `new-assignment`**, đừng tự `mkdir`. Với bài tập dùng tiền tố mặc định
   `a`; với lab chạy `--prefix lab`. Script chỉ copy sẵn
   `templates/ASSIGNMENT_TEMPLATE.docx` thành file nộp với **mẫu tên suy ra từ bài đã nộp
@@ -230,7 +230,7 @@ Lý do thứ tự này: người dùng học tốt nhất khi có trực giác t
 **Khi tạo đồ án mới** `projects/prjN/`:
 - Tạo đủ: `README.md`, `brief/`, `docs/`, `src/`, `images/`
 - **Dùng skill `new-project`**, đừng tự `mkdir`. Hạn nộp cuối và mọi mốc giảng viên đặt
-  vào `admin/deadlines.md`; mốc nhóm tự đặt chỉ nằm trong README đồ án và Notion.
+  vào `admin/tasks-<kỳ>.md`; mốc nhóm tự đặt chỉ nằm trong README đồ án và Notion.
 - Repo public → chỉ ghi **tên** đồng đội, không ghi MSSV/email/SĐT của người khác.
 
 **Ảnh thực hành:** đặt trong `images/` của chính bài đó, **tên tiếng Anh mô tả nội dung**:
@@ -339,8 +339,8 @@ dùng skill **`tidy-files`**, đừng tự `mv` theo cảm tính. Luật quan tr
 yêu cầu, slide giữ số chương của giảng viên.
 
 **Không tự tay `mkdir` để tạo môn học.** Dùng skill — nó chạy
-`scripts/new-course.sh` tạo khung, rồi nối môn mới vào **6 file** khác đang giữ
-danh sách môn (`semesters/<kỳ>/README.md`, `admin/schedule.md`, `admin/deadlines.md`,
+`scripts/new-course.sh` tạo khung, rồi nối môn mới vào **5 file** khác đang giữ
+danh sách môn (`semesters/<kỳ>/README.md`, `admin/tasks-<kỳ>.md`,
 `program/curriculum.md`, `program/transcript.md`, `program/specialization/README.md`).
 Tạo tay thì sẽ quên bước nối, và repo mất đồng bộ.
 
@@ -348,7 +348,7 @@ Script render file từ `templates/` bằng token `{{CODE}}`, `{{NAME_VI}}`, `{{
 **Sửa template thì môn tạo sau sẽ đổi theo** — đó là chủ ý, một nguồn sự thật duy nhất.
 Chín template có token: `course-readme` · `important-notes` · `materials-readme` ·
 `flashcards` · `cheatsheet` · `lecture-note` · `lecture-raw` · `assignment` · `project`.
-Năm template còn lại là để AI điền tay, không có token.
+Sáu template còn lại là để AI điền tay, không có token.
 
 ---
 
@@ -369,17 +369,21 @@ Năm template còn lại là để AI điền tay, không có token.
 
 ## § 10. Deadline & lịch
 
-- `admin/deadlines.md` là **nguồn sự thật duy nhất** cho mọi ngày tháng.
-  Phát hiện deadline ở bất kỳ đâu → phải chảy về đây.
+- **`admin/tasks-<kỳ>.md`** (vd `admin/tasks-2025-2026-S3.md`) là **nguồn sự thật duy nhất**
+  cho mọi task có hạn và ngày tháng của học kỳ đó — **mỗi môn một mục** `## <MÃ MÔN> — …` gồm bảng
+  *Việc và hạn nộp* (có cột **Khoá** `<MÃ>/aN`, `<MÃ>/prjN`, `<MÃ>/exam-final`…) và *Lịch thi*.
+  Phát hiện deadline ở bất kỳ đâu → phải chảy về đúng mục môn trong file của học kỳ đó.
+  Học kỳ mới → tạo từ `templates/tasks.md`. Lịch học hằng tuần không ghi ở repo — xem lịch `UIT Class`.
 - **Luôn chuyển ngày tương đối → tuyệt đối.**
   *"nộp tuần sau"* + buổi học ngày 2026-09-20 → **`2026-09-27`**.
   Không đủ thông tin để quy đổi → hỏi, không đoán.
 - **Đầu mỗi phiên làm việc**: nếu có deadline trong 7 ngày tới → báo trước khi làm việc khác.
-- **Notion (☕ Tasks) là tầng thực thi, không phải nguồn sự thật.** Repo quyết định *có việc gì,
-  hạn khi nào*; Notion quyết định *đã xong chưa*. Đồng bộ bằng skill **`notion-tasks`** —
-  luôn xem trước rồi mới ghi. Ánh xạ repo ↔ Notion nằm ở `admin/notion-map.json`
-  (**gitignore** — chứa URL workspace riêng, không chép sang file tracked).
-- **Nhắc lịch Google Calendar → luôn dùng lịch `Work`**, không dùng lịch chính.
+- **Notion (☕ Tasks) và Google Calendar là tầng thực thi, không phải nguồn sự thật.** File
+  `tasks-<kỳ>.md` quyết định *có việc gì, hạn khi nào*; Notion quyết định *đã xong chưa*;
+  Calendar chỉ hiển thị và nhắc. Đồng bộ cả hai **từ** file này bằng skill **`notion-tasks`** —
+  luôn xem trước rồi mới ghi; ngày lệch thì repo thắng. Ánh xạ khoá ↔ trang Notion ↔ sự kiện
+  Calendar nằm ở `admin/notion-map.json` (**gitignore** — chứa URL workspace riêng, không chép sang file tracked).
+- **Google Calendar → luôn dùng lịch `Work`**, không dùng lịch chính.
 - **Mọi task Notion theo template `☕ Task`**: Mô tả · Kết quả đầu ra (bảng câu hỏi → trả lời,
   Done khi đủ trả lời) · Các bước · Phụ thuộc · Nhật ký. Chi tiết ở skill `notion-tasks`.
 

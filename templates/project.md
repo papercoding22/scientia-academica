@@ -11,7 +11,7 @@
 | **File nộp** | `{{SUBMISSION}}` |
 | Trạng thái | ⬜ chưa bắt đầu |
 
-> ✅ Đã ghi hạn nộp và các mốc vào [`admin/deadlines.md`](../../../../../admin/deadlines.md)? — ❓
+> ✅ Đã ghi hạn nộp và các mốc vào [`admin/tasks-{{SEMESTER}}.md`](../../../../../admin/tasks-{{SEMESTER}}.md)? — ❓
 >
 > Cột **File nộp** còn `❓` thì chưa được đoán mẫu tên — chờ giảng viên dặn (`AGENTS.md` § 13.3).
 
@@ -62,7 +62,7 @@
 | Thuyết trình / demo | ❓ | | ⬜ |
 | **Nộp** | **{{DUE}}** | giảng viên | ⬜ |
 
-**Do ai đặt:** `giảng viên` → phải có trong `admin/deadlines.md` · `nhóm` / `tự đặt` → chỉ ở đây và Notion.
+**Do ai đặt:** `giảng viên` → phải có trong `admin/tasks-{{SEMESTER}}.md` · `nhóm` / `tự đặt` → chỉ ở đây và Notion.
 
 ---
 

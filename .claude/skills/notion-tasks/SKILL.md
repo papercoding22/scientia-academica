@@ -1,22 +1,27 @@
 ---
 name: notion-tasks
-description: Quản lý task University trên Notion (database ☕ Tasks) từ repo — đồng bộ bài nộp và lịch thi trong admin/deadlines.md lên Notion, kéo trạng thái Done về repo, và tạo task lẻ theo yêu cầu (lập kế hoạch ôn thi do skill `exam-plan` lo). Luôn in bảng thay đổi và chờ duyệt trước khi ghi. Dùng khi người dùng nói "đồng bộ Notion", "sync Notion", "đẩy deadline lên Notion", "tạo task Notion", "thêm task ANTT/HDH/CSHT/QLTT…", "lập kế hoạch ôn thi trên Notion", hoặc ngay sau khi new-assignment tạo mục nộp mới.
+description: Đồng bộ task University từ repo lên Notion (database ☕ Tasks) và Google Calendar (lịch Work) — nguồn là admin/tasks-<học kỳ>.md, đẩy bài nộp và lịch thi của từng môn lên, kéo trạng thái Done về repo, và tạo task lẻ theo yêu cầu (lập kế hoạch ôn thi do skill `exam-plan` lo). Luôn in bảng thay đổi và chờ duyệt trước khi ghi. Dùng khi người dùng nói "đồng bộ Notion", "sync Notion", "đồng bộ lịch", "đẩy deadline lên Notion/Calendar", "tạo task Notion", "thêm task ANTT/HDH/CSHT/QLTT…", "lập kế hoạch ôn thi trên Notion", hoặc ngay sau khi new-assignment tạo mục nộp mới.
 ---
 
-# Task University trên Notion
+# Task University — repo → Notion + Google Calendar
 
 Repo quyết định **có việc gì, hạn khi nào**. Notion quyết định **đã xong chưa**.
+Google Calendar chỉ **hiển thị và nhắc** — không quyết định gì.
 Skill này là cầu nối — không bao giờ để hai bên cùng quyết một thứ.
 
 ```
         repo (git)                              Notion ☕ Tasks
  ┌─────────────────────────┐   đẩy lên   ┌──────────────────────┐
- │ admin/deadlines.md      │ ──────────▶ │ tên · Deadline ·     │
- │  việc gì, hạn nào,      │             │ Notes · Priority     │
- │  nguồn (buổi học)       │ ◀────────── │                      │
- │  ✅ + ngày nộp          │   kéo về    │ Status=Done ·        │
- └─────────────────────────┘             │ Completion Date      │
-                                         └──────────────────────┘
+ │ admin/tasks-<kỳ>.md     │ ──────────▶ │ tên · Deadline ·     │
+ │  mỗi môn một mục:       │             │ Notes · Priority     │
+ │  khoá · việc · hạn ·    │ ◀────────── │                      │
+ │  trạng thái · lịch thi  │   kéo về    │ Status=Done ·        │
+ └───────────┬─────────────┘             │ Completion Date      │
+             │ đẩy lên                   └──────────────────────┘
+             ▼
+   Google Calendar — lịch Work
+   sự kiện hạn nộp · sự kiện thi
+   (chỉ nhắc, không kéo gì về)
 ```
 
 ---
@@ -32,7 +37,7 @@ Skill này là cầu nối — không bao giờ để hai bên cùng quyết m�
 - [Chế độ sync](#chế-độ-sync)
 - [Chế độ exam-plan](#chế-độ-exam-plan)
 - [Chế độ add](#chế-độ-add)
-- [Nhắc lịch trên Google Calendar](#nhắc-lịch-trên-google-calendar)
+- [Đồng bộ Google Calendar](#đồng-bộ-google-calendar)
 - [Commit và báo lại](#commit-và-báo-lại)
 - [Không làm](#không-làm)
 
@@ -50,15 +55,16 @@ Skill này là cầu nối — không bao giờ để hai bên cùng quyết m�
   "database_url": "https://app.notion.com/p/<id>",
   "data_source": "collection://<id>",
   "tasks": {
-    "IE105/a5":             { "page": "https://app.notion.com/p/<id>", "title": "ANTT: Bài tập 5 — Hàm băm, chữ ký số", "deadline": "2026-08-05T21:30" },
+    "IE105/a5":             { "page": "https://app.notion.com/p/<id>", "title": "ANTT: Bài tập 5 — Hàm băm, chữ ký số", "deadline": "2026-08-05T21:30", "event": "<id sự kiện Calendar>" },
     "IE105/exam-final":     { "page": "…", "title": "ANTT: Thi cuối kỳ", "deadline": "…" },
     "IE105/exam-final/r03": { "page": "…", "title": "ANTT: Ôn chương 3 — …", "deadline": "…" }
   }
 }
 ```
 
-**Khoá** = `<MÃ MÔN>/<thư mục mục nộp>` (`a5`, `lab3`, `prj1`) · `<MÃ MÔN>/exam-<mid|final>`
+**Khoá** = cột *Khoá* trong `admin/tasks-<kỳ>.md` = `<MÃ MÔN>/<thư mục mục nộp>` (`a5`, `lab3`, `prj1`) · `<MÃ MÔN>/exam-<mid|final>`
 · `<MÃ MÔN>/exam-<…>/r<nn>` cho task ôn · `<MÃ MÔN>/prjN/<mốc>` cho mốc đồ án giảng viên đặt. Task lẻ của chế độ add **không** vào map.
+`event` = id sự kiện Google Calendar của khoá đó (không có thì bỏ trống) — nhờ nó mà dời/xoá được sự kiện khi hạn đổi.
 
 **File mất** (clone máy khác) → đọc `data_source` bằng cách hỏi người dùng link database,
 rồi dựng lại `tasks` bằng cách khớp **tiền tố + tên bài + ngày hạn** với task Notion có sẵn.
@@ -98,7 +104,7 @@ Tên loại việc trong tiêu đề giữ đúng cách giảng viên gọi: `B�
 
 **Status** — repo → Notion khi tạo; sau đó Notion là chủ:
 
-| `deadlines.md` | Notion |
+| `tasks-<kỳ>.md` | Notion |
 |---|---|
 | `⬜ chưa làm` | `To Do` |
 | `🔄 đang làm` | `In progress` |
@@ -167,8 +173,8 @@ Sửa task cũ sang cấu trúc này dùng `replace_content`, **giữ lại mọ
    task · thay đổi cụ thể (cũ → mới). Người dùng có thể duyệt một phần: *"OK trừ 3"*.
 2. **Ngày luôn tuyệt đối** (`AGENTS.md` § 10). *"thứ 7"*, *"tuần sau"* → quy đổi từ hôm nay,
    **nói lại ngày đã quy đổi** trong bảng xem trước. Mơ hồ thì hỏi.
-3. **Deadline của giảng viên đi vào `admin/deadlines.md` trước**, rồi mới lên Notion.
-   Không bao giờ có deadline chỉ tồn tại trên Notion mà repo không biết.
+3. **Deadline của giảng viên đi vào `admin/tasks-<kỳ>.md` trước** (đúng mục môn), rồi mới lên Notion/Calendar.
+   Không bao giờ có deadline chỉ tồn tại trên Notion hay Calendar mà repo không biết.
 4. Ghi Notion theo lô (`notion-create-pages` nhận nhiều trang một lần), ghi xong cập nhật
    `admin/notion-map.json` ngay — đứt giữa chừng thì lần sau vẫn biết task nào đã có.
 5. Task **không có trong map** trên Notion là của người dùng — chỉ được đụng vào khi
@@ -178,37 +184,51 @@ Sửa task cũ sang cấu trúc này dùng `replace_content`, **giữ lại mọ
 
 ## Chế độ sync
 
-**Kích hoạt:** *"đồng bộ Notion"*, *"sync"*, hoặc sau `new-assignment` (chỉ sync mục vừa tạo).
+**Kích hoạt:** *"đồng bộ Notion"*, *"đồng bộ lịch"*, *"sync"*, hoặc sau `new-assignment` /
+`new-project` (chỉ sync mục vừa tạo).
 
-### 1. Đọc hai bên
+### 1. Đọc ba bên
 
-- Repo: `admin/deadlines.md` — bảng **Sắp tới**, **Đã xong**, **Lịch thi**. Mỗi dòng bài nộp
-  có link tới thư mục `aN/`/`labN/` → suy ra khoá. Đọc thêm `aN/README.md` để lấy 1 câu tóm tắt đề cho Notes.
-- Notion: query mọi task `Category` chứa `University`:
+- **Repo** — `admin/tasks-<kỳ>.md` của **học kỳ đang học** (xem `AGENTS.md` § 1); thêm file học kỳ
+  sắp học nếu nó đã có dòng có ngày. Mỗi mục `## <MÃ MÔN> — …` có bảng **Việc và hạn nộp** và
+  **Lịch thi**; cột **Khoá** là khoá trong map. Đọc thêm `aN/README.md` để lấy 1 câu tóm tắt đề cho Notes.
+  Dòng thiếu khoá → đề xuất khoá theo quy ước, ghi vào file cùng lượt duyệt.
+- **Notion** — query mọi task `Category` chứa `University`:
 
   ```sql
   SELECT url, Tasks, Status, "date:Deadline:start", Priority, Notes, "date:Completion Date:start"
   FROM "<data_source>" WHERE Category LIKE '%University%'
   ```
 
+- **Google Calendar** — `list_calendars` tra id lịch **`Work`** theo tên; với mỗi khoá có `event`
+  trong map, `get_event` để biết giờ hiện tại (sự kiện bị xoá tay → coi như chưa có).
+
 ### 2. Phân loại
 
-| Tình huống | Hành động |
-|---|---|
-| Dòng **Sắp tới** chưa có khoá trong map | `＋ tạo` task |
-| Dòng **Đã xong** chưa có khoá trong map | bỏ qua — lịch sử, không đưa lên Notion |
-| Hạn trong repo khác `deadline` đã lưu trong map | `✎ sửa` Deadline trên Notion (repo là chủ ngày tháng) |
-| Task trong map có Notion `Done`, repo chưa ✅ | `✓ kéo về`: chuyển dòng sang bảng **Đã xong**, cột *Ngày nộp* = Completion Date (trống thì ghi `✅` và hỏi ngày) · cập nhật trạng thái trong `README.md` của môn và của `aN/` |
-| Repo ✅ mà Notion chưa `Done` | `? hỏi` — có thể người dùng đánh dấu nhầm một bên |
-| Lịch thi có ngày cụ thể, chưa có khoá `exam-*` | `＋ tạo` task thi · gợi ý chạy exam-plan |
-| Task University trên Notion **ngoài map**, chưa Done, Deadline đã qua | `? hỏi`: chuyển `Done`, `Archived`, hay để nguyên |
-| Task trong map không còn trên Notion (bị xoá) | `? hỏi`: tạo lại hay bỏ khỏi map |
-| Priority lệch luật (task sắp tới hạn mà vẫn `Low`) | `✎ sửa` — **chỉ đề xuất nâng**, không bao giờ hạ Priority người dùng đã đặt |
+| Tình huống trong `tasks-<kỳ>.md` | Notion | Calendar |
+|---|---|---|
+| Dòng chưa ✅, khoá chưa có trong map | `＋ tạo` task | `＋ tạo` sự kiện nếu có ngày (xem [Đồng bộ Google Calendar](#đồng-bộ-google-calendar)) |
+| Dòng ✅ mà khoá chưa có trong map | bỏ qua — lịch sử | bỏ qua |
+| Hạn/giờ thi khác `deadline` đã lưu trong map | `✎ sửa` Deadline (repo là chủ ngày tháng) | `✎ dời` sự kiện |
+| Hạn đổi từ `❓` sang ngày cụ thể | `✎ sửa` Deadline, `Backlog` → `To Do` | `＋ tạo` sự kiện |
+| Task trong map có Notion `Done`, repo chưa ✅ | `✓ kéo về`: đổi **Trạng thái** dòng đó thành `✅ đã nộp`, *Ngày nộp* = Completion Date (trống thì hỏi ngày) · cập nhật trạng thái trong `README.md` của môn và của `aN/` | giữ nguyên sự kiện — lịch sử |
+| Repo ✅ mà Notion chưa `Done` | `? hỏi` — có thể người dùng đánh dấu nhầm một bên | — |
+| Lịch thi có ngày cụ thể, chưa có khoá `exam-*` trong map | `＋ tạo` task thi · gợi ý chạy `exam-plan` | `＋ tạo` sự kiện thi |
+| Khoá có trong map nhưng **dòng đã bị xoá** khỏi file (bỏ theo dõi) | `? hỏi`: chuyển `Archived` hay để nguyên | `? hỏi`: xoá sự kiện hay để nguyên |
+| Task University trên Notion **ngoài map**, chưa Done, Deadline đã qua | `? hỏi`: chuyển `Done`, `Archived`, hay để nguyên | — |
+| Task trong map không còn trên Notion (bị xoá) | `? hỏi`: tạo lại hay bỏ khỏi map | — |
+| Priority lệch luật (task sắp tới hạn mà vẫn `Low`) | `✎ sửa` — **chỉ đề xuất nâng**, không bao giờ hạ Priority người dùng đã đặt | — |
 
-Dòng quá hạn trong repo mà chưa có file nộp (ví dụ *"Bài 5 quá hạn… kiểm tra xem đã nộp chưa"*)
-→ vẫn tạo task `High`, ghi vào Notes *"quá hạn — kiểm tra đã nộp chưa"*.
+Dòng quá hạn trong repo mà chưa có file nộp → vẫn tạo task `High`, ghi vào Notes
+*"quá hạn — kiểm tra đã nộp chưa"*; **không** tạo sự kiện Calendar cho hạn đã qua.
+
+Bảng xem trước có thêm cột **Calendar** để người dùng thấy sự kiện nào sẽ tạo/dời.
 
 ### 3. Duyệt → ghi → cập nhật map
+
+Thứ tự **Notion trước, Calendar sau** — mô tả sự kiện cần link trang Notion. Ghi xong mỗi lô
+thì lưu `page`, `deadline`, `event` vào `admin/notion-map.json` ngay. Sửa file `tasks-<kỳ>.md`
+(kéo trạng thái về, thêm khoá) trong cùng lượt.
 
 ---
 
@@ -216,12 +236,12 @@ Dòng quá hạn trong repo mà chưa có file nộp (ví dụ *"Bài 5 quá h�
 
 Đã tách thành skill riêng: **`exam-plan`** (`.claude/skills/exam-plan/SKILL.md`). Skill đó đọc lịch,
 xếp buổi ôn, in bảng xem trước, rồi **gọi lại** các quy ước ở file này (template trang task, map property,
-`notion-map.json`, nhắc lịch trên `Work`) để ghi.
+`notion-map.json`, sự kiện trên `Work`) để ghi.
 
 Khi sync phát hiện lịch thi có ngày cụ thể mà chưa có khoá `<MÃ>/exam-<…>/r<nn>` trong map → **đề xuất
 chạy `exam-plan`**, không tự xếp lịch ôn ở đây.
 
-Task ôn là kế hoạch cá nhân, **không ghi vào `deadlines.md`** — file đó chỉ giữ hạn của giảng viên.
+Task ôn là kế hoạch cá nhân, **không ghi vào `tasks-<kỳ>.md`** — file đó chỉ giữ hạn của giảng viên và lịch thi.
 
 ---
 
@@ -232,50 +252,58 @@ Task ôn là kế hoạch cá nhân, **không ghi vào `deadlines.md`** — file
 1. Xác định môn → tiền tố. Không rõ môn → hỏi.
 2. Quy đổi hạn sang ngày tuyệt đối, **nói lại**: *"thứ 7 = 2026-09-26"*.
 3. **Đây có phải deadline của giảng viên không?** (nộp bài, điểm danh, nộp nhóm…)
-   → có: ghi vào `deadlines.md` trước, xử lý như sync (có khoá, vào map).
-   → không (việc tự đặt cho mình): chỉ tạo trên Notion, không vào map.
+   → có: ghi vào mục môn trong `tasks-<kỳ>.md` trước (có khoá), xử lý như sync — vào map, có sự kiện Calendar.
+   → không (việc tự đặt cho mình): chỉ tạo trên Notion, không vào map; sự kiện Calendar chỉ khi người dùng xin nhắc.
 4. In 1 dòng xem trước → duyệt → tạo.
 
 ---
 
-## Nhắc lịch trên Google Calendar
+## Đồng bộ Google Calendar
 
-Người dùng muốn được nhắc (*"tạo lịch nhắc tôi"*) → tạo sự kiện kèm task, **cùng bảng xem trước**.
+Mọi dòng **có ngày tuyệt đối và chưa ✅** trong `tasks-<kỳ>.md` có một sự kiện trên Calendar, tạo
+cùng lượt với task Notion, **cùng bảng xem trước**. Dòng hạn `❓` chưa có sự kiện.
 
-| | Quy ước |
-|---|---|
-| **Lịch** | Luôn là lịch tên **`Work`** — tra `calendarId` bằng `list_calendars` theo tên, **không dùng lịch chính** |
-| Múi giờ | `Asia/Ho_Chi_Minh` |
-| Khung giờ | Mặc định 20:00 (người dùng đi làm ban ngày); xem `list_events` tránh trùng |
-| Nhắc | popup trước 1 ngày + trước 30 phút |
-| Mô tả | việc cần làm · link task Notion · link tài liệu liên quan |
-| Tiêu đề | `<TT> <việc>` — giống tên task, bỏ dấu `:` |
+| | Hạn nộp / mốc giảng viên | Thi |
+|---|---|---|
+| **Lịch** | **`Work`** — tra `calendarId` bằng `list_calendars` theo tên, **không dùng lịch chính** | như bên trái |
+| Thời gian | Có giờ: sự kiện 30 phút **kết thúc đúng giờ hạn** (21:30 → 21:00–21:30). Chỉ có ngày: sự kiện cả ngày | giờ thi → + thời lượng thi (chưa biết thì 2 giờ) |
+| Nhắc | popup trước **1 ngày** + trước **2 giờ** | popup trước **1 ngày** + trước **2 giờ** |
+| Tiêu đề | `<TT> Hạn <việc>` — vd `ANTT Hạn Bài tập 8` | `<TT> Thi <mã môn> — ca <n>` |
+| Mô tả | việc cần làm · hạn dự phòng nếu có · link task Notion · đường dẫn repo | hình thức, được mang gì, phòng thi `❓` nếu chưa biết · link task Notion |
+| `location` | — | nơi thi nếu biết |
 
-Không có thao tác chuyển sự kiện giữa hai lịch — tạo nhầm lịch thì tạo lại trên `Work` rồi xoá bản cũ.
-Link cá nhân (OneDrive, SharePoint…) chỉ ghi trên Notion/Calendar, **không ghi vào repo**.
+Múi giờ `Asia/Ho_Chi_Minh`. Sau lần ghi đầu tiên trong phiên, `get_event` lại để kiểm tra giờ.
+
+- Hạn đổi → `update_event`, không tạo sự kiện mới. Dòng ✅ → giữ sự kiện, không xoá.
+- Không có thao tác chuyển sự kiện giữa hai lịch — tạo nhầm lịch thì tạo lại trên `Work` rồi xoá bản cũ
+  (`notificationLevel = NONE`).
+- Người dùng xin **nhắc thêm** cho việc tự đặt (*"tạo lịch nhắc tôi"*) → mặc định 20:00 (người dùng đi làm
+  ban ngày), `list_events` tránh trùng; không vào map.
+- Link cá nhân (OneDrive, SharePoint…) chỉ ghi trên Notion/Calendar, **không ghi vào repo**.
 
 ---
 
 ## Commit và báo lại
 
-Chỉ commit khi file tracked thay đổi (`deadlines.md`, README môn/bài). `notion-map.json` không bao giờ vào git.
+Chỉ commit khi file tracked thay đổi (`admin/tasks-<kỳ>.md`, README môn/bài). `notion-map.json` không bao giờ vào git.
 
 ```
-<MÃ MÔN>: đồng bộ Notion — <n> task mới, <m> đã nộp
-repo: đồng bộ Notion — …        ← khi nhiều môn
+<MÃ MÔN>: đồng bộ Notion + Calendar — <n> task mới, <m> đã nộp
+admin: đồng bộ Notion + Calendar — …        ← khi nhiều môn
 ```
 
-Báo lại: bao nhiêu task tạo/sửa/kéo về · link database Notion · những mục `? hỏi` còn treo ·
-deadline trong 7 ngày tới.
+Báo lại: bao nhiêu task tạo/sửa/kéo về · bao nhiêu sự kiện tạo/dời · link database Notion ·
+những mục `? hỏi` còn treo · deadline trong 7 ngày tới.
 
 ---
 
 ## Không làm
 
-- ❌ **Không ghi gì lên Notion hay repo trước khi người dùng duyệt bảng xem trước.**
+- ❌ **Không ghi gì lên Notion, Calendar hay repo trước khi người dùng duyệt bảng xem trước.**
 - ❌ **Không xoá task Notion** — tối đa chuyển `Archived`, và chỉ khi được duyệt.
-- ❌ Không để Notion ghi đè ngày tháng trong repo. Ngày lệch → repo thắng, Notion được sửa theo.
-- ❌ Không commit `admin/notion-map.json`, không chép URL Notion vào file tracked — repo public.
+- ❌ Không để Notion hay Calendar ghi đè ngày tháng trong repo. Ngày lệch → repo thắng, bên kia được sửa theo.
+- ❌ Không tạo sự kiện trên lịch chính hay lịch nào khác ngoài `Work`.
+- ❌ Không commit `admin/notion-map.json`, không chép URL Notion hay id sự kiện vào file tracked — repo public.
 - ❌ Không gắn 📺 Projects cho task University.
 - ❌ Không tự bịa viết tắt môn, không đoán ngày thi, không "làm tròn" deadline.
 - ❌ Không hạ Priority mà người dùng đã tự đặt.

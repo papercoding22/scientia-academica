@@ -503,7 +503,7 @@ pháp; chưa có bằng chứng đây là bài phải nộp hay có hạn nộp.
 Không có transcript để trích lời dặn thi hoặc quy định chấm điểm. Slide có
 câu hỏi ôn tập (S2 tr. 51, S3 tr. 45), nhưng không xác nhận câu nào sẽ thi.
 Không tìm thấy hạn nộp mới trong ba bộ slide; không phát sinh cập nhật cho
-`IMPORTANT_NOTES.md` hoặc `admin/deadlines.md` từ note này.
+`IMPORTANT_NOTES.md` hoặc `admin/tasks-2025-2026-S3.md` từ note này.
 
 ## Liên kết
 

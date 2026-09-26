@@ -9,7 +9,7 @@ Người dùng là dev đi làm, học từ xa, quỹ thời gian hẹp. Kế ho
 khung giờ thật còn trống** — không phải kế hoạch lý tưởng mỗi ngày một chương.
 
 ```
- deadlines.md ─┐                                    ┌─▶ Notion ☕ Tasks (template)
+ tasks-<kỳ>.md┐                                    ┌─▶ Notion ☕ Tasks (template)
  exam-map      ├─▶ xếp lùi từ ngày thi ─▶ xem trước ─┤
  IMPORTANT_NOTES│   (tránh giờ học, giờ bận)   duyệt │
  Google Calendar┘                                    └─▶ Google Calendar (lịch Work)
@@ -39,7 +39,7 @@ property, `notion-map.json`) — đọc phần đó thay vì tự nghĩ lại.
 
 | Cần | Lấy ở đâu | Nếu thiếu |
 |---|---|---|
-| **Ngày + giờ thi** (tuyệt đối) | `admin/deadlines.md` mục *Lịch thi* | **Hỏi.** Không đoán ngày, không đoán ca |
+| **Ngày + giờ thi** (tuyệt đối) | `admin/tasks-<kỳ>.md`, mục môn → *Lịch thi* | **Hỏi.** Không đoán ngày, không đoán ca |
 | Hình thức, thời lượng, được mang gì | `IMPORTANT_NOTES.md` mục 5, `exam-prep/EXAM_PREP.pdf` nếu có | Ghi `❓` vào task thi, nhắc người dùng tra |
 | Phạm vi + trọng số | Theo thứ tự tin cậy: (1) `exam-prep/exam-map.md` blueprint · (2) phạm vi ôn tập giảng viên đưa (`EXAM_PREP.pdf`) · (3) `IMPORTANT_NOTES.md` mục 2, 3 — **có nguồn mới dùng** · (4) `materials/slides/knowledge-map.md` hoặc danh sách `lectures/` | Chia đều theo chương và **nói rõ đó là chia đều** |
 | Mã ca thi → giờ | Người dùng cung cấp (vd *ca 4 = 15:00*) | Hỏi; không suy ca khác từ một ca |
@@ -97,7 +97,7 @@ Rút ra **khung giờ trống**. Mặc định khi chưa có ràng buộc riêng
 | Ngày thường không có lớp | Tối, tránh sự kiện có sẵn | ≤ 2 giờ |
 | Cuối tuần | Sáng ~09:00–11:30, chiều ~14:00–16:30 | ≤ 2,5 giờ / buổi |
 
-Đọc thêm `admin/deadlines.md`: **tránh xếp buổi ôn nặng vào ngày sát hạn bài nộp** của giảng viên.
+Đọc thêm `admin/tasks-<kỳ>.md` (bảng *Việc và hạn nộp* mọi môn): **tránh xếp buổi ôn nặng vào ngày sát hạn bài nộp** của giảng viên.
 
 ---
 
@@ -180,7 +180,7 @@ Tiêu đề sự kiện = tên task bỏ dấu `:` (vd `HDH Ôn chương 7 — Q
 `<MÃ>/exam-<final|mid>/r<nn>` cho task ôn, ghi ngay sau khi tạo — đứt giữa chừng thì lần sau
 vẫn biết cái nào đã có. Lưu thêm `event` (id sự kiện Calendar) nếu muốn dời/xoá sau này.
 
-**Không ghi kế hoạch ôn vào `admin/deadlines.md`** — file đó chỉ giữ hạn của giảng viên. Ngày thi mới
+**Không ghi kế hoạch ôn vào `admin/tasks-<kỳ>.md`** — file đó chỉ giữ hạn của giảng viên và lịch thi. Ngày thi mới
 là dữ liệu của nó, và đã ghi từ trước.
 
 Sau khi ghi, **mở lại** một task Notion và một sự kiện để kiểm tra giờ hiển thị đúng (lệch múi giờ là lỗi âm thầm).
@@ -194,7 +194,7 @@ Người dùng trượt buổi ôn, đổi giờ thi, hay xong sớm → **cập
 - Dời buổi: sửa `Deadline` task (`notion-update-page`) **và** sự kiện (`update_event`). Hỏi trước khi dời.
 - Sự kiện tạo nhầm lịch: Google Calendar không cho chuyển lịch → tạo lại trên `Work`, rồi xoá bản cũ (`notificationLevel = NONE`).
 - Buổi bỏ hẳn: chuyển task sang `Archived` (nếu được duyệt), **không xoá**; xoá sự kiện tương ứng.
-- Đổi ngày thi: cập nhật `deadlines.md` trước (nguồn sự thật), rồi mới tính lại kế hoạch.
+- Đổi ngày thi: cập nhật `admin/tasks-<kỳ>.md` trước (nguồn sự thật), rồi mới tính lại kế hoạch.
 
 ---
 
@@ -204,7 +204,7 @@ Bao nhiêu task và sự kiện đã tạo · **link** database Notion · buổi
 còn lại và skill nào xử lý được · deadline giảng viên trong 7 ngày tới.
 
 Kế hoạch chỉ nằm trên Notion và Calendar nên **thường không có gì để commit**. Chỉ commit khi kèm sửa file
-tracked (`deadlines.md`, `IMPORTANT_NOTES.md`): `<MÃ MÔN>: kế hoạch ôn thi`.
+tracked (`admin/tasks-<kỳ>.md`, `IMPORTANT_NOTES.md`): `<MÃ MÔN>: kế hoạch ôn thi`.
 
 ---
 
@@ -215,7 +215,7 @@ tracked (`deadlines.md`, `IMPORTANT_NOTES.md`): `<MÃ MÔN>: kế hoạch ôn th
 - ❌ **Không đoán ngày thi hay giờ của ca.**
 - ❌ Không bịa phạm vi thi hay "gợi ý thi". Chia đều thì ghi *chia đều*; suy luận từ đề mẫu thì ghi *suy luận*.
 - ❌ Không giấu lỗ hổng nguồn ôn (slide hỏng, chưa có note) — chúng quyết định kế hoạch có làm được không.
-- ❌ Không ghi kế hoạch ôn vào `admin/deadlines.md`.
+- ❌ Không ghi kế hoạch ôn vào `admin/tasks-<kỳ>.md`.
 - ❌ Không tạo task trùng; không xoá task Notion (tối đa `Archived`, và chỉ khi được duyệt).
 - ❌ Không hạ Priority người dùng đã tự đặt.
 - ❌ Không nhồi buổi ôn khi khung trống không đủ — nói thiếu bao nhiêu giờ.

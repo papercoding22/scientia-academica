@@ -1,6 +1,6 @@
 ---
 name: new-assignment
-description: Tạo đầy đủ một mục nộp mới — chạy script dựng aN/, labN/ hoặc <prefix>N/, chỉ copy file Word khi suy ra đúng mẫu tên cùng loại, rồi trích đề bài từ transcript buổi học, ghi hạn nộp vào admin/deadlines.md và cập nhật bảng bài tập của môn. Dùng khi người dùng nói "tạo bài tập N", "tạo lab N", "có bài tập mới", "thầy giao bài", "init assignment", hoặc đưa đề bài chưa có thư mục trong repo.
+description: Tạo đầy đủ một mục nộp mới — chạy script dựng aN/, labN/ hoặc <prefix>N/, chỉ copy file Word khi suy ra đúng mẫu tên cùng loại, rồi trích đề bài từ transcript buổi học, ghi hạn nộp vào admin/tasks-<học kỳ>.md và cập nhật bảng bài tập của môn. Dùng khi người dùng nói "tạo bài tập N", "tạo lab N", "có bài tập mới", "thầy giao bài", "init assignment", hoặc đưa đề bài chưa có thư mục trong repo.
 ---
 
 # Tạo bài tập hoặc lab mới
@@ -99,14 +99,16 @@ Tạo thư mục xong mà không làm bước này thì bài tập vô hình v�
 
 | File | Thêm gì |
 |---|---|
-| `admin/deadlines.md` | Dòng vào bảng **Sắp tới**: môn · việc · hạn (**ngày tuyệt đối**) · trạng thái ⬜ |
+| `admin/tasks-<kỳ>.md` | Dòng vào bảng **Việc và hạn nộp** trong mục môn: khoá `<MÃ>/<thư mục>` · việc (link thư mục) · hạn (**ngày tuyệt đối**) · trạng thái ⬜ · nguồn |
 | `<môn>/README.md` | Dòng vào bảng **Bài tập và đồ án**: link đúng (`aN/`, `labN/`…) · tên · buổi · hạn · trạng thái |
 
 Hạn nộp chỉ biết dạng tương đối (*"tuần sau"*) → quy đổi bằng ngày buổi học rồi ghi
 ngày tuyệt đối. Không đủ thông tin quy đổi thì hỏi, **không đoán** (`AGENTS.md` § 10).
 
 Môn có quy tắc nộp lặp lại (IE105: **21:30 cùng ngày học**, dự phòng hết hôm sau) →
-áp dụng luôn, đã ghi ở `admin/deadlines.md` mục *Quy tắc lặp lại*.
+áp dụng luôn, đã ghi ở `admin/tasks-<kỳ>.md`, mục môn → *Quy tắc lặp lại*.
+
+Ghi xong thì đề xuất chạy `notion-tasks` (sync mục vừa tạo) để lên Notion và Calendar.
 
 ---
 

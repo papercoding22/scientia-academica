@@ -161,7 +161,7 @@ flowchart TD
 
 ## Deadline phát sinh
 
-| Việc | Hạn nộp | Đã ghi vào `admin/deadlines.md` |
+| Việc | Hạn nộp | Đã ghi vào `admin/tasks-{{SEMESTER}}.md` |
 |---|---|---|
 | | | |
 

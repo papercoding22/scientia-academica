@@ -2,7 +2,7 @@
 
 Ngành Công nghệ Thông tin, hệ đào tạo từ xa, UIT · Khoá 2025 · MSSV `25730081`
 
-> Đây là tầng **chiến lược** — tầm nhìn 4 năm. Việc tuần này xem ở [`admin/deadlines.md`](../admin/deadlines.md).
+> Đây là tầng **chiến lược** — tầm nhìn 4 năm. Việc tuần này xem ở [`admin/tasks-2025-2026-S3.md`](../admin/tasks-2025-2026-S3.md).
 
 ---
 

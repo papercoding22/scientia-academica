@@ -47,7 +47,7 @@ $task-summary các bài quá hạn trong học kỳ 2025-2026-S3
 
 | Nguồn | Lấy thông tin gì |
 |---|---|
-| `admin/deadlines.md` | Hạn giảng viên, ngày/giờ thi, bài đang chờ và đã nộp |
+| `admin/tasks-<kỳ>.md` | Theo từng môn: hạn giảng viên, ngày/giờ thi, bài đang chờ và đã nộp |
 | `semesters/<kỳ>/README.md`, README môn | Danh sách môn, bảng bài tập/đồ án để phát hiện việc bị bỏ sót |
 | `assignments/<bài>/README.md` | Tên bài, trạng thái, sản phẩm cần nộp, phần việc còn lại |
 | `projects/<đồ án>/README.md` | Trạng thái, mốc giảng viên và mốc nhóm/tự đặt, phân công |
@@ -68,10 +68,10 @@ $task-summary các bài quá hạn trong học kỳ 2025-2026-S3
 
 ## 3. Đối chiếu deadline và trạng thái
 
-- **Ngày tháng:** `admin/deadlines.md` là nguồn chính cho hạn giảng viên và lịch thi;
+- **Ngày tháng:** `admin/tasks-<kỳ>.md` là nguồn chính cho hạn giảng viên và lịch thi;
   mốc nhóm lấy từ README đồ án, không đẩy vào admin. Giữ cả hạn chính và hạn dự
   phòng có nguồn, không âm thầm thay hạn chính bằng hạn dự phòng.
-- Nếu tìm thấy hạn giảng viên mới đã xác minh, bổ sung vào `admin/deadlines.md`
+- Nếu tìm thấy hạn giảng viên mới đã xác minh, bổ sung vào mục môn trong `admin/tasks-<kỳ>.md`
   theo `AGENTS.md` § 10, giữ nguồn và chạy kiểm tra/commit đúng file. Nếu yêu cầu
   hiện tại là **chỉ đọc**, chỉ báo hạn mới cần bổ sung. Nguồn mâu thuẫn thì nêu cả
   hai cùng căn cứ, không tự chọn ngày muộn hơn hoặc sửa một ngày thành chắc chắn.

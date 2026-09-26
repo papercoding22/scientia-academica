@@ -28,7 +28,7 @@ Repo này là nơi mọi thứ liên quan tới việc học đi qua: bài giả
 |---|---|
 | **Thao tác thế nào** | [`HOW-TO.md`](HOW-TO.md) |
 | Có skill nào, gọi thế nào | [`SKILLS.md`](SKILLS.md) |
-| Tuần này phải nộp gì | [`admin/deadlines.md`](admin/deadlines.md) |
+| Tuần này phải nộp gì, thi ngày nào (theo từng môn) | [`admin/tasks-2025-2026-S3.md`](admin/tasks-2025-2026-S3.md) |
 | Học kỳ này có môn gì | [`semesters/2025-2026-S3/README.md`](semesters/2025-2026-S3/README.md) |
 | Học kỳ tiếp theo — HK1 2026–2027, 4 môn / 14 TC | [`semesters/2026-2027-S1/README.md`](semesters/2026-2027-S1/README.md) |
 | Môn này thi phần nào | `semesters/<kỳ>/<môn>/IMPORTANT_NOTES.md` |
@@ -72,7 +72,7 @@ scientia-academica/
 ```
 
 **Thêm môn học mới:** gõ `/new-course` rồi đưa mã môn, tên, giảng viên.
-Skill sẽ chạy `scripts/new-course.sh` tạo khung, rồi nối môn mới vào 6 file khác
+Skill sẽ chạy `scripts/new-course.sh` tạo khung, rồi nối môn mới vào 5 file khác
 đang giữ danh sách môn. Muốn tự chạy script thì `scripts/new-course.sh --help`.
 
 Bên trong mỗi môn:

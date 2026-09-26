@@ -1,6 +1,6 @@
 ---
 name: new-project
-description: Tạo đầy đủ một đồ án môn học mới — chạy script dựng projects/prjN/ (brief, docs, src, images), trích đề bài, tiêu chí chấm và các mốc từ transcript/materials, ghi hạn nộp vào admin/deadlines.md, cập nhật bảng bài tập của môn, rồi đề xuất task Notion cho từng mốc. Dùng khi người dùng nói "tạo đồ án N", "có đồ án mới", "thầy giao đồ án", "new project", "init project", "đồ án nhóm môn X", hoặc đưa đề đồ án chưa có thư mục trong repo.
+description: Tạo đầy đủ một đồ án môn học mới — chạy script dựng projects/prjN/ (brief, docs, src, images), trích đề bài, tiêu chí chấm và các mốc từ transcript/materials, ghi hạn nộp vào admin/tasks-<học kỳ>.md, cập nhật bảng bài tập của môn, rồi đề xuất task Notion cho từng mốc. Dùng khi người dùng nói "tạo đồ án N", "có đồ án mới", "thầy giao đồ án", "new project", "init project", "đồ án nhóm môn X", hoặc đưa đề đồ án chưa có thư mục trong repo.
 ---
 
 # Tạo đồ án môn học mới
@@ -91,11 +91,11 @@ Người dùng muốn thêm mốc nội bộ (nhóm tự chia) → thêm dòng v
 
 | File | Thêm gì |
 |---|---|
-| `admin/deadlines.md` | Bảng **Sắp tới**: hạn nộp cuối **và mọi mốc giảng viên đặt** (mỗi mốc một dòng: `Đồ án 1 — thuyết trình`) · link `projects/prjN/` · nguồn |
+| `admin/tasks-<kỳ>.md` | Bảng **Việc và hạn nộp** trong mục môn: khoá `<MÃ>/prjN` hoặc `<MÃ>/prjN/<mốc>` · hạn nộp cuối **và mọi mốc giảng viên đặt** (mỗi mốc một dòng: `Đồ án 1 — thuyết trình`) · link `projects/prjN/` · nguồn |
 | `<môn>/README.md` | Bảng **Bài tập và đồ án**: link `projects/prjN/` · tên · buổi giao · hạn · trạng thái |
 | `<môn>/IMPORTANT_NOTES.md` | Tỷ trọng, tiêu chí chấm, hình thức nộp — **chỉ khi có nguồn**, append theo luật § 8 |
 
-Mốc do nhóm tự đặt **không** vào `deadlines.md` — file đó chỉ giữ hạn của giảng viên.
+Mốc do nhóm tự đặt **không** vào `tasks-<kỳ>.md` — file đó chỉ giữ hạn của giảng viên.
 
 Buổi học gợi ra hướng hay cho khoá luận → đề xuất tạo `program/thesis/ideas/<slug>.md` (`AGENTS.md` § 5 bước 8).
 
@@ -108,7 +108,7 @@ Chạy skill **`notion-tasks`** cho đồ án vừa tạo. Tên task: `<TT>: Đ�
 
 | Mốc | Vào Notion bằng |
 |---|---|
-| Mốc giảng viên đặt (có trong `deadlines.md`) | chế độ **sync** — có khoá `<MÃ>/prjN` hoặc `<MÃ>/prjN/<mốc>` trong map |
+| Mốc giảng viên đặt (có trong `tasks-<kỳ>.md`) | chế độ **sync** — có khoá `<MÃ>/prjN` hoặc `<MÃ>/prjN/<mốc>` trong map |
 | Mốc nhóm / tự đặt | chế độ **add** — task lẻ, không vào map |
 
 Task đồ án người dùng đã tạo tay trên Notion (bước 1) → đề xuất **đưa vào map** thay vì tạo mới.
@@ -136,6 +136,6 @@ review — ranh giới hỗ trợ ở `AGENTS.md` § 6 áp dụng cho đồ án 
 - ❌ **Không bịa đề bài, tiêu chí chấm, tỷ trọng.** Không có nguồn → `❓`.
 - ❌ **Không ghi MSSV, email, số điện thoại của đồng đội** — repo public. Chỉ tên, và chỉ khi người dùng đưa.
 - ❌ Không điền sẵn tên và MSSV vào trang bìa `.docx`.
-- ❌ Không để mốc nhóm tự đặt lọt vào `admin/deadlines.md`.
+- ❌ Không để mốc nhóm tự đặt lọt vào `admin/tasks-<kỳ>.md`.
 - ❌ Không viết hộ đồ án. Review, chỉ lỗi, so sánh cách làm — được; viết thay — không (`AGENTS.md` § 6).
 - ❌ Không tạo task Notion trùng với task người dùng đã tạo tay.

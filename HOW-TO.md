@@ -49,7 +49,7 @@ Copy transcript sau buổi       →  lectures/_raw/L03-2026-10-06-transcript.md
         ↓
 Bảo AI "xử lý buổi 3 IT007"   →  lectures/L03-cpu-scheduling.md
         ↓                          + IMPORTANT_NOTES.md  (gợi ý thi)
-        ↓                          + admin/deadlines.md  (deadline mới)
+        ↓                          + admin/tasks-<kỳ>.md (deadline mới)
         ↓                          + exam-prep/flashcards.*
         ↓
 AI tự commit
@@ -131,7 +131,7 @@ AI sẽ:
    ví dụ nhỏ → định nghĩa hình thức → code
 3. Thêm mục **Tự kiểm tra** với 5 câu hỏi, đáp án gập lại
 4. Quét câu kiểu *"cái này sẽ thi"* → ghi vào `IMPORTANT_NOTES.md` kèm nguồn
-5. Quét deadline → ghi vào `admin/deadlines.md` với ngày tuyệt đối
+5. Quét deadline → ghi vào mục môn trong `admin/tasks-<kỳ>.md` với ngày tuyệt đối
 6. Sinh flashcard vào `exam-prep/flashcards.md` + `.csv`
 7. Commit
 
@@ -147,7 +147,7 @@ AI sẽ:
 ```
 AI tạo `assignments/a8/` với `README.md`, `brief/`, `resources/`, `images/`,
 **copy sẵn file nộp `.docx` đúng mẫu tên giảng viên yêu cầu**, tìm đề bài trong
-transcript buổi học, và ghi hạn nộp vào `admin/deadlines.md`.
+transcript buổi học, và ghi hạn nộp vào `admin/tasks-<kỳ>.md`.
 
 Bỏ file đề bài của giảng viên vào `assignments/a8/brief/`.
 
@@ -190,7 +190,7 @@ thầy giao đồ án nhóm môn IE101, hạn 2026-11-15
 
 Tạo `projects/prj1/` với `src/`, `docs/`, `brief/`, `images/`. AI quét transcript để điền
 **đề bài, tiêu chí chấm, các mốc** (kèm nguồn), ghi hạn nộp và mốc của giảng viên vào
-`admin/deadlines.md`, rồi đề xuất task Notion cho từng mốc.
+`admin/tasks-<kỳ>.md`, rồi đề xuất task Notion cho từng mốc.
 Code vào `src/`, báo cáo và slide thuyết trình vào `docs/`.
 
 Bản nộp: theo mẫu giảng viên dặn — chưa dặn thì README để `❓`, **AI không đoán tên file**.
@@ -277,8 +277,8 @@ dữ liệu đầu vào cho việc **chọn chuyên ngành** — và sau một n
 ```
 rồi đưa: `IT008.F31.CN1.CNTT - Mạng máy tính - Trần Văn A`
 
-Skill sẽ tạo khung thư mục **và** nối môn mới vào 6 file khác đang giữ danh sách môn
-(`README` học kỳ, `schedule`, `deadlines`, `curriculum`, `transcript`, `specialization`).
+Skill sẽ tạo khung thư mục **và** nối môn mới vào 5 file khác đang giữ danh sách môn
+(`README` học kỳ, `admin/tasks-<kỳ>`, `curriculum`, `transcript`, `specialization`).
 
 Muốn tự chạy script:
 ```bash
@@ -286,7 +286,7 @@ scripts/new-course.sh --help
 scripts/new-course.sh --code IT008 --slug computer-networks \
                       --name "Mạng máy tính" --lecturer "Trần Văn A" --dry-run
 ```
-Chạy tay thì **nhớ nối 6 file kia** — script in danh sách ra ở cuối.
+Chạy tay thì **nhớ nối 5 file kia** — script in danh sách ra ở cuối.
 
 ---
 
@@ -403,7 +403,9 @@ lectures/L03 + L04 + sách  ──→  notes/scheduling-algorithms-compared.md
                                           ↓
                                 knowledge-base/cpu-scheduling.md
 
-lectures/L03 (deadline mới) ──→ admin/deadlines.md ──→ assignments/a2/README.md
+lectures/L03 (deadline mới) ──→ admin/tasks-<kỳ>.md ──→ assignments/a2/README.md
+                                        │
+                                        └──→ Notion ☕ Tasks + Google Calendar (Work)
 ```
 
 ### Ba thư mục chỉ đọc
@@ -464,9 +466,15 @@ Skill [task-summary](.claude/skills/task-summary/SKILL.md) tổng hợp việc c
 hạn nộp, lịch thi và mốc nhóm thành bảng có nguồn; đánh dấu việc quá hạn và chưa
 biết hạn. Mặc định xem trong chat, không tạo task Notion hay sự kiện Calendar.
 
-**Notion (☕ Tasks)** — repo giữ *hạn*, Notion giữ *đã xong chưa*. AI luôn in bảng xem trước rồi mới ghi.
+**Task theo học kỳ** — mọi việc có hạn và lịch thi nằm ở `admin/tasks-<kỳ>.md`
+(vd [`admin/tasks-2025-2026-S3.md`](admin/tasks-2025-2026-S3.md)), **mỗi môn một mục**. Mở file là thấy
+môn nào còn gì, hạn khi nào, thi ngày nào. Việc xong không xoá dòng — chỉ đổi trạng thái sang ✅.
+
+**Notion (☕ Tasks) + Google Calendar** — đồng bộ **từ** file trên: repo giữ *hạn*, Notion giữ *đã xong chưa*,
+Calendar (lịch `Work`) chỉ nhắc. AI luôn in bảng xem trước rồi mới ghi.
 ```
 đồng bộ Notion
+đồng bộ lịch
 lập kế hoạch ôn thi ANTT trên Notion
 tạo task HDH xem lại video buổi 6, hạn thứ 7
 ```

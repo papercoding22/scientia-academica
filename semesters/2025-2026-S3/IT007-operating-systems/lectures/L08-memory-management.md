@@ -1224,7 +1224,7 @@ flowchart LR
 ## Gợi ý thi và deadline phát sinh
 
 Không có transcript để trích lời dặn thi. Slide không có hạn nộp; không phát sinh cập nhật cho `IMPORTANT_NOTES.md`
-hoặc `admin/deadlines.md`.
+hoặc `admin/tasks-2025-2026-S3.md`.
 
 Tham khảo (không phải lời giảng viên): **đề thi mẫu** dành **4,1/10 điểm** cho chương 7 — nặng nhất đề, gánh **toàn bộ**
 phần tính toán: đổi địa chỉ paging (1,3), phân mảnh (0,8), address binding (0,6), kiểu địa chỉ (0,5), dynamic loading,

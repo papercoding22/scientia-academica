@@ -1,6 +1,6 @@
 ---
 name: new-lecture
-description: Xử lý một buổi học thành note hoàn chỉnh — chạy script tạo file _raw (nạp được .vtt từ Teams), rồi đọc transcript cùng slide để viết note, trích gợi ý thi vào IMPORTANT_NOTES, trích deadline vào admin/deadlines, sinh flashcard, cập nhật bảng tiến độ. Dùng khi người dùng nói "xử lý buổi N môn X", "tạo note buổi học", "có transcript buổi hôm nay", "init lecture", hoặc đưa file transcript/vtt của một buổi học.
+description: Xử lý một buổi học thành note hoàn chỉnh — chạy script tạo file _raw (nạp được .vtt từ Teams), rồi đọc transcript cùng slide để viết note, trích gợi ý thi vào IMPORTANT_NOTES, trích deadline vào admin/tasks-<học kỳ>, sinh flashcard, cập nhật bảng tiến độ. Dùng khi người dùng nói "xử lý buổi N môn X", "tạo note buổi học", "có transcript buổi hôm nay", "init lecture", hoặc đưa file transcript/vtt của một buổi học.
 ---
 
 # Xử lý một buổi học
@@ -204,10 +204,11 @@ Có timestamp trong transcript thì ghi luôn phút — sau này tra lại đư�
 
 Buổi đầu tiên thường công bố cách tính điểm. Nghe thấy → điền ngay vào mục 1.
 
-### 6c. Deadline → `admin/deadlines.md`
+### 6c. Deadline → `admin/tasks-<kỳ>.md`
 
 **Luôn chuyển sang ngày tuyệt đối.** *"nộp tuần sau"* + buổi ngày `2026-10-06`
 → `2026-10-13`. Không đủ thông tin quy đổi → hỏi, không đoán.
+Ghi vào đúng mục môn (bảng *Việc và hạn nộp* hoặc *Lịch thi*), cột *Nguồn* = buổi + ngày.
 
 ### 6d. Flashcard → `exam-prep/flashcards.md` **và** `.csv`
 

@@ -196,6 +196,7 @@ render() {
       -e "s|{{SLUG}}|$(esc "${TOPIC:-}")|g" \
       -e "s|{{RAW_FILE}}|$(esc "$RAW_FILE")|g" \
       -e "s|{{SOURCE}}|$(esc "$SRC_KIND")|g" \
+      -e "s|{{SEMESTER}}|$(esc "$SEMESTER")|g" \
       "$TPL/$1.md" > "$2"
 }
 
@@ -242,7 +243,7 @@ cat <<NEXT
     · viết note theo 5 bước (trực giác → analogy → ví dụ → định nghĩa → code)
     · thêm mục "Tự kiểm tra" 5 câu
     · trích gợi ý thi  → IMPORTANT_NOTES.md
-    · trích deadline   → admin/deadlines.md
+    · trích deadline   → admin/tasks-$SEMESTER.md
     · sinh flashcard   → exam-prep/flashcards.md + .csv
     · cập nhật bảng tiến độ trong README của môn và của học kỳ
 NEXT

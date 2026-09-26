@@ -5,7 +5,7 @@
 # Làm phần CƠ HỌC: dựng projects/prjN/, render README từ templates/project.md,
 # copy template Word khi đã biết tên file nộp (.docx).
 #
-# Phần CẦN PHÁN ĐOÁN (tìm đề bài, tiêu chí chấm, mốc thời gian, nối vào deadlines
+# Phần CẦN PHÁN ĐOÁN (tìm đề bài, tiêu chí chấm, mốc thời gian, nối vào admin/tasks-<kỳ>
 # và Notion) do skill `new-project` lo — xem .claude/skills/new-project/SKILL.md
 #
 set -euo pipefail
@@ -138,6 +138,7 @@ sed -e "s|{{CODE}}|$(esc "$COURSE")|g" \
     -e "s|{{LECTURE}}|$(esc "$LECTURE")|g" \
     -e "s|{{MODE}}|$(esc "$MODE")|g" \
     -e "s|{{SUBMISSION}}|$(esc "${SUBMISSION:-❓ chưa xác nhận}")|g" \
+    -e "s|{{SEMESTER}}|$(esc "$SEMESTER")|g" \
     "$TPL/project.md" > "$DIR/README.md"
 ok "Tạo $CREL/projects/$FOLDER/README.md"
 
@@ -150,7 +151,7 @@ cat <<NEXT
 
 ${B}Còn lại:${N}
 
-  1. Ghi hạn nộp (và mốc giảng viên đặt) vào ${B}admin/deadlines.md${N}
+  1. Ghi hạn nộp (và mốc giảng viên đặt) vào mục $COURSE trong ${B}admin/tasks-$SEMESTER.md${N}
   2. Thêm dòng vào bảng "Bài tập và đồ án" trong ${B}$CREL/README.md${N}
   3. Bỏ file đề bài của giảng viên vào ${B}$FOLDER/brief/${N}
   4. Điền "Đề bài" và "Tiêu chí chấm" — thường có trong transcript buổi giao đồ án

@@ -228,7 +228,7 @@ Bảng cần có: **tên · nhóm (cổ điển/hiện đại) · đặc điểm
 
 > ~~❓ **CẦN XÁC MINH:** ngày thi cuối kỳ cụ thể.~~ Đã có — khớp với lời thầy "thứ 7 hay chủ nhật".
 > *Người dùng cung cấp lịch thi, 2026-09-24 — "Ngày 04 tháng 10 năm 2026: Thi IE105, ca 2: 10g00"*.
-> Đã ghi vào [`admin/deadlines.md`](../../../admin/deadlines.md).
+> Đã ghi vào [`admin/tasks-2025-2026-S3.md`](../../../admin/tasks-2025-2026-S3.md).
 
 ---
 

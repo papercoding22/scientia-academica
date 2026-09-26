@@ -1,13 +1,13 @@
 ---
 name: new-course
-description: Tạo đầy đủ một môn học mới trong repo — chạy script scaffold rồi nối môn đó vào 6 file khác đang giữ danh sách môn (README học kỳ, schedule, deadlines, curriculum, transcript, specialization). Dùng khi người dùng nói "thêm môn", "tạo môn mới", "init môn", "đăng ký thêm môn", hoặc đưa mã môn + tên môn + giảng viên của một môn chưa có trong repo. Cũng dùng khi bắt đầu học kỳ mới và cần tạo nhiều môn một lượt.
+description: Tạo đầy đủ một môn học mới trong repo — chạy script scaffold rồi nối môn đó vào 5 file khác đang giữ danh sách môn (README học kỳ, admin/tasks-<kỳ>, curriculum, transcript, specialization). Dùng khi người dùng nói "thêm môn", "tạo môn mới", "init môn", "đăng ký thêm môn", hoặc đưa mã môn + tên môn + giảng viên của một môn chưa có trong repo. Cũng dùng khi bắt đầu học kỳ mới và cần tạo nhiều môn một lượt.
 ---
 
 # Tạo môn học mới
 
 Việc này có hai nửa. **Script làm nửa cơ học, bạn làm nửa cần phán đoán.**
 Nửa thứ hai mới là chỗ dễ quên, vì một môn học không chỉ là cái thư mục —
-nó được nhắc tới ở **6 file khác** trong repo.
+nó được nhắc tới ở **5 file khác** trong repo.
 
 ---
 
@@ -17,7 +17,7 @@ nó được nhắc tới ở **6 file khác** trong repo.
 - [Bước 2 — Dịch tên môn sang slug tiếng Anh](#bước-2--dịch-tên-môn-sang-slug-tiếng-anh)
 - [Bước 3 — Chạy script](#bước-3--chạy-script)
 - [Bước 4 — Viết "Môn này nói về cái gì"](#bước-4--viết-môn-này-nói-về-cái-gì)
-- [Bước 5 — Nối vào 6 file đang giữ danh sách môn](#bước-5--nối-vào-6-file-đang-giữ-danh-sách-môn)
+- [Bước 5 — Nối vào 5 file đang giữ danh sách môn](#bước-5--nối-vào-5-file-đang-giữ-danh-sách-môn)
 - [Bước 6 — Commit](#bước-6--commit)
 - [Bước 7 — Báo lại](#bước-7--báo-lại)
 - [Không làm](#không-làm)
@@ -99,7 +99,7 @@ Luôn kèm câu: *"Viết lúc khởi tạo, dựa trên tên môn. Sửa lại 
 
 ---
 
-## Bước 5 — Nối vào 6 file đang giữ danh sách môn
+## Bước 5 — Nối vào 5 file đang giữ danh sách môn
 
 **Đây là lý do skill này tồn tại.** Quên bước này thì repo mất đồng bộ,
 và người dùng chỉ phát hiện ra lúc cần tra cứu gấp.
@@ -107,8 +107,7 @@ và người dùng chỉ phát hiện ra lúc cần tra cứu gấp.
 | File | Sửa gì |
 |---|---|
 | `semesters/<kỳ>/README.md` | Thêm dòng vào **bảng môn** + **bảng tiến độ**; cập nhật số môn ở đầu file; viết thêm vào mục **"học kỳ này gắn với nhau thế nào"** |
-| `admin/schedule.md` | Thêm dòng vào bảng **"các môn học kỳ này"**; thêm dòng trống vào **lịch tuần** với `❓` |
-| `admin/deadlines.md` | Thêm 2 dòng vào **lịch thi** (giữa kỳ + cuối kỳ) với `❓` |
+| `admin/tasks-<kỳ>.md` | Thêm mục `## <MÃ MÔN> — <tên tiếng Việt>` (link thư mục môn · viết tắt Notion hoặc `❓`) với hai bảng **Việc và hạn nộp** (trống) và **Lịch thi** (2 dòng `<MÃ>/exam-mid`, `<MÃ>/exam-final`, `❓`); cập nhật mục lục (`scripts/toc.py`) |
 | `program/curriculum.md` | Thêm dòng vào khối phù hợp, trạng thái `🔄 đang học`, kỳ dự kiến = học kỳ này |
 | `program/transcript.md` | Thêm dòng vào mục học kỳ hiện tại, điểm `🔄` |
 | `program/specialization/README.md` | Thêm dòng vào bảng **"cảm nhận từng môn"**, trạng thái `🔄 đang học` |
@@ -116,7 +115,8 @@ và người dùng chỉ phát hiện ra lúc cần tra cứu gấp.
 Số tín chỉ để `❓` — **không đoán**. Đó là dữ liệu từ nhà trường (`AGENTS.md` § 9).
 
 Nếu học kỳ đang tạo **chưa tồn tại**, tạo `semesters/<kỳ>/README.md` trước,
-theo mẫu của học kỳ hiện có.
+theo mẫu của học kỳ hiện có. Chưa có `admin/tasks-<kỳ>.md` thì tạo từ
+[`templates/tasks.md`](../../../templates/tasks.md) — bảng đầu file, quy ước, mốc học kỳ — rồi mới thêm mục môn.
 
 ---
 
@@ -136,7 +136,7 @@ Theo `AGENTS.md` § 11 — commit tự động, không hỏi. Không `push`.
 
 Nói ngắn gọn:
 - Đã tạo thư mục nào
-- Đã cập nhật 6 file nào
+- Đã cập nhật 5 file nào
 - **Những gì còn `❓`**: số tín chỉ, lịch học Teams, cách tính điểm
 - Việc tiếp theo đáng làm nhất: bỏ **đề cương** vào `materials/syllabus/` rồi bảo AI đọc —
   nó thường chứa sẵn cách tính điểm và quy định môn học, tức mục 1 và 4 của `IMPORTANT_NOTES.md`

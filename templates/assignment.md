@@ -10,7 +10,7 @@
 | **File nộp** | `{{SUBMISSION}}` |
 | Trạng thái | ⬜ chưa làm |
 
-> ✅ Đã ghi hạn nộp vào [`admin/deadlines.md`](../../../../../admin/deadlines.md)? — ❓
+> ✅ Đã ghi hạn nộp vào [`admin/tasks-{{SEMESTER}}.md`](../../../../../admin/tasks-{{SEMESTER}}.md)? — ❓
 >
 > 📄 Nếu đã có file `.docx`, nó được copy từ `templates/ASSIGNMENT_TEMPLATE.docx` — có trang
 > bìa UIT và khung `Câu 1` · `Bảng` · `Kết luận`. Nếu cột **File nộp** còn `❓`, chưa được

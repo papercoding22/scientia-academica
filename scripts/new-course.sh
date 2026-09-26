@@ -3,7 +3,7 @@
 # new-course.sh — Tạo khung thư mục cho một môn học mới.
 #
 # Script này chỉ làm phần CƠ HỌC: tạo thư mục và render file từ templates/.
-# Việc nối môn mới vào các file khác (README học kỳ, curriculum, schedule…)
+# Việc nối môn mới vào các file khác (README học kỳ, admin/tasks-<kỳ>, curriculum…)
 # do skill `new-course` lo — xem .claude/skills/new-course/SKILL.md
 #
 set -euo pipefail
@@ -162,11 +162,10 @@ printf '   %s\n' "$REL"
 # ── việc còn lại ─────────────────────────────────────────────────────────────
 cat <<NEXT
 
-${B}Script chỉ tạo khung. Còn 6 file khác đang giữ danh sách môn cần cập nhật:${N}
+${B}Script chỉ tạo khung. Còn 5 file khác đang giữ danh sách môn cần cập nhật:${N}
 
   semesters/$SEMESTER/README.md      bảng môn + bảng tiến độ + mục "gắn với nhau thế nào"
-  admin/schedule.md                  bảng môn + lịch tuần
-  admin/deadlines.md                 dòng lịch thi cho $CODE
+  admin/tasks-$SEMESTER.md       mục $CODE: bảng việc + lịch thi
   program/curriculum.md              trạng thái → 🔄 đang học
   program/transcript.md              dòng ở $SEMESTER_VI
   program/specialization/README.md   bảng cảm nhận từng môn

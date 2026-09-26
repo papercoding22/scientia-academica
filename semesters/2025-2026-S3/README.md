@@ -56,6 +56,6 @@ Khái niệm nào xuất hiện ở từ hai môn trở lên → đưa vào
 
 ## Liên kết
 
-- Deadline tất cả các môn: [`admin/deadlines.md`](../../admin/deadlines.md)
-- Lịch học Teams: [`admin/schedule.md`](../../admin/schedule.md)
+- Task, deadline, lịch thi theo từng môn: [`admin/tasks-2025-2026-S3.md`](../../admin/tasks-2025-2026-S3.md)
+- Lịch học Teams: Google Calendar lịch `UIT Class`
 - Tiến độ tốt nghiệp: [`program/README.md`](../../program/README.md)

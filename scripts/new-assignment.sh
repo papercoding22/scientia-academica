@@ -174,6 +174,7 @@ sed -e "s|{{CODE}}|$(esc "$COURSE")|g" \
     -e "s|{{DUE}}|$(esc "$DUE")|g" \
     -e "s|{{LECTURE}}|$(esc "$LECTURE")|g" \
     -e "s|{{SUBMISSION}}|$(esc "${SUBMISSION:-❓ chưa có}")|g" \
+    -e "s|{{SEMESTER}}|$(esc "$SEMESTER")|g" \
     "$TPL/assignment.md" > "$DIR/README.md"
 ok "Tạo $CREL/assignments/$FOLDER/README.md"
 
@@ -186,7 +187,7 @@ cat <<NEXT
 
 ${B}Còn lại:${N}
 
-  1. Ghi hạn nộp vào ${B}admin/deadlines.md${N}
+  1. Ghi hạn nộp vào mục $COURSE trong ${B}admin/tasks-$SEMESTER.md${N}
   2. Thêm dòng vào bảng "Bài tập và đồ án" trong ${B}$CREL/README.md${N}
   3. Bỏ file đề bài của giảng viên vào ${B}$FOLDER/brief/${N}
   4. Điền mục "Yêu cầu đề bài" trong README — đề bài thường có trong
