@@ -399,6 +399,19 @@ Trong cơ chế như PLT/GOT, lần gọi sau vẫn có thể đi qua stub/bản
 không phải luôn xóa stub khỏi mã. Hai process có thể ánh xạ trang mã thư viện vào cùng frame vật lý dù địa chỉ ảo khác nhau;
 phần dữ liệu riêng của mỗi process không vì vậy mà trở thành dữ liệu dùng chung. Analogy máy in chỉ minh họa tìm địa chỉ và dùng chung mã, không ngụ ý các process phải lần lượt gọi hàm.
 
+**Minh họa cơ chế dynamic loading — từ lời gọi đến thực thi [C7 s27]:**
+
+![Cùng process P qua ba trạng thái: main đã ở RAM, thủ tục R còn trên đĩa; khi main gọi R thì nạp mã R vào RAM; sau khi nạp xong CPU thực thi R, bản trên đĩa vẫn còn](images/dynamic-loading-mechanism.png)
+
+*Hình do AI dựng bằng SVG và xuất PNG, dựa trên mô tả dynamic loading [C7 s27]; thủ tục xử lý lỗi `R` và bố trí vùng nhớ là ví dụ tự đặt. [Bản SVG có thể chỉnh sửa](images/dynamic-loading-mechanism.svg).*
+
+**Đọc hình:** từ trái sang phải là ba thời điểm của **cùng một process P**, không phải ba process.
+Ban đầu `main()` đã ở RAM, `R` chưa được nạp. Khi cần gọi `R()`, cơ chế nạp do chương trình tổ chức
+nạp mã của `R` từ đĩa vào RAM; **nạp xong mới thực thi `R`**. Mũi tên liền biểu diễn việc nạp mã,
+nét đứt biểu diễn luồng gọi/thực thi. Hình lược bỏ chi tiết loader và hỗ trợ của OS.
+Vùng gạch chéo chỉ thể hiện RAM chưa chứa mã `R`, không ngụ ý phải dành sẵn một vùng RAM vật lý cho `R`.
+Bản mã trên đĩa vẫn còn sau khi nạp; hình không quy định lúc nào mã được giải phóng khỏi RAM.
+
 #### 💻 Code & thực tế
 
 ```

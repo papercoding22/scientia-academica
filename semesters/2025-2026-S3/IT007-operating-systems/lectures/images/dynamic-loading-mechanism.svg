@@ -1,0 +1,148 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1680" height="1110" viewBox="0 0 1680 1110" role="img" aria-labelledby="title desc">
+<title id="title">Dynamic loading: chưa gọi, gọi và nạp, rồi thực thi</title>
+<desc id="desc">Ba trạng thái của cùng process P. Ban đầu main đã ở RAM, thủ tục xử lý lỗi R còn trên đĩa. Khi main gọi R lần đầu, chương trình nạp mã R từ đĩa vào RAM rồi CPU thực thi R. Bản trên đĩa vẫn còn. Mũi tên liền là nạp mã; nét đứt là luồng thực thi.</desc>
+<defs><marker id="control" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L10 5L0 10Z" fill="#277f82"/></marker><marker id="load" markerWidth="15" markerHeight="15" refX="12" refY="7.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L15 7.5L0 15Z" fill="#b87916"/></marker><pattern id="empty" patternUnits="userSpaceOnUse" width="12" height="12"><path d="M0 12L12 0" stroke="#e6ecf0" stroke-width="1"/></pattern></defs>
+<rect x="0" y="0" width="1680" height="1110" rx="0" fill="#fbfcfd" stroke="none" stroke-width="2"/>
+<text x="52" y="57" font-family="Arial, Helvetica, sans-serif" font-size="38" fill="#21374c" font-weight="700" text-anchor="start">DYNAMIC LOADING</text>
+<text x="52" y="101" font-family="Arial, Helvetica, sans-serif" font-size="27" fill="#4e6476" font-weight="400" text-anchor="start">Chỉ nạp thủ tục khi được gọi đến</text>
+<text x="1624" y="57" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#677c8d" font-weight="400" text-anchor="end">IT007 · L08</text>
+<path d="M52 132H1628" fill="none" stroke="#d4dfe7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="44" y="194" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#277f82" font-weight="700" text-anchor="start">01</text>
+<text x="101" y="194" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#21374c" font-weight="700" text-anchor="start">Chưa gọi</text>
+<text x="44" y="230" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#536b7e" font-weight="400" text-anchor="start">R chưa chiếm RAM</text>
+<path d="M35 338H47" fill="none" stroke="#8098a9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M139 338H151" fill="none" stroke="#8098a9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M35 353H47" fill="none" stroke="#8098a9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M139 353H151" fill="none" stroke="#8098a9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M35 368H47" fill="none" stroke="#8098a9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M139 368H151" fill="none" stroke="#8098a9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M35 383H47" fill="none" stroke="#8098a9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M139 383H151" fill="none" stroke="#8098a9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M35 398H47" fill="none" stroke="#8098a9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M139 398H151" fill="none" stroke="#8098a9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="47" y="325" width="92" height="90" rx="10" fill="#edf3f7" stroke="#8098a9" stroke-width="2"/>
+<text x="93" y="357" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#21374c" font-weight="700" text-anchor="middle">CPU</text>
+<text x="93" y="393" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#277f82" font-weight="700" text-anchor="middle">main()</text>
+<text x="210" y="282" font-family="Arial, Helvetica, sans-serif" font-size="25" fill="#21374c" font-weight="700" text-anchor="start">RAM · process P</text>
+<rect x="192" y="301" width="314" height="396" rx="12" fill="#f0f4f7" stroke="#91a8b8" stroke-width="2"/>
+<rect x="207" y="697" width="14" height="12" rx="2" fill="#c7a55c" stroke="none" stroke-width="2"/>
+<rect x="235" y="697" width="14" height="12" rx="2" fill="#c7a55c" stroke="none" stroke-width="2"/>
+<rect x="263" y="697" width="14" height="12" rx="2" fill="#c7a55c" stroke="none" stroke-width="2"/>
+<rect x="291" y="697" width="14" height="12" rx="2" fill="#c7a55c" stroke="none" stroke-width="2"/>
+<rect x="319" y="697" width="14" height="12" rx="2" fill="#c7a55c" stroke="none" stroke-width="2"/>
+<rect x="347" y="697" width="14" height="12" rx="2" fill="#c7a55c" stroke="none" stroke-width="2"/>
+<rect x="375" y="697" width="14" height="12" rx="2" fill="#c7a55c" stroke="none" stroke-width="2"/>
+<rect x="403" y="697" width="14" height="12" rx="2" fill="#c7a55c" stroke="none" stroke-width="2"/>
+<rect x="431" y="697" width="14" height="12" rx="2" fill="#c7a55c" stroke="none" stroke-width="2"/>
+<rect x="459" y="697" width="14" height="12" rx="2" fill="#c7a55c" stroke="none" stroke-width="2"/>
+<rect x="211" y="320" width="276" height="116" rx="8" fill="#d8efec" stroke="#77afa8" stroke-width="2"/>
+<text x="235" y="357" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#175b60" font-weight="700" text-anchor="start">main()</text>
+<text x="235" y="393" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#286d6e" font-weight="400" text-anchor="start">mã đã nạp</text>
+<rect x="211" y="455" width="276" height="122" rx="8" fill="url(#empty)" stroke="#aebdc8" stroke-width="2" stroke-dasharray="7 6"/>
+<text x="349" y="501" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#6c8191" font-weight="400" text-anchor="middle">Chưa có mã R</text>
+<rect x="211" y="596" width="276" height="80" rx="6" fill="#e6edf2" stroke="none" stroke-width="2"/>
+<text x="349" y="644" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#64798b" font-weight="400" text-anchor="middle">Dữ liệu / vùng khác</text>
+<path d="M153 374H204" fill="none" stroke="#277f82" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 6" marker-end="url(#control)"/>
+<text x="210" y="829" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#21374c" font-weight="700" text-anchor="start">ĐĨA</text>
+<path d="M202 866C202 831 496 831 496 866V954C496 988 202 988 202 954Z" fill="#e5edf3" stroke="#91a8b8" stroke-width="2"/>
+<ellipse cx="349" cy="866" rx="147" ry="23" fill="#f5f8fa" stroke="#91a8b8" stroke-width="2"/>
+<rect x="232" y="898" width="234" height="54" rx="6" fill="#f9e3b5" stroke="#c49135" stroke-width="2"/>
+<text x="349" y="933" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#805411" font-weight="700" text-anchor="middle">R · mã xử lý lỗi</text>
+<path d="M560 165V990" fill="none" stroke="#dae3ea" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="604" y="194" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#277f82" font-weight="700" text-anchor="start">02</text>
+<text x="661" y="194" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#21374c" font-weight="700" text-anchor="start">Gọi và nạp</text>
+<text x="604" y="230" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#536b7e" font-weight="400" text-anchor="start">Lần đầu main() gọi R()</text>
+<path d="M595 338H607" fill="none" stroke="#8098a9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M699 338H711" fill="none" stroke="#8098a9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M595 353H607" fill="none" stroke="#8098a9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M699 353H711" fill="none" stroke="#8098a9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M595 368H607" fill="none" stroke="#8098a9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M699 368H711" fill="none" stroke="#8098a9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M595 383H607" fill="none" stroke="#8098a9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M699 383H711" fill="none" stroke="#8098a9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M595 398H607" fill="none" stroke="#8098a9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M699 398H711" fill="none" stroke="#8098a9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="607" y="325" width="92" height="90" rx="10" fill="#edf3f7" stroke="#8098a9" stroke-width="2"/>
+<text x="653" y="357" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#21374c" font-weight="700" text-anchor="middle">CPU</text>
+<text x="653" y="393" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#277f82" font-weight="700" text-anchor="middle">main()</text>
+<text x="770" y="282" font-family="Arial, Helvetica, sans-serif" font-size="25" fill="#21374c" font-weight="700" text-anchor="start">RAM · process P</text>
+<rect x="752" y="301" width="314" height="396" rx="12" fill="#f0f4f7" stroke="#91a8b8" stroke-width="2"/>
+<rect x="767" y="697" width="14" height="12" rx="2" fill="#c7a55c" stroke="none" stroke-width="2"/>
+<rect x="795" y="697" width="14" height="12" rx="2" fill="#c7a55c" stroke="none" stroke-width="2"/>
+<rect x="823" y="697" width="14" height="12" rx="2" fill="#c7a55c" stroke="none" stroke-width="2"/>
+<rect x="851" y="697" width="14" height="12" rx="2" fill="#c7a55c" stroke="none" stroke-width="2"/>
+<rect x="879" y="697" width="14" height="12" rx="2" fill="#c7a55c" stroke="none" stroke-width="2"/>
+<rect x="907" y="697" width="14" height="12" rx="2" fill="#c7a55c" stroke="none" stroke-width="2"/>
+<rect x="935" y="697" width="14" height="12" rx="2" fill="#c7a55c" stroke="none" stroke-width="2"/>
+<rect x="963" y="697" width="14" height="12" rx="2" fill="#c7a55c" stroke="none" stroke-width="2"/>
+<rect x="991" y="697" width="14" height="12" rx="2" fill="#c7a55c" stroke="none" stroke-width="2"/>
+<rect x="1019" y="697" width="14" height="12" rx="2" fill="#c7a55c" stroke="none" stroke-width="2"/>
+<rect x="771" y="320" width="276" height="116" rx="8" fill="#d8efec" stroke="#77afa8" stroke-width="2"/>
+<text x="795" y="357" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#175b60" font-weight="700" text-anchor="start">main()</text>
+<text x="795" y="393" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#286d6e" font-weight="400" text-anchor="start">call R()</text>
+<rect x="771" y="455" width="276" height="122" rx="8" fill="url(#empty)" stroke="#aebdc8" stroke-width="2" stroke-dasharray="7 6"/>
+<text x="909" y="501" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#6c8191" font-weight="400" text-anchor="middle">Chưa có mã R</text>
+<text x="909" y="538" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#a86e11" font-weight="400" text-anchor="middle">đích nạp</text>
+<rect x="771" y="596" width="276" height="80" rx="6" fill="#e6edf2" stroke="none" stroke-width="2"/>
+<text x="909" y="644" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#64798b" font-weight="400" text-anchor="middle">Dữ liệu / vùng khác</text>
+<path d="M713 374H731V516H764" fill="none" stroke="#277f82" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 6" marker-end="url(#control)"/>
+<text x="611" y="482" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#277f82" font-weight="700" text-anchor="start">gọi R()</text>
+<text x="770" y="829" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#21374c" font-weight="700" text-anchor="start">ĐĨA</text>
+<path d="M762 866C762 831 1056 831 1056 866V954C1056 988 762 988 762 954Z" fill="#e5edf3" stroke="#91a8b8" stroke-width="2"/>
+<ellipse cx="909" cy="866" rx="147" ry="23" fill="#f5f8fa" stroke="#91a8b8" stroke-width="2"/>
+<rect x="792" y="898" width="234" height="54" rx="6" fill="#f9e3b5" stroke="#c49135" stroke-width="2"/>
+<text x="909" y="933" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#805411" font-weight="700" text-anchor="middle">R · mã xử lý lỗi</text>
+<path d="M1029 925H1090V516H1053" fill="none" stroke="#b87916" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#load)"/>
+<text x="1061" y="773" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#a46c14" font-weight="700" text-anchor="end">nạp mã</text>
+<path d="M1120 165V990" fill="none" stroke="#dae3ea" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1164" y="194" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#277f82" font-weight="700" text-anchor="start">03</text>
+<text x="1221" y="194" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#21374c" font-weight="700" text-anchor="start">Thực thi</text>
+<text x="1164" y="230" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#536b7e" font-weight="400" text-anchor="start">Mã R đã có trong RAM</text>
+<path d="M1155 338H1167" fill="none" stroke="#8098a9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1259 338H1271" fill="none" stroke="#8098a9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1155 353H1167" fill="none" stroke="#8098a9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1259 353H1271" fill="none" stroke="#8098a9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1155 368H1167" fill="none" stroke="#8098a9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1259 368H1271" fill="none" stroke="#8098a9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1155 383H1167" fill="none" stroke="#8098a9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1259 383H1271" fill="none" stroke="#8098a9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1155 398H1167" fill="none" stroke="#8098a9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1259 398H1271" fill="none" stroke="#8098a9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="1167" y="325" width="92" height="90" rx="10" fill="#edf3f7" stroke="#8098a9" stroke-width="2"/>
+<text x="1213" y="357" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#21374c" font-weight="700" text-anchor="middle">CPU</text>
+<text x="1213" y="393" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#277f82" font-weight="700" text-anchor="middle">R()</text>
+<text x="1330" y="282" font-family="Arial, Helvetica, sans-serif" font-size="25" fill="#21374c" font-weight="700" text-anchor="start">RAM · process P</text>
+<rect x="1312" y="301" width="314" height="396" rx="12" fill="#f0f4f7" stroke="#91a8b8" stroke-width="2"/>
+<rect x="1327" y="697" width="14" height="12" rx="2" fill="#c7a55c" stroke="none" stroke-width="2"/>
+<rect x="1355" y="697" width="14" height="12" rx="2" fill="#c7a55c" stroke="none" stroke-width="2"/>
+<rect x="1383" y="697" width="14" height="12" rx="2" fill="#c7a55c" stroke="none" stroke-width="2"/>
+<rect x="1411" y="697" width="14" height="12" rx="2" fill="#c7a55c" stroke="none" stroke-width="2"/>
+<rect x="1439" y="697" width="14" height="12" rx="2" fill="#c7a55c" stroke="none" stroke-width="2"/>
+<rect x="1467" y="697" width="14" height="12" rx="2" fill="#c7a55c" stroke="none" stroke-width="2"/>
+<rect x="1495" y="697" width="14" height="12" rx="2" fill="#c7a55c" stroke="none" stroke-width="2"/>
+<rect x="1523" y="697" width="14" height="12" rx="2" fill="#c7a55c" stroke="none" stroke-width="2"/>
+<rect x="1551" y="697" width="14" height="12" rx="2" fill="#c7a55c" stroke="none" stroke-width="2"/>
+<rect x="1579" y="697" width="14" height="12" rx="2" fill="#c7a55c" stroke="none" stroke-width="2"/>
+<rect x="1331" y="320" width="276" height="116" rx="8" fill="#d8efec" stroke="#77afa8" stroke-width="2"/>
+<text x="1355" y="357" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#175b60" font-weight="700" text-anchor="start">main()</text>
+<text x="1355" y="393" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#286d6e" font-weight="400" text-anchor="start">mã đã nạp</text>
+<rect x="1331" y="455" width="276" height="122" rx="8" fill="#f9e3b5" stroke="#c49135" stroke-width="2"/>
+<text x="1355" y="499" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#805411" font-weight="700" text-anchor="start">R()</text>
+<text x="1355" y="538" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#805411" font-weight="400" text-anchor="start">mã xử lý lỗi</text>
+<rect x="1331" y="596" width="276" height="80" rx="6" fill="#e6edf2" stroke="none" stroke-width="2"/>
+<text x="1469" y="644" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#64798b" font-weight="400" text-anchor="middle">Dữ liệu / vùng khác</text>
+<path d="M1273 374H1291V516H1324" fill="none" stroke="#277f82" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 6" marker-end="url(#control)"/>
+<text x="1164" y="482" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#277f82" font-weight="700" text-anchor="start">chạy R()</text>
+<text x="1330" y="829" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#21374c" font-weight="700" text-anchor="start">ĐĨA</text>
+<path d="M1322 866C1322 831 1616 831 1616 866V954C1616 988 1322 988 1322 954Z" fill="#e5edf3" stroke="#91a8b8" stroke-width="2"/>
+<ellipse cx="1469" cy="866" rx="147" ry="23" fill="#f5f8fa" stroke="#91a8b8" stroke-width="2"/>
+<rect x="1352" y="898" width="234" height="54" rx="6" fill="#f9e3b5" stroke="#c49135" stroke-width="2"/>
+<text x="1469" y="933" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#805411" font-weight="700" text-anchor="middle">R · mã xử lý lỗi</text>
+<text x="1469" y="786" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#536b7e" font-weight="400" text-anchor="middle">Bản trên đĩa vẫn còn</text>
+<path d="M52 1011H1628" fill="none" stroke="#d4dfe7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M58 1058H135" fill="none" stroke="#b87916" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#load)"/>
+<text x="153" y="1066" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#21374c" font-weight="400" text-anchor="start">Nạp mã vào RAM</text>
+<path d="M472 1058H549" fill="none" stroke="#277f82" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="7 6" marker-end="url(#control)"/>
+<text x="567" y="1066" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#21374c" font-weight="400" text-anchor="start">Luồng thực thi</text>
+<text x="1626" y="1066" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#677c8d" font-weight="400" text-anchor="end">Mô hình giản lược · R là ví dụ tự đặt</text>
+</svg>
