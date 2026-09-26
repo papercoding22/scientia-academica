@@ -63,10 +63,10 @@ Giảng viên: **Đỗ Minh Tiến**
 
 | | Giữa kỳ | Cuối kỳ |
 |---|---|---|
-| Hình thức | ❓ | ❓ |
-| Thời gian | ❓ | ❓ |
-| Được mang gì | ❓ | ❓ |
-| Nguồn | | |
+| Hình thức | ❓ | **KHÔNG CÓ THI CUỐI KỲ** |
+| Thời gian | ❓ | — |
+| Được mang gì | ❓ | — |
+| Nguồn | | người dùng cung cấp, 2026-09-27 |
 
 ---
 
