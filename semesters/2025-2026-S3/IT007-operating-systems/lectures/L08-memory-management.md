@@ -504,6 +504,23 @@ Các khối RAM được vẽ theo tỷ lệ trong từng ví dụ, hai cột d�
 - **Cột phải:** các lỗ trống **chưa cấp cho ai** nhưng bị P1, P2 ngăn cách: tổng đủ 90 KiB, lỗ lớn nhất chỉ 40 KiB.
 - **Lưu ý:** các lỗ trống vẫn có thể phục vụ yêu cầu nhỏ hơn; thất bại ở đây là cấp **một vùng liên tục 90 KiB**.
 
+**Cơ chế hình thành — cấp phát rồi thu hồi bộ nhớ:**
+
+![Cùng 48 KiB RAM và ba process A, B, C cần 13 KiB: fixed partitioning cấp mỗi process 16 KiB nên dư 3 KiB; dynamic partitioning cấp đúng 13 KiB, sau khi A và C kết thúc còn hai lỗ 13 và 22 KiB bị B ngăn cách, không cấp được vùng liên tục 30 KiB cho D](images/fragmentation-mechanism.png)
+
+*Hình minh họa cơ chế do AI dựng dựa trên [C7 s31–s32](../materials/slides/Copy%20of%20%23Week12-Chapter7%202024.pdf#page=31),
+[s34](../materials/slides/Copy%20of%20%23Week12-Chapter7%202024.pdf#page=34) và [s38](../materials/slides/Copy%20of%20%23Week12-Chapter7%202024.pdf#page=38); số liệu và chuỗi sự kiện là ví dụ tự đặt.
+Giả thiết: 48 KiB dành cho process, bỏ qua overhead; hàng trên mỗi partition chứa một process;
+hàng dưới cấp lần lượt từ trái sang phải và gộp các lỗ liền kề sau thu hồi. Không dùng paging hay compaction.
+[Bản SVG để chỉnh sửa](images/fragmentation-mechanism.svg).*
+
+**Đọc hình:**
+
+- **Hướng đọc:** theo từng hàng từ trái sang phải; hai hàng dùng cùng dung lượng RAM và cùng chuỗi yêu cầu của A, B, C. Bước 4 kiểm tra thêm yêu cầu của D **ở hàng dynamic partitioning**.
+- **Cấp phát — hàng trên:** mỗi process cần 13 KiB nhưng nhận trọn partition 16 KiB, sinh `3 × (16 − 13) = 9 KiB` phân mảnh nội. Khi A, C kết thúc, hai partition được thu hồi; phần thừa 3 KiB trong partition của B vẫn còn.
+- **Thu hồi — hàng dưới:** A để lại lỗ 13 KiB; vùng C 13 KiB nối với 9 KiB trống ở cuối thành lỗ 22 KiB. B vẫn ở nguyên vị trí. Gộp hai vùng trống **đã liền kề** không phải compaction; không có process nào được dời đi.
+- **Yêu cầu mới — hàng dưới:** D cần 30 KiB liên tục. Tổng trống `13 + 22 = 35 KiB`, nhưng lỗ lớn nhất chỉ 22 KiB, nên chưa cấp được — đây là phân mảnh ngoại đối với yêu cầu này.
+
 #### 💻 Code & thực tế
 
 Không áp dụng bản chạy được.
