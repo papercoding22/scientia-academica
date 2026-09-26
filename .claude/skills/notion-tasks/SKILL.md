@@ -101,6 +101,18 @@ Môn mới chưa có trong bảng → **hỏi** người dùng viết tắt, r�
 | **Notes** | 1 câu tóm tắt đề + đường dẫn repo | hình thức thi, được mang gì | phạm vi ôn + file blueprint | lời người dùng |
 | **Completion Date** | **chỉ đọc** — kéo về repo | | | |
 | **📺 Projects** | **không gắn** | | | |
+| **Icon** (trang) | emoji ngẫu nhiên — xem dưới | như bên trái | như bên trái | như bên trái |
+
+**Icon** — mỗi task **mới tạo** có một emoji ngẫu nhiên, truyền qua tham số `icon` của từng trang trong
+`notion-create-pages`. Bốc bằng lệnh (đừng tự "chọn ngẫu nhiên" trong đầu — sẽ lặp lại mấy icon quen),
+`n` = số task trong lô; các icon trong cùng lô **không trùng nhau**:
+
+```bash
+python3 -c "import random,sys;print(' '.join(random.sample('📘 📗 📙 📕 📓 📒 📝 ✏️ 🖊️ 📌 📎 🧠 💡 🔍 🧩 🎯 🚀 ⚡ 🔥 🌱 🌟 🍀 🧪 🔬 🛠️ ⚙️ 💻 🖥️ 🗂️ 📊 🧭 🏁 ⏳ 🎓 🦉 🐢 🐙 🦊 🍵 ☕'.split(),int(sys.argv[1]))))" <n>
+```
+
+Chỉ đặt icon lúc **tạo** — không đổi icon của task đã có (người dùng có thể đã tự chọn). Icon ghi trong
+bảng xem trước, cột *Task* (vd `🧩 ANTT: Bài tập 8`).
 
 Tên loại việc trong tiêu đề giữ đúng cách giảng viên gọi: `Bài tập 5`, `Bài thực hành 3`, `Đồ án 1`.
 

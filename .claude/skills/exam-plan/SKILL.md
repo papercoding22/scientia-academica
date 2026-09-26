@@ -164,6 +164,7 @@ Thứ tự **Notion trước, Calendar sau**, vì sự kiện cần link trang N
 **1. Notion** (`notion-create-pages` lên data source ☕ Tasks; schema đọc bằng `notion-fetch` đầu phiên):
 
 - `Category = University`, `Status = To Do`, `Priority` theo bước 5, `Deadline` datetime `+07:00`, **không gắn 📺 Projects**.
+- `icon` emoji ngẫu nhiên cho mỗi trang, không trùng trong lô — bốc bằng lệnh ở `notion-tasks` → *Map property*.
 - Nội dung trang **đúng template** ở `notion-tasks` (Mô tả · Kết quả đầu ra · Các bước · Phụ thuộc · Nhật ký), điền sẵn, không để trống.
 - Task đã có trong `admin/notion-map.json` (chạy lại lần 2) → **cập nhật**, không tạo trùng.
 
