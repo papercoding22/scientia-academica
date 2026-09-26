@@ -242,13 +242,18 @@ không tạo/dời sự kiện); *"chỉ lịch"* → bỏ phần Notion.
 Dòng quá hạn trong repo mà chưa có file nộp → vẫn tạo task `High`, ghi vào Notes
 *"quá hạn — kiểm tra đã nộp chưa"*; **không** tạo sự kiện Calendar cho hạn đã qua.
 
-Bảng xem trước có thêm cột **Calendar** để người dùng thấy sự kiện nào sẽ tạo/dời.
+Bảng xem trước có thêm cột **Calendar** để người dùng thấy sự kiện nào sẽ tạo/dời, và **dòng cuối luôn là**
+`↻ tính lại Tổng quan` của `admin/tasks-<kỳ>.md` — kể cả khi không có thay đổi nào khác.
 
 ### 3. Duyệt → ghi → cập nhật map
 
 Thứ tự **Notion trước, Calendar sau** — mô tả sự kiện cần link trang Notion. Ghi xong mỗi lô
 thì lưu `page`, `deadline`, `event` vào `admin/notion-map.json` ngay. Sửa file `tasks-<kỳ>.md`
-(kéo trạng thái về, thêm khoá) trong cùng lượt, rồi chạy `scripts/tasks-overview.py` để tính lại mục **Tổng quan**.
+(kéo trạng thái về, thêm khoá) trong cùng lượt.
+
+**Luôn** chạy `scripts/tasks-overview.py admin/tasks-<kỳ>.md` ở cuối mỗi lượt sync — **kể cả khi file không có
+thay đổi nào khác**. Tổng quan tính *còn N ngày* và nhóm *Trễ tiến độ* theo ngày chạy, nên chỉ cần qua một ngày
+là nó cũ đi. Commit nếu file đổi (`admin: tính lại Tổng quan` khi chỉ có Tổng quan đổi).
 
 ---
 
@@ -307,7 +312,7 @@ Múi giờ `Asia/Ho_Chi_Minh`. Sau lần ghi đầu tiên trong phiên, `get_eve
 
 ## Commit và báo lại
 
-Chỉ commit khi file tracked thay đổi (`admin/tasks-<kỳ>.md`, README môn/bài). `notion-map.json` không bao giờ vào git.
+Chỉ commit khi file tracked thay đổi (`admin/tasks-<kỳ>.md` — kể cả khi chỉ mục Tổng quan đổi —, README môn/bài). `notion-map.json` không bao giờ vào git.
 
 ```
 <MÃ MÔN>: đồng bộ Notion + Calendar — <n> task mới, <m> đã nộp
