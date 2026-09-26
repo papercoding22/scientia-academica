@@ -117,6 +117,17 @@ Tên trong source → compiler tạo mã → linker/loader chuẩn bị → th�
 
 **Chốt:** đọc đúng *dạng biểu diễn* ở câu 15/23c và đúng *thời điểm binding* ở câu 16. Không lấy hành vi của bundler TypeScript để suy ra binding của hệ điều hành.
 
+![Mind map phân biệt các kiểu địa chỉ và ba thời điểm address binding: compile time, load time, execution time](images/address-types-binding-mindmap.png)
+
+Mind map do AI tạo dựa trên slide C7 s12, s18–s22. Các đáp án câu 15, 16, 23c là đáp án suy luận từ slide; đề mẫu không có đáp án chính thức.
+
+[SVG chỉnh sửa](images/address-types-binding-mindmap.svg)
+
+**Đọc hình:**
+
+- **Nhánh trái:** phân biệt các kiểu địa chỉ; symbolic và logical không dùng thay thế tùy ý.
+- **Nhánh phải:** so sánh ba thời điểm binding và hệ quả khi đổi vị trí nạp; đây là ba lựa chọn, không phải ba bước bắt buộc nối tiếp.
+
 ### 2.2. Dynamic loading và dynamic linking — câu 18
 
 **Trực giác:** phần ít dùng thì có thể chờ đến lúc cần mới mang vào.
