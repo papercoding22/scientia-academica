@@ -121,8 +121,11 @@ chèn ảnh biết là sai hoặc dùng caption để chữa một mũi tên/tr�
   `images/<mechanism>-mechanism.png` cạnh note; nếu dựng vector, lưu thêm SVG.
   Không ghi vào `materials/`, `lectures/_raw/` hoặc `brief/`.
 - Alt text nêu diễn biến chính. Caption ghi ảnh do AI tạo, nguồn kiến thức đã
-  đối chiếu, ví dụ tự đặt và giả thiết quan trọng. Thêm “Đọc hình” ngắn nếu cần
-  chỉ hướng đọc; không gán ảnh mới thành slide của giảng viên.
+  đối chiếu, ví dụ tự đặt và giả thiết quan trọng; không gán ảnh mới thành slide
+  của giảng viên.
+- Nếu cần phần **Đọc hình**, đặt nhãn `**Đọc hình:**` trên dòng riêng, chừa một
+  dòng trống rồi trình bày bằng **bullet list**. Mỗi bullet nêu một bước hoặc
+  một ý, có thể mở đầu bằng nhãn đậm như **Hướng đọc**, **Gọi và nạp**, **Mũi tên**.
 - Kiểm tra file mở được, link tương đối đúng, không trỏ tới file tạm. Chạy
   `scripts/toc.py check` cho Markdown sửa và `git diff --check`; thêm/đổi heading
   thì sinh mục lục bằng `scripts/toc.py gen`. Phân biệt việc xem ảnh với xem
