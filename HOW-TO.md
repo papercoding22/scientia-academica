@@ -494,7 +494,12 @@ scripts/peek.py <file>                   # xem nhanh nội dung .pdf/.docx/.pptx
 scripts/slides-to-md.py --course IT007   # dựng bộ đệm text của slide để grep
 scripts/toc.py check <file>              # kiểm tra link mục lục còn đúng không
 scripts/toc.py gen <file>                # sinh lại mục lục sau khi thêm mục mới
+python3 scripts/note-image.py doctor     # kiểm tra renderer cho các skill hình ảnh
 ```
+
+**Tạo hình dùng lại nhanh:** [hướng dẫn note-image](scripts/note-image.md) có mẫu
+concept, mechanism, mind map; lệnh SVG → PNG và sinh Markdown với bullet **Đọc hình**.
+Các skill hình ảnh dùng chung script này. Vẫn mở PNG để kiểm tra trước khi chèn note.
 
 ---
 

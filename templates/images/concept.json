@@ -1,0 +1,14 @@
+{
+  "kind": "concept",
+  "title": "Khái niệm — mô hình ánh xạ",
+  "subtitle": "Mẫu bố cục; thay nhãn và đối chiếu nguồn trước khi dùng trong note.",
+  "width": 1100,
+  "height": 440,
+  "elements": [
+    {"type": "rect", "x": 70, "y": 150, "width": 300, "height": 150, "text": "Đối tượng đầu vào\nA", "fill": "#eff6ff", "color": "#2563eb"},
+    {"type": "rect", "x": 730, "y": 150, "width": 300, "height": 150, "text": "Đối tượng tương ứng\nB", "fill": "#f0fdfa", "color": "#0f766e"},
+    {"type": "arrow", "points": [[390, 225], [710, 225]], "color": "#2563eb"},
+    {"type": "text", "x": 550, "y": 195, "anchor": "middle", "text": "Quy tắc ánh xạ", "font_size": 23},
+    {"type": "text", "x": 550, "y": 375, "anchor": "middle", "text": "Chốt một quan hệ cụ thể; giữ giải thích dài trong note.", "font_size": 22}
+  ]
+}

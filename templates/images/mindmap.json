@@ -1,0 +1,12 @@
+{
+  "kind": "mindmap",
+  "title": "Mind map — một concept",
+  "subtitle": "Mẫu cây ý chính; chọn nhánh theo nội dung, không bắt buộc giữ các nhóm này.",
+  "center": "Tên concept",
+  "branches": [
+    {"text": "Là gì?", "children": ["Một câu định nghĩa ngắn"]},
+    {"text": "Mục đích", "children": ["Vấn đề cần giải quyết"]},
+    {"text": "Thành phần", "children": ["Đối tượng thứ nhất", "Đối tượng thứ hai"]},
+    {"text": "Điểm cần nhớ", "children": ["Điều kiện áp dụng", "Giới hạn dễ nhầm"]}
+  ]
+}

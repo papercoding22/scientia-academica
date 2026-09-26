@@ -1,0 +1,21 @@
+{
+  "kind": "mechanism",
+  "title": "Cơ chế — từ trạng thái trước đến trạng thái sau",
+  "subtitle": "Mẫu cảnh hoạt động; thay thành phần, trạng thái và hành động bằng cơ chế đang học.",
+  "width": 1200,
+  "height": 620,
+  "elements": [
+    {"type": "rect", "x": 40, "y": 130, "width": 500, "height": 380, "fill": "#f8fafc", "color": "#94a3b8"},
+    {"type": "rect", "x": 660, "y": 130, "width": 500, "height": 380, "fill": "#f8fafc", "color": "#94a3b8"},
+    {"type": "text", "x": 70, "y": 170, "text": "1. Trước khi kích hoạt", "bold": true},
+    {"type": "text", "x": 690, "y": 170, "text": "2. Sau khi xử lý", "bold": true},
+    {"type": "rect", "x": 70, "y": 210, "width": 210, "height": 100, "text": "Thành phần A", "color": "#2563eb"},
+    {"type": "rect", "x": 690, "y": 210, "width": 210, "height": 100, "text": "Thành phần A", "color": "#2563eb"},
+    {"type": "rect", "x": 300, "y": 350, "width": 210, "height": 100, "text": "Thành phần B\nChưa nhận dữ liệu", "font_size": 20, "color": "#0f766e", "fill": "#f0fdfa"},
+    {"type": "rect", "x": 920, "y": 350, "width": 210, "height": 100, "text": "Thành phần B\nĐã nhận dữ liệu", "font_size": 20, "color": "#0f766e", "fill": "#ccfbf1"},
+    {"type": "arrow", "points": [[900, 260], [1025, 260], [1025, 338]], "color": "#0f766e"},
+    {"type": "text", "x": 935, "y": 235, "text": "Gửi dữ liệu", "font_size": 18},
+    {"type": "arrow", "points": [[555, 310], [645, 310]], "color": "#475569", "dashed": true},
+    {"type": "text", "x": 600, "y": 565, "anchor": "middle", "text": "Nét đứt: đổi trạng thái theo thời gian · Nét liền: chuyển dữ liệu", "font_size": 21}
+  ]
+}

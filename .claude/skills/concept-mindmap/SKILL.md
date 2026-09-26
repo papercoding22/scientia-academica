@@ -74,6 +74,12 @@ Ba thời điểm là **các lựa chọn**, không phải ba bước bắt bu�
 
 ## 3. Vẽ mind map và xem ảnh thật
 
+**Script dùng chung:** đọc [hướng dẫn note-image](../../../scripts/note-image.md).
+Dùng `init mindmap` để lấy JSON, thay `center`/`branches`, rồi `build` và `render`.
+Layout tự xếp nhánh hai bên, điều chỉnh chiều cao; SVG tự vẽ vẫn dùng `render`
+trực tiếp được. Mặc định xuất vào thư mục tạm để xem trước; chỉ gọi `markdown`
+và chèn note khi người dùng yêu cầu lưu. Không copy script vào thư mục skill.
+
 - Đặt concept ở trung tâm, các nhánh chính tỏa ra hai bên hoặc quanh tâm; nối
   nhánh phụ vào đúng cha. Phân biệt cấp ý bằng vị trí, cỡ chữ và nét nối.
   Đường nối biểu thị quan hệ ý chính–ý phụ, không ngụ ý thứ tự thời gian.

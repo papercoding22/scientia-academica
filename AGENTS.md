@@ -306,6 +306,7 @@ và ghi rõ số trang khi trích. Giáo trình chuẩn hơn transcript Teams.
 | Đồng bộ task University lên Notion | skill **`notion-tasks`** → `.claude/skills/notion-tasks/SKILL.md` |
 | Lập kế hoạch ôn thi → task Notion + Google Calendar | skill **`exam-plan`** → `.claude/skills/exam-plan/SKILL.md` |
 | Sinh / kiểm tra mục lục | `scripts/toc.py gen\|check <file>` (xem § 2b) |
+| Dựng SVG, render PNG và sinh Markdown cho các skill hình ảnh | `python3 scripts/note-image.py` — [hướng dẫn](scripts/note-image.md) |
 | Tìm file sai chỗ / sai tên | `scripts/check-layout.sh [--course <mã>]` |
 | Xem nhanh nội dung .pdf/.docx/.pptx/.xlsx/.vtt | `scripts/peek.py <file>` |
 | Dựng bộ đệm text của PDF trong `materials/` để `grep` | `scripts/slides-to-md.py [--course <mã>]` |

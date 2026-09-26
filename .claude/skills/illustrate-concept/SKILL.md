@@ -75,6 +75,12 @@ là một ví dụ cơ chế, không phải định nghĩa hay bảo đảm củ
 
 ## 3. Tạo ảnh và kiểm tra trực quan
 
+**Script dùng chung:** với nhánh SVG, đọc [hướng dẫn note-image](../../../scripts/note-image.md).
+Dùng `python3 scripts/note-image.py init concept --output <spec.json>` để lấy khung,
+`build` để dựng SVG, rồi `render` để xuất PNG đúng tỉ lệ. SVG tự vẽ có thể gọi
+`render` trực tiếp; không cần ép bố cục vào mẫu. Sau khi xem PNG, dùng `markdown`
+để sinh link/caption và bullet **Đọc hình**; skill vẫn chọn vị trí chèn theo mục 4.
+
 **Infographic có minh họa như L05:** nếu môi trường có skill `imagegen`, đọc skill
 đó và dùng công cụ tạo ảnh tích hợp theo hướng dẫn của nó. Không hardcode đường
 dẫn cài đặt, model hay tên tham số chưa được công cụ xác nhận. Nếu dùng môi trường

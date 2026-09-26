@@ -110,6 +110,12 @@ phải được URL-encode đúng trong link; không đổi tên bản gốc ch�
 Giữ sửa đổi hẹp: ảnh, alt text và chú thích cần thiết. Thường không cần heading
 mới; nếu thêm/đổi heading thì cập nhật mục lục bằng `scripts/toc.py gen <note>`.
 
+**Sinh block nhanh:** dùng `python3 scripts/note-image.py markdown <ảnh> --note
+<note.md> --alt '...'`, thêm `--caption` và từng `--read` khi cần bullet **Đọc hình**.
+Xem [hướng dẫn dùng chung](../../../scripts/note-image.md). Lệnh kiểm tra file,
+URL-encode link tương đối và in Markdown; không copy ảnh hay sửa note. Chọn đúng
+vị trí và kiểm tra trùng theo skill này trước khi chèn. Không render lại ảnh có sẵn.
+
 ## 4. Kiểm tra và bàn giao
 
 - Kiểm tra đường dẫn ảnh từ thư mục note trỏ tới đúng file, file mở được, không

@@ -88,6 +88,12 @@ gọi đầu mới tìm địa chỉ thì ghi rõ **lazy binding**. Đừng bi�
 
 ## 4. Tạo ảnh và kiểm tra cơ chế
 
+**Script dùng chung:** đọc [hướng dẫn note-image](../../../scripts/note-image.md)
+khi dựng SVG. `init mechanism` tạo khung cảnh trước/sau để sửa; `build` dựng SVG,
+`render` xuất PNG. Có thể render SVG tự vẽ để thể hiện đúng cơ chế phức tạp.
+`markdown --read ...` sinh block với bullet **Đọc hình**, không tự sửa note.
+Mẫu chỉ giúp bố trí thành phần; diễn biến và ý nghĩa mũi tên vẫn phải đối chiếu nguồn.
+
 Chọn công cụ theo hình cần tạo và yêu cầu người dùng:
 
 - Hình minh họa có vật thể, không gian hoặc hình cắt lớp: dùng skill `imagegen`
