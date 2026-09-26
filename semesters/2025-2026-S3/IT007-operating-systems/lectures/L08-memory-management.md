@@ -492,21 +492,15 @@ Slide s32 giải thích ví dụ trên: quản lý một khoảng trống chỉ 
 
 **Minh hoạ:**
 
-```
-Phân mảnh NGOẠI (chỗ phí nằm giữa):          Phân mảnh NỘI (chỗ phí nằm trong):
-┌──────┐                                      ┌──────────────┐
-│  OS  │                                      │      OS      │
-├──────┤                                      ├──────────────┤
-│  P1  │                                      │ P (18,462 B) │ ◀ dùng
-├──────┤ ◀ lỗ 30K                             │ ░░ 2 B ░░░░░ │ ◀ thừa, không ai dùng được
-├──────┤                                      ├──────────────┤  (khối cấp = 18,464 B)
-│  P2  │
-├──────┤ ◀ lỗ 40K     tổng 100K nhưng
-├──────┤              không lỗ nào ≥ 90K
-│  P3  │
-├──────┤ ◀ lỗ 30K
-└──────┘
-```
+![Phân mảnh nội: cấp 16 KiB, dùng 13 KiB, thừa 3 KiB trong khối đã cấp; phân mảnh ngoại: ba lỗ 30, 40, 30 KiB bị các process ngăn cách, tổng 100 KiB nhưng không chứa được yêu cầu 90 KiB liên tục](images/fragmentation-explained.png)
+
+*Hình minh họa do AI dựng dựa trên định nghĩa và ranh giới vùng cấp phát ở [C7 s31–s32](../materials/slides/Copy%20of%20%23Week12-Chapter7%202024.pdf#page=31).
+Analogy và số liệu trong hình là ví dụ tự đặt, bỏ qua overhead (chi phí quản lý); 1 KiB = 1024 byte.
+Các khối RAM được vẽ theo tỷ lệ trong từng ví dụ, hai cột dùng tỷ lệ riêng. [Bản SVG để chỉnh sửa](images/fragmentation-explained.svg).*
+
+**Đọc hình:** cột trái, đường viền bao cả 13 KiB đang dùng lẫn 3 KiB thừa — phần thừa vẫn thuộc khối đã cấp cho P.
+Cột phải, các lỗ trống **chưa cấp cho ai** nhưng bị P1, P2 ngăn cách: tổng đủ 90 KiB, lỗ lớn nhất chỉ 40 KiB.
+Chúng vẫn có thể phục vụ yêu cầu nhỏ hơn; thất bại ở đây là cấp **một vùng liên tục 90 KiB**.
 
 #### 💻 Code & thực tế
 
