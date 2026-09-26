@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1760" height="1320" viewBox="0 0 1760 1320" role="img" aria-labelledby="title desc">
+<title id="title">PTBR giúp CPU dùng đúng page table của process Chrome đang chạy</title>
+<desc id="desc">Hai thời điểm trên cùng một lõi CPU. OS chạy Chrome A với PTBR 40960 rồi chuyển sang Chrome B với PTBR 45056. Cùng địa chỉ ảo 4196 cho page 1, offset 100. Khi TLB miss, A đọc entry 40968 lấy frame 7 rồi đọc dữ liệu 28772; B đọc entry 45064 lấy frame 12 rồi đọc dữ liệu 49252. Cả hai page table giữ nguyên địa chỉ, chỉ bảng được chọn thay đổi.</desc>
+<rect x="0" y="0" width="1760" height="1320" rx="0" fill="#fbfcfd" stroke="none" stroke-width="2"/>
+<text x="48" y="63" font-family="Arial, Helvetica, sans-serif" font-size="35" fill="#233b4f" font-weight="700" text-anchor="start">PTBR — CHẠY PROCESS NÀO, DÙNG PAGE TABLE CỦA PROCESS ĐÓ</text>
+<text x="48" y="108" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#536d80" font-weight="400" text-anchor="start">Ví dụ Chrome · Cùng một lõi CPU, hai thời điểm · Bảng trang một cấp · Cả hai lượt đều TLB miss</text>
+<path d="M48 141H1712" fill="none" stroke="#d7e1e8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="48" y="186" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#233b4f" font-weight="700" text-anchor="start">Cùng yêu cầu: địa chỉ ảo 4196 = 1 × 4096 + 100 → page 1, offset 100</text>
+<text x="60" y="248" font-family="Arial, Helvetica, sans-serif" font-size="29" fill="#247e80" font-weight="700" text-anchor="start">01 · OS cho Chrome A chạy</text>
+<rect x="60" y="275" width="760" height="164" rx="12" fill="#eff4f8" stroke="#bcccd8" stroke-width="2"/>
+<text x="80" y="307" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#233b4f" font-weight="700" text-anchor="start">CPU</text>
+<text x="383" y="307" font-family="Arial, Helvetica, sans-serif" font-size="25" fill="#233b4f" font-weight="700" text-anchor="start">MMU · p = 1, d = 100</text>
+<rect x="90" y="329" width="240" height="86" rx="6" fill="#d8efec" stroke="#247e80" stroke-width="2"/>
+<text x="210" y="360" font-family="Arial, Helvetica, sans-serif" font-size="25" fill="#247e80" font-weight="700" text-anchor="middle">PTBR</text>
+<text x="210" y="397" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#247e80" font-weight="700" text-anchor="middle">40960</text>
+<path d="M210 259V318" fill="none" stroke="#b47f20" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="203,306 210,318 217,306" fill="#b47f20"/>
+<text x="225" y="301" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#946212" font-weight="400" text-anchor="start">OS nạp</text>
+<path d="M344 372H371" fill="none" stroke="#247e80" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="359,365 371,372 359,379" fill="#247e80"/>
+<text x="383" y="352" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#536d80" font-weight="400" text-anchor="start">Địa chỉ entry cần đọc:</text>
+<text x="383" y="390" font-family="Arial, Helvetica, sans-serif" font-size="27" fill="#247e80" font-weight="700" text-anchor="start">40960 + 1 × 8 = 40968</text>
+<path d="M680 450V473H36V714H49" fill="none" stroke="#247e80" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="37,707 49,714 37,721" fill="#247e80"/>
+<text x="60" y="516" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#247e80" font-weight="700" text-anchor="start">① Đọc RAM lần 1: lấy frame number</text>
+<text x="60" y="548" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#536d80" font-weight="400" text-anchor="start">Hai page table cùng nằm trong RAM</text>
+<rect x="60" y="570" width="370" height="195" rx="5" fill="#d8efec" stroke="#247e80" stroke-width="3"/>
+<text x="78" y="608" font-family="Arial, Helvetica, sans-serif" font-size="27" fill="#247e80" font-weight="700" text-anchor="start">Page table A</text>
+<text x="78" y="646" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#247e80" font-weight="400" text-anchor="start">Bắt đầu: 40960</text>
+<path d="M60 663H430" fill="none" stroke="#247e80" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="78" y="699" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#247e80" font-weight="400" text-anchor="start">Entry p = 1 · tại 40968</text>
+<text x="78" y="742" font-family="Arial, Helvetica, sans-serif" font-size="27" fill="#247e80" font-weight="700" text-anchor="start">frame number = 7</text>
+<rect x="450" y="570" width="370" height="195" rx="5" fill="#f2f5f8" stroke="#687d8d" stroke-width="1.5"/>
+<text x="468" y="608" font-family="Arial, Helvetica, sans-serif" font-size="27" fill="#687d8d" font-weight="700" text-anchor="start">Page table B</text>
+<text x="468" y="646" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#687d8d" font-weight="400" text-anchor="start">Bắt đầu: 45056</text>
+<path d="M450 663H820" fill="none" stroke="#687d8d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="468" y="699" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#687d8d" font-weight="400" text-anchor="start">Entry p = 1 · tại 45064</text>
+<text x="468" y="742" font-family="Arial, Helvetica, sans-serif" font-size="27" fill="#687d8d" font-weight="700" text-anchor="start">frame number = 12</text>
+<path d="M250 777V824" fill="none" stroke="#247e80" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="243,812 250,824 257,812" fill="#247e80"/>
+<text x="268" y="809" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#247e80" font-weight="700" text-anchor="start">f = 7</text>
+<rect x="60" y="837" width="760" height="95" rx="8" fill="#f8fafc" stroke="#b8cad7" stroke-width="2"/>
+<text x="80" y="874" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#233b4f" font-weight="700" text-anchor="start">MMU giữ offset 100, tính địa chỉ dữ liệu:</text>
+<text x="80" y="916" font-family="Arial, Helvetica, sans-serif" font-size="29" fill="#247e80" font-weight="700" text-anchor="start">7 × 4096 + 100 = 28772</text>
+<path d="M440 944V988" fill="none" stroke="#247e80" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="433,976 440,988 447,976" fill="#247e80"/>
+<text x="462" y="972" font-family="Arial, Helvetica, sans-serif" font-size="25" fill="#247e80" font-weight="700" text-anchor="start">② Đọc RAM lần 2</text>
+<rect x="150" y="1002" width="580" height="115" rx="8" fill="#d8efec" stroke="#247e80" stroke-width="2"/>
+<text x="175" y="1044" font-family="Arial, Helvetica, sans-serif" font-size="27" fill="#247e80" font-weight="700" text-anchor="start">RAM · frame 7 của Chrome A</text>
+<text x="175" y="1088" font-family="Arial, Helvetica, sans-serif" font-size="29" fill="#247e80" font-weight="700" text-anchor="start">Đọc byte dữ liệu tại 28772</text>
+<text x="940" y="248" font-family="Arial, Helvetica, sans-serif" font-size="29" fill="#7552a1" font-weight="700" text-anchor="start">02 · OS cho Chrome B chạy</text>
+<rect x="940" y="275" width="760" height="164" rx="12" fill="#eff4f8" stroke="#bcccd8" stroke-width="2"/>
+<text x="960" y="307" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#233b4f" font-weight="700" text-anchor="start">CPU</text>
+<text x="1263" y="307" font-family="Arial, Helvetica, sans-serif" font-size="25" fill="#233b4f" font-weight="700" text-anchor="start">MMU · p = 1, d = 100</text>
+<rect x="970" y="329" width="240" height="86" rx="6" fill="#eee3f7" stroke="#7552a1" stroke-width="2"/>
+<text x="1090" y="360" font-family="Arial, Helvetica, sans-serif" font-size="25" fill="#7552a1" font-weight="700" text-anchor="middle">PTBR</text>
+<text x="1090" y="397" font-family="Arial, Helvetica, sans-serif" font-size="30" fill="#7552a1" font-weight="700" text-anchor="middle">45056</text>
+<path d="M1090 259V318" fill="none" stroke="#b47f20" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="1083,306 1090,318 1097,306" fill="#b47f20"/>
+<text x="1105" y="301" font-family="Arial, Helvetica, sans-serif" font-size="20" fill="#946212" font-weight="400" text-anchor="start">OS nạp</text>
+<path d="M1224 372H1251" fill="none" stroke="#7552a1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="1239,365 1251,372 1239,379" fill="#7552a1"/>
+<text x="1263" y="352" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#536d80" font-weight="400" text-anchor="start">Địa chỉ entry cần đọc:</text>
+<text x="1263" y="390" font-family="Arial, Helvetica, sans-serif" font-size="27" fill="#7552a1" font-weight="700" text-anchor="start">45056 + 1 × 8 = 45064</text>
+<path d="M1560 450V473H1520V556" fill="none" stroke="#7552a1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="1513,544 1520,556 1527,544" fill="#7552a1"/>
+<text x="940" y="516" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="#7552a1" font-weight="700" text-anchor="start">① Đọc RAM lần 1: lấy frame number</text>
+<text x="940" y="548" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#536d80" font-weight="400" text-anchor="start">Hai page table cùng nằm trong RAM</text>
+<rect x="940" y="570" width="370" height="195" rx="5" fill="#f2f5f8" stroke="#687d8d" stroke-width="1.5"/>
+<text x="958" y="608" font-family="Arial, Helvetica, sans-serif" font-size="27" fill="#687d8d" font-weight="700" text-anchor="start">Page table A</text>
+<text x="958" y="646" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#687d8d" font-weight="400" text-anchor="start">Bắt đầu: 40960</text>
+<path d="M940 663H1310" fill="none" stroke="#687d8d" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="958" y="699" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#687d8d" font-weight="400" text-anchor="start">Entry p = 1 · tại 40968</text>
+<text x="958" y="742" font-family="Arial, Helvetica, sans-serif" font-size="27" fill="#687d8d" font-weight="700" text-anchor="start">frame number = 7</text>
+<rect x="1330" y="570" width="370" height="195" rx="5" fill="#eee3f7" stroke="#7552a1" stroke-width="3"/>
+<text x="1348" y="608" font-family="Arial, Helvetica, sans-serif" font-size="27" fill="#7552a1" font-weight="700" text-anchor="start">Page table B</text>
+<text x="1348" y="646" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#7552a1" font-weight="400" text-anchor="start">Bắt đầu: 45056</text>
+<path d="M1330 663H1700" fill="none" stroke="#7552a1" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="1348" y="699" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#7552a1" font-weight="400" text-anchor="start">Entry p = 1 · tại 45064</text>
+<text x="1348" y="742" font-family="Arial, Helvetica, sans-serif" font-size="27" fill="#7552a1" font-weight="700" text-anchor="start">frame number = 12</text>
+<path d="M1520 777V824" fill="none" stroke="#7552a1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="1513,812 1520,824 1527,812" fill="#7552a1"/>
+<text x="1538" y="809" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#7552a1" font-weight="700" text-anchor="start">f = 12</text>
+<rect x="940" y="837" width="760" height="95" rx="8" fill="#f8fafc" stroke="#b8cad7" stroke-width="2"/>
+<text x="960" y="874" font-family="Arial, Helvetica, sans-serif" font-size="24" fill="#233b4f" font-weight="700" text-anchor="start">MMU giữ offset 100, tính địa chỉ dữ liệu:</text>
+<text x="960" y="916" font-family="Arial, Helvetica, sans-serif" font-size="29" fill="#7552a1" font-weight="700" text-anchor="start">12 × 4096 + 100 = 49252</text>
+<path d="M1320 944V988" fill="none" stroke="#7552a1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="1313,976 1320,988 1327,976" fill="#7552a1"/>
+<text x="1342" y="972" font-family="Arial, Helvetica, sans-serif" font-size="25" fill="#7552a1" font-weight="700" text-anchor="start">② Đọc RAM lần 2</text>
+<rect x="1030" y="1002" width="580" height="115" rx="8" fill="#eee3f7" stroke="#7552a1" stroke-width="2"/>
+<text x="1055" y="1044" font-family="Arial, Helvetica, sans-serif" font-size="27" fill="#7552a1" font-weight="700" text-anchor="start">RAM · frame 12 của Chrome B</text>
+<text x="1055" y="1088" font-family="Arial, Helvetica, sans-serif" font-size="29" fill="#7552a1" font-weight="700" text-anchor="start">Đọc byte dữ liệu tại 49252</text>
+<path d="M865 225V1135" fill="none" stroke="#d7e1e8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="6 8"/>
+<text x="48" y="1170" font-family="Arial, Helvetica, sans-serif" font-size="28" fill="#233b4f" font-weight="700" text-anchor="start">Đổi process → OS đổi PTBR; hai page table không bị dời sang vị trí khác.</text>
+<path d="M48 1199H1712" fill="none" stroke="#d7e1e8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M52 1230H97" fill="none" stroke="#b47f20" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="85,1223 97,1230 85,1237" fill="#b47f20"/>
+<text x="112" y="1238" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#536d80" font-weight="400" text-anchor="start">OS ghi thanh ghi</text>
+<path d="M425 1230H470" fill="none" stroke="#247e80" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<polygon points="458,1223 470,1230 458,1237" fill="#247e80"/>
+<text x="486" y="1238" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#536d80" font-weight="400" text-anchor="start">Luồng tìm entry rồi đọc dữ liệu</text>
+<text x="1080" y="1238" font-family="Arial, Helvetica, sans-serif" font-size="23" fill="#536d80" font-weight="700" text-anchor="start">Entry ≠ byte dữ liệu cần đọc</text>
+<text x="48" y="1280" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#667f90" font-weight="400" text-anchor="start">Page/frame = 4096 byte · Entry = 8 byte · Ánh xạ hợp lệ, page đã ở RAM · Chỉ trích entry p = 1 của mỗi bảng.</text>
+<text x="48" y="1311" font-family="Arial, Helvetica, sans-serif" font-size="21" fill="#667f90" font-weight="400" text-anchor="start">AI dựng theo ví dụ tự đặt trong L08 và C7 s49–s51; không phải dữ liệu đo từ Chrome, không mô tả đầy đủ phần cứng thực.</text>
+</svg>

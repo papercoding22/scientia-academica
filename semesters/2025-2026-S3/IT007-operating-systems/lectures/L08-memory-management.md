@@ -857,17 +857,21 @@ Giả sử **Chrome A truy cập địa chỉ ảo 4196 và TLB miss**:
 3. Đọc entry tại địa chỉ vật lý **40968** → nhận được **frame number = 7**.
 4. Giữ nguyên offset; đọc dữ liệu tại địa chỉ vật lý `7 × 4096 + 100 = ` **28772**.
 
-```text
-OS chọn Chrome A → PTBR = 40960
+![Hai thời điểm trên cùng một lõi CPU: OS chạy Chrome A với PTBR 40960 rồi Chrome B với PTBR 45056; cùng địa chỉ ảo 4196 và TLB miss, A đọc entry 40968 lấy frame 7 rồi đọc dữ liệu 28772, B đọc entry 45064 lấy frame 12 rồi đọc dữ liệu 49252](images/chrome-ptbr-mechanism.png)
 
-Logical 4196 → page 1, offset 100
-                       │ TLB miss
-                       ▼
-   Tra page table: 40960 + 1 × 8 = 40968
-                       │ entry chứa frame number 7
-                       ▼
-   Đọc dữ liệu: 7 × 4096 + 100 = 28772
-```
+*Hình minh họa cơ chế do AI dựng dựa trên [C7 s49–s51](../materials/slides/Copy%20of%20%23Week12-Chapter7%202024.pdf#page=49)
+và ví dụ Chrome A/B tự đặt ở trên; các phép tính đã kiểm bằng code. Hai cột là hai thời điểm trên **cùng một lõi CPU**, không phải hai CPU chạy đồng thời.
+Giả thiết: bảng trang một cấp, page/frame 4096 byte, entry 8 byte, ánh xạ hợp lệ và page đã ở RAM; cả hai lượt truy cập đều TLB miss.
+Chỉ trích entry của page 1 và vùng dữ liệu liên quan; đây không phải dữ liệu đo hay mô hình đầy đủ của Chrome thực tế.
+[Bản SVG để chỉnh sửa](images/chrome-ptbr-mechanism.svg).*
+
+**Đọc hình:**
+
+- **OS thiết lập PTBR:** khi chạy Chrome A, OS ghi `40960`; khi chuyển sang Chrome B, OS ghi `45056`. PTBR chứa **địa chỉ bắt đầu page table** của process đang chạy, không chứa frame number của page đang truy cập.
+- **Chrome A — cột trái:** MMU dùng `p = 1` để tìm entry tại `40960 + 1 × 8 = 40968`. Đọc entry được `f = 7`; giữ `d = 100`, rồi đọc byte dữ liệu tại `7 × 4096 + 100 = 28772`.
+- **Chrome B — cột phải:** cùng địa chỉ ảo `4196` cho `p = 1, d = 100`, nhưng PTBR mới dẫn tới entry `45056 + 1 × 8 = 45064`. Entry trả về `f = 12`, nên byte cần đọc nằm tại `12 × 4096 + 100 = 49252`.
+- **Hai lần đọc RAM:** lần 1 đọc **entry trong page table** để tìm frame; lần 2 đọc **byte dữ liệu** mà process yêu cầu. Mũi tên vàng là OS ghi thanh ghi; mũi tên theo màu process là luồng tra địa chỉ rồi đọc dữ liệu.
+- **Điều giữ nguyên:** cả hai page table vẫn ở chỗ cũ trong RAM; chuyển process chỉ đổi bảng được chọn qua PTBR trong ví dụ này, không dời hay sao chép page table. Offset vẫn là `100` ở cả hai lượt.
 
 | Lần truy cập RAM khi TLB miss | Đọc gì? |
 |---|---|
