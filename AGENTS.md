@@ -305,6 +305,7 @@ và ghi rõ số trang khi trích. Giáo trình chuẩn hơn transcript Teams.
 | Dọn file thả tay vào repo | skill **`tidy-files`** → `.claude/skills/tidy-files/SKILL.md` |
 | Đồng bộ task University lên Notion | skill **`notion-tasks`** → `.claude/skills/notion-tasks/SKILL.md` |
 | Tóm tắt việc cần làm, deadline, lịch thi và mốc nhóm | skill **`task-summary`** → `.claude/skills/task-summary/SKILL.md` |
+| Cập nhật trạng thái task (đã nộp, đang làm, xong buổi ôn) → repo + Notion | skill **`task-status`** → `.claude/skills/task-status/SKILL.md` |
 | Lập kế hoạch ôn thi → task Notion + Google Calendar | skill **`exam-plan`** → `.claude/skills/exam-plan/SKILL.md` |
 | Sinh / kiểm tra mục lục | `scripts/toc.py gen\|check <file>` (xem § 2b) |
 | Dựng SVG, render PNG và sinh Markdown cho các skill hình ảnh | `python3 scripts/note-image.py` — [hướng dẫn](scripts/note-image.md) |

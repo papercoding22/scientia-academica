@@ -9,6 +9,8 @@ Repo quyết định **có việc gì, hạn khi nào**. Notion quyết định 
 Google Calendar chỉ **hiển thị và nhắc** — không quyết định gì.
 Skill này là cầu nối — không bao giờ để hai bên cùng quyết một thứ.
 
+Chỉ đổi trạng thái một vài task người dùng vừa nhắc (*"đã nộp bài 8"*) → dùng skill **`task-status`**, không cần quét toàn bộ.
+
 ```
         repo (git)                              Notion ☕ Tasks
  ┌─────────────────────────┐   đẩy lên   ┌──────────────────────┐

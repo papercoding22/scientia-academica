@@ -25,6 +25,7 @@ Chi tiết từng skill ở `.claude/skills/<tên>/SKILL.md`.
 | [`exam-study-guide`](.claude/skills/exam-study-guide/SKILL.md) | Chắt lọc kiến thức một chương từ đề mẫu, kèm đáp án, giải thích từng câu và dẫn chiếu nguồn | *tổng hợp kiến thức chương 5 IT007 từ đề mẫu và hướng dẫn từng câu* |
 | [`exam-plan`](.claude/skills/exam-plan/SKILL.md) | Đọc lịch, xếp buổi ôn lùi từ ngày thi, tạo task Notion + sự kiện Google Calendar | *lên kế hoạch ôn thi IT007 và IE105* |
 | [`notion-tasks`](.claude/skills/notion-tasks/SKILL.md) | Đồng bộ bài nộp, lịch thi từ `admin/tasks-<kỳ>.md` lên Notion và Google Calendar; tạo task lẻ | *đồng bộ Notion* · *đồng bộ lịch* |
+| [`task-status`](.claude/skills/task-status/SKILL.md) | Cập nhật trạng thái task theo lời bạn: ghi `admin/tasks-<kỳ>.md` + README bài, rồi đẩy Status lên Notion | *đã nộp bài tập 8 IE105* · *xong buổi ôn chương 7* |
 | [`task-summary`](.claude/skills/task-summary/SKILL.md) | Tóm tắt việc cần làm, hạn nộp, lịch thi và mốc nhóm; chỉ rõ quá hạn/chưa rõ hạn | *tóm tắt task và deadline tuần này* |
 | [`tidy-files`](.claude/skills/tidy-files/SKILL.md) | Đổi tên, xếp file thả tay vào đúng thư mục | *tôi vừa thả file vào IE103, dọn giúp* |
 
@@ -64,6 +65,7 @@ flowchart LR
 | Có đồ án | `new-project` → `notion-tasks` | `projects/prjN/` · `admin/tasks-<kỳ>.md` · Notion |
 | Ôn thi | `exam-map` · `exam-study-guide` · `exam-plan` | `exam-prep/` · Notion · Google Calendar (lịch `Work`) |
 | Quản lý việc | `notion-tasks` | `admin/tasks-<kỳ>.md` → Notion ☕ Tasks · Google Calendar `Work` |
+| Vừa nộp bài / xong buổi ôn | `task-status` | `admin/tasks-<kỳ>.md` · README bài · Notion `Status` |
 | Xem việc cần làm và deadline | `task-summary` | báo cáo trong chat; snapshot khi yêu cầu lưu |
 | Lỡ thả file lung tung | `tidy-files` | đúng thư mục theo `AGENTS.md` § 14 |
 

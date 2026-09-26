@@ -479,6 +479,14 @@ lập kế hoạch ôn thi ANTT trên Notion
 tạo task HDH xem lại video buổi 6, hạn thứ 7
 ```
 Kéo thẻ sang **Done** trên Notion → lần đồng bộ sau repo tự đánh dấu ✅.
+
+**Vừa nộp bài hay xong buổi ôn** — nói thẳng, skill [task-status](.claude/skills/task-status/SKILL.md)
+sửa trạng thái trong `admin/tasks-<kỳ>.md`, README của bài, rồi đẩy `Status` lên Notion (xem trước rồi mới ghi):
+```
+đã nộp bài tập 8 IE105
+xong buổi ôn chương 7 và 8 HDH
+bài 3A IE105 được 9 điểm
+```
 Ánh xạ nằm ở `admin/notion-map.json` (gitignore — không commit).
 
 **Cuối kỳ**
