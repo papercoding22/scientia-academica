@@ -456,7 +456,13 @@ tạo thêm 20 flashcard cho phần memory management
 ```
 tuần này tôi phải nộp gì
 môn nào đang bị bỏ bê nhất
+$task-summary tuần này
+$task-summary IE101, gồm các mốc nhóm
 ```
+
+Skill [task-summary](.claude/skills/task-summary/SKILL.md) tổng hợp việc cần làm,
+hạn nộp, lịch thi và mốc nhóm thành bảng có nguồn; đánh dấu việc quá hạn và chưa
+biết hạn. Mặc định xem trong chat, không tạo task Notion hay sự kiện Calendar.
 
 **Notion (☕ Tasks)** — repo giữ *hạn*, Notion giữ *đã xong chưa*. AI luôn in bảng xem trước rồi mới ghi.
 ```
