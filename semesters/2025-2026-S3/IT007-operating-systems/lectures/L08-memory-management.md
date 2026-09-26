@@ -878,26 +878,87 @@ Chỉ trích entry của page 1 và vùng dữ liệu liên quan; đây không p
 | **Lần 1 — địa chỉ 40968** | Entry trong page table, để biết page 1 nằm ở frame nào |
 | **Lần 2 — địa chỉ 28772** | Byte dữ liệu mà Chrome A thực sự muốn đọc |
 
-Nếu **TLB hit** đã cho ánh xạ page 1 → frame 7 của Chrome A, bỏ qua lần đọc entry tại 40968; vẫn phải đọc dữ liệu tại 28772. Đó là lý do trong mô hình này **hit tốn `ε + x`, miss tốn `ε + 2x`**. Mô hình minh họa vai trò các thành phần, không mô tả đầy đủ bảng trang nhiều cấp và cache của máy chạy Chrome thực tế.
+**TLB hit và TLB miss khác nhau ở bước nào?** [C7 s50–s53]
 
-**Ví dụ nhỏ nhất** — 10 lần truy cập, `x = 100 ns`, `ε = 20 ns`, TLB trúng 8 lần (α = 0.8):
+TLB giúp tìm nhanh **page nằm ở frame nào**; nó không chứa byte dữ liệu mà Chrome muốn đọc. Giống một tờ ghi chú đã ghi vị trí cuốn sách: biết vị trí thì khỏi tra mục lục, nhưng **vẫn phải đến kệ lấy sách**.
 
-| Loại | Số lần | Mỗi lần | Tổng |
+Giữ yêu cầu của Chrome A: địa chỉ ảo **4196** → `p = 1, d = 100`. Ta so sánh hai khả năng cho cùng yêu cầu này:
+
+- **TLB hit — tìm thấy ánh xạ:** tra TLB được ngay `page 1 → frame 7`. MMU không cần vào RAM đọc entry tại **40968**. Dùng `f = 7, d = 100` để tìm địa chỉ vật lý **28772**, rồi **vẫn vào RAM đọc dữ liệu tại đó**.
+- **TLB miss — không tìm thấy ánh xạ:** đã tra TLB nhưng chưa biết frame. MMU phải vào RAM đọc entry tại **40968** để lấy `f = 7`, rồi vào RAM lần nữa đọc dữ liệu tại **28772**.
+- **Điểm chung:** cả hai đều tra TLB và đều đọc dữ liệu. Miss chỉ tốn thêm **một lần đọc page table trong RAM**.
+
+**Gắn thời gian vào từng thao tác:** `ε = 20 ns` là thời gian tra TLB; `x = 100 ns` là thời gian **một lần đọc RAM**, dù đọc entry hay đọc dữ liệu.
+
+| Thao tác cho một yêu cầu đọc dữ liệu | TLB hit | TLB miss |
+|---|---:|---:|
+| Tra TLB để tìm ánh xạ page → frame | `ε = 20 ns` | `ε = 20 ns` |
+| Đọc entry tại RAM 40968 để tìm frame | Bỏ qua: `0 ns` | `x = 100 ns` |
+| Đọc dữ liệu tại RAM 28772 | `x = 100 ns` | `x = 100 ns` |
+| **Tổng thời gian** | **`ε + x = 120 ns`** | **`ε + 2x = 220 ns`** |
+
+**Minh họa — cùng địa chỉ cần đọc, hai đường đi:**
+
+```text
+Chrome A: logical 4196 → page 1, offset 100
+                            │
+                            ▼
+                     Tra TLB: 20 ns
+                            │
+             ┌──────────────┴──────────────┐
+             ▼                             ▼
+            HIT                           MISS
+      Có ngay frame 7               Chưa biết frame
+             │                             │
+             │                    RAM: đọc entry 40968
+             │                       100 ns → frame 7
+             │                             │
+             ▼                             ▼
+  RAM: đọc dữ liệu 28772          RAM: đọc dữ liệu 28772
+          100 ns                         100 ns
+             │                             │
+             ▼                             ▼
+    Tổng: 20 + 100                 Tổng: 20 + 100 + 100
+        = 120 ns                         = 220 ns
+```
+
+**Đọc hình:**
+
+- **Bắt đầu:** luôn tra TLB trước; hit hay miss đều đã tốn `20 ns`.
+- **Nhánh hit:** bỏ qua việc đọc page table, đi thẳng đến bước đọc dữ liệu → **1 lần vào RAM**.
+- **Nhánh miss:** đọc page table trước, đọc dữ liệu sau → **2 lần vào RAM**.
+- **Kết quả:** hai nhánh đều đọc cùng byte tại **28772**; khác nhau ở thời gian tìm ra địa chỉ đó.
+
+**Ví dụ 10 yêu cầu đọc dữ liệu — vì sao trung bình là 140 ns?** [C7 s53–s54]
+
+Giả sử quan sát **10 yêu cầu truy cập từ chương trình**, có **8 hit và 2 miss**, nên `α = 8/10 = 0.8`. Đây là 10 yêu cầu cần lấy dữ liệu, **không phải chỉ 10 lần đọc RAM**. Các yêu cầu có thể tới các page khác nhau; không giả định đọc lặp cùng địa chỉ 4196 thì cứ 10 lần sẽ có đúng 2 miss.
+
+| Loại yêu cầu | Số yêu cầu | Thời gian mỗi yêu cầu (ns) | Tổng thời gian (ns) |
 |---|---:|---:|---:|
-| Hit | 8 | 20 + 100 = 120 | 960 |
-| Miss | 2 | 20 + 100 + 100 = 220 | 440 |
-| **Trung bình** | 10 | | **1400 / 10 = 140 ns** |
+| Hit | 8 | `20 + 100 = 120` | `8 × 120 = 960` |
+| Miss | 2 | `20 + 100 + 100 = 220` | `2 × 220 = 440` |
+| **Cộng** | **10** | — | **`960 + 440 = 1400`** |
 
-Khớp công thức (2 − 0.8) × 100 + 20 = 140.
+- **Tổng thời gian:** thực hiện 10 yêu cầu hết `1400 ns` trong mô hình tính của bài.
+- **EAT — thời gian trung bình mỗi yêu cầu:** `1400 / 10 = ` **140 ns**.
+- **Ý nghĩa:** một yêu cầu hit tốn `120 ns`, một yêu cầu miss tốn `220 ns`; **140 ns là trung bình**, không phải thời gian của từng yêu cầu.
+- **Kiểm tra bằng cách đếm thao tác:** 10 lần tra TLB và `8 × 1 + 2 × 2 = 12` lần đọc RAM → `10 × 20 + 12 × 100 = 1400 ns`.
 
-**Minh hoạ** — hai nhánh hit/miss [C7 s50–s51]:
+**Từ ví dụ sang công thức:** mỗi loại thời gian được nhân với tỷ lệ xuất hiện của nó.
 
+```text
+EAT = α × thời gian hit + (1 − α) × thời gian miss
+    = 0.8 × 120 + 0.2 × 220
+    = 96 + 44
+    = 140 ns
+
+Dạng tổng quát:
+EAT = α(ε + x) + (1 − α)(ε + 2x)
+    = ε + (2 − α)x
+    = 20 + (2 − 0.8) × 100 = 140 ns
 ```
-            ┌──── TLB hit ──── f ──────────────────────────┐
- CPU [p|d] ─┤                                              ├─▶ [f|d] ─▶ RAM (lấy dữ liệu)
-            └──── TLB miss ─▶ RAM: bảng trang[p] (PTBR) ─ f ┘
-                               ▲ tốn thêm một lần vào RAM
-```
+
+**Phạm vi mô hình:** bảng trang một cấp và dữ liệu đã ở RAM; tra TLB rồi đọc RAM theo các bước trên. TLB miss ở đây chỉ là thiếu **ánh xạ trong TLB**, không phải thiếu page trong RAM và không tính thời gian đọc đĩa. Bài chỉ cộng thời gian tra TLB và đọc RAM, không tính riêng phép tính địa chỉ hay đọc thanh ghi PTBR. Đây là mô hình học tập [C7 s49–s54], không mô tả đầy đủ bảng trang nhiều cấp và các cache khác của máy chạy Chrome thực tế.
 
 #### 💻 Code & thực tế
 
