@@ -196,6 +196,20 @@ flowchart TD
 | Sau link (`cal.exe`) | `MOVE R1, (2388)` · `CALL 1547` — vị trí **tương đối** trong load module |
 | Sau load (trong RAM) | `MOVE R1, (22388)` · `CALL 21547` — cộng thêm địa chỉ nạp **20000** |
 
+![Biến a đi từ symbolic trong source, thành relative 2388 trong load module, rồi physical 22388 khi nạp tại 20000; bảng chốt symbolic, logical, relative, physical, absolute](images/address-types-explained.png)
+
+*Hình do AI dựng bằng SVG và xuất PNG, dựa trên [C7 s12, s16, s18]; analogy lấy từ note, bố cục RAM chỉ minh họa, không đúng tỉ lệ.*
+
+[SVG chỉnh sửa](images/address-types-explained.svg)
+
+**Đọc hình:**
+
+- **① Hành trình:** Cùng một biến `a` — ở source là **tên** (symbolic), sau compile vẫn là tên, sau link thành vị trí **tương đối** 2388 trong load module, sau load thành ô **thật** 22388.
+- **② Hai phía:** Bên trái là thế giới chương trình (logical, đo từ đầu module); bên phải là RAM (physical). Mũi tên `+ 20000` là địa chỉ nạp — cầu nối duy nhất giữa hai bên.
+- **Quan hệ thuật ngữ:** relative là **một kiểu** logical (có mốc tính); absolute **tương đương** physical. Không phải bốn khái niệm độc lập.
+- **③ Bảng chốt:** Dùng để ôn câu điền thuật ngữ tiếng Anh (đề mẫu câu 23c).
+- **Lưu ý:** Phép cộng địa chỉ nạp là mô hình relocation của slide; paging đổi địa chỉ theo cách khác (mục 7).
+
 **Minh hoạ** — MMU đổi địa chỉ ở mỗi lần truy cập [C7 s13]:
 
 ```
