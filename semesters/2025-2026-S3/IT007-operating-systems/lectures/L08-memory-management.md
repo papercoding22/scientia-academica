@@ -452,6 +452,17 @@ phần dữ liệu riêng của mỗi process không vì vậy mà trở thành 
 - **Bản trên đĩa:** vẫn còn sau khi nạp.
 - **Phạm vi mô hình:** lược bỏ chi tiết loader và hỗ trợ của OS; không quy định lúc nào mã được giải phóng khỏi RAM.
 
+![Mind map dynamic linking và dynamic loading: là gì, dynamic loading, dynamic linking, stub, lợi ích và điểm dễ nhầm](images/dynamic-linking-loading-mindmap.png)
+
+*Mind map do AI dựng bằng SVG và xuất PNG, chắt lọc từ mục này và [C7 s24–s27].*
+
+[SVG chỉnh sửa](images/dynamic-linking-loading-mindmap.svg)
+
+**Đọc hình:**
+
+- **Nhánh phải:** định nghĩa từng kỹ thuật và lợi ích; lợi ích ghi rõ thuộc loading hay linking.
+- **Nhánh trái:** ý chung "trì hoãn", cơ chế stub của dynamic linking và các điểm dễ lẫn giữa hai khái niệm.
+
 #### 💻 Code & thực tế
 
 ```
