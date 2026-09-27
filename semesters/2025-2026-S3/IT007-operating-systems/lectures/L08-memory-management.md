@@ -435,6 +435,23 @@ Trong cơ chế như PLT/GOT, lần gọi sau vẫn có thể đi qua stub/bản
 không phải luôn xóa stub khỏi mã. Hai process có thể ánh xạ trang mã thư viện vào cùng frame vật lý dù địa chỉ ảo khác nhau;
 phần dữ liệu riêng của mỗi process không vì vậy mà trở thành dữ liệu dùng chung. Analogy máy in chỉ minh họa tìm địa chỉ và dùng chung mã, không ngụ ý các process phải lần lượt gọi hàm.
 
+**Minh họa cơ chế dynamic linking — stub ở lần gọi đầu và các lần sau [C7 s24–s25]:**
+
+![Cùng process P qua ba trạng thái: stub printf chưa có địa chỉ và libc chỉ nằm trên đĩa; lần gọi đầu stub nhờ OS nạp libc.so vào RAM rồi tự thay bằng địa chỉ printf 0x7000; các lần sau main gọi thẳng printf, không qua OS](images/dynamic-linking-mechanism.png)
+
+*Hình do AI dựng bằng SVG và xuất PNG, dựa trên mô tả stub [C7 s24–s25]; `printf`, `libc.so` và địa chỉ ảo `0x7000` là ví dụ tự đặt.*
+
+[SVG chỉnh sửa](images/dynamic-linking-mechanism.svg)
+
+**Đọc hình:**
+
+- **Hướng đọc:** từ trái sang phải là ba thời điểm của **cùng một process P**; vị trí OS, RAM, đĩa giữ nguyên để thấy cái gì thay đổi.
+- **01 — Trước lần gọi:** load module đã có sẵn **stub** thay cho `printf`; stub chưa biết địa chỉ, `libc.so` mới chỉ nằm trên đĩa.
+- **02 — Lần gọi đầu:** ① `main` gọi vào stub → ② stub cần OS hỗ trợ → ③ `libc.so` được nạp vào RAM → ④ stub **tự thay mình** bằng địa chỉ `printf` → ⑤ `printf` chạy.
+- **03 — Các lần sau:** chỗ stub giờ chứa địa chỉ đã lưu, `main` đi thẳng tới `printf`; OS không cần tham gia, bản trên đĩa vẫn còn.
+- **Mũi tên:** nét liền cam là nạp mã từ đĩa; nét đứt xanh là luồng gọi/thực thi; nét đứt xám là stub nhờ OS.
+- **Lưu ý:** thư viện có thể đã được nạp sẵn (vd do process khác dùng) — khi đó bỏ bước ③, chỉ còn tìm và lưu địa chỉ. Đây là mô hình lazy binding của slide; hệ thống thật (PLT/GOT) có thể link ngay lúc khởi động.
+
 **Minh họa cơ chế dynamic loading — từ lời gọi đến thực thi [C7 s27]:**
 
 ![Cùng process P qua ba trạng thái: main đã ở RAM, thủ tục R còn trên đĩa; khi main gọi R thì nạp mã R vào RAM; sau khi nạp xong CPU thực thi R, bản trên đĩa vẫn còn](images/dynamic-loading-mechanism.png)
