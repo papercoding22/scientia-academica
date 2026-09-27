@@ -99,6 +99,27 @@ Dùng `templates/assignment-guide.md`, lưu thành `assignments/aN/GUIDE.md`.
 
 Thêm **Bẫy thường gặp** khi biết chỗ dễ sai.
 
+**Khi người dùng xin "hướng dẫn chi tiết" một bước cụ thể có thao tác qua công cụ
+GUI (SSMS, Import/Export Wizard, Enterprise Manager...)**, mở rộng đúng bước đó
+(không viết lại cả guide) theo khuôn sau — đây là mô tả *cách thao tác*, không phải
+kết quả/giá trị cụ thể nên không vi phạm ranh giới ở đầu file:
+
+1. **Các bước thao tác đánh số**, mô tả đúng chuỗi click/gõ trong công cụ: mở gì
+   trước, kiểm tra trạng thái nào (vd ngữ cảnh CSDL hiện hành ở status bar) trước
+   khi chạy, refresh ở đâu vì công cụ không tự cập nhật. Viết đủ để người dùng làm
+   theo được mà không phải đoán, nhưng không thay họ điền tên/giá trị cụ thể của đề.
+2. **Bảng ảnh cần chụp**, ba cột `Điểm quyết định | Chụp lúc nào | Tên file ảnh`
+   (đúng mẫu đã dùng ở phần Import/Export) — liệt kê chính xác **những gì phải nhìn
+   thấy trong ảnh** để chứng minh bước đã chạy đúng (câu lệnh + kết quả thực thi,
+   danh sách đối tượng trong Object Explorer sau khi refresh, kết quả truy vấn kiểm
+   tra...), không chỉ nói chung chung "chụp màn hình".
+3. **Tên file theo quy ước nhất quán trong cả guide**: `images/<mã-gói>-<nhóm/bước>-<mô-tả>.png`
+   (vd `g2-a-create-login-run.png`, `g2-a-create-login-verify.png`). Giữ cùng một
+   quy ước xuyên suốt các bước liên quan để người chấm dò theo thứ tự dễ hơn.
+4. Nếu bước đó có thể kiểm tra bằng truy vấn T-SQL/metadata thay vì chỉ nhìn GUI,
+   nêu cả hai lựa chọn (Object Explorer và truy vấn) — truy vấn thường là bằng
+   chứng khách quan hơn để đưa vào báo cáo.
+
 **Nhớ người dùng là dev đang đi làm** (`AGENTS.md` § 1): bỏ qua bước hiển nhiên,
 nói thẳng vào chỗ khó. Ước lượng thời gian thật để họ xếp lịch.
 

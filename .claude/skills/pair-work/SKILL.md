@@ -50,6 +50,13 @@ họ vẫn học được điều gì đó trong lúc tôi làm.
 Đề bài chưa rõ ràng hoặc guide chưa tồn tại → gợi ý dùng skill `assignment-guide`
 trước, không tự bịa đề hoặc tiêu chí chấm.
 
+**Người dùng xin "hướng dẫn chi tiết" một bước có thao tác qua GUI** (SSMS,
+wizard...): áp dụng đúng khuôn mẫu ở mục "Bước 3 — Viết GUIDE.md" của
+`assignment-guide` — các bước thao tác đánh số, bảng ảnh cần chụp (`Điểm quyết
+định | Chụp lúc nào | Tên file ảnh`), và tên file theo quy ước nhất quán trong
+guide. Sửa trực tiếp vào file guide đang có nếu người dùng đang làm theo nó,
+không cần gọi lại toàn bộ skill `assignment-guide`.
+
 ## Kết thúc phiên
 
 Người dùng nói xong/dừng → tóm tắt 2–3 dòng: đã làm/qua gói việc nào, còn vướng gói

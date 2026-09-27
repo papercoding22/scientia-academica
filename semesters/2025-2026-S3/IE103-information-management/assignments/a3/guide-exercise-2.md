@@ -171,6 +171,88 @@ Nguồn yêu cầu là [đề gốc](brief/). Chưa có transcript nên guide kh
 
    c. **Tự kiểm tra trước khi qua bước 3.** Với mỗi dòng trong bảng c, tự hỏi: "đối tượng cấp server của user này đã có chưa, đối tượng cấp database đã có chưa, và role nó cần gia nhập ở cấp nào?" Nếu câu trả lời cho một trong ba câu hỏi còn mơ hồ, quay lại đọc slide 11–31 phần tương ứng (login/user hay server role/database role) trước khi viết lệnh — viết trước rồi sửa lỗi cú pháp sau sẽ mất thời gian hơn nhiều so với xác nhận khái niệm trước.
 3. Viết script theo thứ tự phụ thuộc: tạo đối tượng cấp server cần thiết, ánh xạ vào CSDL, tạo role, gán thành viên, rồi gán role hệ thống/database mà đề yêu cầu.
+
+   Thứ tự dưới đây đi đúng chiều mũi tên trong sơ đồ ở bước 2 — mỗi nhóm lệnh chỉ dùng được sau khi nhóm trước đã chạy xong, nên **giữ nguyên thứ tự**, đừng nhảy cóc.
+
+   a. **Tạo login cho những user cần server login** (đối chiếu cột "cần server login?" ở bảng c). Cú pháp gốc là `CREATE LOGIN <tên> WITH PASSWORD = '...'`. Đây là đối tượng cấp **server**, chạy ở ngữ cảnh CSDL `master`, không cần `USE` sang CSDL thực hành.
+
+      **Output của nhóm này:** các login mới xuất hiện trong `Object Explorer → Security → Logins` (hoặc `SELECT name FROM sys.server_principals WHERE type IN ('S','U') AND name IN (...)`). Không có gì trong CSDL thực hành thay đổi ở bước này — nếu đã thấy user xuất hiện trong CSDL thì bạn đang nhảy cóc sang bước b.
+
+      **Thao tác cụ thể trong SSMS (cách Query window, xem lựa chọn ở trên):**
+
+      1. Kết nối SSMS vào instance, mở `New Query` — thanh tiêu đề/status bar phía dưới phải hiện `master` là CSDL hiện hành (không phải CSDL thực hành).
+      2. Gõ toàn bộ các câu `CREATE LOGIN` cho những user cần login (theo bảng c) vào cùng một cửa sổ, Execute (F5). Kết quả panel `Messages` phải báo thành công cho từng câu, không có dòng `Msg ... Error`.
+      3. Mở rộng `Object Explorer → Security → Logins`, nhấn `F5`/`Refresh` trên node `Logins` để danh sách cập nhật — Object Explorer không tự refresh sau khi chạy lệnh.
+      4. Chụp lại đúng hai điểm quyết định sau:
+
+      | Điểm quyết định | Chụp lúc nào | Tên file ảnh |
+      |---|---|---|
+      | Câu lệnh và kết quả thực thi | Cửa sổ query đang hiện toàn bộ các câu `CREATE LOGIN` phía trên, panel `Messages` phía dưới báo thành công | `images/g2-a-create-login-run.png` |
+      | Danh sách login đã tạo | `Object Explorer → Security → Logins` đã mở rộng, thấy đủ tên login vừa tạo trong danh sách | `images/g2-a-create-login-verify.png` |
+
+      Đặt tên file theo đúng quy ước này để nhất quán với ảnh của các nhóm b–e phía sau (`g2-b-...`, `g2-c-...`); nếu bạn tự đặt tên khác, giữ nguyên cùng một quy ước xuyên suốt cả bước 3 để người chấm dò theo thứ tự dễ hơn.
+
+   b. **Ánh xạ login thành database user**, hoặc tạo user không gắn login (`CREATE USER ... WITHOUT LOGIN`) cho những user chỉ cần cấp database. Bắt buộc `USE <CSDL thực hành>` trước khi chạy — đây là lỗi hay gặp nhất trong "Bẫy thường gặp" (cấp quyền/tạo user ở sai CSDL). Cú pháp gốc: `CREATE USER <tên> FOR LOGIN <tên login>`.
+
+      **Output của nhóm này:** các user mới xuất hiện trong `<CSDL thực hành> → Security → Users` (hoặc `SELECT name, type_desc FROM sys.database_principals WHERE type IN ('S','U')`). Số dòng trả về phải khớp đúng số user cần database user ở bảng c — thiếu dòng nào là còn sót user đó.
+
+      **Thao tác cụ thể trong SSMS:**
+
+      1. Trong cùng cửa sổ query hoặc cửa sổ mới, dòng đầu tiên phải là `USE <CSDL thực hành>;` — kiểm tra lại status bar đã đổi từ `master` sang đúng tên CSDL thực hành trước khi Execute.
+      2. Gõ các câu `CREATE USER` cho những user cần database user (theo bảng c), Execute, kiểm tra `Messages` không báo lỗi.
+      3. Mở rộng `Object Explorer → <CSDL thực hành> → Security → Users`, `Refresh` node này.
+
+      | Điểm quyết định | Chụp lúc nào | Tên file ảnh |
+      |---|---|---|
+      | Câu lệnh và kết quả thực thi | Cửa sổ query hiện rõ dòng `USE <CSDL thực hành>` và các câu `CREATE USER`, `Messages` báo thành công | `images/g2-b-create-user-run.png` |
+      | Danh sách user đã tạo | `Object Explorer → <CSDL thực hành> → Security → Users` đã mở rộng, thấy đủ user vừa tạo | `images/g2-b-create-user-verify.png` |
+
+   c. **Tạo `r1`–`r3`.** Đây chỉ là role do đề bài định nghĩa (không phải server role/database role có sẵn) — tạo bằng `CREATE ROLE <tên>` bên trong CSDL thực hành, vì mục đích của chúng (theo mục b) là nhóm các **database user** lại. Chạy sau bước b, vì role trống không có ý nghĩa nếu chưa có user để gán vào.
+
+      **Output của nhóm này:** đúng ba role mới trong `<CSDL thực hành> → Security → Roles → Database Roles`, chưa có thành viên nào bên trong (kiểm tra bằng `SELECT name FROM sys.database_principals WHERE type = 'R' AND name IN ('r1','r2','r3')`).
+
+      **Thao tác cụ thể trong SSMS:**
+
+      1. Vẫn trong CSDL thực hành (kiểm tra lại status bar), gõ ba câu `CREATE ROLE r1`, `CREATE ROLE r2`, `CREATE ROLE r3`, Execute.
+      2. Mở rộng `Object Explorer → <CSDL thực hành> → Security → Roles → Database Roles`, `Refresh`.
+
+      | Điểm quyết định | Chụp lúc nào | Tên file ảnh |
+      |---|---|---|
+      | Câu lệnh và kết quả thực thi | Cửa sổ query hiện ba câu `CREATE ROLE`, `Messages` báo thành công | `images/g2-c-create-role-run.png` |
+      | Danh sách role đã tạo | `Database Roles` đã mở rộng, thấy `r1`, `r2`, `r3` trong danh sách (chưa cần mở xem thành viên ở bước này) | `images/g2-c-create-role-verify.png` |
+
+   d. **Gán thành viên theo ma trận a**: mỗi user vào đúng role của nó (`ALTER ROLE <r> ADD MEMBER <user>`). Đối chiếu lại từng dòng của ma trận thành viên đã vẽ ở bước 1 — không gõ theo trí nhớ.
+
+      **Output của nhóm này:** `SELECT r.name AS role, m.name AS member FROM sys.database_role_members rm JOIN sys.database_principals r ON r.principal_id = rm.role_principal_id JOIN sys.database_principals m ON m.principal_id = rm.member_principal_id WHERE r.name IN ('r1','r2','r3')` trả về đúng 6 dòng, khớp từng ô đã đánh dấu ở ma trận a — không thừa, không thiếu, không lệch role.
+
+      **Thao tác cụ thể trong SSMS:**
+
+      1. Gõ 6 câu `ALTER ROLE ... ADD MEMBER ...` (một câu cho mỗi user, đối chiếu ma trận a), Execute.
+      2. Thay vì mở từng role trong Object Explorer để đếm tay, chạy câu `SELECT` ở dòng Output phía trên — cách này vừa nhanh vừa là bằng chứng khách quan hơn để đưa vào báo cáo.
+
+      | Điểm quyết định | Chụp lúc nào | Tên file ảnh |
+      |---|---|---|
+      | Câu lệnh và kết quả thực thi | Cửa sổ query hiện 6 câu `ALTER ROLE ... ADD MEMBER`, `Messages` báo thành công | `images/g2-d-add-member-run.png` |
+      | Kết quả truy vấn membership | Panel `Results` của câu `SELECT` kiểm tra membership, đủ 6 dòng, cột `role`/`member` đọc được rõ | `images/g2-d-add-member-verify.png` |
+
+   e. **Gán `r1`–`r3` vào role hệ thống/database theo bảng b**, dùng đúng lệnh theo cấp đã phân loại ở cột "cấp": `ALTER SERVER ROLE <role đích> ADD MEMBER <rX>` cho phần server level, `ALTER ROLE <role đích> ADD MEMBER <rX>` cho phần database level. Với `r3`, chạy **cả hai lệnh** — đây là bước dễ sót nhất trong toàn bộ Gói 2.
+
+      **Output của nhóm này:** hai truy vấn riêng khớp với hai cấp — `SELECT sr.name FROM sys.server_role_members srm JOIN sys.server_principals sr ON sr.principal_id = srm.role_principal_id WHERE srm.member_principal_id = SUSER_ID('r1')` kiểu tương tự cho phần server (áp dụng cho `r1`, `r3`), và `SELECT * FROM sys.database_role_members` lọc theo `db_owner`/`db_accessadmin` cho phần database (áp dụng cho `r2`, `r3`). `r3` phải xuất hiện trong **cả hai** kết quả truy vấn, không chỉ một.
+
+      **Thao tác cụ thể trong SSMS:**
+
+      1. Gõ các câu `ALTER SERVER ROLE ... ADD MEMBER ...` (phần server level: `r1`, `r3`) — lưu ý các câu này chạy được ở bất kỳ ngữ cảnh CSDL nào vì là lệnh cấp server, nhưng nên tách riêng khỏi khối lệnh cấp database cho dễ đọc script.
+      2. Gõ các câu `ALTER ROLE ... ADD MEMBER ...` (phần database level: `r2`, `r3`), đảm bảo vẫn đang ở CSDL thực hành.
+      3. Execute cả khối, kiểm tra `Messages`.
+      4. Chạy lần lượt hai câu `SELECT` kiểm tra ở dòng Output phía trên — một cho phần server, một cho phần database.
+
+      | Điểm quyết định | Chụp lúc nào | Tên file ảnh |
+      |---|---|---|
+      | Câu lệnh và kết quả thực thi | Cửa sổ query hiện cả khối `ALTER SERVER ROLE` và `ALTER ROLE`, `Messages` báo thành công | `images/g2-e-add-role-run.png` |
+      | Kết quả truy vấn membership cấp server | Panel `Results` của câu `SELECT` phần server, thấy `r1` và `r3` trong `SysAdmin` | `images/g2-e-add-role-verify-server.png` |
+      | Kết quả truy vấn membership cấp database | Panel `Results` của câu `SELECT` phần database, thấy `r2` và `r3` trong `db_owner`/`db_accessadmin` | `images/g2-e-add-role-verify-database.png` |
+
+   Sau khi viết xong cả 5 nhóm, đọc lại script một lượt và đối chiếu ngược với ba bảng ở bước 1: mỗi dòng trong bảng phải có ít nhất một câu lệnh tương ứng, không thiếu, không thừa.
 4. Sau mỗi nhóm lệnh, dùng giao diện hoặc truy vấn metadata để kiểm tra membership thực tế. Lưu bằng chứng đó vào báo cáo.
 
 **Thế nào là đủ:** tất cả user và role trong đề xuất hiện đúng; không đảo mapping user–role hoặc lẫn server role với database role.
