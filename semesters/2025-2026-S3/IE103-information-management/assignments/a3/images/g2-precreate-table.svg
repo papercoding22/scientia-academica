@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="780" height="438" viewBox="0 0 780 438" font-family="Segoe UI, Arial, sans-serif">
+<rect x="0" y="0" width="780" height="438" fill="#ffffff"/>
+<text x="390.0" y="32" font-size="18" font-weight="bold" text-anchor="middle" fill="#1a1a1a">Đối tượng cần tạo trước cho mỗi user</text>
+<text x="390.0" y="52" font-size="12" text-anchor="middle" fill="#555555">IE103 · Bài tập 3 · Gói 2 (Xác thực và role)</text>
+<rect x="40" y="70" width="700" height="40" fill="#2f5496"/>
+<text x="75.0" y="95.0" font-size="15" font-weight="bold" text-anchor="middle" fill="#ffffff">user</text>
+<text x="215.0" y="95.0" font-size="15" font-weight="bold" text-anchor="middle" fill="#ffffff">thuộc role</text>
+<text x="425.0" y="95.0" font-size="15" font-weight="bold" text-anchor="middle" fill="#ffffff">cần server login?</text>
+<text x="635.0" y="95.0" font-size="15" font-weight="bold" text-anchor="middle" fill="#ffffff">cần database user?</text>
+<rect x="40" y="110" width="700" height="40" fill="#f2f6fc"/>
+<text x="75.0" y="135.0" font-size="15" text-anchor="middle" fill="#1a1a1a">u1</text>
+<text x="215.0" y="135.0" font-size="15" text-anchor="middle" fill="#1a1a1a">r1 (server level)</text>
+<text x="425.0" y="135.0" font-size="18" font-weight="bold" text-anchor="middle" fill="#1e8f4e">có</text>
+<text x="635.0" y="135.0" font-size="15" text-anchor="middle" fill="#1a1a1a">không bắt buộc</text>
+<rect x="40" y="150" width="700" height="40" fill="#ffffff"/>
+<text x="75.0" y="175.0" font-size="15" text-anchor="middle" fill="#1a1a1a">u2</text>
+<text x="215.0" y="175.0" font-size="15" text-anchor="middle" fill="#1a1a1a">r2 (database level)</text>
+<text x="425.0" y="175.0" font-size="15" text-anchor="middle" fill="#1a1a1a">gián tiếp *</text>
+<text x="635.0" y="175.0" font-size="15" text-anchor="middle" fill="#1a1a1a">có, trong CSDL thực hành</text>
+<rect x="40" y="190" width="700" height="40" fill="#f2f6fc"/>
+<text x="75.0" y="215.0" font-size="15" text-anchor="middle" fill="#1a1a1a">u3</text>
+<text x="215.0" y="215.0" font-size="15" text-anchor="middle" fill="#1a1a1a">r2 (database level)</text>
+<text x="425.0" y="215.0" font-size="15" text-anchor="middle" fill="#1a1a1a">gián tiếp *</text>
+<text x="635.0" y="215.0" font-size="15" text-anchor="middle" fill="#1a1a1a">có, trong CSDL thực hành</text>
+<rect x="40" y="230" width="700" height="40" fill="#ffffff"/>
+<text x="75.0" y="255.0" font-size="15" text-anchor="middle" fill="#1a1a1a">u4</text>
+<text x="215.0" y="255.0" font-size="15" text-anchor="middle" fill="#1a1a1a">r3 (server + database)</text>
+<text x="425.0" y="255.0" font-size="18" font-weight="bold" text-anchor="middle" fill="#1e8f4e">có</text>
+<text x="635.0" y="255.0" font-size="15" text-anchor="middle" fill="#1a1a1a">có, trong CSDL thực hành</text>
+<rect x="40" y="270" width="700" height="40" fill="#f2f6fc"/>
+<text x="75.0" y="295.0" font-size="15" text-anchor="middle" fill="#1a1a1a">u5</text>
+<text x="215.0" y="295.0" font-size="15" text-anchor="middle" fill="#1a1a1a">r3 (server + database)</text>
+<text x="425.0" y="295.0" font-size="18" font-weight="bold" text-anchor="middle" fill="#1e8f4e">có</text>
+<text x="635.0" y="295.0" font-size="15" text-anchor="middle" fill="#1a1a1a">có, trong CSDL thực hành</text>
+<rect x="40" y="310" width="700" height="40" fill="#ffffff"/>
+<text x="75.0" y="335.0" font-size="15" text-anchor="middle" fill="#1a1a1a">u6</text>
+<text x="215.0" y="335.0" font-size="15" text-anchor="middle" fill="#1a1a1a">r3 (server + database)</text>
+<text x="425.0" y="335.0" font-size="18" font-weight="bold" text-anchor="middle" fill="#1e8f4e">có</text>
+<text x="635.0" y="335.0" font-size="15" text-anchor="middle" fill="#1a1a1a">có, trong CSDL thực hành</text>
+<g stroke="#c9d6e8" stroke-width="1">
+<line x1="40" y1="70" x2="740" y2="70"/>
+<line x1="40" y1="110" x2="740" y2="110"/>
+<line x1="40" y1="150" x2="740" y2="150"/>
+<line x1="40" y1="190" x2="740" y2="190"/>
+<line x1="40" y1="230" x2="740" y2="230"/>
+<line x1="40" y1="270" x2="740" y2="270"/>
+<line x1="40" y1="310" x2="740" y2="310"/>
+<line x1="40" y1="350" x2="740" y2="350"/>
+<line x1="40" y1="70" x2="40" y2="350"/>
+<line x1="110" y1="70" x2="110" y2="350"/>
+<line x1="320" y1="70" x2="320" y2="350"/>
+<line x1="530" y1="70" x2="530" y2="350"/>
+<line x1="740" y1="70" x2="740" y2="350"/>
+</g>
+<rect x="40" y="70" width="700" height="280" fill="none" stroke="#2f5496" stroke-width="2"/>
+<text x="40" y="374" font-size="11" fill="#777777">Suy từ cột &quot;cấp&quot; ở bảng b: SysAdmin (server role) chỉ nhận login; db_owner/db_accessadmin (database role) chỉ cần database user.</text>
+<text x="40" y="392" font-size="11" fill="#777777">* u2, u3: role chỉ cần database user, nhưng user đó vẫn phải map tới một login hoặc tạo WITHOUT LOGIN.</text>
+<text x="40" y="410" font-size="11" fill="#777777">Điền tên CSDL thực hành cụ thể của bạn vào cột cuối thay vì để chung chung.</text>
+</svg>

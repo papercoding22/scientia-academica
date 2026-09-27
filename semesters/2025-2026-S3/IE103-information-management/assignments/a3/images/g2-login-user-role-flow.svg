@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560" font-family="Segoe UI, Arial, sans-serif">
+  <rect x="0" y="0" width="900" height="560" fill="#ffffff"/>
+  <text x="450" y="32" font-size="18" font-weight="bold" text-anchor="middle" fill="#1a1a1a">Chuỗi phụ thuộc: Login → Database User → Role → Quyền</text>
+  <text x="450" y="52" font-size="12" text-anchor="middle" fill="#555555">IE103 · Bài tập 3 · Gói 2 · Bước 2</text>
+
+  <!-- divider -->
+  <line x1="450" y1="80" x2="450" y2="470" stroke="#aaaaaa" stroke-width="1.5" stroke-dasharray="6,5"/>
+  <text x="225" y="92" font-size="13" font-weight="bold" text-anchor="middle" fill="#2f5496">CẤP SERVER</text>
+  <text x="675" y="92" font-size="13" font-weight="bold" text-anchor="middle" fill="#2f5496">CẤP DATABASE</text>
+
+  <!-- boxes -->
+  <rect x="100" y="110" width="220" height="64" rx="8" fill="#eaf0fb" stroke="#2f5496" stroke-width="2"/>
+  <text x="210" y="136" font-size="15" font-weight="bold" text-anchor="middle" fill="#1a1a1a">Login</text>
+  <text x="210" y="156" font-size="12" text-anchor="middle" fill="#444444">"ai được kết nối server?"</text>
+
+  <rect x="580" y="110" width="220" height="64" rx="8" fill="#eaf0fb" stroke="#2f5496" stroke-width="2"/>
+  <text x="690" y="136" font-size="15" font-weight="bold" text-anchor="middle" fill="#1a1a1a">Database user</text>
+  <text x="690" y="156" font-size="12" text-anchor="middle" fill="#444444">"ai được thao tác trong CSDL?"</text>
+
+  <rect x="100" y="280" width="220" height="64" rx="8" fill="#fdf3e3" stroke="#c07f16" stroke-width="2"/>
+  <text x="210" y="306" font-size="14" font-weight="bold" text-anchor="middle" fill="#1a1a1a">Server role</text>
+  <text x="210" y="326" font-size="12" text-anchor="middle" fill="#444444">vd: SysAdmin</text>
+
+  <rect x="580" y="280" width="220" height="64" rx="8" fill="#fdf3e3" stroke="#c07f16" stroke-width="2"/>
+  <text x="690" y="306" font-size="14" font-weight="bold" text-anchor="middle" fill="#1a1a1a">Database role</text>
+  <text x="690" y="326" font-size="12" text-anchor="middle" fill="#444444">vd: db_owner, db_accessadmin</text>
+
+  <rect x="340" y="410" width="220" height="56" rx="8" fill="#e8f5ec" stroke="#1e8f4e" stroke-width="2"/>
+  <text x="450" y="443" font-size="14" font-weight="bold" text-anchor="middle" fill="#1a1a1a">Quyền trong CSDL</text>
+
+  <!-- arrow marker -->
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#333333"/>
+    </marker>
+  </defs>
+
+  <!-- login -> database user -->
+  <line x1="320" y1="142" x2="580" y2="142" stroke="#333333" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="450" y="120" font-size="11" text-anchor="middle" fill="#333333">map: CREATE USER ... FOR LOGIN</text>
+  <text x="450" y="134" font-size="11" text-anchor="middle" fill="#333333">(hoặc CREATE USER ... WITHOUT LOGIN)</text>
+
+  <!-- login -> server role -->
+  <line x1="210" y1="174" x2="210" y2="280" stroke="#333333" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="215" y="230" font-size="11" fill="#333333">ALTER SERVER ROLE</text>
+  <text x="215" y="244" font-size="11" fill="#333333">... ADD MEMBER</text>
+
+  <!-- db user -> db role -->
+  <line x1="690" y1="174" x2="690" y2="280" stroke="#333333" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="695" y="230" font-size="11" fill="#333333">ALTER ROLE</text>
+  <text x="695" y="244" font-size="11" fill="#333333">... ADD MEMBER</text>
+
+  <!-- server role -> permissions -->
+  <line x1="260" y1="344" x2="400" y2="415" stroke="#333333" stroke-width="2" marker-end="url(#arrow)"/>
+  <!-- db role -> permissions -->
+  <line x1="640" y1="344" x2="500" y2="415" stroke="#333333" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- note box -->
+  <rect x="60" y="490" width="780" height="56" rx="6" fill="#f7f7f7" stroke="#cccccc" stroke-width="1"/>
+  <text x="450" y="512" font-size="12" text-anchor="middle" fill="#333333">Ví dụ r3 (bước 1, mục b/c): phải đi CẢ HAI nhánh — vừa vào Server role (SysAdmin),</text>
+  <text x="450" y="530" font-size="12" text-anchor="middle" fill="#333333">vừa có database user và vào Database role (db_owner, db_accessadmin) — hai câu lệnh riêng, không gộp.</text>
+</svg>

@@ -1,0 +1,20 @@
+{
+  "title": "Đối tượng cần tạo trước cho mỗi user",
+  "subtitle": "IE103 · Bài tập 3 · Gói 2 (Xác thực và role)",
+  "columns": ["user", "thuộc role", "cần server login?", "cần database user?"],
+  "rows": [
+    ["u1", "r1 (server level)", "có", "không bắt buộc"],
+    ["u2", "r2 (database level)", "gián tiếp *", "có, trong CSDL thực hành"],
+    ["u3", "r2 (database level)", "gián tiếp *", "có, trong CSDL thực hành"],
+    ["u4", "r3 (server + database)", "có", "có, trong CSDL thực hành"],
+    ["u5", "r3 (server + database)", "có", "có, trong CSDL thực hành"],
+    ["u6", "r3 (server + database)", "có", "có, trong CSDL thực hành"]
+  ],
+  "label_col_width": 70,
+  "data_col_width": 210,
+  "note": [
+    "Suy từ cột \"cấp\" ở bảng b: SysAdmin (server role) chỉ nhận login; db_owner/db_accessadmin (database role) chỉ cần database user.",
+    "* u2, u3: role chỉ cần database user, nhưng user đó vẫn phải map tới một login hoặc tạo WITHOUT LOGIN.",
+    "Điền tên CSDL thực hành cụ thể của bạn vào cột cuối thay vì để chung chung."
+  ]
+}

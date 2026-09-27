@@ -120,13 +120,56 @@ Nguồn yêu cầu là [đề gốc](brief/). Chưa có transcript nên guide kh
 
    a. **Ma trận thành viên `user × role`.** Hàng là `u1`–`u6`, cột là `r1`–`r3`. Ô nào user thuộc role đó thì đánh dấu. Chép đúng mapping ở đề gốc (mục B, gạch đầu dòng "Tạo nhóm") vào bảng — không tự suy diễn hay đổi thứ tự, vì đây là phần chấm đối chiếu trực tiếp.
 
+      ![Ma trận thành viên user × role: u1 thuộc r1; u2, u3 thuộc r2; u4, u5, u6 thuộc r3](images/g2-user-role-matrix.png)
+
    b. **Bảng vai trò hệ thống của từng role.** Một bảng riêng, hai cột: `role` và `server role / database role mà nó là thành viên`. Đề gốc liệt kê rõ ba dòng cho `r1`, `r2`, `r3` (mục B, gạch đầu dòng "Thực hiện") — chép nguyên văn vào bảng này. Ghi chú thêm ở mỗi dòng: role đích đó thuộc **server level** (vd `SysAdmin`) hay **database level** (vd `db_owner`, `db_accessadmin`), vì hai loại này tạo bằng lệnh khác nhau (bước 3 sẽ dùng đến).
 
+      | role | thành viên của | cấp |
+      |---|---|---|
+      | `r1` | `SysAdmin` | server level |
+      | `r2` | `db_owner`, `db_accessadmin` | database level |
+      | `r3` | `SysAdmin`, `db_owner`, `db_accessadmin` | server level + database level |
+
+      ![Bảng vai trò hệ thống của r1, r2, r3: r1 → SysAdmin (server level), r2 → db_owner/db_accessadmin (database level), r3 → cả hai cấp](images/g2-role-table.png)
+
+      Vì `r3` bắc cầu cả hai cấp, khi viết script ở bước 3 bạn sẽ cần **hai câu lệnh khác nhau** cho cùng một role: một lệnh gán vào server role (`ALTER SERVER ROLE ... ADD MEMBER`), một lệnh gán vào database role (`ALTER ROLE ... ADD MEMBER`) — đừng gộp chung thành một câu.
+
    c. **Cột "đối tượng cần tạo trước".** Thêm một cột nháp bên cạnh ma trận, liệt kê cho mỗi `u1`–`u6`: cần login cấp server hay chỉ cần user cấp CSDL, và CSDL nào. Đây là chỗ dễ quên nhất — xem bước 2.
+
+      Suy trực tiếp từ cột "cấp" ở bảng b: role ở **server level** thì thành viên của nó phải là **login** (`SysAdmin` là fixed server role — chỉ nhận login/server principal làm thành viên, không nhận database user); role ở **database level** thì thành viên chỉ cần là **database user** trong đúng CSDL thực hành. Ghép với ma trận a, bạn có:
+
+      | user | thuộc role | cần server login? | cần database user? |
+      |---|---|---|---|
+      | `u1` | `r1` (server level) | có | không bắt buộc (trừ khi đề/bạn muốn nó truy vấn CSDL luôn) |
+      | `u2` | `r2` (database level) | không bắt buộc riêng — nhưng **mọi database user vẫn cần map tới một login/`WITHOUT LOGIN`** | có, trong CSDL thực hành |
+      | `u3` | `r2` (database level) | như `u2` | có, trong CSDL thực hành |
+      | `u4` | `r3` (server + database level) | có | có, trong CSDL thực hành |
+      | `u5` | `r3` (server + database level) | có | có, trong CSDL thực hành |
+      | `u6` | `r3` (server + database level) | có | có, trong CSDL thực hành |
+
+      ![Đối tượng cần tạo trước cho mỗi user: u1 cần server login; u2, u3 cần database user (map login gián tiếp); u4, u5, u6 cần cả hai](images/g2-precreate-table.png)
+
+      Điền tên CSDL thực hành cụ thể của bạn vào cột cuối thay vì để chung chung — đây là chỗ người chấm dễ bắt lỗi nhất nếu bạn tạo login/user ở sai CSDL. Cột "cần database user?" của `u1` bỏ trống là hợp lệ nếu đề không yêu cầu `u1` thao tác trong CSDL đề tài, nhưng vẫn nên ghi rõ lý do trong báo cáo thay vì im lặng bỏ qua.
 
    Mục đích của toàn bộ bước 1 là để bước 3 (viết script) chỉ còn việc "dịch từng dòng ma trận thành một câu lệnh", không phải vừa viết vừa nhớ mapping.
 
 2. Phân biệt rõ login, database user và role. Slide 11–31 là phần nền: bạn phải biết đối tượng nào thuộc cấp server, đối tượng nào thuộc CSDL trước khi chạy lệnh.
+
+   ![Chuỗi phụ thuộc Login → Database User → Role → Quyền, chia theo cấp server và cấp database](images/g2-login-user-role-flow.png)
+
+   a. **Ba khái niệm khác nhau ở đâu.**
+
+      | Đối tượng | Cấp | Trả lời câu hỏi | Được tạo bởi |
+      |---|---|---|---|
+      | **Login** | Server | "Ai được phép kết nối vào SQL Server instance này?" | DBA/quản trị server |
+      | **Database user** | Database | "Ai được phép thao tác trong CSDL này?" | Chủ CSDL, ánh xạ từ một login (hoặc `WITHOUT LOGIN`) |
+      | **Role** (server role / database role) | Cả hai, tùy loại | "Nhóm quyền nào được gán sẵn, để gán hàng loạt thay vì gán từng quyền lẻ?" | DBA/chủ CSDL |
+
+      Một login **không tự động** có quyền trong CSDL — phải map thành database user trước. Một database user **không tự động** có quyền gì — phải được thêm vào role hoặc `GRANT` trực tiếp. Đây là chuỗi phụ thuộc `login → user → role → quyền`, thiếu một mắt là user không dùng được như đề yêu cầu.
+
+   b. **Vì sao bảng b/c ở bước 1 lại tách "cấp".** Server role (`SysAdmin`) chỉ chứa được login/server principal; database role (`db_owner`, `db_accessadmin`) chỉ chứa được database user. Không có lệnh nào gán thẳng một login vào một database role, hay một database user vào một server role — đây là lý do bước 3 phải viết hai câu lệnh khác nhau cho `r3`, đúng như đã nêu ở mục b.
+
+   c. **Tự kiểm tra trước khi qua bước 3.** Với mỗi dòng trong bảng c, tự hỏi: "đối tượng cấp server của user này đã có chưa, đối tượng cấp database đã có chưa, và role nó cần gia nhập ở cấp nào?" Nếu câu trả lời cho một trong ba câu hỏi còn mơ hồ, quay lại đọc slide 11–31 phần tương ứng (login/user hay server role/database role) trước khi viết lệnh — viết trước rồi sửa lỗi cú pháp sau sẽ mất thời gian hơn nhiều so với xác nhận khái niệm trước.
 3. Viết script theo thứ tự phụ thuộc: tạo đối tượng cấp server cần thiết, ánh xạ vào CSDL, tạo role, gán thành viên, rồi gán role hệ thống/database mà đề yêu cầu.
 4. Sau mỗi nhóm lệnh, dùng giao diện hoặc truy vấn metadata để kiểm tra membership thực tế. Lưu bằng chứng đó vào báo cáo.
 

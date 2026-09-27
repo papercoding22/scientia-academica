@@ -1,0 +1,13 @@
+{
+  "title": "Bảng vai trò hệ thống của từng role",
+  "subtitle": "IE103 · Bài tập 3 · Gói 2 (Xác thực và role)",
+  "columns": ["role", "thành viên của", "cấp"],
+  "rows": [
+    ["r1", "SysAdmin", "server level"],
+    ["r2", "db_owner, db_accessadmin", "database level"],
+    ["r3", "SysAdmin, db_owner, db_accessadmin", "server + database"]
+  ],
+  "label_col_width": 90,
+  "data_col_width": 220,
+  "note": ["Nguồn: đề gốc mục B, gạch đầu dòng \"Thực hiện\"."]
+}

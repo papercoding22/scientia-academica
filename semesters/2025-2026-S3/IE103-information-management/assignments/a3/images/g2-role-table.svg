@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="610" height="282" viewBox="0 0 610 282" font-family="Segoe UI, Arial, sans-serif">
+<rect x="0" y="0" width="610" height="282" fill="#ffffff"/>
+<text x="305.0" y="32" font-size="18" font-weight="bold" text-anchor="middle" fill="#1a1a1a">Bảng vai trò hệ thống của từng role</text>
+<text x="305.0" y="52" font-size="12" text-anchor="middle" fill="#555555">IE103 · Bài tập 3 · Gói 2 (Xác thực và role)</text>
+<rect x="40" y="70" width="530" height="40" fill="#2f5496"/>
+<text x="85.0" y="95.0" font-size="15" font-weight="bold" text-anchor="middle" fill="#ffffff">role</text>
+<text x="240.0" y="95.0" font-size="15" font-weight="bold" text-anchor="middle" fill="#ffffff">thành viên của</text>
+<text x="460.0" y="95.0" font-size="15" font-weight="bold" text-anchor="middle" fill="#ffffff">cấp</text>
+<rect x="40" y="110" width="530" height="40" fill="#f2f6fc"/>
+<text x="85.0" y="135.0" font-size="15" text-anchor="middle" fill="#1a1a1a">r1</text>
+<text x="240.0" y="135.0" font-size="15" text-anchor="middle" fill="#1a1a1a">SysAdmin</text>
+<text x="460.0" y="135.0" font-size="15" text-anchor="middle" fill="#1a1a1a">server level</text>
+<rect x="40" y="150" width="530" height="40" fill="#ffffff"/>
+<text x="85.0" y="175.0" font-size="15" text-anchor="middle" fill="#1a1a1a">r2</text>
+<text x="240.0" y="175.0" font-size="15" text-anchor="middle" fill="#1a1a1a">db_owner, db_accessadmin</text>
+<text x="460.0" y="175.0" font-size="15" text-anchor="middle" fill="#1a1a1a">database level</text>
+<rect x="40" y="190" width="530" height="40" fill="#f2f6fc"/>
+<text x="85.0" y="215.0" font-size="15" text-anchor="middle" fill="#1a1a1a">r3</text>
+<text x="240.0" y="215.0" font-size="15" text-anchor="middle" fill="#1a1a1a">SysAdmin, db_owner, db_accessadmin</text>
+<text x="460.0" y="215.0" font-size="15" text-anchor="middle" fill="#1a1a1a">server + database</text>
+<g stroke="#c9d6e8" stroke-width="1">
+<line x1="40" y1="70" x2="570" y2="70"/>
+<line x1="40" y1="110" x2="570" y2="110"/>
+<line x1="40" y1="150" x2="570" y2="150"/>
+<line x1="40" y1="190" x2="570" y2="190"/>
+<line x1="40" y1="230" x2="570" y2="230"/>
+<line x1="40" y1="70" x2="40" y2="230"/>
+<line x1="130" y1="70" x2="130" y2="230"/>
+<line x1="350" y1="70" x2="350" y2="230"/>
+<line x1="570" y1="70" x2="570" y2="230"/>
+</g>
+<rect x="40" y="70" width="530" height="160" fill="none" stroke="#2f5496" stroke-width="2"/>
+<text x="40" y="254" font-size="11" fill="#777777">Nguồn: đề gốc mục B, gạch đầu dòng &quot;Thực hiện&quot;.</text>
+</svg>
