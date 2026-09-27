@@ -98,7 +98,11 @@ thời lượng nhiều nhất, đừng ghép ba thứ vào một tên.
 
 ## Bước 5 — Viết note
 
-Dùng `templates/lecture-note.md`. Mỗi mục (khái niệm) trong `## Nội dung chính` có **bốn phần, đúng thứ tự**:
+Dùng `templates/lecture-note.md`. **Heading mỗi mục** đặt theo `### <n>. Tên tiếng Việt (English term)`,
+thuật ngữ tiếng Anh lấy đúng như slide — vd `### 5. Phân mảnh — nội và ngoại (Fragmentation — Internal/External)`.
+Slide chỉ dùng tiếng Anh thì giữ tiếng Anh (`### 11. Swapping`). Luật đầy đủ và ngoại lệ: `AGENTS.md` § 2.
+
+Mỗi mục (khái niệm) trong `## Nội dung chính` có **bốn phần, đúng thứ tự**:
 
 | # | Phần | Trả lời câu hỏi | Bắt buộc |
 |---|---|---|---|

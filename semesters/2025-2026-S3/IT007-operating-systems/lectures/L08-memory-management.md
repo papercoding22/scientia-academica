@@ -27,16 +27,16 @@
 - [Tóm tắt một đoạn](#tóm-tắt-một-đoạn)
 - [Gốc rễ của cả chương](#gốc-rễ-của-cả-chương)
 - [Nội dung chính](#nội-dung-chính)
-  - [1. Khái niệm cơ sở — quản lý bộ nhớ là gì](#1-khái-niệm-cơ-sở--quản-lý-bộ-nhớ-là-gì)
-  - [2. Các kiểu địa chỉ nhớ](#2-các-kiểu-địa-chỉ-nhớ)
-  - [3. Chuyển đổi địa chỉ — address binding](#3-chuyển-đổi-địa-chỉ--address-binding)
+  - [1. Khái niệm cơ sở — quản lý bộ nhớ là gì (Memory management)](#1-khái-niệm-cơ-sở--quản-lý-bộ-nhớ-là-gì-memory-management)
+  - [2. Các kiểu địa chỉ nhớ (Logical/Physical address)](#2-các-kiểu-địa-chỉ-nhớ-logicalphysical-address)
+  - [3. Chuyển đổi địa chỉ (Address binding)](#3-chuyển-đổi-địa-chỉ-address-binding)
   - [4. Dynamic linking và dynamic loading](#4-dynamic-linking-và-dynamic-loading)
-  - [5. Phân mảnh — nội và ngoại](#5-phân-mảnh--nội-và-ngoại)
-  - [6. Phân vùng cố định, phân vùng động và chiến lược placement](#6-phân-vùng-cố-định-phân-vùng-động-và-chiến-lược-placement)
-  - [7. Phân trang và chuyển đổi địa chỉ trong paging](#7-phân-trang-và-chuyển-đổi-địa-chỉ-trong-paging)
-  - [8. Cài đặt bảng trang: PTBR, TLB và EAT](#8-cài-đặt-bảng-trang-ptbr-tlb-và-eat)
-  - [9. Tổ chức bảng trang: nhiều cấp và nghịch đảo](#9-tổ-chức-bảng-trang-nhiều-cấp-và-nghịch-đảo)
-  - [10. Bảo vệ và chia sẻ trong paging](#10-bảo-vệ-và-chia-sẻ-trong-paging)
+  - [5. Phân mảnh — nội và ngoại (Fragmentation — Internal/External)](#5-phân-mảnh--nội-và-ngoại-fragmentation--internalexternal)
+  - [6. Phân vùng cố định, phân vùng động và chiến lược placement (Fixed/Dynamic partitioning & placement)](#6-phân-vùng-cố-định-phân-vùng-động-và-chiến-lược-placement-fixeddynamic-partitioning--placement)
+  - [7. Phân trang và chuyển đổi địa chỉ (Paging & address translation)](#7-phân-trang-và-chuyển-đổi-địa-chỉ-paging--address-translation)
+  - [8. Cài đặt bảng trang (Page table implementation): PTBR, TLB và EAT](#8-cài-đặt-bảng-trang-page-table-implementation-ptbr-tlb-và-eat)
+  - [9. Tổ chức bảng trang: nhiều cấp và nghịch đảo (Multilevel/Inverted page table)](#9-tổ-chức-bảng-trang-nhiều-cấp-và-nghịch-đảo-multilevelinverted-page-table)
+  - [10. Bảo vệ và chia sẻ trong paging (Protection & sharing)](#10-bảo-vệ-và-chia-sẻ-trong-paging-protection--sharing)
   - [11. Swapping](#11-swapping)
 - [Bảng tổng hợp](#bảng-tổng-hợp)
 - [Sơ đồ](#sơ-đồ)
@@ -98,7 +98,7 @@ flowchart TD
 
 ## Nội dung chính
 
-### 1. Khái niệm cơ sở — quản lý bộ nhớ là gì
+### 1. Khái niệm cơ sở — quản lý bộ nhớ là gì (Memory management)
 
 *(mục phụ — bản rút gọn: đề mẫu không hỏi, nhưng là nền cho mọi mục sau)*
 
@@ -150,7 +150,7 @@ flowchart TD
 
 **Chốt mục:** OS quản lý bộ nhớ **có phần cứng hỗ trợ**; mục tiêu là **tăng mức đa chương**; 5 yêu cầu: cấp phát · tái định vị · bảo vệ · chia sẻ · kết gán địa chỉ.
 
-### 2. Các kiểu địa chỉ nhớ
+### 2. Các kiểu địa chỉ nhớ (Logical/Physical address)
 
 #### 📚 Lý thuyết
 
@@ -262,7 +262,7 @@ Không áp dụng bản chạy được cho mục này (địa chỉ vật lý b
 
 **Chốt mục:** **logical** = vị trí diễn tả trong chương trình (còn gọi virtual) · **physical** = vị trí thật trong RAM · relative = logical tính từ một mốc. Bẫy thi: câu điền thuật ngữ cần đúng **từ tiếng Anh**.
 
-### 3. Chuyển đổi địa chỉ — address binding
+### 3. Chuyển đổi địa chỉ (Address binding)
 
 #### 📚 Lý thuyết
 
@@ -513,7 +513,7 @@ Static: mỗi tiến trình một bản → **20 MB**. Dynamic: thư viện nạ
 
 **Chốt mục:** loading = **nạp khi gọi** (user lo) · linking = **link lúc chạy qua stub**, chia sẻ `.dll`/`.so` (OS lo). Bẫy thi: nhầm hai cái.
 
-### 5. Phân mảnh — nội và ngoại
+### 5. Phân mảnh — nội và ngoại (Fragmentation — Internal/External)
 
 #### 📚 Lý thuyết
 
@@ -625,7 +625,7 @@ Không áp dụng bản chạy được.
 
 **Chốt mục:** **nội** = thừa **trong** khối (khối cố định, paging) · **ngoại** = đủ tổng nhưng **không liên tục** (cấp vừa khít) → chữa bằng **compaction**.
 
-### 6. Phân vùng cố định, phân vùng động và chiến lược placement
+### 6. Phân vùng cố định, phân vùng động và chiến lược placement (Fixed/Dynamic partitioning & placement)
 
 #### 📚 Lý thuyết
 
@@ -730,7 +730,7 @@ Nếu nhiều tiến trình nhỏ cùng được gán vào partition nhỏ, chú
 
 **Chốt mục:** fixed → **phân mảnh nội**; dynamic → **phân mảnh ngoại**. **First** = từ đầu · **next** = từ lần cấp cuối · **best** = nhỏ nhất vừa · **worst** = lớn nhất. Bẫy thi: nhầm first-fit với next-fit.
 
-### 7. Phân trang và chuyển đổi địa chỉ trong paging
+### 7. Phân trang và chuyển đổi địa chỉ (Paging & address translation)
 
 #### 📚 Lý thuyết
 
@@ -856,7 +856,7 @@ n = 10 (1 KB), m − n = 4 (16 trang) → **m = 14 bit**. Bảng trang = 16 × 4
 
 **Chốt mục:** logical = `[p | d]`; physical = `f × page_size + d`, **d giữ nguyên**. Số bit = ⌈log2(số trang hoặc số khung)⌉ + bit offset. Bẫy thi: làm tròn **lên** khi số trang không phải lũy thừa của 2; nhầm số trang (logic) với số khung (physic).
 
-### 8. Cài đặt bảng trang: PTBR, TLB và EAT
+### 8. Cài đặt bảng trang (Page table implementation): PTBR, TLB và EAT
 
 #### 📚 Lý thuyết
 
@@ -1069,7 +1069,7 @@ EAT = 0.75×200 + 0.25×400 = (2 − 0.75)×200 + 0 = 250 ns
 
 **Chốt mục:** không TLB = **2 lần** vào RAM; `EAT = (2 − α)x + ε`. Bẫy thi: hit tốn `ε + x` (không phải chỉ `ε`); miss tốn `ε + 2x`; đề hay cho `ε = 0` hoặc bắt giải **ngược**.
 
-### 9. Tổ chức bảng trang: nhiều cấp và nghịch đảo
+### 9. Tổ chức bảng trang: nhiều cấp và nghịch đảo (Multilevel/Inverted page table)
 
 #### 📚 Lý thuyết
 
@@ -1153,7 +1153,7 @@ Offset = 32 − 9 − 11 = **12 bit** → trang **2^12 = 4 KB**. Số trang = 2^
 
 **Chốt mục:** nhiều cấp = **phân trang chính bảng trang**; nghịch đảo = **một bảng cho cả hệ thống**, mục theo khung, địa chỉ `<IDP, p, d>`. Bẫy thi: **số trang chỉ phụ thuộc offset** (hoặc tổng bit chỉ số trang), không phụ thuộc cách chia cấp.
 
-### 10. Bảo vệ và chia sẻ trong paging
+### 10. Bảo vệ và chia sẻ trong paging (Protection & sharing)
 
 *(mục phụ — bản rút gọn: đề mẫu không hỏi)*
 

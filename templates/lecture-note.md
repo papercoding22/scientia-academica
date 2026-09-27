@@ -54,7 +54,7 @@ flowchart TD
 
 ## Nội dung chính
 
-### 1. <Tên khái niệm>
+### 1. <Tên khái niệm tiếng Việt> (<English term>)
 
 #### 📚 Lý thuyết
 

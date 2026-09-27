@@ -3,7 +3,7 @@
 > File này là **luật** cho AI. Đọc trước khi làm bất cứ việc gì trong repo này.
 > Hướng dẫn thao tác cho người dùng nằm ở [`HOW-TO.md`](HOW-TO.md) — khi người dùng
 > hỏi *"làm thế nào để…"*, trả lời rồi trỏ họ tới mục tương ứng ở đó.
-> Cập nhật lần cuối: 2026-09-26
+> Cập nhật lần cuối: 2026-09-27
 
 ---
 
@@ -66,6 +66,27 @@ Hệ quả cụ thể:
   tên giao thức, tên công nghệ.
 - ❌ Không viết "sự bế tắc", "điều kiện tranh đoạt", "bộ định thời" — người dùng đi làm,
   dùng thuật ngữ tiếng Anh hàng ngày. Dịch ra làm khó hiểu hơn.
+
+**Tiêu đề khái niệm/chủ đề: `Tên tiếng Việt (English term)`.** Áp dụng cho mọi heading
+đặt tên một khái niệm hay chủ đề trong note bài giảng, `notes/`, `knowledge-base/`,
+note ôn chương, knowledge map. Lý do: đề thi, slide và tài liệu tra cứu thường dùng
+thuật ngữ tiếng Anh, còn heading tiếng Việt thuần thì người đọc không nối được.
+
+| Tình huống | Viết | Không viết |
+|---|---|---|
+| Heading tiếng Việt | `### 5. Phân mảnh — nội và ngoại (Fragmentation — Internal/External)` | `### 5. Phân mảnh — nội và ngoại` |
+| Thuật ngữ đang nằm lẫn trong heading | `### 3. Chuyển đổi địa chỉ (Address binding)` | `### 3. Chuyển đổi địa chỉ — address binding` |
+| Heading có phần liệt kê sau dấu `:` | `### 8. Cài đặt bảng trang (Page table implementation): PTBR, TLB và EAT` | ngoặc dồn cuối, xa tên khái niệm |
+| Slide/giáo trình chỉ dùng tiếng Anh | `### 11. Swapping` — giữ nguyên | tự dịch ra `Hoán đổi (Swapping)` |
+
+- Thuật ngữ tiếng Anh lấy **đúng như slide/giáo trình** (vd slide ghi `Phân mảnh ngoại (external fragmentation)`);
+  không có thì dùng thuật ngữ chuẩn của giáo trình gốc, không tự chế.
+- Ngoặc đặt ngay sau tên khái niệm; thứ tự trong ngoặc khớp thứ tự tiếng Việt.
+  Nhiều khái niệm thì nối bằng `&` hoặc `/`, giữ ngắn.
+- Không áp dụng cho heading cấu trúc (`## Mục lục`, `#### 📚 Lý thuyết`, `## Tự kiểm tra`…)
+  và heading câu hỏi của FAQ.
+- Đổi heading là đổi anchor: sinh lại mục lục bằng `scripts/toc.py gen`, rồi `grep` cả repo
+  tìm link tới anchor cũ để sửa theo.
 
 ---
 

@@ -1,4 +1,4 @@
-# <Tên khái niệm>
+# <Tên khái niệm tiếng Việt> (<English term>)
 
 > Khái niệm dùng chung, sống lâu hơn một học kỳ.
 

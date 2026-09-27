@@ -84,7 +84,7 @@ flowchart LR
 ````
 
 ## Các cụm kiến thức
-### <Cụm/chương>
+### <Cụm/chương> (<English term>)
 - **Trả lời:** câu hỏi mà cụm này giải quyết.
 - **Khái niệm lõi:** … `[S<n>]`
 - **Quan hệ:** `A → B` — loại quan hệ và lý do, có nguồn.

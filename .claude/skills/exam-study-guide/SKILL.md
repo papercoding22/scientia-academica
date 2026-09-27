@@ -90,6 +90,9 @@ hỏi giả. Không kết luận chương đó sẽ không thi. Nếu đề đ�
 hệ nền tảng → vận dụng, không bắt buộc theo thứ tự câu. Mỗi khối chỉ rõ dùng cho
 câu nào và có nguồn cụ thể: tên/mã tài liệu + số trang/slide đã mở kiểm tra.
 
+- Heading khối kiến thức theo `Tên tiếng Việt (English term)`, thuật ngữ lấy đúng như
+  slide/đề — vd `### Phân mảnh — nội và ngoại (Fragmentation — Internal/External)`
+  (`AGENTS.md` § 2).
 - Theo cách giải thích trong `AGENTS.md`: trực giác → analogy → ví dụ nhỏ → định
   nghĩa/công thức → code nếu phù hợp. Kết thúc khối bằng bảng hoặc ý chốt ngắn.
 - Tập trung vào điều kiện áp dụng, sự khác biệt giữa khái niệm gần nhau và vì sao
