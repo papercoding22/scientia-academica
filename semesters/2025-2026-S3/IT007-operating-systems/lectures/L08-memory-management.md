@@ -220,6 +220,17 @@ flowchart TD
  Chương trình chỉ thấy 346; không bao giờ thấy 14346.
 ```
 
+![Mind map các kiểu địa chỉ nhớ: là gì, symbolic, logical (virtual) và relative, physical và absolute, vì sao tách hai loại, đổi logical sang physical bằng MMU](images/address-types-mindmap.png)
+
+*Mind map do AI dựng bằng SVG và xuất PNG, chắt lọc từ mục này và [C7 s12–s18]; ví dụ số lấy từ slide s13, s16.*
+
+[SVG chỉnh sửa](images/address-types-mindmap.svg)
+
+**Đọc hình:**
+
+- **Nhánh trái:** định nghĩa, logical/relative và lý do phải tách hai loại địa chỉ.
+- **Nhánh phải:** symbolic, physical/absolute và cách MMU đổi logical → physical; *khi nào* đổi thuộc mục 3.
+
 #### 💻 Code & thực tế
 
 Không áp dụng bản chạy được cho mục này (địa chỉ vật lý bị OS giấu khỏi user program).
