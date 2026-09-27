@@ -55,9 +55,53 @@ Nguồn yêu cầu là [đề gốc](brief/). Chưa có transcript nên guide kh
 
 **Các bước:**
 
-1. Chuẩn bị file Excel nhỏ, có hàng tiêu đề nhất quán và dữ liệu đủ để nhận biết sau import. Tự kiểm tra kiểu dữ liệu trước khi mở wizard.
-2. Chụp các điểm quyết định trong luồng import: chọn nguồn, chọn đích, mapping sheet/table, thực thi và kiểm tra table đích.
-3. Chọn một table có dữ liệu rõ ràng cho export. Chụp các điểm quyết định tương ứng: nguồn, đích Excel, mapping, thực thi, mở file Excel để kiểm tra.
+1. Chuẩn bị file Excel nhỏ, có hàng tiêu đề nhất quán và dữ liệu đủ để nhận biết sau import. Tự kiểm tra kiểu dữ liệu trước khi mở wizard (file mẫu: `resources/sample-students.xlsx`, có bản `.csv` đi kèm nếu dùng Import Flat File Wizard).
+2. Chụp các điểm quyết định trong luồng import. Có hai cách mở wizard, chọn một hoặc làm cả hai để so sánh:
+
+   **Cách A — SSMS Import and Export Wizard** (nguồn Excel trực tiếp): click phải CSDL → `Tasks` → `Import Data...`
+
+   | Điểm quyết định | Chụp lúc nào | Tên file ảnh |
+   |---|---|---|
+   | Chọn nguồn | Đã chọn `Microsoft Excel`, trỏ đúng file, tick "First row has column names" — trước khi Next | `images/g1-excelwizard-step1-source.png` |
+   | Chọn đích | Đã chọn đúng server + CSDL thực hành — trước khi Next | `images/g1-excelwizard-step2-destination.png` |
+   | Mapping sheet/table | Màn hình chọn sheet nguồn → bảng đích | `images/g1-excelwizard-step3-mapping.png` |
+   | Mapping cột (Edit Mappings) | Dialog kiểm tra kiểu dữ liệu từng cột | `images/g1-excelwizard-step3b-edit-mappings.png` |
+   | Thực thi | Màn hình kết quả "X rows transferred" | `images/g1-excelwizard-step4-run-result.png` |
+   | Kiểm tra table đích | Kết quả `SELECT * FROM` bảng vừa tạo | `images/g1-excelwizard-step5-verify-table.png` |
+
+   **Cách B — Import Flat File Wizard** (nguồn `.csv`, chỉ đọc file text): click phải CSDL → `Tasks` → `Import Flat File...`
+
+   | Điểm quyết định | Chụp lúc nào | Tên file ảnh |
+   |---|---|---|
+   | Chọn nguồn | Specify Input File — đã trỏ `sample-students.csv` | `images/g1-flatfile-step1-input-file.png` |
+   | Xem trước dữ liệu | Preview Data — header + vài dòng đầu | `images/g1-flatfile-step2-preview-data.png` |
+   | Modify Columns | Mapping kiểu dữ liệu từng cột (đối chiếu lại bước 1 — cột ngày và cột số dễ bị suy sai kiểu) | `images/g1-flatfile-step3-modify-columns.png` |
+   | Summary | Tóm tắt trước khi chạy | `images/g1-flatfile-step4a-summary.png` |
+   | Results | Kết quả chạy (✓/✗ từng hành động) | `images/g1-flatfile-step4b-results.png` |
+   | Kiểm tra table đích | Kết quả `SELECT * FROM` bảng vừa tạo | `images/g1-flatfile-step5-verify-table.png` |
+
+3. Chọn một table có dữ liệu rõ ràng cho export — dùng luôn bảng vừa import ở bước 2 (`dbo.SampleStudents` hoặc `dbo.SampleStudentsFlat`) để đề nhất quán và dễ đối chiếu ngược lại. Mở **SSMS Import and Export Wizard** (click phải CSDL → `Tasks` → `Export Data...`), lần này chiều đi ngược lại: SQL Server → Excel.
+
+   | Điểm quyết định | Chụp lúc nào | Tên file ảnh |
+   |---|---|---|
+   | Chọn nguồn | Choose a Data Source — đã chọn `SQL Server Native Client`, đúng server và CSDL — trước khi Next | `images/g1-export-step1-source.png` |
+   | Chọn đích | Choose a Destination — đã chọn `Microsoft Excel`, đặt đường dẫn file mới (vd `resources/exported-students.xlsx`), đúng version Excel — trước khi Next | `images/g1-export-step2-destination.png` |
+   | Mapping table/sheet | Specify Table Copy or Query — chọn "Copy data from one or more tables", tick đúng bảng nguồn, cột "Destination" là tên sheet sẽ tạo | `images/g1-export-step3-mapping.png` |
+   | Mapping cột (Column Mappings) | Dialog kiểm tra ánh xạ cột nguồn → cột Excel (bấm `Edit Mappings...` để mở) | `images/g1-export-step3b-column-mappings.png` |
+   | Thực thi | Màn hình kết quả "X rows transferred" sau khi Finish | `images/g1-export-step4-run-result.png` |
+   | Mở file Excel để kiểm tra | Mở `exported-students.xlsx` vừa tạo, thấy đủ hàng tiêu đề và dữ liệu | `images/g1-export-step5-verify-excel.png` |
+
+   Lưu ý: giữ nguyên tên bảng nguồn trong caption ảnh, để người chấm đối chiếu ngược lại đúng bảng đã import ở bước 2 — tránh export nhầm một bảng khác không liên quan.
+
+   > ⚠️ **Trên SQL Server Express**: `Tasks → Export Data...` (và `Import Data...`) có thể báo
+   > *"This feature is not currently available in this version of SQL Server"* — Express không
+   > kèm đủ tính năng SSIS để menu này gọi trực tiếp. Vòng qua bằng cách chạy thẳng file thực thi
+   > của wizard (file này vẫn cài kèm SSMS, độc lập với edition SQL Server):
+   > ```
+   > C:\Program Files (x86)\Microsoft SQL Server\170\DTS\Binn\DTSWizard.exe
+   > ```
+   > Mở file này (double-click hoặc gõ `DTSWizard` vào Run/Start Menu) — wizard hiện ra y hệt
+   > các màn hình đã mô tả ở trên, làm tiếp bình thường từ bước chọn nguồn.
 4. Đối chiếu số cột, số dòng và ít nhất một giá trị nhận diện ở mỗi đầu. Nếu wizard tự suy luận sai kiểu dữ liệu, ghi lỗi thật và cách bạn tự sửa thay vì che đi.
 
 **Thế nào là đủ:** người chấm thấy được dữ liệu đã đi vào SQL Server và đi ra Excel, không chỉ thấy wizard được mở.
@@ -72,7 +116,16 @@ Nguồn yêu cầu là [đề gốc](brief/). Chưa có transcript nên guide kh
 
 **Các bước:**
 
-1. Vẽ ma trận trước khi viết SQL: hàng là `u1`–`u6`, cột là `r1`–`r3`; chép mapping từ đề gốc vào ma trận. Kế bên là bảng quyền của từng role.
+1. Vẽ ma trận trước khi viết SQL — làm theo thứ tự này, đừng mở cửa sổ query trước:
+
+   a. **Ma trận thành viên `user × role`.** Hàng là `u1`–`u6`, cột là `r1`–`r3`. Ô nào user thuộc role đó thì đánh dấu. Chép đúng mapping ở đề gốc (mục B, gạch đầu dòng "Tạo nhóm") vào bảng — không tự suy diễn hay đổi thứ tự, vì đây là phần chấm đối chiếu trực tiếp.
+
+   b. **Bảng vai trò hệ thống của từng role.** Một bảng riêng, hai cột: `role` và `server role / database role mà nó là thành viên`. Đề gốc liệt kê rõ ba dòng cho `r1`, `r2`, `r3` (mục B, gạch đầu dòng "Thực hiện") — chép nguyên văn vào bảng này. Ghi chú thêm ở mỗi dòng: role đích đó thuộc **server level** (vd `SysAdmin`) hay **database level** (vd `db_owner`, `db_accessadmin`), vì hai loại này tạo bằng lệnh khác nhau (bước 3 sẽ dùng đến).
+
+   c. **Cột "đối tượng cần tạo trước".** Thêm một cột nháp bên cạnh ma trận, liệt kê cho mỗi `u1`–`u6`: cần login cấp server hay chỉ cần user cấp CSDL, và CSDL nào. Đây là chỗ dễ quên nhất — xem bước 2.
+
+   Mục đích của toàn bộ bước 1 là để bước 3 (viết script) chỉ còn việc "dịch từng dòng ma trận thành một câu lệnh", không phải vừa viết vừa nhớ mapping.
+
 2. Phân biệt rõ login, database user và role. Slide 11–31 là phần nền: bạn phải biết đối tượng nào thuộc cấp server, đối tượng nào thuộc CSDL trước khi chạy lệnh.
 3. Viết script theo thứ tự phụ thuộc: tạo đối tượng cấp server cần thiết, ánh xạ vào CSDL, tạo role, gán thành viên, rồi gán role hệ thống/database mà đề yêu cầu.
 4. Sau mỗi nhóm lệnh, dùng giao diện hoặc truy vấn metadata để kiểm tra membership thực tế. Lưu bằng chứng đó vào báo cáo.
@@ -113,10 +166,3 @@ Nguồn yêu cầu là [đề gốc](brief/). Chưa có transcript nên guide kh
 - [ ] Nộp hai file riêng trên `courses.uit.edu.vn`, không nén file.
 - [ ] Kiểm tra lại hạn nộp với giảng viên hoặc hệ thống courses trước khi nộp.
 
-## Phần bạn phải tự quyết
-
-- Dữ liệu Excel, CSDL thực hành, table export và ảnh chụp là bằng chứng do bạn tự tạo.
-- Ba table `T1`–`T3`, toàn bộ câu lệnh SQL và kết quả thực thi phải bám theo MSSV/cài đặt của bạn.
-- Nguồn tham khảo cuối báo cáo và cách diễn đạt câu lý thuyết là phần bạn tự viết.
-
-Viết xong bản nháp thì nhờ AI review — lúc đó AI được phép chỉ ra chỗ sai và lý do sai.

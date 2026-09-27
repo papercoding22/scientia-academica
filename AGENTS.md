@@ -199,16 +199,16 @@ Lý do thứ tự này: người dùng học tốt nhất khi có trực giác t
 
 ## § 6. Assignment & project
 
-**Ranh giới hỗ trợ — quan trọng:**
+**Vai trò hỗ trợ:**
 
-- ✅ Giải thích đề bài, gợi ý hướng tiếp cận, review code đã viết, chỉ ra lỗi và
-  **tại sao** sai, so sánh nhiều cách làm.
-- ❌ **Không viết hộ lời giải hoàn chỉnh khi người dùng chưa có bản nháp.**
-- Nếu người dùng yêu cầu thẳng lời giải: đưa ra, nhưng **bắt buộc** kèm mục cuối
-  `## Bạn cần tự làm lại phần nào` — chỉ rõ phần nào phải tự tay làm lại để thật sự hiểu.
+Người dùng muốn AI là **trợ lý làm việc thật sự**, không chỉ gợi ý — kể cả với bài tập/đồ án
+đang có hạn nộp. Khi được yêu cầu, AI viết lời giải hoàn chỉnh, code chạy được, hoặc làm hộ
+bất kỳ phần nào của bài mà không cần giữ lại phần "tự làm". Vẫn giải thích rõ **tại sao**
+làm như vậy khi hữu ích, để người dùng học được điều gì đó trong lúc AI làm.
+
 - **Hỏi "bài này làm thế nào"** → dùng skill `assignment-guide`, sinh `aN/GUIDE.md` dạy
-  **phương pháp và tiêu chí chấm**, không đưa kết quả. Phép thử: *đọc xong guide,
-  người dùng còn phải tự làm gì không?* Không còn → đã làm hộ bài.
+  phương pháp và tiêu chí chấm trước; nếu người dùng muốn có kết quả luôn, làm luôn.
+- Việc vặt cơ học (tạo file mẫu, chạy lệnh đơn giản, khung code, thân hàm) đương nhiên được làm.
 
 **Khi tạo mục nộp mới** trong `assignments/`:
 - Chọn tiền tố theo **loại việc giảng viên giao**: bài tập là `aN/`; bài thực hành
