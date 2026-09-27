@@ -328,6 +328,17 @@ Hai hàng bên dưới minh họa riêng **execution-time binding bằng relocat
 `1000 + 4000 = 5000`; khi process được dời và base cập nhật thành `7000`, địa chỉ luận lý vẫn là `1000` nhưng địa chỉ vật lý thành `8000`.
 Đây không phải công thức chung của paging; analogy giao thư chỉ minh họa thời điểm xác định địa chỉ, không mô tả cơ chế phần cứng.
 
+![Mind map address binding: là gì, địa chỉ qua từng giai đoạn, compile time, load time, execution time, đánh đổi và điểm dễ nhầm](images/address-binding-mindmap.png)
+
+*Mind map do AI dựng bằng SVG và xuất PNG, chắt lọc từ mục này và [C7 s18–s22]; ví dụ 1024 + 400 lấy từ bảng `JUMP i` ở trên.*
+
+[SVG chỉnh sửa](images/address-binding-mindmap.svg)
+
+**Đọc hình:**
+
+- **Nhánh phải:** ba thời điểm binding, mỗi nhánh có cách làm, ví dụ và khuyết điểm hoặc yêu cầu.
+- **Nhánh trái:** định nghĩa, dạng địa chỉ ở từng giai đoạn và các điểm dễ lẫn khi làm trắc nghiệm.
+
 #### 💻 Code & thực tế
 
 Không áp dụng bản chạy được.
