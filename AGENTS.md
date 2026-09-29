@@ -315,6 +315,7 @@ và ghi rõ số trang khi trích. Giáo trình chuẩn hơn transcript Teams.
 | Khám phá toàn bộ slide và lập knowledge map | skill **`slide-knowledge-map`** → `.claude/skills/slide-knowledge-map/SKILL.md` |
 | Map đề thi mẫu → chương/mục + exam blueprint | skill **`exam-map`** → `.claude/skills/exam-map/SKILL.md` |
 | Chắt lọc kiến thức một chương từ đề mẫu và hướng dẫn từng câu | skill **`exam-study-guide`** → `.claude/skills/exam-study-guide/SKILL.md` |
+| Chắt lọc câu đề mẫu thành cheatsheet chương (`cheatsheet-chapter<N>.md`) | skill **`exam-cheatsheet`** → `.claude/skills/exam-cheatsheet/SKILL.md` |
 | Học cùng gia sư về một lecture/chủ đề | skill **`study-tutor`** → `.claude/skills/study-tutor/SKILL.md` |
 | Thêm ảnh có sẵn vào đúng mục của ghi chú | skill **`add-note-image`** → `.claude/skills/add-note-image/SKILL.md` |
 | Tạo hình giải thích khái niệm và chèn vào ghi chú | skill **`illustrate-concept`** → `.claude/skills/illustrate-concept/SKILL.md` |

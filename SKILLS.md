@@ -23,6 +23,7 @@ Chi tiết từng skill ở `.claude/skills/<tên>/SKILL.md`.
 | [`assignment-guide`](.claude/skills/assignment-guide/SKILL.md) | Sinh `GUIDE.md` — phương pháp + tiêu chí chấm, không có lời giải | *bài tập 5 IE105 làm thế nào* |
 | [`exam-map`](.claude/skills/exam-map/SKILL.md) | Đề mẫu → map câu về chương/slide + exam blueprint | *phân tích đề mẫu IE105* |
 | [`exam-study-guide`](.claude/skills/exam-study-guide/SKILL.md) | Chắt lọc kiến thức một chương từ đề mẫu, kèm đáp án, giải thích từng câu và dẫn chiếu nguồn | *tổng hợp kiến thức chương 5 IT007 từ đề mẫu và hướng dẫn từng câu* |
+| [`exam-cheatsheet`](.claude/skills/exam-cheatsheet/SKILL.md) | Chắt lọc một/vài câu trong guide chương thành mục cheatsheet: công thức, các bước, kiểm tra, bẫy từng phương án | *chắt lọc câu 20 chương 7 IT007 ra cheatsheet* |
 | [`exam-plan`](.claude/skills/exam-plan/SKILL.md) | Đọc lịch, xếp buổi ôn lùi từ ngày thi, tạo task Notion + sự kiện Google Calendar | *lên kế hoạch ôn thi IT007 và IE105* |
 | [`replan-late`](.claude/skills/replan-late/SKILL.md) | Xếp lại nhanh task trễ tiến độ vào khung trống trước hạn/ngày thi; dời cùng lúc repo, Notion, Calendar | *planning lại các việc bị trễ* |
 | [`notion-tasks`](.claude/skills/notion-tasks/SKILL.md) | Đồng bộ bài nộp, lịch thi từ `admin/tasks-<kỳ>.md` lên Notion và Google Calendar; tạo task lẻ | *đồng bộ Notion* · *đồng bộ lịch* |
@@ -64,7 +65,7 @@ flowchart LR
 | Tóm tắt một concept bằng mind map | `concept-mindmap` | hình trong chat · `images/` và note khi yêu cầu chèn |
 | Có bài tập / lab | `new-assignment` → `assignment-guide` | `assignments/<aN\|labN>/` · `admin/tasks-<kỳ>.md` |
 | Có đồ án | `new-project` → `notion-tasks` | `projects/prjN/` · `admin/tasks-<kỳ>.md` · Notion |
-| Ôn thi | `exam-map` · `exam-study-guide` · `exam-plan` | `exam-prep/` · Notion · Google Calendar (lịch `Work`) |
+| Ôn thi | `exam-map` · `exam-study-guide` · `exam-cheatsheet` · `exam-plan` | `exam-prep/` · Notion · Google Calendar (lịch `Work`) |
 | Quản lý việc | `notion-tasks` | `admin/tasks-<kỳ>.md` → Notion ☕ Tasks · Google Calendar `Work` |
 | Vừa nộp bài / xong buổi ôn | `task-status` | `admin/tasks-<kỳ>.md` · README bài · Notion `Status` |
 | Lỡ buổi, có việc trễ tiến độ | `replan-late` | `admin/tasks-<kỳ>.md` (*Hạn*) · Notion `Deadline` · sự kiện lịch `Work` |
