@@ -46,3 +46,7 @@ admin/notion-map.json
 
 # Bộ đệm text trích từ materials/ — dựng lại bằng scripts/slides-to-md.py
 .cache/
+
+# Repo ứng dụng clone riêng (có .git riêng) — không theo dõi trong repo này
+semesters/*/*/projects/*/src/web/
+.next/
