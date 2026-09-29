@@ -171,7 +171,8 @@ Ghi phương án, sơ đồ và lý do lựa chọn ở đây trước khi revie
 |---|---|
 | [`brief/`](brief/) | Đề bài gốc của giảng viên — chỉ đọc |
 | [`docs/`](docs/) | Báo cáo, slide thuyết trình |
-| [`src/`](src/) | Mã nguồn, cấu hình |
+| [`src/`](src/) | Mã nguồn và cấu hình của project ứng dụng |
+| [`snippets/`](snippets/) | Code, SQL và script rời rạc để thử nghiệm hoặc chạy độc lập; chưa cần cấu trúc project |
 | [`images/`](images/) | Screenshot, sơ đồ, demo — tên tiếng Anh mô tả nội dung |
 
 ---
