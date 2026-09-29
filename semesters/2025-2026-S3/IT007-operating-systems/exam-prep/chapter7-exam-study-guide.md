@@ -8,7 +8,7 @@
 | Điểm trong đề này | 7 câu trắc nghiệm × 0,3 + 4 ý tự luận × 0,5 = **4,1/10 điểm** |
 | Cập nhật | 2026-09-25 |
 | Cách dùng | Đọc mục 2 → tự làm đề → đối chiếu đáp án và giải thích ở mục 3 → luyện lại mục cuối |
-| Liên quan | [Lecture L08](../lectures/L08-memory-management.md) · [Map toàn đề](exam-map.md) · [Guide Chương 5](chapter5-exam-study-guide.md) |
+| Liên quan | [Lecture L08](../lectures/L08-memory-management.md) · [Map toàn đề](exam-map.md) · [Guide Chương 5](chapter5-exam-study-guide.md) · [Cheatsheet Chương 7](cheatsheet-chapter7.md) |
 
 > **Phạm vi nguồn:** chắt lọc từ **một đề mẫu**, đối chiếu slide Chương 7. Trường/khoa trên đề để trống, chưa xác nhận người ra đề; trang 6 là bảng trả lời trống, **không có đáp án chính thức**. Mỗi câu trong guide có **đáp án suy luận kèm giải thích**, đối chiếu với đề và slide. Tỷ trọng này không cam kết phạm vi đề thi thật.
 >
