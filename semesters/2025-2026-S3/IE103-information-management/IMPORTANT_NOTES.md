@@ -69,6 +69,15 @@ Giảng viên: **Nguyễn Thành Luân**
 | Đạo văn / sao chép | ❓ | |
 | Vắng học | ❓ | |
 | Đánh giá đồ án | File báo cáo và trình bày; mẫu tên, định dạng, nơi nộp và hạn nộp ❓ | [00 - Gioi thieu.pdf](<materials/slides/00 - Gioi thieu.pdf#page=11>), trang 11: “Điểm báo cáo đồ án (File báo cáo và trình bày).” |
+| Hệ quản trị cho đồ án | SQL Server hoặc MySQL | [Hướng dẫn đồ án.pdf](<projects/prj1/brief/Hướng dẫn đồ án.pdf#page=2>), trang 2 |
+| Cài đặt và dữ liệu đồ án | Bảng, khoá chính/ngoại, ràng buộc; 10–20 dòng dữ liệu cho mỗi quan hệ, bao quát nhiều trường hợp | [Hướng dẫn đồ án.pdf](<projects/prj1/brief/Hướng dẫn đồ án.pdf#page=1>), trang 1 |
+| Xử lý và trình bày thông tin trong đồ án | 5 Stored Procedure, 5 Trigger, 3 Function, 2 Cursor, 5 Report | [Hướng dẫn đồ án.pdf](<projects/prj1/brief/Hướng dẫn đồ án.pdf#page=1>), trang 1 |
+| An toàn thông tin trong đồ án | Xác thực, phân quyền, Import, Export, Backup, Restore | [Hướng dẫn đồ án.pdf](<projects/prj1/brief/Hướng dẫn đồ án.pdf#page=1>), trang 1 |
+| Báo cáo đồ án | Theo mẫu cung cấp sẵn, có trang bìa/mục lục, tiêu đề phù hợp; tối đa **20 trang, không tính mục lục và tài liệu tham khảo**; hình nên là cấu trúc bảng, kết quả thực nghiệm, demo, không nên là logo/lịch sử công nghệ | [Hướng dẫn đồ án.pdf](<projects/prj1/brief/Hướng dẫn đồ án.pdf#page=3>), trang 3 |
+| Video demo đồ án | Đưa link video demo trực tiếp vào cuối phần trình bày trong file báo cáo; có thể lưu trên Google Drive/YouTube | [Hướng dẫn đồ án.pdf](<projects/prj1/brief/Hướng dẫn đồ án.pdf#page=3>), trang 3 |
+| Sao chép trong đồ án | Không sao chép nội dung trên mạng; kiểm tra Turnitin, **trùng lặp trên 25% → điểm 0** | [Hướng dẫn đồ án.pdf](<projects/prj1/brief/Hướng dẫn đồ án.pdf#page=3>), trang 3 |
+
+> ❓ **CẦN XÁC MINH:** [Hướng dẫn đồ án.pdf](<projects/prj1/brief/Hướng dẫn đồ án.pdf#page=2>), trang 2, vừa ghi các chức năng “chỉ mô tả”, vừa lưu ý “Demo cho các chức năng (Trên nền tảng Web, Desktop, Mobile, ...)”. Chưa có chỉ dẫn chi tiết về mức demo. Các quy định từ tài liệu này được bổ sung ngày 2026-09-29; buổi/ngày giao chưa xác định.
 
 ---
 

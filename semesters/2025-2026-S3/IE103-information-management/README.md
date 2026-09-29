@@ -62,7 +62,7 @@ Môn về cách tổ chức, lưu trữ, và quản trị thông tin trong tổ 
 
 | Mục | Tên | Buổi giao | Hạn nộp | Trạng thái |
 |---|---|---|---|---|
-| [Đồ án 1](projects/prj1/) | Làm nhóm · ❓ tên đề tài · 50% điểm môn (slide giới thiệu, trang 11) | ❓ | ❓ chính thức; có thể cuối tháng 10/2026 (người dùng, 2026-09-29) | ⬜ chưa bắt đầu |
+| [Đồ án 1](projects/prj1/) | Quản lý Khách sạn — CSDL, Backend, Frontend · nhóm (người dùng, 2026-09-29) · 50% điểm môn (slide giới thiệu, trang 11) | ❓ | ❓ chính thức; có thể cuối tháng 10/2026 (người dùng, 2026-09-29) | ⬜ chưa bắt đầu |
 
 ---
 
