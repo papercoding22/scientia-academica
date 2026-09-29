@@ -32,6 +32,18 @@ Giảng viên: **Nguyễn Thành Luân**
 
 **Điều kiện dự thi cuối kỳ:** ❓
 
+**Bổ sung ngày 2026-09-29 từ slide giới thiệu:**
+
+| Thành phần | Tỷ trọng | Nội dung đánh giá |
+|---|---|---|
+| Điểm quá trình | 20% | Điểm danh, các bài tập quá trình và điểm cộng (nếu có) |
+| Điểm thực hành | 30% | Điểm của 6 bài lab thực hành |
+| Đồ án | **50%** | File báo cáo và trình bày; xem [Đồ án 1](projects/prj1/) |
+
+> *Nguồn: [00 - Gioi thieu.pdf](<materials/slides/00 - Gioi thieu.pdf#page=11>), trang 11, “Cách tính điểm cuối kỳ”. Ngày giảng chưa xác định; đã đối chiếu PDF ngày 2026-09-29. Bảng trên bổ sung thông tin còn `❓` ở khung ban đầu.*
+
+❓ Slide chưa chia điểm chi tiết giữa file báo cáo và trình bày.
+
 ---
 
 ## 2. Phần chắc chắn có trong đề thi cuối kỳ
@@ -56,6 +68,7 @@ Giảng viên: **Nguyễn Thành Luân**
 | Nộp trễ | ❓ | |
 | Đạo văn / sao chép | ❓ | |
 | Vắng học | ❓ | |
+| Đánh giá đồ án | File báo cáo và trình bày; mẫu tên, định dạng, nơi nộp và hạn nộp ❓ | [00 - Gioi thieu.pdf](<materials/slides/00 - Gioi thieu.pdf#page=11>), trang 11: “Điểm báo cáo đồ án (File báo cáo và trình bày).” |
 
 ---
 

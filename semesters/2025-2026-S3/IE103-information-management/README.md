@@ -60,7 +60,9 @@ Môn về cách tổ chức, lưu trữ, và quản trị thông tin trong tổ 
 
 ## Bài tập và đồ án
 
-Hiện không có bài tập hoặc đồ án đang theo dõi.
+| Mục | Tên | Buổi giao | Hạn nộp | Trạng thái |
+|---|---|---|---|---|
+| [Đồ án 1](projects/prj1/) | Làm nhóm · ❓ tên đề tài · 50% điểm môn (slide giới thiệu, trang 11) | ❓ | ❓ chính thức; có thể cuối tháng 10/2026 (người dùng, 2026-09-29) | ⬜ chưa bắt đầu |
 
 ---
 
