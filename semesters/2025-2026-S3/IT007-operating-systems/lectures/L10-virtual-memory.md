@@ -63,6 +63,19 @@ Bộ nhớ ảo cho phép chạy một tiến trình mà không cần nạp toà
 2. Gửi yêu cầu đọc đĩa để nạp trang cần vào một frame trống; trong lúc chờ I/O, CPU được giao cho tiến trình khác chạy.
 3. Sau khi I/O xong, đĩa phát ngắt, PFSR cập nhật page table và chuyển tiến trình về `ready`.
 
+![CPU tham chiếu P2 gây page fault; OS nạp P2 từ đĩa vào F4, cập nhật page table và đưa P về ready; khi được chọn, P chạy lại lệnh và truy cập RAM thành công](images/demand-paging-mechanism.png)
+
+*Hình do AI dựng, đối chiếu [slide Chapter 8, trang 13–14](../materials/slides/Copy%20of%20%23Week13-Chapter8%202024.pdf#page=13). Ví dụ P, Q, P2, F4 và offset 128 tự đặt; giả sử P2 là page hợp lệ, chưa có trong RAM, có bản trên đĩa và F4 trống. Hình lược bỏ TLB, chỉ hiển thị một phần page table và RAM; i/v biểu thị chưa/đã có trong RAM theo mô hình slide.*
+
+[SVG chỉnh sửa](images/demand-paging-mechanism.svg)
+
+**Đọc hình:**
+
+- **Cảnh 1:** CPU tham chiếu P2, gặp bit i nên phát sinh page-fault trap. PFSR đưa P về blocked.
+- **Cảnh 2:** OS yêu cầu đọc P2 vào F4; mũi tên xanh ngọc thể hiện dữ liệu được nạp từ đĩa vào RAM. Trong lúc P chờ I/O, Q dùng CPU; bit của P2 vẫn là i.
+- **Cảnh 3:** I/O hoàn tất, OS xử lý ngắt, ghi ánh xạ P2 → F4 và đổi bit sang v, rồi đưa P về ready. P vẫn phải chờ scheduler chọn mới được chạy.
+- **Cảnh 4:** Khi được cấp CPU, P chạy lại lệnh gây fault; cùng offset 128 nay được truy cập trong F4. Nếu P2 còn ở RAM, lần tham chiếu sau không cần đọc lại đĩa.
+
 Nếu **không có frame trống**, PFSR phải làm thêm bước thay trang trước bước 2: chọn một **victim page** (trang hy sinh) bằng giải thuật thay trang, ghi nó ra đĩa, cập nhật page table và frame table, rồi mới đọc trang mới cần vào.
 
 **Định nghĩa hình thức:**
