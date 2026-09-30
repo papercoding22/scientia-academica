@@ -5,6 +5,56 @@
 
 ---
 
+## Chọn phân vùng cố định (Fixed partition placement) — câu 13
+
+**Quy tắc** — một process được cấp **trọn một partition**. [C7 s34, s39; guide mục 2.4]
+
+```text
+Ứng viên  = partition trống AND kích thước ≥ yêu cầu   ← phải thỏa cả hai
+First-fit = ứng viên đầu tiên khi tìm từ đầu bộ nhớ     ← bỏ qua PC
+Best-fit  = ứng viên có kích thước nhỏ nhất             ← không phụ thuộc PC
+Next-fit  = ứng viên đầu tiên khi tìm tiếp từ PC        ← quay về đầu nếu tới cuối
+Phần dư   = kích thước partition − yêu cầu              ← internal fragmentation, không cấp riêng
+```
+
+**4 bước làm bài**
+
+1. Xác định thuật toán, kích thước process và trạng thái từng partition.
+2. Loại partition đã cấp phát hoặc nhỏ hơn yêu cầu.
+3. Chọn theo quy tắc trên; First-fit/Next-fit dừng ở ứng viên đầu tiên theo thứ tự tìm, Best-fit chọn ứng viên nhỏ nhất.
+4. Đánh dấu cả partition đã cấp; tính phần dư, không tách thành hole để cấp tiếp.
+
+**Dữ kiện câu 13:** P cần **220 KB**; vùng 1→6 lần lượt **150, 250, 380, 420, 320, 240 KB**. Vùng 3 đã cấp phát, **PC tại vùng 3**; các vùng khác trống. [Đề tr3, C13]
+**Phương án:** A = vùng 2 (250 KB) · B = vùng 1 (150 KB) · C = vùng 4 (420 KB) · D = vùng 6 (240 KB).
+**Phạm vi:** đề mẫu hỏi **First-fit**; Best-fit/Next-fit là **biến thể tự luyện từ phiên gia sư 2026-10-01**, giữ nguyên dữ kiện và phương án. Mỗi thuật toán xét **độc lập trên trạng thái ban đầu**.
+
+| Bước | Tính / xét | Kết quả |
+|---|---|---|
+| Lọc ứng viên | Vùng 1: `150 < 220`; vùng 3: đã cấp | Còn vùng 2, 4, 5, 6 |
+| First-fit — đề mẫu | Từ đầu: vùng 1 → vùng 2 đủ; `250 − 220 = 30 KB` | **A — vùng 2; dư 30 KB** |
+| Best-fit — tự luyện | `min(250, 420, 320, 240) = 240`; `240 − 220 = 20 KB` | **D — vùng 6; dư 20 KB** |
+| Next-fit — tự luyện | PC ở vùng 3 đã cấp → vùng 4 đủ; `420 − 220 = 200 KB` | **C — vùng 4; dư 200 KB** |
+
+**Kiểm tra (30 giây)**
+
+- Vùng chọn phải trống và đủ 220 KB; Best-fit phải không còn ứng viên nào nhỏ hơn.
+- PC ở vùng 3 chỉ đổi thứ tự tìm của Next-fit. Phần dư vẫn thuộc partition đã cấp cho P.
+
+**Bẫy** — mỗi phương án sai của từng biến thể được đối chiếu dưới đây.
+
+| Làm sai | Ra phương án | Nhận ra vì |
+|---|---|---|
+| Cả ba: chọn vùng đầu tiên/nhỏ nhất mà bỏ điều kiện đủ chỗ | **B — vùng 1** | `150 < 220 KB`, không chứa được P |
+| First-fit: bắt đầu tìm tiếp từ PC | **C — vùng 4** | Đó là Next-fit; First-fit đã gặp vùng 2 đủ chỗ từ đầu |
+| First-fit: tìm vùng nhỏ nhất đủ chỗ | **D — vùng 6** | Đó là Best-fit; First-fit dừng ngay ở vùng 2 |
+| Best-fit: dừng ở ứng viên đầu tiên từ đầu bộ nhớ | **A — vùng 2** | Vùng 6 (240 KB) nhỏ hơn vùng 2 (250 KB) mà vẫn đủ |
+| Best-fit: tìm tiếp từ PC rồi dừng ở ứng viên đầu tiên | **C — vùng 4** | Vùng 4 đủ nhưng không nhỏ nhất; Best-fit không chọn theo PC |
+| Next-fit: quay về đầu ngay dù chưa tìm tiếp từ PC | **A — vùng 2** | Từ PC ở vùng 3 đã gặp vùng 4 đủ trước khi cần quay vòng |
+| Next-fit: tìm vùng nhỏ nhất đủ chỗ | **D — vùng 6** | Next-fit dừng ở vùng 4, không tìm vùng vừa khít hơn |
+| Cấp phần dư 20/30/200 KB cho process khác | Sai mô hình, không ứng với A–D | Fixed partition cấp trọn vùng; phần dư là internal fragmentation |
+
+---
+
 ## Dịch logical address sang physical address (Paging) — câu 20
 
 **Công thức** (địa chỉ tính theo byte, page/frame đánh số từ 0, `P` = page size = frame size) [C7 s44–s45]
