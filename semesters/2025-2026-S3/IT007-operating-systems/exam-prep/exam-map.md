@@ -4,9 +4,9 @@
 |---|---|
 | Đề đã phân tích | [`Final-Exam-Sample.pdf`](Final-Exam-Sample.pdf) — Đề thi cuối kỳ, mã đề 01, 6 trang |
 | Nguồn gốc đề | ❓ Trường/khoa bỏ trống, không ghi giảng viên ra đề — xem [Cần xác minh](#3-cần-xác-minh) |
-| Cập nhật | 2026-09-23 |
+| Cập nhật | 2026-09-30 |
 | Sinh bởi | skill `exam-map` |
-| Hướng dẫn ôn | [Chương 5 — kiến thức chắt lọc và hướng dẫn từng câu](chapter5-exam-study-guide.md) · [Chương 7 — kiến thức chắt lọc và hướng dẫn từng câu](chapter7-exam-study-guide.md) |
+| Hướng dẫn ôn | [Chương 5 — kiến thức chắt lọc và hướng dẫn từng câu](chapter5-exam-study-guide.md) · [Chương 7 — kiến thức chắt lọc và hướng dẫn từng câu](chapter7-exam-study-guide.md) · [Chương 8 — bộ nhớ ảo và hướng dẫn từng câu](chapter8-exam-study-guide.md) |
 
 > **Quy ước nguồn:** `[C7 s44]` = file slide mã **C7**, slide số **44** (tra mã ở [Nguồn slide](#4-nguồn-slide)).
 > Đây là phân tích **một đề mẫu**, không phải lời giảng viên — không thay cho mục 2, 3 của
@@ -46,9 +46,9 @@
 | 3 | Ch7 — Quản lý bộ nhớ | 7.5.3 Effective Access Time | Công thức `EAT = (2 − α)x + ε`, giải **ngược** tìm ε | Tính toán | Vận dụng | 0.3 | [C7 s53] |
 | 4 | Ch5 — Đồng bộ tiến trình | 5.7.1 Định nghĩa · 5.7.2 Phân loại semaphore | `wait` giảm chứ không tăng; binary ≈ mutex; counting giới hạn số truy cập. Đề viết `sem_wait()` (POSIX), slide viết `wait(S)` | Phát biểu đúng/sai | Hiểu | 0.3 | [C5-2 s16, s26] |
 | 5 | Ch5 — Đồng bộ tiến trình | 5.6.2 Mutex locks không busy waiting | Ngủ khi khoá đang bị giữ, đánh thức khi khoá mở (`block`/`wakeup`); phương án A đảo ngược | Nhận diện khái niệm | Nhớ | 0.3 | [C5-2 s10] |
-| 6 | Ch8 — Bộ nhớ ảo | 8.1 Tổng quan về bộ nhớ ảo | Ưu điểm: chạy tiến trình lớn hơn RAM. Nhiễu: B mô tả dynamic linking (7.3.2), D nhầm "demand segmentation" với "simple paging" (8.2.1) | Phát biểu đúng/sai | Hiểu | 0.3 | [C8 s8, s10] · nhiễu [C7 s24] |
+| 6 | Ch8 — Bộ nhớ ảo | 8.1 Tổng quan về bộ nhớ ảo | Ưu điểm: chạy tiến trình lớn hơn RAM. Nhiễu: B mô tả dynamic linking (7.3.2), D thay sai "demand paging" bằng "simple paging" (8.2.1) | Phát biểu đúng/sai | Hiểu | 0.3 | [C8 s8, s10] · nhiễu [C7 s24] |
 | 7 | Ch5 — Đồng bộ tiến trình | 5.3.2 Phân loại giải pháp | Peterson thuộc nhóm giải pháp phần mềm (cùng Bakery, Dekker) | Nhận diện khái niệm | Nhớ | 0.3 | [C5-1 s27] |
-| 8 | Ch8 — Bộ nhớ ảo | 8.3.2 Giải thuật thay trang FIFO | FIFO thay trang **nạp sớm nhất**. Nhiễu: A là đặc điểm LRU (8.3.5), D là OPT (8.3.4) | Phát biểu đúng/sai | Hiểu | 0.3 | [C8 s25] · nhiễu [C8 s32] |
+| 8 | Ch8 — Bộ nhớ ảo | 8.3.2 Giải thuật thay trang FIFO | FIFO thay trang **nạp sớm nhất**. Nhiễu: A là đặc điểm LRU (8.3.5); D nói dùng **sớm nhất** trong tương lai, ngược với OPT chọn **trễ nhất** (8.3.4) | Phát biểu đúng/sai | Hiểu | 0.3 | [C8 s25] · nhiễu [C8 s30, s32] |
 | 9 | Ch5 — Đồng bộ tiến trình | 5.9.2 Giải pháp bounded-buffer · 5.9.3 Các lỗi thường gặp | Chỉ có `empty`/`full`, thiếu `mutex` → quên bảo vệ vùng tranh chấp `count++`/`count--` | Phân tích code | Phân tích | 0.3 | [C5-3 s8, s11, s13] |
 | 10 | Ch8 — Bộ nhớ ảo | 8.1 Tổng quan về bộ nhớ ảo | Ý nào **không** phải ưu điểm của virtual memory | Phát biểu đúng/sai | Hiểu | 0.3 | [C8 s8] |
 | 11 | Ch5 — Đồng bộ tiến trình | 5.6.3 Cách sử dụng mutex locks | Mutex khai báo toàn cục để mọi thread trong tiến trình dùng chung | Phát biểu đúng/sai | Hiểu | 0.3 | [C5-2 s13] |
