@@ -187,8 +187,35 @@ Bảng cần có: **tên · nhóm (cổ điển/hiện đại) · đặc điểm
 > *Buổi 3, 2026-07-29 — "Chỗ này là nghe cho kỹ nha, nghe rồi hồi cũng không hiểu đâu,
 > cũng là trả lời lung tung […] cho nên là chú ý lát thì sẽ đặt câu hỏi đó"*
 
-> ❓ **CẦN XÁC MINH:** đoạn này ở buổi 3 nhưng transcript không rõ đang nói về phần nào.
-> Đối chiếu slide buổi 3 để xác định.
+> ~~❓ **CẦN XÁC MINH:** đoạn này ở buổi 3 nhưng transcript không rõ đang nói về phần nào.
+> Đối chiếu slide buổi 3 để xác định.~~
+> Lý do gạch (xử lý note L03, 2026-10-01): câu này nằm **ngay trước phần RSA — mã bằng khoá nào thì bảo mật,
+> khoá nào thì chứng thực** [B2A s58–61]. Sau đó thầy hỏi lớp hai câu và nói nhiều bạn sẽ trả lời sai:
+> - Mã bằng **public key của người nhận** → **bảo mật**, nhưng người nhận **không biết chắc ai gửi**.
+> - Mã bằng **private key của người gửi** → **chứng thực** người gửi, nhưng **ai cũng đọc được** (public key công khai).
+> - Cần cả hai → mã hai lần (xem mục 2.2).
+>
+> *Buổi 3, 2026-07-29 — "Như vậy, em thấy rõ ràng là khi dùng khoá xanh để mã hoá thì nó bảo mật chứ không chứng thực,
+> đúng không? Còn khi dùng khoá đỏ để mã hoá thì nó chứng thực bị gửi là ai chứ không có bảo mật."*
+> *Buổi 3 — "chỗ này thì cũng biết là sẽ có nhiều bạn bị sai"*
+>
+> → Chi tiết: [`lectures/L03-modern-ciphers.md` mục 7](lectures/L03-modern-ciphers.md#7-bảo-mật-và-chứng-thực-bằng-cặp-khoá-confidentiality--authentication)
+
+### Mã hoá hiện đại — phạm vi và mức độ *(trích khi xử lý note L03, 2026-10-01)*
+
+- **Luồng DES phải nắm:** khối 64 bit → hoán vị → khoá 56 bit sinh 16 khoá con → 16 vòng → hoán vị lần nữa → bản mã [B2A s48].
+  > *Buổi 3, 2026-07-29 — "Để ra được là 16 khoá con, sau đó sẽ có 16 vòng lặp. Vòng lặp xử lý xong xuôi cùng dữ liệu ra
+  > sẽ được hoán vị một lần nữa. […] Đó là cái mình phải nhớ mình phải nắm được cái này nha."*
+- **Lịch sử DES không hỏi.**
+  > *Buổi 3, 2026-07-29 — "Bây giờ thầy nói qua về cái lịch sử hình thành cái giải thuật này. Thì không hỏi nha"*
+- **Mã hoá hiện đại chỉ hỏi đặc điểm chung, không tính toán.**
+  > *Buổi 3, 2026-07-29 — "Mã hoá hiện đại không có bằng tay chân gì hết […] thi cử là chỉ hỏi mấy cái đặc điểm chung thôi
+  > chứ không có yêu cầu mấy em crack này là chạy tính toán cái gì hết"*
+- **Không học cách tính cặp khoá RSA** — đề cương đã bỏ phần này.
+  > *Buổi 3, 2026-07-29 — "Ở đây là cái cách tính toán để mà ra được cái cặp khoá này thì mình bỏ qua, mình không học tới,
+  > không có thời gian học tới."*
+
+→ Chi tiết: [`lectures/L03-modern-ciphers.md`](lectures/L03-modern-ciphers.md#gợi-ý-thi)
 
 ---
 
@@ -263,7 +290,7 @@ Bản đồ 7 buổi, dùng để biết phần nào thuộc bài nào khi ôn.
 |---|---|---|---|
 | L01 | 2026-07-08 | **Bài 1 — Tổng quan** an toàn thông tin: yêu cầu của dữ liệu, mô hình bảo mật 4 thành phần, các loại virus, kiểm thử định kỳ hệ thống | [`_raw/L01`](lectures/_raw/L01-2026-07-08-transcript.docx) |
 | L02 | 2026-07-15 | **Mã hoá cổ điển**: lịch sử mật mã (bức điện Zimmermann ~~❓~~ ✅ B2A s11), phân loại, thay thế, hoán vị bậc d, Caesar, Vigenère ~~❓~~ ✅ B2A s27–29, Affine, **Playfair**; Hill bỏ qua → [note L02](lectures/L02-classical-ciphers.md) | [`_raw/L02`](lectures/_raw/L02-2026-07-15-transcript.docx) |
-| L03 | 2026-07-29 | **Mã hoá hiện đại**: **DES** (56 bit, 16 vòng), **AES** (khối 128 bit, các hàm SubBytes/ShiftRows ❓), so sánh cổ điển ↔ hiện đại | [`_raw/L03`](lectures/_raw/L03-2026-07-29-transcript.docx) |
+| L03 | 2026-07-29 | **Mã hoá hiện đại**: **DES** (56 bit, 16 vòng), **AES** (khối 128 bit, các hàm SubBytes/ShiftRows ~~❓~~ ✅ B2A s52–53, cùng MixColumns/AddRoundKey), **RSA** — bảo mật vs chứng thực, kết hợp RSA + mã đối xứng, thời gian vét cạn → [note L03](lectures/L03-modern-ciphers.md) | [`_raw/L03`](lectures/_raw/L03-2026-07-29-transcript.docx) |
 | L04 | 2026-08-05 | **Mã hoá khoá công khai & chữ ký số**: hàm băm, tính toàn vẹn, quy trình ký và kiểm tra chữ ký số | [`_raw/L04`](lectures/_raw/L04-2026-08-05-transcript.docx) |
 | L05 | 2026-08-12 | **Bài 3 — Dò tìm lỗ hổng, phần A: Thăm dò** (footprinting): thu thập thông tin mục tiêu, công cụ email tracking, biện pháp phòng chống | [`_raw/L05`](lectures/_raw/L05-2026-08-12-transcript.docx) |
 | L06 | 2026-08-19 | **Phần B: Quét mạng** (scanning): tường lửa và luật lọc, các kỹ thuật quét — SYN, NULL scan, đọc gói trả về để đoán cổng mở/đóng | [`_raw/L06`](lectures/_raw/L06-2026-08-19-transcript.docx) |

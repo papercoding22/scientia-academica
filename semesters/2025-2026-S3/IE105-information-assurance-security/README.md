@@ -56,7 +56,7 @@ Môn nhập môn về bảo đảm thông tin (information assurance) và an nin
 |---|---|---|---|---|
 | L01 | 2026-07-08 | Bài 1 — Tổng quan an toàn thông tin | — | 📄 có transcript |
 | L02 | 2026-07-15 | Mã hoá cổ điển — phân loại, Caesar, Vigenère, Affine, **Playfair** (Bài 2A) | [`L02-classical-ciphers.md`](lectures/L02-classical-ciphers.md) | ✅ đã có note |
-| L03 | 2026-07-29 | Mã hoá hiện đại (DES, AES) | — | 📄 có transcript |
+| L03 | 2026-07-29 | Mã hoá hiện đại — DES, AES, RSA, bảo mật vs chứng thực (Bài 2A) | [`L03-modern-ciphers.md`](lectures/L03-modern-ciphers.md) | ✅ đã có note |
 | L04 | 2026-08-05 | Mã hoá khoá công khai & chữ ký số | — | 📄 có transcript |
 | L05 | 2026-08-12 | Bài 3A — Thăm dò (footprinting) | — | 📄 có transcript |
 | L06 | 2026-08-19 | Bài 3B — Quét mạng (scanning) | — | 📄 có transcript |
@@ -64,7 +64,7 @@ Môn nhập môn về bảo đảm thông tin (information assurance) và an nin
 
 **Trạng thái:** `📄 có transcript` (chưa xử lý) · `✅ đã có note` · `⬜ chưa có gì`
 
-> 7 transcript đã có trong `lectures/_raw/`; **1/7 đã thành note** (L02, 2026-10-01).
+> 7 transcript đã có trong `lectures/_raw/`; **2/7 đã thành note** (L02, L03).
 > Thông tin về điểm và thi đã trích xong → [`IMPORTANT_NOTES.md`](IMPORTANT_NOTES.md).
 > Chạy `/new-lecture IE105 <n>` để dựng note từng buổi.
 
