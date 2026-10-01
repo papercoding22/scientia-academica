@@ -210,6 +210,17 @@ TH AN HP HO HO CH IM IN HX
 | IN | I(3,2), N(3,5) | Cùng hàng, dịch phải và vòng mép | KH |
 | HX | H(3,1), X(5,3) | Hình chữ nhật | KV |
 
+![Bảng Playfair câu 06: chín cặp TH AN HP HO HO CH IM IN HX được mã hoá thành BN TI PV KB KB HP LA KH KV](images/playfair-question06-pairs-table.png)
+
+*Bảng do AI dựng từ lời giải câu 06, đối chiếu đề mẫu trang 2 và slide Bài 2A trang 31–34.*
+
+[SVG chỉnh sửa](images/playfair-question06-pairs-table.svg)
+
+**Đọc hình:**
+
+- **Hàng đầu:** TH → BN, nên ký tự thứ hai của ciphertext là N.
+- **Đối chiếu:** Chín hàng của ảnh giữ đúng thứ tự các cặp trong bảng Markdown phía trên.
+
 Ciphertext theo từng cặp là:
 
 ~~~text
