@@ -14,6 +14,8 @@
 >
 > ⚠️ **Đề mẫu chỉ còn 1,75 / 10 điểm.** Mọi con số trong Blueprint mô tả 7 câu ấy, **không** suy ra
 > được cấu trúc cả đề. Phạm vi thi đáng tin hơn nằm ở `EXAM_PREP.pdf`.
+>
+> **Hướng dẫn theo chương:** [Chương 2A — Mã Playfair](chapter2a-exam-study-guide.md) giải câu 05–06.
 
 ---
 

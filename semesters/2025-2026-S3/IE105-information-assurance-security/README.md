@@ -121,4 +121,4 @@ Môn nhập môn về bảo đảm thông tin (information assurance) và an nin
 | [`projects/`](projects/) | Đồ án — mỗi đồ án một thư mục `prj1`… |
 | [`research/`](research/) | Tự đào sâu ngoài syllabus |
 | [`code/`](code/) | Lab, thử nghiệm nhanh |
-| [`exam-prep/`](exam-prep/) | Flashcard, cheatsheet, [map đề thi mẫu](exam-prep/exam-map.md), phạm vi ôn tập |
+| [`exam-prep/`](exam-prep/) | Flashcard, cheatsheet, [map đề thi mẫu](exam-prep/exam-map.md), [hướng dẫn ôn Chương 2A](exam-prep/chapter2a-exam-study-guide.md), phạm vi ôn tập |
