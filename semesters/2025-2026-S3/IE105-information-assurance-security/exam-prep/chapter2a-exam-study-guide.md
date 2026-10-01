@@ -174,6 +174,12 @@ Kết quả với khoá PLAYFAIR khớp ví dụ trên slide Bài 2A trang 34; �
 3. Đọc ma trận theo hàng từ trái sang phải. Hàng 3 là H, I, K, L, N.
 4. Cột 3 của hàng 3 là K.
 
+![Ma trận Playfair 5×5 từ khoá BAOMAT: hàng 1 là B A O M T lấy từ khoá, các hàng sau điền A–Z còn lại; giao của hàng 3 và cột 3 là K](images/playfair-baomat-matrix.png)
+
+*Cam là 5 chữ lấy từ khoá; dải vàng là hàng 3 và cột 3 cần tra; ô viền đỏ là giao điểm K. Hình do AI dựng từ slide Bài 2A trang 31–32 và đề trang 2, câu 05.*
+
+[SVG chỉnh sửa](images/playfair-baomat-matrix.svg)
+
 **Bẫy:** Bắt đầu đếm hàng và cột từ 1; không đếm lại ký tự A trùng trong khoá.
 
 **Tự kiểm tra:** Hàng 3 phải có đúng H–I–K–L–N, và mỗi chữ trong ma trận chỉ xuất hiện một lần.

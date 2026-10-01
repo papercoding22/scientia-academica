@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="380" viewBox="0 0 820 380" font-family="Segoe UI, Arial, sans-serif">
+<rect x="0" y="0" width="820" height="380" fill="#ffffff"/>
+<text x="410.0" y="32" font-size="18" font-weight="bold" text-anchor="middle" fill="#1a1a1a">Câu 05 — Ma trận Playfair 5×5 từ khoá BAOMAT</text>
+<text x="410.0" y="52" font-size="12" text-anchor="middle" fill="#555555">BAOMAT → bỏ A trùng → B A O M T, rồi điền A–Z còn lại (I = J, bỏ J)</text>
+<rect x="40" y="70" width="740" height="40" fill="#2f5496"/>
+<text x="110.0" y="95.0" font-size="15" font-weight="bold" text-anchor="middle" fill="#ffffff"></text>
+<text x="240.0" y="95.0" font-size="15" font-weight="bold" text-anchor="middle" fill="#ffffff">Cột 1</text>
+<text x="360.0" y="95.0" font-size="15" font-weight="bold" text-anchor="middle" fill="#ffffff">Cột 2</text>
+<text x="480.0" y="95.0" font-size="15" font-weight="bold" text-anchor="middle" fill="#ffffff">Cột 3</text>
+<text x="600.0" y="95.0" font-size="15" font-weight="bold" text-anchor="middle" fill="#ffffff">Cột 4</text>
+<text x="720.0" y="95.0" font-size="15" font-weight="bold" text-anchor="middle" fill="#ffffff">Cột 5</text>
+<rect x="40" y="110" width="740" height="40" fill="#f2f6fc"/>
+<text x="110.0" y="135.0" font-size="15" text-anchor="middle" fill="#1a1a1a">Hàng 1</text>
+<text x="240.0" y="135.0" font-size="18" font-weight="bold" text-anchor="middle" fill="#c55a11">B</text>
+<text x="360.0" y="135.0" font-size="18" font-weight="bold" text-anchor="middle" fill="#c55a11">A</text>
+<text x="480.0" y="135.0" font-size="18" font-weight="bold" text-anchor="middle" fill="#c55a11">O</text>
+<text x="600.0" y="135.0" font-size="18" font-weight="bold" text-anchor="middle" fill="#c55a11">M</text>
+<text x="720.0" y="135.0" font-size="18" font-weight="bold" text-anchor="middle" fill="#c55a11">T</text>
+<rect x="40" y="150" width="740" height="40" fill="#ffffff"/>
+<text x="110.0" y="175.0" font-size="15" text-anchor="middle" fill="#1a1a1a">Hàng 2</text>
+<text x="240.0" y="175.0" font-size="18" font-weight="bold" text-anchor="middle" fill="#555555">C</text>
+<text x="360.0" y="175.0" font-size="18" font-weight="bold" text-anchor="middle" fill="#555555">D</text>
+<text x="480.0" y="175.0" font-size="18" font-weight="bold" text-anchor="middle" fill="#555555">E</text>
+<text x="600.0" y="175.0" font-size="18" font-weight="bold" text-anchor="middle" fill="#555555">F</text>
+<text x="720.0" y="175.0" font-size="18" font-weight="bold" text-anchor="middle" fill="#555555">G</text>
+<rect x="40" y="190" width="740" height="40" fill="#f2f6fc"/>
+<text x="110.0" y="215.0" font-size="15" text-anchor="middle" fill="#1a1a1a">Hàng 3</text>
+<text x="240.0" y="215.0" font-size="18" font-weight="bold" text-anchor="middle" fill="#555555">H</text>
+<text x="360.0" y="215.0" font-size="18" font-weight="bold" text-anchor="middle" fill="#555555">I</text>
+<text x="480.0" y="215.0" font-size="18" font-weight="bold" text-anchor="middle" fill="#555555">K</text>
+<text x="600.0" y="215.0" font-size="18" font-weight="bold" text-anchor="middle" fill="#555555">L</text>
+<text x="720.0" y="215.0" font-size="18" font-weight="bold" text-anchor="middle" fill="#555555">N</text>
+<rect x="40" y="230" width="740" height="40" fill="#ffffff"/>
+<text x="110.0" y="255.0" font-size="15" text-anchor="middle" fill="#1a1a1a">Hàng 4</text>
+<text x="240.0" y="255.0" font-size="18" font-weight="bold" text-anchor="middle" fill="#555555">P</text>
+<text x="360.0" y="255.0" font-size="18" font-weight="bold" text-anchor="middle" fill="#555555">Q</text>
+<text x="480.0" y="255.0" font-size="18" font-weight="bold" text-anchor="middle" fill="#555555">R</text>
+<text x="600.0" y="255.0" font-size="18" font-weight="bold" text-anchor="middle" fill="#555555">S</text>
+<text x="720.0" y="255.0" font-size="18" font-weight="bold" text-anchor="middle" fill="#555555">U</text>
+<rect x="40" y="270" width="740" height="40" fill="#f2f6fc"/>
+<text x="110.0" y="295.0" font-size="15" text-anchor="middle" fill="#1a1a1a">Hàng 5</text>
+<text x="240.0" y="295.0" font-size="18" font-weight="bold" text-anchor="middle" fill="#555555">V</text>
+<text x="360.0" y="295.0" font-size="18" font-weight="bold" text-anchor="middle" fill="#555555">W</text>
+<text x="480.0" y="295.0" font-size="18" font-weight="bold" text-anchor="middle" fill="#555555">X</text>
+<text x="600.0" y="295.0" font-size="18" font-weight="bold" text-anchor="middle" fill="#555555">Y</text>
+<text x="720.0" y="295.0" font-size="18" font-weight="bold" text-anchor="middle" fill="#555555">Z</text>
+<g stroke="#c9d6e8" stroke-width="1">
+<line x1="40" y1="70" x2="780" y2="70"/>
+<line x1="40" y1="110" x2="780" y2="110"/>
+<line x1="40" y1="150" x2="780" y2="150"/>
+<line x1="40" y1="190" x2="780" y2="190"/>
+<line x1="40" y1="230" x2="780" y2="230"/>
+<line x1="40" y1="270" x2="780" y2="270"/>
+<line x1="40" y1="310" x2="780" y2="310"/>
+<line x1="40" y1="70" x2="40" y2="310"/>
+<line x1="180" y1="70" x2="180" y2="310"/>
+<line x1="300" y1="70" x2="300" y2="310"/>
+<line x1="420" y1="70" x2="420" y2="310"/>
+<line x1="540" y1="70" x2="540" y2="310"/>
+<line x1="660" y1="70" x2="660" y2="310"/>
+<line x1="780" y1="70" x2="780" y2="310"/>
+</g>
+<rect x="40" y="70" width="740" height="240" fill="none" stroke="#2f5496" stroke-width="2"/>
+<text x="40" y="334" font-size="11" fill="#777777">Cam: 5 chữ lấy từ khoá. Xám: chữ điền tiếp theo A–Z. Ô viền đỏ: hàng 3 cột 3 = K → đáp án b.</text>
+<text x="40" y="352" font-size="11" fill="#777777">Nguồn: slide Bài 2A tr.31–32; SAMPLE_FINAL_EXAM.pdf tr.2, câu 05. Đáp án suy luận.</text>
+<rect x="180" y="110" width="120" height="40" fill="#f4b183" fill-opacity="0.35"/>
+<rect x="300" y="110" width="120" height="40" fill="#f4b183" fill-opacity="0.35"/>
+<rect x="420" y="110" width="120" height="40" fill="#f4b183" fill-opacity="0.35"/>
+<rect x="540" y="110" width="120" height="40" fill="#f4b183" fill-opacity="0.35"/>
+<rect x="660" y="110" width="120" height="40" fill="#f4b183" fill-opacity="0.35"/>
+<rect x="40" y="190" width="740" height="40" fill="#ffd966" fill-opacity="0.30"/>
+<rect x="420" y="70" width="120" height="240" fill="#ffd966" fill-opacity="0.30"/>
+<rect x="422" y="192" width="116" height="36" fill="none" stroke="#c00000" stroke-width="3" rx="4"/>
+<text x="530" y="208" font-size="11" font-weight="bold" text-anchor="end" fill="#c00000">đáp án</text>
+</svg>
