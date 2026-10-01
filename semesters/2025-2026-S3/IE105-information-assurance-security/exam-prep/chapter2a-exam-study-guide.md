@@ -6,6 +6,7 @@
 | Phạm vi | Đề 1, câu 05–06; phần Playfair |
 | Đề nguồn | [SAMPLE_FINAL_EXAM.pdf](SAMPLE_FINAL_EXAM.pdf), trang 2 |
 | Nguồn kiến thức | Slide Bài 2A, trang 31–34 và 73 |
+| Liên quan | [Cheatsheet Chương 2A](cheatsheet-chapter2a.md) · [Note L02](../lectures/L02-classical-ciphers.md) |
 | Điểm nhìn thấy trong đề mẫu | 2 câu × 0,25 = 0,50/10 điểm; đề chỉ có 7/40 câu |
 | Ngày cập nhật | 2026-10-01 |
 | Trạng thái đáp án | Suy luận từ đề và slide; chưa có đáp án chính thức |
