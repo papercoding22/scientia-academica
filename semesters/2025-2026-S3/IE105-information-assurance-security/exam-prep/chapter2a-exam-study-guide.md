@@ -88,6 +88,18 @@ Với khoá BAOMAT, chữ A lặp lại nên chỉ giữ một lần. Ma trận 
 | Cùng cột | Dịch mỗi chữ một hàng xuống; hàng cuối vòng về hàng đầu |
 | Hình chữ nhật | Giữ nguyên hàng, đổi cột giữa hai chữ |
 
+![Ma trận Playfair BAOMAT: TH đổi cột thành BN, HP dịch xuống thành PV, IN dịch phải và vòng mép thành KH](images/playfair-mechanism.png)
+
+*Hình do AI dựng dựa trên slide Bài 2A, trang 31–34 và Đề 1, câu 06, trang 2; ba cặp dùng cùng ma trận BAOMAT.*
+
+[SVG chỉnh sửa](images/playfair-mechanism.svg)
+
+**Đọc hình:**
+
+- **Viền cam** đánh dấu chữ đầu vào; **nền xanh** đánh dấu ô tạo chữ đầu ra. Ở cặp HP, ô P giữ cả hai vai trò.
+- **Hình chữ nhật:** TH giữ hàng và đổi cột để thành BN.
+- **Dịch chuyển:** HP đi xuống thành PV; IN sang phải thành KH, N vòng về đầu hàng.
+
 ### 5. Kiểm tra bằng code
 
 Đoạn Python dưới đây nhận các cặp đã tách sẵn theo ví dụ trên slide. Nó giúp kiểm tra phép tính; khi làm đề, vẫn cần trình bày ma trận và từng cặp bằng tay.
