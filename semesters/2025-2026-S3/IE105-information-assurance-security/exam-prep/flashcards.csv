@@ -1,3 +1,15 @@
 ﻿#separator:semicolon
 #html:false
 #tags column:3
+Ba trục phân loại mã hoá trên slide Bài 2A là gì?;Cổ điển (thay thế / hoán vị) ↔ hiện đại · hiện đại chia theo khoá (đối xứng một khoá / bất đối xứng hai khoá) và theo dữ liệu vào (block cipher / stream cipher).;L02
+Block cipher và stream cipher khác nhau thế nào? Mỗi loại một ví dụ.;Block mã các khối có chiều dài cố định 64 hoặc 128 bit (DES, AES) · stream mã từng bit của thông điệp (đại diện RC4).;L02
+A gửi thông điệp bí mật cho B bằng mã hoá bất đối xứng. Public key dùng để mã hoá là của ai?;Của B — người nhận. Cả cặp khoá (public để mã hoá, private để giải mã) đều thuộc về B.;L02
+Hai sự kiện khiến mật mã học trở nên đại chúng là gì?;Sự xuất hiện của tiêu chuẩn DES (công bố 17.03.1975) và sự ra đời của mật mã hoá khoá công khai.;L02
+Bức điện Zimmermann và việc phá mã Enigma gắn với hai cuộc chiến nào?;Bức điện Zimmermann → Mỹ tham gia Thế chiến I. Phá mã hệ thống của Đức Quốc xã (máy Enigma) → Thế chiến II kết thúc sớm hơn.;L02
+Theo slide, giải thuật mật mã phải đáp ứng ba yêu cầu cơ bản nào?;Bảo mật cao · công khai, dễ hiểu — khả năng bảo mật chốt vào khoá chứ không vào giải thuật · triển khai được trên thiết bị điện tử.;L02
+Mã thay thế đơn giản có bao nhiêu khoá, và vì sao vẫn yếu?;26! ≈ 4·10^26 khoá (mỗi khoá là một hoán vị của 26 chữ). Yếu vì mỗi chữ luôn thay bằng cùng một chữ, nên phân tích tần suất phá được.;L02
+Mã hoán vị bậc d với d = 5, h = (4 1 3 2 5) biến khối JOHN␣ thành gì?;NJHO␣ — vị trí mới i lấy ký tự ở vị trí cũ h(i) · khoảng trắng cũng là một ký tự.;L02
+Quan hệ giữa Caesar và Vigenère là gì?;Vigenère dùng khoá d ký tự viết lặp dưới thông báo, cộng mod 26. Caesar là Vigenère với d = 1: C = (p + k) mod 26.;L02
+Công thức mã Affine và giải mã? Khi nào Affine trở thành mã dịch chuyển?;e(x) = ax + b (mod 26) · giải mã x = a⁻¹(y − b) (mod 26). a = 1 thì là mã dịch chuyển. Cần gcd(a, 26) = 1 để có a⁻¹.;L02
+Dựng ma trận khoá Playfair 5×5 thế nào?;Lần lượt đưa các chữ của khoá vào (bỏ chữ trùng), rồi điền các chữ còn lại theo thứ tự A–Z · I và J xem là một. Ma trận 6×6 dùng khi có chữ số (26 chữ + 10 số), lúc đó I, J tách riêng.;L02
+Ba luật mã hoá một cặp chữ của Playfair?;Dư 1 chữ thì thêm x. Cùng dòng → lấy chữ bên phải (cột cuối vòng về đầu). Cùng cột → lấy chữ bên dưới (hàng cuối vòng lên đầu). Hình chữ nhật → lấy hai góc còn lại trên cùng dòng của mỗi chữ.;L02

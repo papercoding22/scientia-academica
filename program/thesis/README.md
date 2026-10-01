@@ -6,7 +6,7 @@
 | Đề tài | ❓ chưa chọn |
 | Giảng viên hướng dẫn | ❓ chưa có |
 | Dự kiến bảo vệ | ❓ |
-| Số ý tưởng đã gom | 0 → [`ideas/`](ideas/) |
+| Số ý tưởng đã gom | 1 → [`ideas/`](ideas/) |
 
 ---
 

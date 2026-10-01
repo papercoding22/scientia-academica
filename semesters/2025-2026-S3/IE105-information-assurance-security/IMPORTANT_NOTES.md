@@ -159,6 +159,29 @@ Bảng cần có: **tên · nhóm (cổ điển/hiện đại) · đặc điểm
   phải thuộc lòng, mình chỉ cần hiểu vấn đề cho nên thi trắc nghiệm nó phù hợp hơn"*
 - Nhận diện hình vẽ và tên gọi quan trọng hơn hiểu chi tiết toán học bên trong.
 
+### Mã hoá cổ điển — phạm vi và mức độ *(trích khi xử lý note L02, 2026-10-01)*
+
+- **Mã Hill: không thi.** Thầy bỏ qua trên lớp.
+  > *Buổi 2, 2026-07-15, trước mốc 1:00:50 — "Cho nên là thầy thôi bỏ qua thì bị của rất là tốn thời gian
+  > và thi cũng không hỏi được"*
+- **Playfair không ra trường hợp phức tạp** (vd hai chữ giống nhau đứng liền trong một cặp) — chỉ cần nắm 3 luật cơ bản.
+  > *Buổi 2, 2026-07-15, sau mốc 1:21:05 — "còn hiểu và sâu thiệt sâu á thì không cần thiết. Thầy cũng không bắt
+  > mấy em là phải ờ ra đề, tức là giả sử nha cũng là mã hóa này nhưng mà nó sẽ có cái phức tạp hơn,
+  > ví dụ như 2 chữ liền nhau"*
+- **Tính tay phải cẩn thận** — lệch một ký tự là sai; trong phòng thi không có bảng tra Caesar/Vigenère
+  (có thể tự chép vào 2 tờ A4 — xem mục 5).
+  > *Buổi 2, 2026-07-15 — "Không nhờ cái bản này làm nhanh, đương nhiên thi cử lắm mình không có bản này. […]
+  > Chỉ cần là lệch 1 ký tự thôi là sai đúng không? Cho nên tính cái này tính cũng phải cẩn thận."*
+- **Vì sao phải học cổ điển:** mã hoá hiện đại ghép từ các phép của mã hoá cổ điển.
+  > *Buổi 2, 2026-07-15 — "mã hóa hiện đại được hình thành […] kết hợp rất nhiều cái của mã hóa cổ điển rồi đó,
+  > cho nên phải hiểu mã hóa cổ điển"*
+- **Lịch sử mật mã — thầy nhấn "cũng quan trọng"** hai sự kiện thám mã: bức điện Zimmermann → Mỹ vào Thế chiến I;
+  phá mã Đức → Thế chiến II kết thúc sớm hơn [B2A s11].
+  > *Buổi 2, 2026-07-15 — "Thì ở đây nó có 2 cái sự kiện. Cũng quan trọng nha, sự kiện thứ nhất là cái bức điện
+  > [Zimmermann] này. Việc khám phá bức điện này khiến cho Mỹ tham gia vào thế chiến thứ nhất."*
+
+→ Chi tiết: [`lectures/L02-classical-ciphers.md`](lectures/L02-classical-ciphers.md#gợi-ý-thi)
+
 ### Chỗ giảng viên dặn nghe kỹ
 
 > *Buổi 3, 2026-07-29 — "Chỗ này là nghe cho kỹ nha, nghe rồi hồi cũng không hiểu đâu,
@@ -239,7 +262,7 @@ Bản đồ 7 buổi, dùng để biết phần nào thuộc bài nào khi ôn.
 | Buổi | Ngày | Nội dung | Transcript |
 |---|---|---|---|
 | L01 | 2026-07-08 | **Bài 1 — Tổng quan** an toàn thông tin: yêu cầu của dữ liệu, mô hình bảo mật 4 thành phần, các loại virus, kiểm thử định kỳ hệ thống | [`_raw/L01`](lectures/_raw/L01-2026-07-08-transcript.docx) |
-| L02 | 2026-07-15 | **Mã hoá cổ điển**: lịch sử mật mã (bức điện Zimmermann ❓), phân loại, Caesar, **Playfair**, Vigenère ❓, mã hoán vị | [`_raw/L02`](lectures/_raw/L02-2026-07-15-transcript.docx) |
+| L02 | 2026-07-15 | **Mã hoá cổ điển**: lịch sử mật mã (bức điện Zimmermann ~~❓~~ ✅ B2A s11), phân loại, thay thế, hoán vị bậc d, Caesar, Vigenère ~~❓~~ ✅ B2A s27–29, Affine, **Playfair**; Hill bỏ qua → [note L02](lectures/L02-classical-ciphers.md) | [`_raw/L02`](lectures/_raw/L02-2026-07-15-transcript.docx) |
 | L03 | 2026-07-29 | **Mã hoá hiện đại**: **DES** (56 bit, 16 vòng), **AES** (khối 128 bit, các hàm SubBytes/ShiftRows ❓), so sánh cổ điển ↔ hiện đại | [`_raw/L03`](lectures/_raw/L03-2026-07-29-transcript.docx) |
 | L04 | 2026-08-05 | **Mã hoá khoá công khai & chữ ký số**: hàm băm, tính toàn vẹn, quy trình ký và kiểm tra chữ ký số | [`_raw/L04`](lectures/_raw/L04-2026-08-05-transcript.docx) |
 | L05 | 2026-08-12 | **Bài 3 — Dò tìm lỗ hổng, phần A: Thăm dò** (footprinting): thu thập thông tin mục tiêu, công cụ email tracking, biện pháp phòng chống | [`_raw/L05`](lectures/_raw/L05-2026-08-12-transcript.docx) |
@@ -277,8 +300,20 @@ mật mã học và an ninh thông tin là hướng làm khoá luận được.
 > *Buổi 3, 2026-07-29 — "bạn nào quan tâm, bạn nào thích thì sau này có thể đi tìm hiểu sâu
 > về mã hoá mật mã, có thể làm đồ án, làm đồ án tốt nghiệp, khoá luận tốt nghiệp"*
 
-→ Đã ghi vào [`program/thesis/ideas/`](../../../program/thesis/ideas/)? ❓ chưa.
+→ ~~Đã ghi vào [`program/thesis/ideas/`](../../../program/thesis/ideas/)? ❓ chưa.~~
+Đã ghi 2026-10-01 → [`program/thesis/ideas/applied-cryptography.md`](../../../program/thesis/ideas/applied-cryptography.md).
 
 **Thiếu buổi 22/07.** Giữa L02 (15/07) và L03 (29/07) cách 2 tuần trong khi các buổi khác
-cách 1 tuần. Không rõ tuần đó nghỉ hay thiếu transcript. Nếu có buổi 22/07 thì số hiệu
-L03–L07 phải lùi một số.
+cách 1 tuần. ~~Không rõ tuần đó nghỉ hay thiếu transcript. Nếu có buổi 22/07 thì số hiệu
+L03–L07 phải lùi một số.~~ Lý do gạch: cuối buổi 2 thầy báo tuần sau là **buổi thực hành** — nhiều khả năng
+22/07 là buổi thực hành không ghi transcript, nên số hiệu L03–L07 giữ nguyên.
+> *Buổi 2, 2026-07-15 — "tuần sau mình sẽ làm bài thực hành […] Mình có 2 bài thực hành trong ngày tuần sau,
+> trong đó là một bài làm tại chỗ, tức là làm liền mà nộp ngay trong buổi tối đó và một bài nữa là nộp trước
+> cái buổi học tuần sau nữa"*
+>
+> ❓ **CẦN XÁC MINH:** chưa có transcript hay bài nộp nào xác nhận buổi 22/07 thật sự diễn ra.
+
+**Tên Bài tập buổi 2 lệch giữa lời thầy và slide.** Thầy dặn đặt tên `Bài tập 1A`; slide Bài 2A s74 ghi
+`Bài tập 1B - Họ tên_mssv.doc`. Theo lời thầy (buổi sau mới là 1B).
+> *Buổi 2, 2026-07-15 — "Đặt tên file là bài tập một A. Họ tên mã số sinh viên của mình […] để phân biệt
+> bữa sau có cái bài tập một B nữa"*

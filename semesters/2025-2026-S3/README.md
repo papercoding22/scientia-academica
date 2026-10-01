@@ -27,7 +27,7 @@ Tất cả lớp online qua **Microsoft Teams**.
 
 | Môn | Số buổi đã có note | Bài tập | Đồ án | Flashcard |
 |---|---|---|---|---|
-| IE105 | 0 | 0 | 0 | 0 |
+| IE105 | 1 | 0 | 0 | 12 |
 | IE103 | 0 | 0 | 0 | 0 |
 | IE101 | 0 | 0 | 0 | 0 |
 | IT007 | 5 | 0 | 0 | 67 |
