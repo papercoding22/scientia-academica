@@ -4,8 +4,8 @@ Bản đọc trong repo. Bản import Anki: [`flashcards.csv`](flashcards.csv)
 
 | | |
 |---|---|
-| Số thẻ | 62 |
-| Cập nhật | 2026-09-24 (buổi 3, buổi 4, buổi 5, buổi 8, buổi 10) |
+| Số thẻ | 67 |
+| Cập nhật | 2026-10-01 — rà soát 15 thẻ L10; giữ các thẻ L03, L04, L05, L08 |
 
 > Thẻ được sinh ra khi xử lý note bài giảng. Mỗi lần thêm thẻ vào đây thì
 > **đồng thời** thêm vào `flashcards.csv`, hai file phải khớp nhau.
@@ -156,45 +156,97 @@ Bản đọc trong repo. Bản import Anki: [`flashcards.csv`](flashcards.csv)
 **Tag:** L04
 **Nguồn:** S3 tr. 18–22.
 
-### Thẻ 1
+> Nguồn thẻ L10: [note L10 và slide C8](../lectures/L10-virtual-memory.md#liên-kết). Ví dụ tự đặt và phần ngoài slide được ghi rõ trong note.
+
+### Thẻ L10-1
 **Mặt trước:** Bộ nhớ ảo (virtual memory) là gì?
-**Mặt sau:** Kỹ thuật cho phép thực thi một tiến trình mà không cần nạp toàn bộ tiến trình đó vào bộ nhớ vật lý.
+**Mặt sau:** Kỹ thuật cho phép thực thi process khi chưa nạp toàn bộ vào bộ nhớ vật lý. Phần được truy cập vẫn cần ở RAM; virtual memory không bảo đảm mọi workload chạy nhanh hơn.
+**Tag:** L10
+**Nguồn:** C8 s7–s10.
 
-### Thẻ 2
+### Thẻ L10-2
 **Mặt trước:** Demand paging là gì?
-**Mặt sau:** Các trang của tiến trình chỉ được nạp vào bộ nhớ chính khi được tham chiếu (yêu cầu), không nạp trước.
+**Mặt sau:** Các page của process chỉ được nạp vào bộ nhớ chính khi được yêu cầu. Đây là kỹ thuật; page fault là hiện tượng khi tham chiếu page chưa có trong RAM trong mô hình slide.
+**Tag:** L10
+**Nguồn:** C8 s13.
 
-### Thẻ 3
+### Thẻ L10-3
 **Mặt trước:** Page-fault trap xảy ra khi nào?
-**Mặt sau:** Khi CPU tham chiếu một trang có valid bit = invalid (trang không nằm trong RAM) → phần cứng gây ngắt, gọi Page-Fault Service Routine (PFSR).
+**Mặt sau:** Trong mô hình slide: CPU tham chiếu page chưa resident (bit i), phần cứng phát trap để OS xử lý. Bài PFSR giả sử địa chỉ hợp lệ và cần đọc đĩa; không suy ra mọi fault trong OS thực đều cần disk I/O.
+**Tag:** L10
+**Nguồn:** C8 s13–s14; giới hạn mô hình: note L10, mục 2.
 
-### Thẻ 4
+### Thẻ L10-4
 **Mặt trước:** 3 bước chính của PFSR khi xử lý page fault (có frame trống)?
-**Mặt sau:** (1) Chuyển tiến trình về blocked. (2) Phát yêu cầu đọc đĩa nạp trang vào frame trống, CPU giao cho tiến trình khác. (3) Sau khi I/O xong, cập nhật page table, chuyển tiến trình về ready.
+**Mặt sau:** (1) Process về blocked. (2) Yêu cầu đọc page vào frame trống; process khác có thể dùng CPU trong lúc chờ. (3) I/O xong, OS cập nhật page table và đưa process về ready.
+**Tag:** L10
+**Nguồn:** C8 s13.
 
-### Thẻ 5
+### Thẻ L10-5
 **Mặt trước:** Giải thuật thay trang FIFO chọn victim page như thế nào?
-**Mặt sau:** Chọn trang được nạp vào bộ nhớ sớm nhất (ở lâu nhất trong RAM), bất kể có đang được dùng hay không.
+**Mặt sau:** Chọn page được nạp vào RAM sớm nhất trong các page đang resident. Hit không đổi thứ tự nạp; khác LRU theo lần dùng gần nhất.
+**Tag:** L10
+**Nguồn:** C8 s25, s32.
 
-### Thẻ 6
+### Thẻ L10-6
 **Mặt trước:** Nghịch lý Belady (Belady's Anomaly) là gì?
-**Mặt sau:** Hiện tượng tăng số frame cấp cho tiến trình lại làm tăng số page fault thay vì giảm — xảy ra với FIFO.
+**Mặt sau:** Với cùng chuỗi và trạng thái ban đầu, tăng số frame nhưng số fault lại tăng. FIFO có thể gặp hiện tượng này; không có nghĩa mọi lần thêm frame đều làm FIFO tệ hơn.
+**Tag:** L10
+**Nguồn:** C8 s27–s28.
 
-### Thẻ 7
+### Thẻ L10-7
 **Mặt trước:** Giải thuật OPT chọn victim page theo tiêu chí gì, và vì sao không cài đặt được thực tế?
-**Mặt sau:** Chọn trang sẽ được tham chiếu trễ nhất trong tương lai. Không cài đặt được vì cần biết trước toàn bộ chuỗi tham chiếu tương lai.
+**Mặt sau:** Chọn page có lần tham chiếu tiếp theo trễ nhất trong tương lai; page không dùng lại là ứng viên. OPT cần biết chính xác chuỗi tương lai, nên dùng làm mốc tối ưu cho chuỗi đã biết.
+**Tag:** L10
+**Nguồn:** C8 s30.
 
-### Thẻ 8
+### Thẻ L10-8
 **Mặt trước:** Giải thuật LRU chọn victim page theo tiêu chí gì?
-**Mặt sau:** Chọn trang có thời điểm tham chiếu gần nhất là lâu nhất (ít được dùng gần đây nhất).
+**Mặt sau:** Chọn page đang resident có lần tham chiếu gần nhất xa nhất về quá khứ, tức last_used nhỏ nhất. Sau mọi tham chiếu, kể cả hit, phải cập nhật lần dùng gần nhất.
+**Tag:** L10
+**Nguồn:** C8 s32.
 
-### Thẻ 9
+### Thẻ L10-9
 **Mặt trước:** Thrashing là gì, và điều kiện nào (theo locality) khiến nó xảy ra?
-**Mặt sau:** Hiện tượng các trang nhớ của tiến trình bị hoán chuyển vào/ra liên tục, CPU utilization giảm mạnh. Xảy ra khi tổng kích thước locality của mọi tiến trình > kích thước bộ nhớ.
+**Mặt sau:** Các page bị hoán chuyển vào/ra liên tục, nhiều page fault và tiến triển hữu ích giảm. Mô hình slide nêu tổng kích thước locality vượt bộ nhớ khả dụng; một fault đơn lẻ không đủ kết luận thrashing.
+**Tag:** L10
+**Nguồn:** C8 s39–s41.
 
-### Thẻ 10
+### Thẻ L10-10
 **Mặt trước:** Working set WS_i và working-set size WSS_i là gì?
-**Mặt sau:** WS_i là tập các trang được tham chiếu trong Δ lần tham chiếu gần nhất của tiến trình P_i. WSS_i là số lượng trang trong WS_i. Nếu tổng D = Σ WSS_i > số frame hệ thống m → nguy cơ thrashing.
+**Mặt sau:** WS_i là tập page phân biệt trong cửa sổ Δ tham chiếu gần nhất của process; WSS_i là số phần tử của tập. D = tổng WSS_i. Theo mô hình slide, D > m thì cần giảm tải, ví dụ tạm dừng process và thu hồi frame.
+**Tag:** L10
+**Nguồn:** C8 s43–s46.
+
+### Thẻ L10-11
+**Mặt trước:** Page chưa có trong RAM nhưng còn frame trống: có fault và replacement không?
+**Mặt sau:** Có page fault, không replacement. Nạp vào frame trống vẫn được tính fault; replacement chỉ là nhánh cần thu hồi frame đang dùng trong mô hình này.
+**Tag:** L10
+**Nguồn:** C8 s13, s17.
+
+### Thẻ L10-12
+**Mặt trước:** I/O nạp page xong thì process đã running chưa? Lệnh gây fault được xử lý thế nào?
+**Mặt sau:** OS cập nhật bảng và đưa process về ready. Khi scheduler chọn lại, process mới running và chạy lại lệnh gây fault, không bỏ qua lệnh.
+**Tag:** L10
+**Nguồn:** C8 s13–s14.
+
+### Thẻ L10-13
+**Mặt trước:** Với 2 frame rỗng và chuỗi 1,2,1,3: FIFO và LRU chọn victim nào ở bước 4?
+**Mặt sau:** FIFO chọn 1 vì nạp trước. LRU chọn 2 vì page 1 vừa được hit ở bước 3. Hit thay đổi recency của LRU, không đổi thứ tự nạp FIFO.
+**Tag:** L10
+**Nguồn:** Ví dụ tự đặt, đã kiểm code; quy tắc C8 s25, s32.
+
+### Thẻ L10-14
+**Mặt trước:** Frame allocation khác page replacement thế nào?
+**Mặt sau:** Allocation quyết định mỗi process được bao nhiêu frame; replacement chọn page nhường chỗ. Cấp theo tỷ lệ: a_i = (s_i / tổng s_i) × m; cần quy ước làm tròn nếu kết quả không nguyên.
+**Tag:** L10
+**Nguồn:** C8 s19, s35–s37.
+
+### Thẻ L10-15
+**Mặt trước:** Cửa sổ Δ=4 chứa 1,2,1,3 thì WS và WSS bằng bao nhiêu?
+**Mặt sau:** WS = {1,2,3}, WSS = 3. Δ đếm số tham chiếu quan sát, WSS đếm page phân biệt nên không nhất thiết bằng Δ.
+**Tag:** L10
+**Nguồn:** Ví dụ tự đặt, đã kiểm code; C8 s43–s45.
 
 ### Thẻ L05-1
 **Mặt trước:** Race condition là gì?
