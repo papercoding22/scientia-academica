@@ -5,6 +5,50 @@
 
 ---
 
+## Thời gian truy xuất hiệu dụng (Effective access time — EAT) — câu 3
+
+**Công thức** (page table nằm trong RAM; `ε` = thời gian tra TLB, `x` = một chu kỳ truy xuất bộ nhớ, `α` = hit ratio) [C7 s53]
+
+```text
+hit  : ε + x                        ← tra TLB → đọc dữ liệu
+miss : ε + 2x                       ← tra TLB → đọc page table → đọc dữ liệu
+EAT  = (ε + x)α + (ε + 2x)(1 − α)
+     = (2 − α)x + ε                 ← dạng rút gọn trên slide
+⇒ ε  = EAT − (2 − α)x               ← giải ngược khi đề hỏi ε
+```
+
+**4 bước làm bài**
+1. Gạch dưới ẩn số: đề hỏi `ε`, `α`, `x` hay `EAT`.
+2. Đổi `α` ra thập phân (`95% = 0,95`), mọi thời gian cùng đơn vị ns.
+3. Thế vào `EAT = (2 − α)x + ε` rồi chuyển vế tìm ẩn.
+4. Thế ngược vào hai nhánh hit/miss để kiểm tra.
+
+**Đề mẫu câu 3:** `α = 0,95`, `x = 160 ns`, `EAT = 190 ns`, tìm `ε` [Đề tr1, C3]
+**Phương án:** A = 30 ns · B = 22 ns · C = 152 ns · D = 320 ns
+
+| Bước | Tính | Kết quả |
+|---|---|---|
+| Hệ số | `2 − 0,95` | `1,05` |
+| Phần RAM | `1,05 × 160` | `168 ns` |
+| Giải ngược | `190 − 168` | **ε = 22 ns** → **B** |
+
+**Kiểm tra (30 giây)**
+- Hit `22 + 160 = 182`, miss `22 + 320 = 342`; `0,95 × 182 + 0,05 × 342 = 172,9 + 17,1 = 190` ✓
+- `ε + x ≤ EAT ≤ ε + 2x` (ở đây `182 ≤ 190 ≤ 342`) và `ε` phải nhỏ hơn nhiều so với `x`.
+
+**Bẫy**
+
+| Làm sai | Ra phương án | Nhận ra vì |
+|---|---|---|
+| Coi mọi lần đều hit: `ε = EAT − x = 190 − 160` | **A — 30 ns** | Quên lần đọc page table khi miss; thế lại thì EAT ra `190 + 0,05 × 160 = 198` |
+| Chỉ tính một số hạng `α·x = 0,95 × 160` rồi dừng | **C — 152 ns** | `ε` lớn gần bằng `x` là vô lý: TLB phải nhanh hơn RAM nhiều |
+| Nhầm `ε` với thời gian nhánh miss bỏ TLB: `2x = 2 × 160` | **D — 320 ns** | `ε` lớn hơn cả EAT, thế lại không thể ra 190 |
+| Đảo `α` và `1 − α`: `ε = 190 − 1,95 × 160` | `−122 ns` (không có trong A–D) | Thời gian âm là chắc chắn sai |
+| Thế `α = 95` | số âm rất lớn | Hit ratio luôn trong `[0, 1]` |
+| Cộng thêm thời gian đọc đĩa khi miss | lệch số | TLB miss **không phải** page fault; đề không cho mô hình đĩa |
+
+---
+
 ## Chọn phân vùng cố định (Fixed partition placement) — câu 13
 
 **Quy tắc** — một process được cấp **trọn một partition**. [C7 s34, s39; guide mục 2.4]
