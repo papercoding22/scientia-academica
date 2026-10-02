@@ -7,7 +7,7 @@
 | Điểm trong đề này | 8 câu trắc nghiệm × 0,3 + 1 ý tự luận × 0,5 = **2,9/10 điểm** |
 | Cập nhật | 2026-09-25 |
 | Cách dùng | Ôn mục 2 → tự làm đề → đối chiếu đáp án và giải thích ở mục 3 → làm lại mục cuối |
-| Liên quan | [Map toàn đề](exam-map.md) · [Lecture L05](../lectures/L05-process-synchronization.md) · [Ví dụ React + TypeScript](../notes/mutex-semaphore-react-typescript.md) |
+| Liên quan | [Map toàn đề](exam-map.md) · [Cheatsheet Chương 5](cheatsheet-chapter5.md) · [Lecture L05](../lectures/L05-process-synchronization.md) · [Ví dụ React + TypeScript](../notes/mutex-semaphore-react-typescript.md) |
 
 > **Phạm vi nguồn:** đây là kiến thức chắt lọc từ **một đề mẫu**, đối chiếu ba bộ slide Chương 5. Trường/khoa trên đề để trống, chưa xác nhận người ra đề; PDF không kèm đáp án chính thức. Đáp án và hướng dẫn bên dưới là suy luận từ đề và slide, không phải cam kết phạm vi thi thật. Các ví dụ đời thường và TypeScript là minh họa tự dựng ngoài slide.
 >
