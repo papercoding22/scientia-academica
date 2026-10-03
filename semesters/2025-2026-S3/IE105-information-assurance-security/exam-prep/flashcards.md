@@ -4,8 +4,8 @@ Bản đọc trong repo. Bản import Anki: [`flashcards.csv`](flashcards.csv)
 
 | | |
 |---|---|
-| Số thẻ | 25 |
-| Cập nhật | 2026-10-02 — thêm 13 thẻ L03 |
+| Số thẻ | 37 |
+| Cập nhật | 2026-10-03 — thêm 12 thẻ L04 |
 
 > Thẻ được sinh ra khi xử lý note bài giảng. Mỗi lần thêm thẻ vào đây thì
 > **đồng thời** thêm vào `flashcards.csv`, hai file phải khớp nhau.
@@ -16,6 +16,7 @@ Bản đọc trong repo. Bản import Anki: [`flashcards.csv`](flashcards.csv)
 
 - `L02` — Mã hoá cổ điển (Bài 2A)
 - `L03` — Mã hoá hiện đại: DES, AES, RSA (Bài 2A)
+- `L04` — Chứng thực dữ liệu: MAC, hàm băm, chữ ký số (Bài 2B)
 
 ---
 
@@ -120,6 +121,66 @@ Bản đọc trong repo. Bản import Anki: [`flashcards.csv`](flashcards.csv)
 ### Thẻ L03-13
 **Mặt trước:** Theo slide s68–69, vét cạn khoá 56 bit và 128 bit mất bao lâu?
 **Mặt sau:** 56 bit: ~10 giờ ở 10⁶ lần thử/µs, 3,5 giờ với ngân sách $1M. 128 bit: ~5,4·10¹⁸ năm. Thêm 1 bit khoá → thời gian gấp đôi.
+
+### Thẻ L04-1
+**Mặt trước:** Bốn cách mã hóa thông điệp (a)(b)(c)(d) — đâu đạt bảo mật, đâu đạt chứng thực?
+**Mặt sau:** (a) E(K,M): bảo mật ✅, chứng thực ❌ · (b) E(PUb,M): bảo mật ✅, chứng thực ❌ · (c) E(PRa,M): bảo mật ❌, chứng thực ✅ · (d) E(PUb,E(PRa,M)): bảo mật ✅, chứng thực ✅.
+**Tag:** L04
+
+### Thẻ L04-2
+**Mặt trước:** MAC = C(K, M) — C là gì, K là gì, kết quả dùng để làm gì?
+**Mặt sau:** C là hàm chứng thực (authentication function) · K là khoá bí mật chung hai bên · Kết quả là chuỗi độ dài cố định gửi kèm M để bên nhận kiểm tra M chưa bị sửa và đến đúng nguồn.
+**Tag:** L04
+
+### Thẻ L04-3
+**Mặt trước:** Sơ đồ MAC (a): Alice gửi gì? Bob kiểm thế nào?
+**Mặt sau:** Alice gửi M‖C(K,M). Bob tính lại C(K,M) từ M nhận được, so sánh với MAC nhận được — khớp thì M toàn vẹn và đến từ Alice.
+**Tag:** L04
+
+### Thẻ L04-4
+**Mặt trước:** Sơ đồ MAC (b) và (c) khác nhau thế nào? Mỗi cái gửi gì?
+**Mặt sau:** (b) E(K2, M‖C(K1,M)): mã hóa cả M lẫn MAC → Bob giải mã trước rồi mới kiểm MAC · (c) E(K2,M)‖C(K1,M): MAC của M gốc gửi ngoài → Bob kiểm MAC mà không cần giải mã M trước.
+**Tag:** L04
+
+### Thẻ L04-5
+**Mặt trước:** Hai tính chất cốt lõi của hàm băm?
+**Mặt sau:** (1) One-way: cho H(M) không thể tìm lại M · (2) Collision resistance: không thể tìm M' ≠ M sao cho H(M') = H(M).
+**Tag:** L04
+
+### Thẻ L04-6
+**Mặt trước:** Công dụng hàm băm (a) và (c) — cái nào dùng khoá đối xứng, cái nào dùng private key?
+**Mặt sau:** (a) M‖E(K, H(M)): dùng khoá đối xứng K — chứng thực, không có non-repudiation · (c) M‖E(PRa, H(M)): dùng private key PRa của Alice — chứng thực + chữ ký số, có non-repudiation.
+**Tag:** L04
+
+### Thẻ L04-7
+**Mặt trước:** Công dụng hàm băm (e): biểu thức là gì và S là gì?
+**Mặt sau:** M‖H(M‖S) — S là secret value bí mật chung hai bên. Không cần mã hóa: Eve không biết S → không tính lại H(M‖S) dù có M gốc.
+**Tag:** L04
+
+### Thẻ L04-8
+**Mặt trước:** MD5 — độ dài hash, tác giả, năm, tình trạng hiện tại?
+**Mặt sau:** 128 bit · Ronald Rivest, MIT · 1991 · Đã vỡ — không dùng cho bảo mật, chỉ dùng checksum không bảo mật.
+**Tag:** L04
+
+### Thẻ L04-9
+**Mặt trước:** SHA-2 có những biến thể kích thước hash nào?
+**Mặt sau:** 224 / 256 / 384 / 512 bit. SHA-3 (Keccak) cũng có các biến thể tương tự.
+**Tag:** L04
+
+### Thẻ L04-10
+**Mặt trước:** Biểu thức chữ ký số. Alice ký M rồi gửi gì (sơ đồ không mã hóa)?
+**Mặt sau:** Chữ ký DS = E(PRa, H(M)). Gửi: M‖DS.
+**Tag:** L04
+
+### Thẻ L04-11
+**Mặt trước:** Bob nhận được M‖DS (chữ ký số). Kiểm tra bằng cách nào?
+**Mặt sau:** (1) Tính H(M) từ M nhận được · (2) Giải D(PUa, DS) → H(M) gốc · (3) So sánh hai hash — khớp thì M chưa bị sửa và DS do Alice tạo.
+**Tag:** L04
+
+### Thẻ L04-12
+**Mặt trước:** Tại sao chữ ký số ký trên H(M) thay vì ký trực tiếp lên M?
+**Mặt sau:** RSA/ECC chỉ mã hóa được dữ liệu nhỏ (≤ kích thước khoá modulus). H(M) có độ dài cố định ngắn (e.g. SHA-256: 256 bit) → RSA xử lý được. M có thể dài hàng MB.
+**Tag:** L04
 
 <!--
 Mẫu:

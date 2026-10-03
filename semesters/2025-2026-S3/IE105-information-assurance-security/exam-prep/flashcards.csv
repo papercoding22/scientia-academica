@@ -26,3 +26,15 @@ Alice mã thông điệp bằng private key của mình gửi Bob. Kẻ nghe lé
 Muốn vừa bảo mật vừa chứng thực bằng RSA thì làm sao?;Mã hai lần: bằng private key của người gửi (chứng thực) và bằng public key của người nhận (bảo mật). Bên nhận giải hai lần tương ứng.;L03
 Vì sao thực tế kết hợp RSA với DES/AES?;RSA rất an toàn nhưng chậm hơn DES hàng ngàn lần → DES/AES mã khối văn bản, RSA chỉ mã khoá mà DES/AES đã dùng (slide s64).;L03
 Theo slide s68–69, vét cạn khoá 56 bit và 128 bit mất bao lâu?;56 bit: ~10 giờ ở 10⁶ lần thử/µs, 3,5 giờ với ngân sách $1M. 128 bit: ~5,4·10¹⁸ năm. Thêm 1 bit khoá → thời gian gấp đôi.;L03
+Bốn cách mã hóa thông điệp (a)(b)(c)(d) — đâu đạt bảo mật, đâu đạt chứng thực?;(a) E(K,M): bảo mật ✅, chứng thực ❌ · (b) E(PUb,M): bảo mật ✅, chứng thực ❌ · (c) E(PRa,M): bảo mật ❌, chứng thực ✅ · (d) E(PUb,E(PRa,M)): bảo mật ✅, chứng thực ✅.;L04
+MAC = C(K, M) — C là gì, K là gì, kết quả dùng để làm gì?;C là hàm chứng thực (authentication function) · K là khoá bí mật chung hai bên · Kết quả là chuỗi độ dài cố định gửi kèm M để bên nhận kiểm tra M chưa bị sửa và đến đúng nguồn.;L04
+Sơ đồ MAC (a): Alice gửi gì? Bob kiểm thế nào?;Alice gửi M‖C(K,M). Bob tính lại C(K,M) từ M nhận được, so sánh với MAC nhận được — khớp thì M toàn vẹn và đến từ Alice.;L04
+Sơ đồ MAC (b) và (c) khác nhau thế nào? Mỗi cái gửi gì?;(b) E(K2, M‖C(K1,M)): mã hóa cả M lẫn MAC → Bob giải mã trước rồi mới kiểm MAC · (c) E(K2,M)‖C(K1,M): MAC của M gốc gửi ngoài → Bob kiểm MAC mà không cần giải mã M trước.;L04
+Hai tính chất cốt lõi của hàm băm?;(1) One-way: cho H(M) không thể tìm lại M · (2) Collision resistance: không thể tìm M' ≠ M sao cho H(M') = H(M).;L04
+Công dụng hàm băm (a) và (c) — cái nào dùng khoá đối xứng, cái nào dùng private key?;(a) M‖E(K, H(M)): dùng khoá đối xứng K — chứng thực, không có non-repudiation · (c) M‖E(PRa, H(M)): dùng private key PRa của Alice — chứng thực + chữ ký số, có non-repudiation.;L04
+Công dụng hàm băm (e): biểu thức là gì và S là gì?;M‖H(M‖S) — S là secret value bí mật chung hai bên. Không cần mã hóa: Eve không biết S → không tính lại H(M‖S) dù có M gốc.;L04
+MD5 — độ dài hash, tác giả, năm, tình trạng hiện tại?;128 bit · Ronald Rivest, MIT · 1991 · Đã vỡ — không dùng cho bảo mật, chỉ dùng checksum không bảo mật.;L04
+SHA-2 có những biến thể kích thước hash nào?;224 / 256 / 384 / 512 bit. SHA-3 (Keccak) cũng có các biến thể tương tự.;L04
+Biểu thức chữ ký số. Alice ký M rồi gửi gì (sơ đồ không mã hóa)?;Chữ ký DS = E(PRa, H(M)). Gửi: M‖DS.;L04
+Bob nhận được M‖DS (chữ ký số). Kiểm tra bằng cách nào?;(1) Tính H(M) từ M nhận được · (2) Giải D(PUa, DS) → H(M) gốc · (3) So sánh hai hash — khớp thì M chưa bị sửa và DS do Alice tạo.;L04
+Tại sao chữ ký số ký trên H(M) thay vì ký trực tiếp lên M?;RSA/ECC chỉ mã hóa được dữ liệu nhỏ (≤ kích thước khoá modulus). H(M) có độ dài cố định ngắn (e.g. SHA-256: 256 bit) → RSA xử lý được. M có thể dài hàng MB.;L04
