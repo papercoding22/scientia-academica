@@ -82,8 +82,9 @@
 | `BTTH3_BaiTap2.docx` | Bài tập 2 — bản độc lập (Câu 11–14 + tài liệu tham khảo) |
 | `25730081_Nguyễn Quốc Trung_BTTH3.docx` | **Báo cáo cuối cùng** — ghép Bài tập 1 + Bài tập 2, 48 trang |
 | `25730081_Nguyễn Quốc Trung_BTTH3.pdf` | Bản PDF xuất từ file trên, đúng mẫu tên nộp của đề |
+| `25730081_Nguyễn Quốc Trung_BTTH3.sql` | Toàn bộ script T-SQL của Câu 1–14, UTF-8 BOM + CRLF cho SSMS |
 
-> ⚠️ Còn thiếu `25730081_Nguyễn Quốc Trung_BTTH3.sql` — đề yêu cầu nộp kèm file SQL.
+**Nộp 2 file riêng, không nén:** `…BTTH3.pdf` và `…BTTH3.sql`.
 
 ---
 
