@@ -1,0 +1,195 @@
+{% extends 'base.html' %}
+{% block title %}Demo Functions{% endblock %}
+{% block nav_functions %}active{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h4 class="mb-0"><i class="bi bi-braces me-2"></i>Demo Functions
+        <span class="badge bg-secondary ms-2">3 Functions</span>
+    </h4>
+</div>
+
+{% if db_error %}
+<div class="alert alert-danger"><strong>Lỗi DB:</strong> {{ db_error }}</div>
+{% else %}
+
+<div class="row g-3">
+    <!-- Left: function list -->
+    <div class="col-md-3">
+        <div class="list-group list-group-flush border rounded shadow-sm">
+            {% for key, meta in fn_meta.items %}
+            <a href="?tab={{ key }}"
+               class="list-group-item list-group-item-action d-flex align-items-start gap-2 py-2
+                      {% if tab == key %}active{% endif %}">
+                <i class="bi {{ meta.icon }} mt-1"></i>
+                <div>
+                    <div class="small fw-semibold">{{ meta.label }}</div>
+                    <div class="small {% if tab == key %}text-white-50{% else %}text-muted{% endif %}">{{ meta.fn_type }}</div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+        <div class="mt-3 p-3 bg-white border rounded shadow-sm">
+            <p class="small text-muted mb-1 fw-semibold text-uppercase">Demo Flow</p>
+            <ol class="small text-muted mb-0 ps-3">
+                <li>Mô tả nghiệp vụ</li>
+                <li>SQL gọi hàm</li>
+                <li>Dữ liệu đầu vào</li>
+                <li>Nhập tham số → Gọi hàm</li>
+                <li>Kết quả trả về</li>
+            </ol>
+        </div>
+        <div class="mt-3 p-3 bg-info bg-opacity-10 border border-info rounded shadow-sm">
+            <p class="small fw-semibold mb-1 text-info"><i class="bi bi-info-circle me-1"></i>Lưu ý</p>
+            <p class="small mb-0 text-muted">Functions là <strong>read-only</strong> — không thay đổi dữ liệu trong DB. B5 hiển thị giá trị hàm trả về.</p>
+        </div>
+    </div>
+
+    <!-- Right: B1-B5 panel -->
+    <div class="col-md-9">
+
+        <!-- B1: Nghiệp vụ -->
+        <div class="card border-0 shadow-sm mb-3">
+            <div class="card-header bg-white">
+                <span class="step-badge bg-primary text-white me-2">B1</span>
+                <span class="fw-semibold">Mô tả nghiệp vụ</span>
+                <span class="ms-2 badge bg-light text-dark border">
+                    <i class="bi {{ fn.icon }} me-1"></i>{{ fn.label }}
+                </span>
+                <span class="ms-1 badge bg-secondary">{{ fn.fn_type }}</span>
+            </div>
+            <div class="card-body">
+                <p class="mb-0">{{ fn.nghiep_vu }}</p>
+            </div>
+        </div>
+
+        <!-- B2: SQL -->
+        <div class="card border-0 shadow-sm mb-3">
+            <div class="card-header bg-white">
+                <span class="step-badge bg-primary text-white me-2">B2</span>
+                <span class="fw-semibold">SQL gọi hàm</span>
+            </div>
+            <div class="card-body p-0">
+                <pre class="sql-block m-0" style="border-radius:0 0 6px 6px">{{ fn.sql_display }}</pre>
+            </div>
+        </div>
+
+        <!-- B3: BEFORE / context data -->
+        <div class="card border-0 shadow-sm mb-3 before-block">
+            <div class="card-header bg-white">
+                <span class="step-badge bg-danger text-white me-2">B3</span>
+                <span class="fw-semibold">Dữ liệu đầu vào — {{ fn.before_label }}</span>
+                <span class="badge bg-danger ms-2">Live từ Azure SQL</span>
+            </div>
+            <div class="card-body p-0">
+                {% if before_rows %}
+                <div class="table-responsive">
+                    <table class="table table-sm table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>{% for col in before_cols %}<th>{{ col }}</th>{% endfor %}</tr>
+                        </thead>
+                        <tbody>
+                            {% for row in before_rows %}
+                            <tr>{% for val in row.values %}<td>{{ val }}</td>{% endfor %}</tr>
+                            {% empty %}
+                            <tr><td colspan="99" class="text-center text-muted py-3">Không có dữ liệu</td></tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p class="text-muted text-center py-3 mb-0">Không có dữ liệu</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- B4: Execute form -->
+        <div class="card border-0 shadow-sm mb-3">
+            <div class="card-header bg-white">
+                <span class="step-badge bg-primary text-white me-2">B4</span>
+                <span class="fw-semibold">Gọi hàm — Nhập tham số</span>
+            </div>
+            <div class="card-body">
+                <form method="post" action="?tab={{ tab }}">
+                    {% csrf_token %}
+                    <div class="row g-3 align-items-end">
+                        {% for f in fn.fields %}
+                        <div class="col-md-4">
+                            <label class="form-label small fw-semibold">{{ f.label }}</label>
+                            {% if f.type == 'select' %}
+                            <select name="{{ f.name }}" class="form-select form-select-sm"
+                                    {% if not f.allow_empty %}required{% endif %}>
+                                <option value="">— chọn —</option>
+                                {% for val, lbl in f.options %}
+                                <option value="{{ val }}">{{ lbl }}</option>
+                                {% endfor %}
+                            </select>
+                            {% else %}
+                            <input type="{{ f.type }}" name="{{ f.name }}"
+                                   class="form-control form-control-sm"
+                                   placeholder="{{ f.placeholder|default:'' }}"
+                                   min="{{ f.min|default:'' }}"
+                                   max="{{ f.max|default:'' }}"
+                                   step="{{ f.step|default:'' }}"
+                                   required>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                        <div class="col-md-auto">
+                            <button type="submit" class="btn btn-primary btn-sm">
+                                <i class="bi bi-braces me-1"></i>Gọi hàm
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                {% if exec_ok %}
+                <div class="alert alert-success mt-3 mb-0">
+                    <i class="bi bi-check-circle me-2"></i>{{ exec_result }}
+                </div>
+                {% endif %}
+                {% if exec_error %}
+                <div class="alert alert-danger mt-3 mb-0">
+                    <strong><i class="bi bi-x-circle me-1"></i>SQL Error:</strong>
+                    <pre class="mt-2 mb-0 small">{{ exec_error }}</pre>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- B5: Function result -->
+        {% if after_rows is not None %}
+        <div class="card border-0 shadow-sm after-block">
+            <div class="card-header bg-white">
+                <span class="step-badge bg-success text-white me-2">B5</span>
+                <span class="fw-semibold">Kết quả hàm — {{ after_label_dyn }}</span>
+                <span class="badge bg-success ms-2">Return value từ Azure SQL</span>
+            </div>
+            <div class="card-body p-0">
+                {% if after_rows %}
+                <div class="table-responsive">
+                    <table class="table table-sm table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>{% for col in after_cols %}<th>{{ col }}</th>{% endfor %}</tr>
+                        </thead>
+                        <tbody>
+                            {% for row in after_rows %}
+                            <tr>{% for val in row.values %}<td>{{ val }}</td>{% endfor %}</tr>
+                            {% empty %}
+                            <tr><td colspan="99" class="text-center text-muted py-3">Không có kết quả</td></tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p class="text-muted text-center py-3 mb-0">Hàm không trả về dữ liệu (tháng/tài xế không có cuốc hoàn thành)</p>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+</div>
+
+{% endif %}
+{% endblock %}
