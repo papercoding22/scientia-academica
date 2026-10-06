@@ -23,6 +23,7 @@
 
 - [Yêu cầu đề bài](#yêu-cầu-đề-bài)
 - [Hướng dẫn làm bài](#hướng-dẫn-làm-bài)
+- [File báo cáo](#file-báo-cáo)
 - [Checklist](#checklist)
 - [Hướng tiếp cận](#hướng-tiếp-cận)
 - [Ghi chú trong quá trình làm](#ghi-chú-trong-quá-trình-làm)
@@ -73,6 +74,17 @@
 - [Bài tập 1 — Tổ chức dữ liệu, backup/restore, log, View và mã hóa](guide-exercise-1.md)
 - [Bài tập 2 — Import/export, xác thực và phân quyền](guide-exercise-2.md)
 
+## File báo cáo
+
+| File | Nội dung |
+|---|---|
+| `BTTH3_BaiTap1.docx` | Bài tập 1 — bản gốc của nhóm (trang bìa + Câu 1–10) |
+| `BTTH3_BaiTap2.docx` | Bài tập 2 — bản độc lập (Câu 11–14 + tài liệu tham khảo) |
+| `25730081_Nguyễn Quốc Trung_BTTH3.docx` | **Báo cáo cuối cùng** — ghép Bài tập 1 + Bài tập 2, 48 trang |
+| `25730081_Nguyễn Quốc Trung_BTTH3.pdf` | Bản PDF xuất từ file trên, đúng mẫu tên nộp của đề |
+
+> ⚠️ Còn thiếu `25730081_Nguyễn Quốc Trung_BTTH3.sql` — đề yêu cầu nộp kèm file SQL.
+
 ---
 
 ## Checklist
@@ -99,7 +111,7 @@
 
 | Ngày | Việc đã làm | Vướng ở đâu |
 |---|---|---|
-| | | |
+| 2026-10-06 | Soạn báo cáo Bài tập 2 (Câu 11–14) và ghép với Bài tập 1 thành báo cáo cuối cùng | Import Flat File Wizard suy luận sai kiểu 2 cột (`MSSV` → date, `DiemTB` → real) do bật `Use Rich Data Type Detection` — đã ghi nhận và phân tích trong báo cáo thay vì giấu đi |
 
 Ảnh thực hành: [`images/`](images/) — đặt tên tiếng Anh mô tả (`step3-ping-result.png`)
 
