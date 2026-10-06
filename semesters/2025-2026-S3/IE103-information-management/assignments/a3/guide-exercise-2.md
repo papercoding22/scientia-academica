@@ -29,7 +29,7 @@
 
 > 🔄 Cập nhật thủ công: 2026-10-06, dựa trên ảnh/file đã có trong `images/` và `resources/`.
 
-### Gói 1 — Import và export: 🟡 phần Import xong (bản tối giản), còn Export chưa làm
+### Gói 1 — Import và export: ✅ hoàn thành (bản tối giản, một số ảnh phụ đã chủ động bỏ)
 
 - [x] File mẫu `resources/sample-students.xlsx` + `.csv`
 - [x] ~~Cách A~~ — đã quyết định bỏ, chỉ làm Cách B (đủ đáp ứng đề)
@@ -39,8 +39,8 @@
 - [x] ~~Cách B — bước 4a: Summary~~ — đã quyết định bỏ, không cần ảnh
 - [x] ~~Cách B — bước 4b: Results~~ — đã quyết định bỏ qua ảnh này theo yêu cầu, không chụp (lưu ý: không còn ảnh chứng minh quá trình chạy, chỉ còn trước/sau)
 - [x] Cách B — bước 5: Verify table (`g1-flatfile-step5-verify-table.png`)
-- [ ] Export table → Excel (toàn bộ 6 ảnh `g1-export-*`) — **chưa bắt đầu**
-- [ ] Đối chiếu số cột/dòng/giá trị giữa đầu vào và đầu ra
+- [x] Export table → Excel — đổi công cụ sang Excel `Get Data` (SSMS Export Wizard bị disable, DTSWizard không mở được) — đã chạy step1–step4 (`g1-export-step1-source.png` … `g1-export-step4-run-result.png`); đã bỏ step3b (Transform Data, tùy chọn) và step5 (verify-excel) theo yêu cầu
+- [ ] Đối chiếu số cột/dòng/giá trị giữa đầu vào và đầu ra — nên ghi một dòng xác nhận trong báo cáo vì không còn ảnh step5
 
 ### Gói 2 — Xác thực và role: ✅ hoàn thành toàn bộ (bước 1–4), đã đối chiếu kết quả tổng hợp khớp ma trận a/b
 
@@ -70,9 +70,7 @@
 
 ### Việc tiếp theo nên làm (theo thứ tự)
 
-1. Phần Import của Gói 1 coi như xong (step1, 2, 5 — đã chủ động bỏ step3, 4a, 4b).
-2. Làm phần Export (SQL Server → Excel) của Gói 1 — 6 điểm quyết định, xem bảng trong guide.
-3. Gói 2 và Gói 3 đã xong toàn bộ — chỉ còn phần Export của Gói 1 để hoàn tất cả Bài tập 2.
+Cả ba Gói (1, 2, 3) của Bài tập 2 đã hoàn thành. Còn lại: viết báo cáo PDF tổng hợp toàn bộ ảnh + script theo đúng checklist trước khi nộp (xem mục cuối guide), và ghi chú một dòng xác nhận đối chiếu dữ liệu Export cho Gói 1 vì không có ảnh verify-excel.
 
 ---
 
