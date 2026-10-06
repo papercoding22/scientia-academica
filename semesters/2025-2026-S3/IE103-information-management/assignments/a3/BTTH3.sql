@@ -1,13 +1,11 @@
 ﻿/******************************************************************************
  * MÔN HỌC   : IE103 - Quản lý Thông tin
  * BÀI        : Bài tập thực hành 03 - An ninh thông tin
- * SINH VIÊN  : Nguyễn Quốc Trung
- * MSSV       : 25730081
  * NHÓM       : 10
  * NGÀY       : 2026-10-06
  *
  * File này chứa toàn bộ câu lệnh T-SQL của báo cáo, xếp theo đúng thứ tự câu
- * hỏi trong file 25730081_Nguyễn Quốc Trung_BTTH3.pdf.
+ * hỏi trong file BTTH3.pdf (danh sách thành viên nhóm xem trang bìa báo cáo).
  *
  * LƯU Ý KHI CHẠY:
  *   - Các lệnh được nhóm theo từng câu; nên chạy theo thứ tự vì có phụ thuộc
