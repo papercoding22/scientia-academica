@@ -1,0 +1,44 @@
+Gói 2 — Bước 4: Kết quả truy vấn tổng hợp membership (CSDL QLTT_BTTH3)
+Ngày chạy: 2026-10-06
+
+=== Câu (1) — membership cấp database (r1-r3 theo user, r2/r3 theo db_owner/db_accessadmin) ===
+
+role              member    nguon
+db_accessadmin    r2        role-into-fixedrole (3e)
+db_accessadmin    r3        role-into-fixedrole (3e)
+db_owner          dbo       role-into-fixedrole (3e)   <- mặc định hệ thống, không phải do script tạo
+db_owner          r2        role-into-fixedrole (3e)
+db_owner          r3        role-into-fixedrole (3e)
+r1                u1        user-role (3d)
+r2                u2        user-role (3d)
+r2                u3        user-role (3d)
+r3                u4        user-role (3d)
+r3                u5        user-role (3d)
+r3                u6        user-role (3d)
+
+=== Câu (2) — membership cấp server (SysAdmin) ===
+
+server_role    member
+sysadmin       NT Service\MSSQL$SQLEXPRESS        <- mặc định SQL Server Express, không phải do script tạo
+sysadmin       NT SERVICE\SQLWriter                <- mặc định SQL Server Express, không phải do script tạo
+sysadmin       NT SERVICE\Winmgmt                  <- mặc định SQL Server Express, không phải do script tạo
+sysadmin       PAPER-CODING22\Asus G14 2024         <- tài khoản Windows cài đặt instance, không phải do script tạo
+sysadmin       sa                                   <- mặc định SQL Server, không phải do script tạo
+sysadmin       u1
+sysadmin       u4
+sysadmin       u5
+sysadmin       u6
+
+=== Ghi chú khi đưa vào báo cáo ===
+
+- Câu (1), nhóm "user-role (3d)": đúng 6 dòng, khớp ma trận a (bước 1a):
+  u1->r1; u2,u3->r2; u4,u5,u6->r3.
+- Câu (1), nhóm "role-into-fixedrole (3e)": đúng 4 dòng mong đợi
+  (db_owner-r2, db_owner-r3, db_accessadmin-r2, db_accessadmin-r3) + 1 dòng
+  mặc định (db_owner-dbo) không phải lỗi.
+- Câu (2): u1, u4, u5, u6 đã có trong sysadmin — khớp bảng b (bước 1b), phần
+  server-level, gán qua login (vì r1/r3 là database role, không gán thẳng
+  vào SysAdmin được — xem lời giải bước 3e trong guide-exercise-2.md).
+  5 dòng còn lại là member mặc định của instance SQL Server Express, không
+  do script tạo.
+- Kết luận: Gói 2 (bước 1-4) đã hoàn thành, kết quả khớp đúng đề bài.
