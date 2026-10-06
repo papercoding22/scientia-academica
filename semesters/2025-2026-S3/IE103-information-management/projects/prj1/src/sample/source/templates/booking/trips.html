@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block title %}Chuyến đi{% endblock %}
+{% block nav_trips %}active{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h4 class="mb-0"><i class="bi bi-map me-2"></i>Danh sách chuyến đi
+        <span class="badge bg-secondary ms-2">{{ total }}</span>
+    </h4>
+</div>
+
+{% if db_error %}
+<div class="alert alert-danger"><strong>Lỗi DB:</strong> {{ db_error }}</div>
+{% else %}
+
+<!-- Filter -->
+<div class="mb-3">
+    {% for val, label in trip_statuses %}
+    <a href="{% if val %}/trips/?status={{ val }}{% else %}/trips/{% endif %}"
+       class="btn btn-sm me-1 mb-1 {% if status_filter == val %}btn-dark{% else %}btn-outline-secondary{% endif %}">
+        {{ label }}
+    </a>
+    {% endfor %}
+</div>
+
+<div class="card border-0 shadow-sm">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-sm table-hover mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>Mã cuốc</th>
+                        <th>Khách hàng</th>
+                        <th>Tài xế</th>
+                        <th>Loại xe</th>
+                        <th>Khung giờ</th>
+                        <th class="text-end">Khoảng cách</th>
+                        <th class="text-end">Giá ước tính</th>
+                        <th class="text-end">Thực thu</th>
+                        <th>Trạng thái</th>
+                        <th>Thời gian tạo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for t in trips %}
+                    <tr>
+                        <td><code>{{ t.Ma_Cuoc_Xe }}</code></td>
+                        <td>{{ t.Ten_Khach_Hang }}</td>
+                        <td>{{ t.Ten_Tai_Xe }}</td>
+                        <td>
+                            {% if t.Loai_Xe == 'Xe may' %}🛵 Xe máy
+                            {% elif t.Loai_Xe == 'O to' %}🚗 Ô tô
+                            {% else %}—{% endif %}
+                        </td>
+                        <td>
+                            {% if t.Khung_Gio == 'Cao diem' %}
+                            <span class="badge bg-warning text-dark">Cao điểm</span>
+                            {% elif t.Khung_Gio %}
+                            <span class="badge bg-light text-dark border">Bình thường</span>
+                            {% else %}—{% endif %}
+                        </td>
+                        <td class="text-end">{{ t.Khoang_Cach }} km</td>
+                        <td class="text-end text-muted">{{ t.gia_fmt }}</td>
+                        <td class="text-end fw-semibold">{{ t.tong_tien_fmt }}</td>
+                        <td><span class="badge bg-{{ t.trang_thai_badge }}">{{ t.trang_thai_label }}</span></td>
+                        <td class="text-muted small">{{ t.Thoi_Gian }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr><td colspan="10" class="text-center text-muted py-3">Không có dữ liệu</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+{% endblock %}
